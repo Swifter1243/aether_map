@@ -22,7 +22,7 @@ Material:
     m_Floats:
     - _FBM: 0.2
     - _HueSaturation: 0.3
-    - _Simplex1Scale: 1.64
+    - _Simplex1Scale: 2.27
     - _TimeScale: 1.4
     - _Voronoi1Scale: 27.61
     - _Voronoi2Scale: 4.85
