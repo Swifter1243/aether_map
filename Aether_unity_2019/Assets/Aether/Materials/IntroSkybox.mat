@@ -23,6 +23,7 @@ Material:
     - _FBM: 0.2
     - _HueSaturation: 0.15
     - _Simplex1Scale: 1.64
+    - _TimeScale: 0.8
     - _Voronoi1Scale: 27.61
     - _Voronoi2Scale: 4.85
     m_Colors:

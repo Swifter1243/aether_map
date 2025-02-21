@@ -9,6 +9,7 @@ Shader "Custom/IntroSkybox"
         _Voronoi2Scale ("Voronoi 2 Scale", Float) = 3
         _Simplex1Scale ("Simplex 1 Scale", Float) = 3
         _FBM ("Fractional Brownian Motion", Float) = 0.3
+        _TimeScale ("Time Scale", Float) = 1
     }
     SubShader
     {
@@ -53,6 +54,7 @@ Shader "Custom/IntroSkybox"
             float _Voronoi2Scale;
             float _Simplex1Scale;
             float _FBM;
+            float _TimeScale;
 
             v2f vert(appdata v)
             {
@@ -67,15 +69,17 @@ Shader "Custom/IntroSkybox"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float v = voronoi(i.localPos * _Voronoi1Scale).x;
+                float t = _Time.y * _TimeScale * 0.2;
+
+                float v = voronoi(i.localPos * _Voronoi1Scale + t).x;
 
                 float3 v2Offset = float3(cos(v), 0, sin(v));
-                float v2 = voronoi(i.localPos * _Voronoi2Scale + v2Offset * _FBM) * 0.3;
+                float v2 = voronoi(i.localPos * _Voronoi2Scale + v2Offset * _FBM + t * 0.1) * 0.3;
 
                 float3 huePos = i.localPos + v2;
                 float hue = simplex(huePos * _Simplex1Scale) * 3;
 
-                float3 hueCol = rainbow(hue);
+                float3 hueCol = rainbow(hue + t);
 
                 float3 desaturatedHue = lerp(hueCol, Luminance(hueCol) * _SkyCol, _HueSaturation);
 
