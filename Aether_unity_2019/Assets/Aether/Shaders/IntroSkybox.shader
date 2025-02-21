@@ -15,15 +15,19 @@ Shader "Custom/IntroSkybox"
     {
         Tags
         {
-            "RenderType"="Transparent"
-            "Queue"="Geometry-900"
+            "RenderType"="Background"
+            "Queue"="Background"
         }
-        ZWrite Off
-        ZTest Off
-        Cull Front
 
         Pass
         {
+            ZWrite Off
+            Cull Off
+            Fog
+            {
+                Mode Off
+            }
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -88,7 +92,7 @@ Shader "Custom/IntroSkybox"
                 float horizonAmount = pow(1 - max(0, i.localPos.y), 20);
 
                 float hueAmount = (1 - horizonAmount);
-                hueAmount *= pow(simplex(i.localPos * 5), 3);
+                hueAmount *= pow(simplex(i.localPos * 3), 3.5);
 
                 float3 col = lerp(_HorizonCol, desaturatedHue, hueAmount);
 

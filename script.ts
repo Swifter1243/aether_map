@@ -20,7 +20,20 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
         'Environment'
     ])
 
-    prefabs.intro_1.instantiate(map)
+    rm.setRenderingSettings(map, {
+        renderSettings: {
+            skybox: materials.introskybox.path
+        }
+    })
+
+    rm.setCameraProperty(map, {
+        beat: 5,
+        properties: {
+            clearFlags: 'Skybox'
+        }
+    })
+
+    prefabs.intro_1.instantiate(map, 5)
 }
 
 await Promise.all([
