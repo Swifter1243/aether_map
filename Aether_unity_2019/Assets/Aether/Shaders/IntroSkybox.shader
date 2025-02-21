@@ -87,13 +87,10 @@ Shader "Custom/IntroSkybox"
 
                 float horizonAmount = pow(1 - max(0, i.localPos.y), 20);
 
-                float3 skyCol = lerp(_SkyCol, _HorizonCol, horizonAmount);
-
                 float hueAmount = (1 - horizonAmount);
-                hueAmount *= simplex(i.localPos * 5);
-                hueAmount = pow(hueAmount, 2);
+                hueAmount *= pow(simplex(i.localPos * 5), 3);
 
-                float3 col = lerp(skyCol, desaturatedHue, hueAmount);
+                float3 col = lerp(_HorizonCol, desaturatedHue, hueAmount);
 
                 return float4(col, 0);
             }
