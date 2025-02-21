@@ -22,9 +22,7 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
 }
 
 await Promise.all([
-    doMap('ExpertPlusStandard'),
-    doMap('ExpertStandard'),
-    doMap('HardStandard')
+    doMap('ExpertPlusStandard')
 ])
 
 // ----------- { OUTPUT } -----------
