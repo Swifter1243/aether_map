@@ -12,13 +12,15 @@ const prefabs = bundle.prefabs
 async function doMap(file: rm.DIFFICULTY_NAME) {
     const map = await rm.readDifficultyV3(pipeline, file)
 
-    // Example: Run code on every note!
+    map.require('Vivify')
+    map.require('Noodle Extensions')
+    map.require('Chroma')
 
-    // map.allNotes.forEach(note => {
-    //     console.log(note.beat)
-    // })
+    rm.environmentRemoval(map, [
+        'Environment'
+    ])
 
-    // For more help, read: https://github.com/Swifter1243/ReMapper/wiki
+    prefabs.intro_1.instantiate(map)
 }
 
 await Promise.all([
