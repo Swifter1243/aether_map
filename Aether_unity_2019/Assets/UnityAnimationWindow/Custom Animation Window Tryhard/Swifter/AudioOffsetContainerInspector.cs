@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 namespace UnityAnimationWindow.Swifter
 {
+    #if UNITY_EDITOR
     [CustomEditor(typeof (AudioOffsetContainer))]
     public class AudioOffsetContainerInspector : Editor
     {
@@ -11,4 +12,5 @@ namespace UnityAnimationWindow.Swifter
             GUILayout.Label("This component exists to store data about audio timings.");
         }
     }
+    #endif
 }
