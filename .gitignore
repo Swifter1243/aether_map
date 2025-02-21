@@ -1,0 +1,23 @@
+# Vivify bundles
+*.vivify
+
+# Zip exports
+*.zip
+
+# Bundle info
+bundleinfo.json
+
+# RM cache
+RM_Cache.json
+
+# Autosaves from Chromapper
+/autosaves
+
+# Code Workspace
+*.code-workspace
+
+# Deno Lock
+deno.lock
+
+# 2021 project (for quest)
+/Aether_unity_2021
