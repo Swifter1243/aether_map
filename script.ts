@@ -20,10 +20,19 @@ const TIMES = {
 async function doMap(file: rm.DIFFICULTY_NAME) {
     const map = await rm.readDifficultyV3(pipeline, file)
 
+    infoSetup(map)
+    visualsSetup(map)
+    
+    intro(map)
+}
+
+function infoSetup(map: rm.V3Difficulty) {
     map.require('Vivify')
     map.require('Noodle Extensions')
     map.require('Chroma')
+}
 
+function visualsSetup(map: rm.V3Difficulty) {
     rm.environmentRemoval(map, [
         'Environment'
     ])
@@ -33,7 +42,9 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
             clearFlags: 'Skybox'
         }
     })
+}
 
+function intro(map: rm.V3Difficulty) {
     rm.setRenderingSettings(map, {
         beat: TIMES.INTRO1,
         renderSettings: {
