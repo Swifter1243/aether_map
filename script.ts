@@ -44,6 +44,26 @@ function visualsSetup(map: rm.V3Difficulty) {
     })
 }
 
+function moveScene(map: rm.V3Difficulty, prefab: rm.Prefab, start: number, end: number, movementSpeed = 0.5) {
+    const dur = end - start
+
+    const instance = prefab.instantiate(map, start)
+
+    rm.animateTrack(map, {
+        beat: start,
+        track: instance.track.value,
+        duration: dur,
+        animation: {
+            position: [
+                [0, 0, 0, 0],
+                [0, 0, -dur * movementSpeed, 1]
+            ]
+        }
+    })
+
+    instance.destroyObject(end)
+}
+
 function intro(map: rm.V3Difficulty) {
     rm.setRenderingSettings(map, {
         beat: TIMES.INTRO1,
@@ -51,20 +71,9 @@ function intro(map: rm.V3Difficulty) {
             skybox: materials.introskybox.path
         }
     })
-
-    const intro1 = prefabs.intro_1.instantiate(map, TIMES.INTRO1)
     
-    rm.animateTrack(map, {
-        beat: TIMES.INTRO1,
-        track: intro1.track.value,
-        duration: TIMES.INTRO2 - TIMES.INTRO1,
-        animation: {
-            position: [
-                [0, 0, 0, 0],
-                [0, 0, -10, 1]
-            ]
-        }
-    })
+    moveScene(map, prefabs.intro_1, TIMES.INTRO1, TIMES.INTRO2)
+    moveScene(map, prefabs.intro_2, TIMES.INTRO2, TIMES.INTRO3)
 }
 
 await Promise.all([
