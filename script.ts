@@ -7,6 +7,14 @@ const bundle = rm.loadBundle(bundleInfo)
 const materials = bundle.materials
 const prefabs = bundle.prefabs
 
+const TIMES = {
+    INTRO1: 5,
+    INTRO2: 37,
+    INTRO3: 64,
+    FIRSTDROP_1: 69,
+    FIRSTDROP_2: 77
+} as const
+
 // ----------- { SCRIPT } -----------
 
 async function doMap(file: rm.DIFFICULTY_NAME) {
@@ -20,20 +28,32 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
         'Environment'
     ])
 
-    rm.setRenderingSettings(map, {
-        renderSettings: {
-            skybox: materials.introskybox.path
-        }
-    })
-
     rm.setCameraProperty(map, {
-        beat: 5,
         properties: {
             clearFlags: 'Skybox'
         }
     })
 
-    prefabs.intro_1.instantiate(map, 5)
+    rm.setRenderingSettings(map, {
+        beat: TIMES.INTRO1,
+        renderSettings: {
+            skybox: materials.introskybox.path
+        }
+    })
+
+    const intro1 = prefabs.intro_1.instantiate(map, TIMES.INTRO1)
+    
+    rm.animateTrack(map, {
+        beat: TIMES.INTRO1,
+        track: intro1.track.value,
+        duration: TIMES.INTRO2 - TIMES.INTRO1,
+        animation: {
+            position: [
+                [0, 0, 0, 0],
+                [0, 0, -10, 1]
+            ]
+        }
+    })
 }
 
 await Promise.all([
