@@ -5,6 +5,7 @@ Shader "Swifter/VortexBlit"
         _MainTex ("Texture", 2D) = "white" {}
         _Steps ("Steps", Int) = 16
         _StepSize ("Step Size", Float) = 60
+        _StepNoise ("Step Noise", Float) = 1
         _VolumeStartZ ("Volume Start Z", Float) = 400
         _VortexCenter ("Vortex Center", Vector) = (0, 0, 1000)
         _VortexNoiseScale ("Vortex Noise Scale", Float) = 0.002
@@ -18,6 +19,7 @@ Shader "Swifter/VortexBlit"
         _CutoffHeights ("Cutoff Heights", Vector) = (1200, 1000, 500, 0)
         _LightColor ("Light Color", Color) = (1,1,1)
         _LightBrightness ("Light Brightness", Float) = 0.7
+        _LightRadius ("Light Radius", Float) = 1300
         _BlurSteps ("Blur Steps", Int) = 10
         _BlurRadius ("Blur Radius", Range(0,0.01)) = 0.001
     }
@@ -46,6 +48,7 @@ Shader "Swifter/VortexBlit"
 
             float _Steps;
             float _StepSize;
+            float _StepNoise;
             float _VolumeStartZ;
             float3 _VortexCenter;
             float _VortexNoiseScale;
@@ -59,6 +62,7 @@ Shader "Swifter/VortexBlit"
             float4 _CutoffHeights;
             float3 _LightColor;
             float _LightBrightness;
+            float _LightRadius;
 
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
 
@@ -98,8 +102,8 @@ Shader "Swifter/VortexBlit"
 
             float lightAmount(float3 toCenter)
             {
-                float ballLight = invLerp(500 , 0, length(toCenter));
-                ballLight = pow(max(0, ballLight), 2);
+                float ballLight = invLerp(_LightRadius , 0, length(toCenter));
+                ballLight = pow(max(0, ballLight), 5);
                 return ballLight;
             }
 
@@ -129,16 +133,16 @@ Shader "Swifter/VortexBlit"
 
                 density += lightAmount(toCenter) * _LightBrightness * lerp(n, 1, 0.1);
 
-                return density;
+                return density * 3;
             }
 
             float3 sampleColor(float3 toCenter, float distToCenter)
             {
-                float3 col = 1;
+                float3 col = 0;
 
-                col = lerp(col, _LightColor, pow(lightAmount(toCenter), 0.001));
+                col = lerp(col, _LightColor, lightAmount(toCenter) * 3);
 
-                col = lerp(col, rainbow(distToCenter / 120), 0.4 * smoothstep(0, 600, distToCenter));
+                col = lerp(col, rainbow(distToCenter / 120) * 0.2, 0.2 * smoothstep(0, 500, distToCenter));
 
                 return col;
             }
@@ -157,7 +161,7 @@ Shader "Swifter/VortexBlit"
                 float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, i.uv).r;
                 float zDepth = LinearEyeDepth(depth);
 
-                float totalDist = toVolumeStart + InterleavedGradientNoise(i.uv * 100) * _StepSize * 3;
+                float totalDist = toVolumeStart + InterleavedGradientNoise(i.uv * 100) * _StepSize * _StepNoise;
                 float stepSize = _StepSize;
                 stepSize *= zProjLength;
 
@@ -184,7 +188,7 @@ Shader "Swifter/VortexBlit"
                     alpha *= exp(-fogDensity);
                 }
 
-                float4 volumetricsCol = float4(col, 0);
+                float4 volumetricsCol = float4(col, alpha);
                 return volumetricsCol;
             }
             ENDCG
@@ -318,7 +322,7 @@ Shader "Swifter/VortexBlit"
                 float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture3, i.uv);
                 float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 
-                return screenCol * 0 + vortexCol;
+                return vortexCol + screenCol * 0.03;
             }
             ENDCG
         }
