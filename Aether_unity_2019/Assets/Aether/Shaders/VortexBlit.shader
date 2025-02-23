@@ -18,12 +18,14 @@ Shader "Swifter/VortexBlit"
         _CutoffHeights ("Cutoff Heights", Vector) = (1200, 1000, 500, 0)
         _LightColor ("Light Color", Color) = (1,1,1)
         _LightBrightness ("Light Brightness", Float) = 0.7
+        _BlurSteps ("Blur Steps", Int) = 10
+        _BlurRadius ("Blur Radius", Range(0,0.01)) = 0.001
     }
     SubShader
     {
         Cull Off ZWrite Off ZTest Always
 
-        Pass
+        Pass // Volumetrics
         {
             CGPROGRAM
             #pragma vertex vert
@@ -33,13 +35,6 @@ Shader "Swifter/VortexBlit"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
-
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-                UNITY_VERTEX_INPUT_INSTANCE_ID
-            };
 
             struct v2f
             {
@@ -67,19 +62,15 @@ Shader "Swifter/VortexBlit"
 
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
 
-            v2f vert (appdata v)
+            v2f vert (appdata_base v)
             {
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-                // Calculate View Direction
-                o.viewVector = viewVectorFromUV(v.uv); // from Math.cginc
-
-                // Save Vertex
+                o.viewVector = viewVectorFromUV(v.texcoord); // from Math.cginc
                 o.vertex = UnityObjectToClipPos(v.vertex);
-
-                o.uv = v.uv;
+                o.uv = v.texcoord;
 
                 return o;
             }
@@ -182,7 +173,7 @@ Shader "Swifter/VortexBlit"
             }
             ENDCG
         }
-        Pass
+        Pass // Horizontal Blur
         {
             CGPROGRAM
             #pragma vertex vert
@@ -190,42 +181,125 @@ Shader "Swifter/VortexBlit"
 
             #include "UnityCG.cginc"
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-                UNITY_VERTEX_INPUT_INSTANCE_ID
-            };
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture1);
 
-            struct v2f
-            {
-                float4 vertex : SV_POSITION;
-                float2 uv : TEXCOORD0;
-                UNITY_VERTEX_OUTPUT_STEREO
-            };
+            int _BlurSteps;
+            float _BlurRadius;
 
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture);
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
-
-            v2f vert (appdata v)
+            v2f_img vert(appdata_img v)
             {
                 UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
+                UNITY_INITIALIZE_OUTPUT(v2f_img, v2f_img o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.uv = v.texcoord;
+                return o;
+            }
+
+            float4 getScreenCol(float2 uv)
+            {
+                return UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture1, UnityStereoTransformScreenSpaceTex(uv));
+            }
+
+            float4 blur(float2 uv, float amount)
+            {
+                float4 total = 0;
+                float aspect = _ScreenParams.y / _ScreenParams.x;
+
+                for (int i = -_BlurSteps; i <= _BlurSteps; i++)
+                {
+                    float offset = (float)i / _BlurSteps;
+                    total += getScreenCol(uv + float2(offset * amount * aspect, 0));
+                }
+
+                return total / (_BlurSteps * 2 + 1);
+            }
+
+            fixed4 frag(v2f_img i) : SV_Target
+            {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
+                return blur(i.uv, _BlurRadius);
+            }
+            ENDCG
+        }
+        Pass // Vertical Blur
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture2);
+
+            int _BlurSteps;
+            float _BlurRadius;
+
+            v2f_img vert(appdata_img v)
+            {
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f_img, v2f_img o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.uv = v.texcoord;
+                return o;
+            }
+
+            float4 getScreenCol(float2 uv)
+            {
+                return UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture2, UnityStereoTransformScreenSpaceTex(uv));
+            }
+
+            float4 blur(float2 uv, float amount)
+            {
+                float4 total = 0;
+
+                for (int i = -_BlurSteps; i <= _BlurSteps; i++)
+                {
+                    float offset = (float)i / _BlurSteps;
+                    total += getScreenCol(uv + float2(0, offset * amount));
+                }
+
+                return total / (_BlurSteps * 2 + 1);
+            }
+
+            fixed4 frag(v2f_img i) : SV_Target
+            {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
+                return blur(i.uv, _BlurRadius);
+            }
+            ENDCG
+        }
+        Pass // Composition
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture3);
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
+
+            v2f_img vert (appdata_img v)
+            {
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f_img, v2f_img o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-                // Save Vertex
-                o.vertex = UnityObjectToClipPos(v.vertex);
-
-                o.uv = v.uv;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.uv = v.texcoord;
 
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag (v2f_img i) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
-                float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture, i.uv);
+                float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture3, i.uv);
                 float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 
                 return screenCol * 0.1 + vortexCol;

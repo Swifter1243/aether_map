@@ -77,13 +77,21 @@ function intro(map: rm.V3Difficulty) {
 
     const tempScene = prefabs.intro_2.instantiate(map, TIMES.INTRO3)
 
-    const vortexTextureId = '_VortexTexture'
-
-    rm.createScreenTexture(map, {
+    const vortexTexture1 = rm.createScreenTexture(map, {
         beat: TIMES.INTRO3,
-        xRatio: 10,
-        yRatio: 10,
-        id: vortexTextureId
+        xRatio: 4,
+        yRatio: 4,
+        id: '_VortexTexture1'
+    })
+
+    const vortexTexture2 = rm.createScreenTexture(map, {
+        beat: TIMES.INTRO3,
+        id: '_VortexTexture2'
+    })
+
+    const vortexTexture3 = rm.createScreenTexture(map, {
+        beat: TIMES.INTRO3,
+        id: '_VortexTexture3'
     })
 
     const vortexDuration = 99999
@@ -91,15 +99,35 @@ function intro(map: rm.V3Difficulty) {
     rm.blit(map, {
         beat: TIMES.INTRO3,
         asset: materials.vortexblit.path,
-        destination: vortexTextureId,
+        destination: vortexTexture1.id,
         pass: 0,
+        priority: 0,
         duration: vortexDuration
     })
 
     rm.blit(map, {
         beat: TIMES.INTRO3,
         asset: materials.vortexblit.path,
+        destination: vortexTexture2.id,
         pass: 1,
+        priority: 1,
+        duration: vortexDuration
+    })
+
+    rm.blit(map, {
+        beat: TIMES.INTRO3,
+        asset: materials.vortexblit.path,
+        destination: vortexTexture3.id,
+        pass: 2,
+        priority: 2,
+        duration: vortexDuration
+    })
+
+    rm.blit(map, {
+        beat: TIMES.INTRO3,
+        asset: materials.vortexblit.path,
+        pass: 3,
+        priority: 0,
         duration: vortexDuration
     })
 }
