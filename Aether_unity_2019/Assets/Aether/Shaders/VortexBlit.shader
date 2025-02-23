@@ -32,6 +32,7 @@ Shader "Swifter/VortexBlit"
             #include "UnityCG.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
 
             struct appdata
             {
@@ -130,10 +131,14 @@ Shader "Swifter/VortexBlit"
                 float d = invLerp(radius, 0, distToCenter);
                 d = pow(d, 3);
                 d = saturate(d);
-                d *= _VortexMainBrightness;
 
                 float3 beamMist = n * saturate(1 - distToCenter / _VortexBeamRadius) * _VortexBeamBrightness * _LightColor;
-                float3 col = d * n + beamMist;
+
+                float mainColorBrightness = d * n * _VortexMainBrightness;
+                float3 mainColor = mainColorBrightness;
+                mainColor = lerp(mainColor, mainColorBrightness * 1.3 * rainbow(distToCenter / 120), 0.4 * smoothstep(0, 600, distToCenter));
+
+                float3 col = mainColor + beamMist;
 
                 float cutoffStart = smoothstep(_CutoffHeights[0], _CutoffHeights[1], p.y);
                 float cutoffEnd = smoothstep(_CutoffHeights[3], _CutoffHeights[2], p.y);
