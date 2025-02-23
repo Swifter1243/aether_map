@@ -130,7 +130,7 @@ Shader "Swifter/VortexBlit"
                 float cutoffEnd = smoothstep(_CutoffHeights[3], _CutoffHeights[2], p.y);
                 density *= cutoffStart * cutoffEnd;
 
-                density += lightAmount(toCenter) * _LightBrightness * lerp(n, 1, 0.1);
+                density += lightAmount(toCenter) * lerp(n, 1, 0.1);
 
                 return density * 3;
             }
@@ -139,7 +139,7 @@ Shader "Swifter/VortexBlit"
             {
                 float3 col = 0;
 
-                col = lerp(col, _LightColor, lightAmount(toCenter) * 4);
+                col = lerp(col, _LightColor, lightAmount(toCenter) * _LightBrightness);
 
                 col = lerp(col, rainbow(distToCenter / 120) * 0.2, 0.2 * smoothstep(0, 500, distToCenter));
 
