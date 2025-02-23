@@ -10,6 +10,7 @@ Shader "Swifter/VortexBlit"
         _VortexNoiseScale ("Vortex Noise Scale", Float) = 0.002
         _VortexTwistYRate ("Vortex Twist Y Rate", Float) = 0.002
         _VortexTwistRadialRate ("Vortex Twist Radial Rate", Float) = 0.01
+        _VortexTwistTimeRate ("Vortex Twist Time Rate", Float) = 0.04
         _RadiusSizes ("Radius Sizes", Vector) = (1000, 600, 800, 300)
         _CutoffHeights ("Cutoff Heights", Vector) = (1200, 1000, 500, 0)
         _LightColor ("Light Color", Color) = (1,1,1)
@@ -51,6 +52,7 @@ Shader "Swifter/VortexBlit"
             float _VortexNoiseScale;
             float _VortexTwistRadialRate;
             float _VortexTwistYRate;
+            float _VortexTwistTimeRate;
             float4 _RadiusSizes;
             float4 _CutoffHeights;
             float3 _LightColor;
@@ -108,7 +110,7 @@ Shader "Swifter/VortexBlit"
 
                 //float angle = pow(distToCenter, 0.4);
 
-                float3 rotatedP = rotateY(toCenter, distToCenter * _VortexTwistRadialRate + _Time.y * 0.2 + p.y * _VortexTwistYRate) + _VortexCenter;
+                float3 rotatedP = rotateY(toCenter, distToCenter * _VortexTwistRadialRate + _Time.y * _VortexTwistTimeRate + p.y * _VortexTwistYRate) + _VortexCenter;
                 rotatedP.y *= 0.7;
 
                 float3 n = simplex(rotatedP * _VortexNoiseScale);
