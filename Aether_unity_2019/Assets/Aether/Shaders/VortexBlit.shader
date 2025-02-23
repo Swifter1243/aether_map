@@ -11,6 +11,9 @@ Shader "Swifter/VortexBlit"
         _VortexTwistYRate ("Vortex Twist Y Rate", Float) = 0.002
         _VortexTwistRadialRate ("Vortex Twist Radial Rate", Float) = 0.01
         _VortexTwistTimeRate ("Vortex Twist Time Rate", Float) = 0.04
+        _VortexMainBrightness ("Vortex Main Brightness", Float) = 0.01
+        _VortexBeamBrightness ("Vortex Beam Brightness", Float) = 0.01
+        _VortexBeamRadius ("Vortex Beam Radius", Float) = 600
         _RadiusSizes ("Radius Sizes", Vector) = (1000, 600, 800, 300)
         _CutoffHeights ("Cutoff Heights", Vector) = (1200, 1000, 500, 0)
         _LightColor ("Light Color", Color) = (1,1,1)
@@ -53,6 +56,9 @@ Shader "Swifter/VortexBlit"
             float _VortexTwistRadialRate;
             float _VortexTwistYRate;
             float _VortexTwistTimeRate;
+            float _VortexMainBrightness;
+            float _VortexBeamBrightness;
+            float _VortexBeamRadius;
             float4 _RadiusSizes;
             float4 _CutoffHeights;
             float3 _LightColor;
@@ -124,15 +130,14 @@ Shader "Swifter/VortexBlit"
                 float d = invLerp(radius, 0, distToCenter);
                 d = pow(d, 3);
                 d = saturate(d);
-                d *= 0.01;
+                d *= _VortexMainBrightness;
 
-                float3 col = d * n * 3 + n * saturate(1 - distToCenter / 600) * 0.002;
+                float3 beamMist = n * saturate(1 - distToCenter / _VortexBeamRadius) * _VortexBeamBrightness * _LightColor;
+                float3 col = d * n + beamMist;
 
                 float cutoffStart = smoothstep(_CutoffHeights[0], _CutoffHeights[1], p.y);
                 float cutoffEnd = smoothstep(_CutoffHeights[3], _CutoffHeights[2], p.y);
                 col *= cutoffStart * cutoffEnd;
-
-                //col *= min(1, pow(distToCenter * 0.003, 4));
 
                 float ballLight = invLerp(800 + n * 100, 0, length(toCenter));
                 ballLight = pow(max(0, ballLight), 7);
