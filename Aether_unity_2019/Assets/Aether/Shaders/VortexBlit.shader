@@ -112,6 +112,7 @@ Shader "Swifter/VortexBlit"
 
                 float3 n = simplex(rotatedP * _VortexNoiseScale);
                 n += simplex(rotatedP * _VortexNoiseScale * 4 + n + _Time.y * _VortexTwistTimeRate) * 0.25;
+                n += simplex(rotatedP * _VortexNoiseScale * 8 + n + _Time.y * _VortexTwistTimeRate) * 0.125;
                 n = pow(n, 10);
 
                 float radiusProgress = saturate(invLerp(_RadiusSizes[0], _RadiusSizes[2], p.y));
