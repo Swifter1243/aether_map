@@ -113,7 +113,7 @@ Shader "Swifter/VortexBlit"
                 rotatedP.y *= 0.7;
 
                 float3 n = simplex(rotatedP * _VortexNoiseScale);
-                n += simplex(rotatedP * _VortexNoiseScale * 4 + n) * 0.25;
+                n += simplex(rotatedP * _VortexNoiseScale * 4 + n + _Time.y * _VortexTwistTimeRate) * 0.25;
                 n = pow(n, 10);
 
                 float radiusProgress = saturate(invLerp(_RadiusSizes[0], _RadiusSizes[2], p.y));
@@ -140,7 +140,7 @@ Shader "Swifter/VortexBlit"
             {
                 float3 col = 0;
 
-                col = lerp(col, _LightColor, lightAmount(toCenter) * 3);
+                col = lerp(col, _LightColor, lightAmount(toCenter) * 4);
 
                 col = lerp(col, rainbow(distToCenter / 120) * 0.2, 0.2 * smoothstep(0, 500, distToCenter));
 
@@ -161,7 +161,8 @@ Shader "Swifter/VortexBlit"
                 float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, i.uv).r;
                 float zDepth = LinearEyeDepth(depth);
 
-                float totalDist = toVolumeStart + InterleavedGradientNoise(i.uv * 100) * _StepSize * _StepNoise;
+                float2 screenCoord = i.uv * _ScreenParams.xy;
+                float totalDist = toVolumeStart + InterleavedGradientNoise(screenCoord) * _StepSize * _StepNoise * zProjLength;
                 float stepSize = _StepSize;
                 stepSize *= zProjLength;
 
@@ -322,7 +323,7 @@ Shader "Swifter/VortexBlit"
                 float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture3, i.uv);
                 float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 
-                return vortexCol + screenCol * 0.03;
+                return vortexCol + screenCol * 0.01;
             }
             ENDCG
         }

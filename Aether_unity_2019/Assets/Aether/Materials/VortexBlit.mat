@@ -24,20 +24,20 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BlurRadius: 0.00237
+    - _BlurRadius: 0
     - _BlurSteps: 3
-    - _LightBrightness: 0.36
+    - _LightBrightness: 0
     - _LightRadius: 1421
-    - _StepNoise: 6
-    - _StepSize: 26.8
+    - _StepNoise: 1
+    - _StepSize: 23.51
     - _Steps: 32
     - _VolumeStartZ: 773.3
-    - _VortexBeamBrightness: 11.8
+    - _VortexBeamBrightness: 20.45
     - _VortexBeamRadius: 186.8
-    - _VortexMainBrightness: 1.19
-    - _VortexNoiseScale: 0.005
+    - _VortexMainBrightness: 3.1
+    - _VortexNoiseScale: 0.003
     - _VortexTwistRadialRate: 0.001
-    - _VortexTwistTimeRate: 0.03
+    - _VortexTwistTimeRate: 0.1
     - _VortexTwistYRate: 0.004
     m_Colors:
     - _CutoffHeights: {r: 1565.3, g: 1000, b: 100, a: -69.1}
