@@ -25,7 +25,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BlurRadius: 0.00474
-    - _BlurSteps: 10
+    - _BlurSteps: 3
     - _LightBrightness: 1.31
     - _StepSize: 13.8
     - _Steps: 59.8
