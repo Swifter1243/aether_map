@@ -27,11 +27,11 @@ Material:
     - _BlurRadius: 0
     - _BlurSteps: 3
     - _LightBrightness: 0
-    - _LightRadius: 1421
+    - _LightRadius: 1225
     - _StepNoise: 1
-    - _StepSize: 35.9
-    - _Steps: 24.2
-    - _VolumeStartZ: 773.3
+    - _StepSize: 42.9
+    - _Steps: 20
+    - _VolumeStartZ: 557
     - _VortexBeamBrightness: 20.45
     - _VortexBeamRadius: 186.8
     - _VortexMainBrightness: 3.1
@@ -40,7 +40,7 @@ Material:
     - _VortexTwistTimeRate: 0.1
     - _VortexTwistYRate: 0.004
     m_Colors:
-    - _CutoffHeights: {r: 1565.3, g: 1000, b: 100, a: -69.1}
+    - _CutoffHeights: {r: 1265.3, g: 700, b: 100, a: -69.1}
     - _LightColor: {r: 0.759434, g: 0.8841261, b: 1, a: 1}
-    - _RadiusSizes: {r: 1000, g: 1537.6, b: 296.34, a: 456}
-    - _VortexCenter: {r: 0, g: 1161, b: 1000, a: 1}
+    - _RadiusSizes: {r: 700, g: 1537.6, b: 0, a: 456}
+    - _VortexCenter: {r: 0, g: 765, b: 1000, a: 1}
