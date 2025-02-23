@@ -100,5 +100,6 @@ Shader "Custom/SimpleTerrainFog"
             }
             ENDCG
         }
+        UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
     }
 }

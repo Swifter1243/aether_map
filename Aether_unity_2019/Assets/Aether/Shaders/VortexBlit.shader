@@ -8,7 +8,12 @@ Shader "Swifter/VortexBlit"
         _VolumeStartZ ("Volume Start Z", Float) = 400
         _VortexCenter ("Vortex Center", Vector) = (0, 0, 1000)
         _VortexNoiseScale ("Vortex Noise Scale", Float) = 0.002
+        _VortexTwistYRate ("Vortex Twist Y Rate", Float) = 0.002
+        _VortexTwistRadialRate ("Vortex Twist Radial Rate", Float) = 0.01
         _RadiusSizes ("Radius Sizes", Vector) = (1000, 600, 800, 300)
+        _CutoffHeights ("Cutoff Heights", Vector) = (1200, 1000, 500, 0)
+        _LightColor ("Light Color", Color) = (1,1,1)
+        _LightBrightness ("Light Brightness", Float) = 0.7
     }
     SubShader
     {
@@ -44,7 +49,15 @@ Shader "Swifter/VortexBlit"
             float _VolumeStartZ;
             float3 _VortexCenter;
             float _VortexNoiseScale;
+            float _VortexTwistRadialRate;
+            float _VortexTwistYRate;
             float4 _RadiusSizes;
+            float4 _CutoffHeights;
+            float3 _LightColor;
+            float _LightBrightness;
+
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
 
             v2f vert (appdata v)
             {
@@ -62,8 +75,6 @@ Shader "Swifter/VortexBlit"
 
                 return o;
             }
-
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
 
             float2 rotate2D(float2 p, float a)
             {
@@ -97,7 +108,7 @@ Shader "Swifter/VortexBlit"
 
                 //float angle = pow(distToCenter, 0.4);
 
-                float3 rotatedP = rotateY(toCenter, distToCenter * 0.002 + _Time.y * 0.2 + p.y * 0.001) + _VortexCenter;
+                float3 rotatedP = rotateY(toCenter, distToCenter * _VortexTwistRadialRate + _Time.y * 0.2 + p.y * _VortexTwistYRate) + _VortexCenter;
                 rotatedP.y *= 0.7;
 
                 float3 n = simplex(rotatedP * _VortexNoiseScale);
@@ -105,7 +116,8 @@ Shader "Swifter/VortexBlit"
                 n += simplex(rotatedP * _VortexNoiseScale * 4 + n * 2) * 0.25;
                 n = pow(n, 4);
 
-                float radius = lerp(900, 300, invLerp(100, -1900, p.y));
+                float radiusProgress = saturate(invLerp(_RadiusSizes[0], _RadiusSizes[2], p.y));
+                float radius = lerp(_RadiusSizes[1], _RadiusSizes[3], radiusProgress);
 
                 float d = invLerp(radius, 0, distToCenter);
                 d = pow(d, 3);
@@ -114,16 +126,15 @@ Shader "Swifter/VortexBlit"
 
                 float3 col = d * n * 3 + n * saturate(1 - distToCenter / 600) * 0.002;
 
-                float cutoff = saturate(1 - p.y * 0.001);
+                float cutoffStart = smoothstep(_CutoffHeights[0], _CutoffHeights[1], p.y);
+                float cutoffEnd = smoothstep(_CutoffHeights[3], _CutoffHeights[2], p.y);
+                col *= cutoffStart * cutoffEnd;
 
-                col *= cutoff;
-                col *= smoothstep(-2000, 0, p.y);
-
-                col *= min(1, pow(distToCenter * 0.003, 4));
+                //col *= min(1, pow(distToCenter * 0.003, 4));
 
                 float ballLight = invLerp(800 + n * 100, 0, length(toCenter));
                 ballLight = pow(max(0, ballLight), 7);
-                col += ballLight * n * 0.6 * float3(0.5, 0.8, 1);
+                col += ballLight * n * _LightBrightness * _LightColor;
 
                 return col;
             }
@@ -139,21 +150,30 @@ Shader "Swifter/VortexBlit"
                 float zProjLength = 1 / i.viewVector.z;
                 float toVolumeStart = _VolumeStartZ - _WorldSpaceCameraPos.z;
 
-                float3 p = _WorldSpaceCameraPos + i.viewVector * (zProjLength * toVolumeStart);
-
                 float3 col = 0;
+
+                float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, i.uv).r;
+                float zDepth = LinearEyeDepth(depth);
+
+                float totalDist = toVolumeStart;
 
                 [loop]
                 for (int j = 0; j < _Steps; j++) {
-                    p += i.viewVector * (_StepSize * zProjLength);
+                    totalDist += _StepSize * zProjLength;
+
+                    if (totalDist > zDepth) {
+                        break;
+                    }
+
+                    float3 p = _WorldSpaceCameraPos + i.viewVector * totalDist;
 
                     col += sampleDensity(p);
                 }
 
-                float4 finalCol = float4(col, 0);
+                float4 volumetricsCol = float4(col, 0);
                 float4 screenCol = getScreenColor(i.uv);
 
-                return finalCol;
+                return volumetricsCol + screenCol * 0.1;
             }
             ENDCG
         }
