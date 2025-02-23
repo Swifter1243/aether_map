@@ -96,17 +96,15 @@ Shader "Swifter/VortexBlit"
                 return (x - a) / (b - a);
             }
 
-            float3 sampleDensity(float3 p)
+            float lightAmount(float3 toCenter)
             {
-                if (abs(p.y + 900) > 20) {
-                    //return 0;
-                }
+                float ballLight = invLerp(500 , 0, length(toCenter));
+                ballLight = pow(max(0, ballLight), 2);
+                return ballLight;
+            }
 
-                float3 toCenter = p - _VortexCenter;
-                float distToCenter = length(toCenter.xz);
-
-                //float angle = pow(distToCenter, 0.4);
-
+            float sampleDensity(float3 p, float3 toCenter, float distToCenter)
+            {
                 float3 rotatedP = rotateY(toCenter, distToCenter * _VortexTwistRadialRate + _Time.y * _VortexTwistTimeRate + p.y * _VortexTwistYRate) + _VortexCenter;
                 rotatedP.y *= 0.7;
 
@@ -122,20 +120,25 @@ Shader "Swifter/VortexBlit"
                 d = saturate(d);
 
                 float3 beamMist = n * saturate(1 - distToCenter / _VortexBeamRadius) * _VortexBeamBrightness * _LightColor;
-
                 float mainColorBrightness = d * n * _VortexMainBrightness;
-                float3 mainColor = mainColorBrightness;
-                mainColor = lerp(mainColor, mainColorBrightness * 1.3 * rainbow(distToCenter / 120), 0.4 * smoothstep(0, 600, distToCenter));
-
-                float3 col = mainColor + beamMist;
+                float density = mainColorBrightness + beamMist;
 
                 float cutoffStart = smoothstep(_CutoffHeights[0], _CutoffHeights[1], p.y);
                 float cutoffEnd = smoothstep(_CutoffHeights[3], _CutoffHeights[2], p.y);
-                col *= cutoffStart * cutoffEnd;
+                density *= cutoffStart * cutoffEnd;
 
-                float ballLight = invLerp(800 + n * 100, 0, length(toCenter));
-                ballLight = pow(max(0, ballLight), 7);
-                col += ballLight * n * _LightBrightness * _LightColor;
+                density += lightAmount(toCenter) * _LightBrightness * lerp(n, 1, 0.1);
+
+                return density;
+            }
+
+            float3 sampleColor(float3 toCenter, float distToCenter)
+            {
+                float3 col = 1;
+
+                col = lerp(col, _LightColor, pow(lightAmount(toCenter), 0.001));
+
+                col = lerp(col, rainbow(distToCenter / 120), 0.4 * smoothstep(0, 600, distToCenter));
 
                 return col;
             }
@@ -151,14 +154,15 @@ Shader "Swifter/VortexBlit"
                 float zProjLength = 1 / i.viewVector.z;
                 float toVolumeStart = _VolumeStartZ - _WorldSpaceCameraPos.z;
 
-                float3 col = 0;
-
                 float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, i.uv).r;
                 float zDepth = LinearEyeDepth(depth);
 
                 float totalDist = toVolumeStart + InterleavedGradientNoise(i.uv * 100) * _StepSize * 3;
                 float stepSize = _StepSize;
                 stepSize *= zProjLength;
+
+                float3 col = 0;
+                float alpha = 1;
 
                 [loop]
                 for (int j = 0; j < _Steps; j++) {
@@ -170,7 +174,14 @@ Shader "Swifter/VortexBlit"
 
                     float3 p = _WorldSpaceCameraPos + i.viewVector * totalDist;
 
-                    col += sampleDensity(p);
+                    float3 toCenter = p - _VortexCenter;
+                    float distToCenter = length(toCenter.xz);
+
+                    float3 fogColor = sampleColor(toCenter, distToCenter);
+                    float fogDensity = sampleDensity(p, toCenter, distToCenter);
+
+                    col += fogColor * (fogDensity * alpha);
+                    alpha *= exp(-fogDensity);
                 }
 
                 float4 volumetricsCol = float4(col, 0);
