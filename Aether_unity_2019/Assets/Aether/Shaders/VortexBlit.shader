@@ -111,9 +111,8 @@ Shader "Swifter/VortexBlit"
                 rotatedP.y *= 0.7;
 
                 float3 n = simplex(rotatedP * _VortexNoiseScale);
-                n += simplex(rotatedP * _VortexNoiseScale * 2 + n) * 0.5;
-                n += simplex(rotatedP * _VortexNoiseScale * 4 + n * 2) * 0.25;
-                n = pow(n, 4);
+                n += simplex(rotatedP * _VortexNoiseScale * 4 + n) * 0.25;
+                n = pow(n, 10);
 
                 float radiusProgress = saturate(invLerp(_RadiusSizes[0], _RadiusSizes[2], p.y));
                 float radius = lerp(_RadiusSizes[1], _RadiusSizes[3], radiusProgress);
@@ -141,6 +140,10 @@ Shader "Swifter/VortexBlit"
                 return col;
             }
 
+            float InterleavedGradientNoise(float2 p) {
+                return frac(52.9829189 * frac(0.06711056*p.x + 0.00583715*p.y));
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
@@ -153,11 +156,13 @@ Shader "Swifter/VortexBlit"
                 float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, i.uv).r;
                 float zDepth = LinearEyeDepth(depth);
 
-                float totalDist = toVolumeStart;
+                float totalDist = toVolumeStart + InterleavedGradientNoise(i.uv * 100) * _StepSize * 3;
+                float stepSize = _StepSize;
+                stepSize *= zProjLength;
 
                 [loop]
                 for (int j = 0; j < _Steps; j++) {
-                    totalDist += _StepSize * zProjLength;
+                    totalDist += stepSize;
 
                     if (totalDist > zDepth) {
                         break;
@@ -302,7 +307,7 @@ Shader "Swifter/VortexBlit"
                 float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture3, i.uv);
                 float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 
-                return screenCol * 0.1 + vortexCol;
+                return screenCol * 0 + vortexCol;
             }
             ENDCG
         }

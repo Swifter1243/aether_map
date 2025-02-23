@@ -79,8 +79,8 @@ function intro(map: rm.V3Difficulty) {
 
     const vortexTexture1 = rm.createScreenTexture(map, {
         beat: TIMES.INTRO3,
-        xRatio: 4,
-        yRatio: 4,
+        // xRatio: 4,
+        // yRatio: 4,
         id: '_VortexTexture1'
     })
 
