@@ -20,8 +20,6 @@ Shader "Swifter/VortexBlit"
         _LightColor ("Light Color", Color) = (1,1,1)
         _LightBrightness ("Light Brightness", Float) = 0.7
         _LightRadius ("Light Radius", Float) = 1300
-        _BlurSteps ("Blur Steps", Int) = 10
-        _BlurRadius ("Blur Radius", Range(0,0.01)) = 0.001
     }
     SubShader
     {
@@ -194,7 +192,7 @@ Shader "Swifter/VortexBlit"
             }
             ENDCG
         }
-        Pass // Horizontal Blur
+        Pass // Blur
         {
             CGPROGRAM
             #pragma vertex vert
@@ -203,9 +201,7 @@ Shader "Swifter/VortexBlit"
             #include "UnityCG.cginc"
 
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture1);
-
-            int _BlurSteps;
-            float _BlurRadius;
+            float4 _VortexTexture1_TexelSize;
 
             v2f_img vert(appdata_img v)
             {
@@ -217,79 +213,30 @@ Shader "Swifter/VortexBlit"
                 return o;
             }
 
-            float4 getScreenCol(float2 uv)
+            float4 getScreenCol(float2 uv, float2 offset)
             {
-                return UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture1, UnityStereoTransformScreenSpaceTex(uv));
+                return UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture1, UnityStereoTransformScreenSpaceTex(uv) + offset);
             }
 
-            float4 blur(float2 uv, float amount)
+            float4 blur(float2 uv)
             {
                 float4 total = 0;
-                float aspect = _ScreenParams.y / _ScreenParams.x;
+                float2 offset = _VortexTexture1_TexelSize.xy;
 
-                for (int i = -_BlurSteps; i <= _BlurSteps; i++)
-                {
-                    float offset = (float)i / _BlurSteps;
-                    total += getScreenCol(uv + float2(offset * amount * aspect, 0));
-                }
+                total += getScreenCol(uv, 0);
+                total += getScreenCol(uv, float2(offset.x, offset.y));
+                total += getScreenCol(uv, float2(offset.x, -offset.y));
+                total += getScreenCol(uv, float2(-offset.x, -offset.y));
+                total += getScreenCol(uv, float2(-offset.x, offset.y));
 
-                return total / (_BlurSteps * 2 + 1);
+                return total / 5;
             }
 
             fixed4 frag(v2f_img i) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
-                return blur(i.uv, _BlurRadius);
-            }
-            ENDCG
-        }
-        Pass // Vertical Blur
-        {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-
-            #include "UnityCG.cginc"
-
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture2);
-
-            int _BlurSteps;
-            float _BlurRadius;
-
-            v2f_img vert(appdata_img v)
-            {
-                UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_OUTPUT(v2f_img, v2f_img o);
-                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = v.texcoord;
-                return o;
-            }
-
-            float4 getScreenCol(float2 uv)
-            {
-                return UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture2, UnityStereoTransformScreenSpaceTex(uv));
-            }
-
-            float4 blur(float2 uv, float amount)
-            {
-                float4 total = 0;
-
-                for (int i = -_BlurSteps; i <= _BlurSteps; i++)
-                {
-                    float offset = (float)i / _BlurSteps;
-                    total += getScreenCol(uv + float2(0, offset * amount));
-                }
-
-                return total / (_BlurSteps * 2 + 1);
-            }
-
-            fixed4 frag(v2f_img i) : SV_Target
-            {
-                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
-
-                return blur(i.uv, _BlurRadius);
+                return blur(i.uv);
             }
             ENDCG
         }
@@ -301,7 +248,7 @@ Shader "Swifter/VortexBlit"
 
             #include "UnityCG.cginc"
 
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture3);
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture2);
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
 
             v2f_img vert (appdata_img v)
@@ -320,7 +267,7 @@ Shader "Swifter/VortexBlit"
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
-                float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture3, i.uv);
+                float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture2, i.uv);
                 float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 
                 return vortexCol + screenCol * 0.01;
