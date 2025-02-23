@@ -65,7 +65,6 @@ Shader "Swifter/VortexBlit"
             float3 _LightColor;
             float _LightBrightness;
 
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
 
             v2f vert (appdata v)
@@ -151,10 +150,6 @@ Shader "Swifter/VortexBlit"
                 return col;
             }
 
-            float4 getScreenColor(float2 uv) {
-                return UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, uv);
-            }
-
             fixed4 frag (v2f i) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
@@ -183,9 +178,57 @@ Shader "Swifter/VortexBlit"
                 }
 
                 float4 volumetricsCol = float4(col, 0);
-                float4 screenCol = getScreenColor(i.uv);
+                return volumetricsCol;
+            }
+            ENDCG
+        }
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
 
-                return volumetricsCol + screenCol * 0.1;
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+            };
+
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+                float2 uv : TEXCOORD0;
+                UNITY_VERTEX_OUTPUT_STEREO
+            };
+
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture);
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
+
+            v2f vert (appdata v)
+            {
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                // Save Vertex
+                o.vertex = UnityObjectToClipPos(v.vertex);
+
+                o.uv = v.uv;
+
+                return o;
+            }
+
+            fixed4 frag (v2f i) : SV_Target
+            {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
+                float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture, i.uv);
+                float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
+
+                return screenCol * 0.1 + vortexCol;
             }
             ENDCG
         }

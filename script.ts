@@ -74,6 +74,34 @@ function intro(map: rm.V3Difficulty) {
     
     moveScene(map, prefabs.intro_1, TIMES.INTRO1, TIMES.INTRO2)
     moveScene(map, prefabs.intro_2, TIMES.INTRO2, TIMES.INTRO3)
+
+    const tempScene = prefabs.intro_2.instantiate(map, TIMES.INTRO3)
+
+    const vortexTextureId = '_VortexTexture'
+
+    rm.createScreenTexture(map, {
+        beat: TIMES.INTRO3,
+        xRatio: 10,
+        yRatio: 10,
+        id: vortexTextureId
+    })
+
+    const vortexDuration = 99999
+
+    rm.blit(map, {
+        beat: TIMES.INTRO3,
+        asset: materials.vortexblit.path,
+        destination: vortexTextureId,
+        pass: 0,
+        duration: vortexDuration
+    })
+
+    rm.blit(map, {
+        beat: TIMES.INTRO3,
+        asset: materials.vortexblit.path,
+        pass: 1,
+        duration: vortexDuration
+    })
 }
 
 await Promise.all([
