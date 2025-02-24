@@ -600,7 +600,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 300
+    maxNumParticles: 30000
     size3D: 1
     rotation3D: 1
     gravityModifier:
@@ -667,7 +667,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 90, y: 0, z: 0}
-    m_Scale: {x: 24.44, y: 115.2, z: 0}
+    m_Scale: {x: 200, y: 200, z: 0}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4767,7 +4767,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03d3162307aa1504680f1a497fe799c0, type: 2}
+  - {fileID: 2100000, guid: 5e6a0ba298aeb8b4ca132e4a17be6428, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
