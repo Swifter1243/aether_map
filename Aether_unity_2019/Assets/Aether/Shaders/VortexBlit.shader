@@ -160,7 +160,7 @@ Shader "Swifter/VortexBlit"
                 float zDepth = LinearEyeDepth(depth);
 
                 float2 screenCoord = i.uv * _ScreenParams.xy;
-                float totalDist = toVolumeStart + InterleavedGradientNoise(screenCoord) * _StepSize * _StepNoise;
+                float totalDist = toVolumeStart + InterleavedGradientNoise(screenCoord * 2) * _StepSize * _StepNoise;
                 float stepSize = _StepSize;
 
                 float3 col = 0;
@@ -220,7 +220,7 @@ Shader "Swifter/VortexBlit"
             float4 blur(float2 uv)
             {
                 float4 total = 0;
-                float2 offset = _VortexTexture1_TexelSize.xy;
+                float2 offset = _VortexTexture1_TexelSize.xy * 0.5;
 
                 total += getScreenCol(uv, 0);
                 total += getScreenCol(uv, float2(offset.x, offset.y));

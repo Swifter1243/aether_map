@@ -30,8 +30,8 @@ Material:
     - _LightRadius: 1027.35
     - _StepNoise: 1
     - _StepSize: 80.8
-    - _Steps: 32
-    - _VolumeStartZ: 392.4
+    - _Steps: 14
+    - _VolumeStartZ: 363.3
     - _VortexBeamBrightness: 20.45
     - _VortexBeamRadius: 186.8
     - _VortexMainBrightness: 3.1
