@@ -156,7 +156,7 @@ Shader "Swifter/VortexBlit"
 
                 float toVolumeStart = _VolumeStartZ - _WorldSpaceCameraPos.z;
 
-                float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, i.uv).r;
+                float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, UnityStereoTransformScreenSpaceTex(i.uv)).r;
                 float zDepth = LinearEyeDepth(depth);
 
                 float2 screenCoord = i.uv * _ScreenParams.xy;
@@ -266,8 +266,9 @@ Shader "Swifter/VortexBlit"
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
-                float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture2, i.uv);
-                float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
+                float2 normalizedUV = UnityStereoTransformScreenSpaceTex(i.uv);
+                float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture2, normalizedUV);
+                float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, normalizedUV);
 
                 return vortexCol + screenCol * 0.01;
             }
