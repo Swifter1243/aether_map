@@ -132,7 +132,7 @@ Shader "Swifter/VortexBlit"
 
                 density += lightAmount(toCenter) * lerp(n, 1, 0.1);
 
-                return density * 3;
+                return density * 0.2;
             }
 
             float3 sampleColor(float3 toCenter, float distToCenter)
@@ -166,14 +166,10 @@ Shader "Swifter/VortexBlit"
                 float3 col = 0;
                 float alpha = 1;
 
+                float lastDensity = 0;
+
                 [loop]
-                for (int j = 0; j < _Steps; j++) {
-                    totalDist += stepSize;
-
-                    if (totalDist > zDepth) {
-                        break;
-                    }
-
+                for (int j = 0; j < _Steps && totalDist < zDepth; j++) {
                     float3 p = _WorldSpaceCameraPos + i.viewVector * totalDist;
 
                     float3 toCenter = p - _VortexCenter;
@@ -184,6 +180,11 @@ Shader "Swifter/VortexBlit"
 
                     col += fogColor * (fogDensity * alpha);
                     alpha *= exp(-fogDensity);
+
+                    float densityDelta = abs(fogDensity - lastDensity);
+                    densityDelta /= stepSize;
+                    lastDensity = fogDensity;
+                    totalDist += stepSize;
                 }
 
                 float4 volumetricsCol = float4(col, alpha);
