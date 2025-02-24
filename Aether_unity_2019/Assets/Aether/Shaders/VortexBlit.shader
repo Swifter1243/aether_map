@@ -20,6 +20,9 @@ Shader "Swifter/VortexBlit"
         _LightColor ("Light Color", Color) = (1,1,1)
         _LightBrightness ("Light Brightness", Float) = 0.7
         _LightRadius ("Light Radius", Float) = 1300
+
+        //_Debug ("Debug", Float) = 0
+        //_Debug2 ("Debug2", Float) = 0
     }
     SubShader
     {
@@ -61,6 +64,9 @@ Shader "Swifter/VortexBlit"
             float3 _LightColor;
             float _LightBrightness;
             float _LightRadius;
+
+            //float _Debug;
+            //float _Debug2;
 
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
 
@@ -160,7 +166,7 @@ Shader "Swifter/VortexBlit"
                 float zDepth = LinearEyeDepth(depth);
 
                 float2 screenCoord = i.uv * _ScreenParams.xy;
-                float totalDist = toVolumeStart + InterleavedGradientNoise(screenCoord) * _StepSize * _StepNoise;
+                float totalDist = toVolumeStart + InterleavedGradientNoise(screenCoord + _Time.zw) * _StepSize * _StepNoise;
                 float stepSize = _StepSize;
 
                 float3 col = 0;
@@ -181,10 +187,9 @@ Shader "Swifter/VortexBlit"
                     col += fogColor * (fogDensity * alpha);
                     alpha *= exp(-fogDensity);
 
-                    float densityDelta = abs(fogDensity - lastDensity);
-                    densityDelta /= stepSize;
-                    lastDensity = fogDensity;
-                    totalDist += stepSize;
+                    //if (j > _Debug2) return float4(fogColor * (interpDensity * alpha), alpha);
+                    
+                    totalDist += stepSize + InterleavedGradientNoise(screenCoord + totalDist.xx) * 2;
                 }
 
                 float4 volumetricsCol = float4(col, alpha);
