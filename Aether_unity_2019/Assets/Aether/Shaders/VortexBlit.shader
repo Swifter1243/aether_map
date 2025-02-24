@@ -154,7 +154,7 @@ Shader "Swifter/VortexBlit"
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
-                float toVolumeStart = _VolumeStartZ - _WorldSpaceCameraPos.z;
+                float toVolumeStart = _VolumeStartZ;
 
                 float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, UnityStereoTransformScreenSpaceTex(i.uv)).r;
                 float zDepth = LinearEyeDepth(depth);
