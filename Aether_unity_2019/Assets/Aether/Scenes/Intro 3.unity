@@ -211,6 +211,7 @@ MonoBehaviour:
   postProcessingMaterial: {fileID: 2100000, guid: b059a45a239391642894b95cecebd34b,
     type: 2}
   pass: 0
+  sceneViewEnabled: 1
 --- !u!1001 &4349423115846302767
 PrefabInstance:
   m_ObjectHideFlags: 0

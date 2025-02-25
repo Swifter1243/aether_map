@@ -26,15 +26,15 @@ Material:
     m_Floats:
     - _BlurRadius: 0
     - _BlurSteps: 3
-    - _LightBrightness: 3
+    - _LightBrightness: 7.9
     - _LightRadius: 1027.35
     - _StepNoise: 1
-    - _StepSize: 80.8
-    - _Steps: 32
+    - _StepSize: 123.3
+    - _Steps: 10
     - _VolumeStartZ: 392.4
     - _VortexBeamBrightness: 20.45
     - _VortexBeamRadius: 186.8
-    - _VortexMainBrightness: 3.1
+    - _VortexMainBrightness: 11.26
     - _VortexNoiseScale: 0.004
     - _VortexTwistRadialRate: 0.001
     - _VortexTwistTimeRate: 0.1
