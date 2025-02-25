@@ -36,7 +36,6 @@ function infoSetup(map: rm.V3Difficulty) {
             bloomGraphicsSettings: 'On',
             maxShockwaveParticles: 0,
             screenDisplacementEffectsEnabled: true,
-            
         },
         chroma: {
             disableEnvironmentEnhancements: false,
@@ -61,7 +60,8 @@ function visualsSetup(map: rm.V3Difficulty) {
 
     rm.setCameraProperty(map, {
         properties: {
-            clearFlags: 'Skybox'
+            clearFlags: 'Skybox',
+            depthTextureMode: ['Depth']
         }
     })
 

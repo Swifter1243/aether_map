@@ -188,7 +188,7 @@ Shader "Swifter/VortexBlit"
                     alpha *= exp(-fogDensity);
 
                     //if (j > _Debug2) return float4(fogColor * (interpDensity * alpha), alpha);
-                    
+
                     totalDist += stepSize + InterleavedGradientNoise(screenCoord + totalDist.xx) * 2;
                 }
 
@@ -226,7 +226,7 @@ Shader "Swifter/VortexBlit"
             float4 blur(float2 uv)
             {
                 float4 total = 0;
-                float2 offset = _VortexTexture1_TexelSize.xy;
+                float2 offset = _VortexTexture1_TexelSize.xy * 0.5;
 
                 total += getScreenCol(uv, 0);
                 total += getScreenCol(uv, float2(offset.x, offset.y));

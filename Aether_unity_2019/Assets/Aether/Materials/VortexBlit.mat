@@ -29,9 +29,9 @@ Material:
     - _LightBrightness: 7.9
     - _LightRadius: 1027.35
     - _StepNoise: 1
-    - _StepSize: 123.3
-    - _Steps: 10
-    - _VolumeStartZ: 392.4
+    - _StepSize: 21.7
+    - _Steps: 40
+    - _VolumeStartZ: 529.4
     - _VortexBeamBrightness: 20.45
     - _VortexBeamRadius: 186.8
     - _VortexMainBrightness: 11.26
