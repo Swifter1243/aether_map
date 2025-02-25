@@ -138,7 +138,7 @@ Shader "Swifter/VortexBlit"
 
                 density += lightAmount(toCenter) * lerp(n, 1, 0.1);
 
-                return density * 0.2;
+                return density * 10;
             }
 
             float3 sampleColor(float3 toCenter, float distToCenter)
