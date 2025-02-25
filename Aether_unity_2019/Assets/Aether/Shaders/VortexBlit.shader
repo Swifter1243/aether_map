@@ -6,6 +6,8 @@ Shader "Swifter/VortexBlit"
         _Steps ("Steps", Int) = 16
         _StepSize ("Step Size", Float) = 60
         _StepNoise ("Step Noise", Float) = 1
+        _VolumeStartRadius("Volume Start Radius", Float) = 400
+        _VolumeStartTaper("Volume Start Taper", Float) = 400
         _VolumeStartZ ("Volume Start Z", Float) = 400
         _VortexCenter ("Vortex Center", Vector) = (0, 0, 1000)
         _VortexNoiseScale ("Vortex Noise Scale", Float) = 0.002
@@ -21,8 +23,8 @@ Shader "Swifter/VortexBlit"
         _LightBrightness ("Light Brightness", Float) = 0.7
         _LightRadius ("Light Radius", Float) = 1300
 
-        //_Debug ("Debug", Float) = 0
-        //_Debug2 ("Debug2", Float) = 0
+        _Debug ("Debug", Float) = 0
+        _Debug2 ("Debug2", Float) = 0
     }
     SubShader
     {
@@ -41,7 +43,6 @@ Shader "Swifter/VortexBlit"
 
             struct v2f
             {
-                float4 vertex : SV_POSITION;
                 float3 viewVector : TEXCOORD0;
                 float2 uv : TEXCOORD1;
                 UNITY_VERTEX_OUTPUT_STEREO
@@ -65,28 +66,29 @@ Shader "Swifter/VortexBlit"
             float _LightBrightness;
             float _LightRadius;
 
-            //float _Debug;
-            //float _Debug2;
+            float _Debug;
+            float _Debug2;
 
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
 
-            v2f vert (appdata_base v)
+            v2f vert (appdata_base v, out float4 vertex : SV_POSITION)
             {
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.viewVector = viewVectorFromUV(v.texcoord); // from Math.cginc
-                o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.texcoord;
+                
+                vertex = UnityObjectToClipPos(v.vertex);
 
                 return o;
             }
 
             float2 rotate2D(float2 p, float a)
             {
-                float s = sin(a);
-                float c = cos(a);
+                float s, c;
+                sincos(a, s, c);
                 return float2(
                     p.x * c - p.y * s,
                     p.x * s + p.y * c
@@ -152,29 +154,46 @@ Shader "Swifter/VortexBlit"
                 return col;
             }
 
-            float InterleavedGradientNoise(float2 p) {
-                return frac(52.9829189 * frac(0.06711056*p.x + 0.00583715*p.y));
+            //https://www.shadertoy.com/view/WldXR4
+            float HilbertNoise(uint2 uv)
+            {
+                // Hilbert curve:
+                uint C = 0xB4361E9Cu;                   // cost lookup
+                uint P = 0xEC7A9107u;                   // pattern lookup
+
+                uint c = 0u;                            // accumulated cost
+                uint p = 0u;                            // current pattern
+
+                const uint N = 7u;
+                for (uint i = N; --i < N;)
+                {
+                    uint2 m = (uv >> i) & 1u;           // local uv
+                    uint n = m.x ^ (m.y << 1u);         // linearized local uv
+                    uint o = (p << 3u) ^ (n << 1u);     // offset into lookup tables
+                    c += ((C >> o) & 3u) << (i << 1u);  // accu cost (scaled by layer)
+                    p = (P >> o) & 3u;                  // update pattern
+                }
+                c += asint(_Time.x);
+
+                return float(c * 2654435769u) * (1.0 / 4294967295.0);
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag (v2f i, UNITY_VPOS_TYPE screenCoord : VPOS) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+                
+                float3 col = 0;
+                float alpha = 1;
 
                 float toVolumeStart = _VolumeStartZ;
 
                 float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, UnityStereoTransformScreenSpaceTex(i.uv)).r;
                 float zDepth = LinearEyeDepth(depth);
 
-                float2 screenCoord = i.uv * _ScreenParams.xy;
-                float totalDist = toVolumeStart + InterleavedGradientNoise(screenCoord + _Time.zw) * _StepSize * _StepNoise;
+                float totalDist = toVolumeStart + HilbertNoise(uint2(screenCoord.xy)) * _StepSize * _StepNoise;
                 float stepSize = _StepSize;
 
-                float3 col = 0;
-                float alpha = 1;
-
-                float lastDensity = 0;
-
-                [loop]
+                [unroll(12)]
                 for (int j = 0; j < _Steps && totalDist < zDepth; j++) {
                     float3 p = _WorldSpaceCameraPos + i.viewVector * totalDist;
 
@@ -187,10 +206,18 @@ Shader "Swifter/VortexBlit"
                     col += fogColor * (fogDensity * alpha);
                     alpha *= exp(-fogDensity);
 
-                    //if (j > _Debug2) return float4(fogColor * (interpDensity * alpha), alpha);
+                    //if (j > _Debug2) return float4(fogColor * (fogDensity * alpha), alpha);
 
-                    totalDist += stepSize + InterleavedGradientNoise(screenCoord + totalDist.xx) * 2;
+                    totalDist += stepSize;
                 }
+
+                //Checkerboard doesn't save perf
+                //bool isSampling = fmod(screenCoord.x + screenCoord.y, 2) < 1;
+                //
+                //if (!isSampling) {
+                //    col = (ddx(col) + ddy(col)) * 0.5;
+                //}
+
 
                 float4 volumetricsCol = float4(col, alpha);
                 return volumetricsCol;
