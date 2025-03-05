@@ -46,17 +46,17 @@ namespace VivifyTemplate.Utilities.Scripts
             Camera.onPreRender -= OnPreRenderCallback;
         }
 
-        //Camera.AddCommandBuffer
         private void OnPreRenderCallback(Camera camera)
         {
             SceneView sceneView = SceneView.lastActiveSceneView;
             if (sceneView != null && sceneView.camera == camera)
 			{
                 CommandBuffer command = GetBlitCommand(camera);
+                bool isCommand = command == null;
                 if (sceneViewEnabled)
 				{
-                    if (command == null)
-					{
+                    if (isCommand)
+                    {
                         RenderTargetIdentifier src = new RenderTargetIdentifier(BuiltinRenderTextureType.CurrentActive);
                         RenderTargetIdentifier dst = new RenderTargetIdentifier(BuiltinRenderTextureType.CameraTarget);
                         command = new CommandBuffer();
@@ -74,7 +74,7 @@ namespace VivifyTemplate.Utilities.Scripts
                         sceneView.camera.AddCommandBuffer(CameraEvent.AfterImageEffects, command);
                     }
                 }
-				else
+				else if (!isCommand)
                 {
                     camera.RemoveCommandBuffer(CameraEvent.AfterImageEffects, command);
                 }
