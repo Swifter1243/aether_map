@@ -13,6 +13,7 @@ Shader "Swifter/VFX/Star"
             "RenderType"="Transparent"
             "Queue"="Transparent"
         }
+        Blend One One
         ZWrite Off
 
         Pass
