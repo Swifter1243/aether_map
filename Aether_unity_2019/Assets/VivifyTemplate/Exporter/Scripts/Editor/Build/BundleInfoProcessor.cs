@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -86,46 +87,41 @@ namespace VivifyTemplate.Exporter.Scripts.Editor.Build
 		private static void SerializeMaterialProperty(MaterialInfo materialInfo, string propertyName,
 			ShaderUtil.ShaderPropertyType propertyType, Material material)
 		{
-			void AddProperty(string type, string value)
+			switch (propertyType)
+			{
+			case ShaderUtil.ShaderPropertyType.Color:
+			{
+				Color val = material.GetColor(propertyName);
+				AddProperty("Color", new[] { val.r, val.g, val.b, val.a });
+				break;
+			}
+			case ShaderUtil.ShaderPropertyType.Float:
+			case ShaderUtil.ShaderPropertyType.Range:
+			{
+				float val = material.GetFloat(propertyName);
+				AddProperty("Float", val);
+				break;
+			}
+			case ShaderUtil.ShaderPropertyType.Vector:
+			{
+				Vector4 val = material.GetVector(propertyName);
+				AddProperty("Vector", new[] { val.x, val.y, val.z, val.w });
+				break;
+			}
+			case ShaderUtil.ShaderPropertyType.TexEnv:
+				AddProperty("Texture", "");
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(propertyType), propertyType, null);
+			}
+			return;
+
+			void AddProperty(string type, object value)
 			{
 				materialInfo.properties.Add(
 					propertyName,
-					new Dictionary<string, string>
-					{
-						{ type, value }
-					}
+					new PropertyValue(type, value)
 				);
-			}
-
-			switch (propertyType)
-			{
-				case ShaderUtil.ShaderPropertyType.Color:
-				{
-					Color val = material.GetColor(propertyName);
-					AddProperty("Color", $"[{val.r}, {val.g}, {val.b}, {val.a}]");
-				}
-					break;
-				case ShaderUtil.ShaderPropertyType.Float:
-				{
-					float val = material.GetFloat(propertyName);
-					AddProperty("Float", $"{val}");
-				}
-					break;
-				case ShaderUtil.ShaderPropertyType.Range:
-				{
-					float val = material.GetFloat(propertyName);
-					AddProperty("Float", $"{val}");
-				}
-					break;
-				case ShaderUtil.ShaderPropertyType.Vector:
-				{
-					Vector4 val = material.GetVector(propertyName);
-					AddProperty("Vector", $"[{val.x}, {val.y}, {val.z}, {val.w}]");
-				}
-					break;
-				case ShaderUtil.ShaderPropertyType.TexEnv:
-					AddProperty("Texture", "");
-					break;
 			}
 		}
 	}
