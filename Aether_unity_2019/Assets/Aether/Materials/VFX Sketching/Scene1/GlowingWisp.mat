@@ -58,7 +58,7 @@ Material:
     m_Floats:
     - _Brightness: 43.74
     - _BumpScale: 1
-    - _Contrast: -7.62
+    - _Contrast: -3.72
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -68,7 +68,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _MixRainbow: 0.25
+    - _MixRainbow: 0.12
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
