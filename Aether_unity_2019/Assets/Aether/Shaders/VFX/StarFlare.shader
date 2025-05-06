@@ -1,0 +1,75 @@
+Shader "Swifter/VFX/StarFlare"
+{
+Properties
+    {
+        _Sharpness ("Sharpness", Float) = 15
+        _Brightness ("Brightness", Float) = 3
+        _Color ("Color", Color) = (1,1,1)
+    }
+    SubShader
+    {
+        Tags {
+            "RenderType"="Transparent"
+            "Queue"="Transparent"
+        }
+        Blend One One
+        ZWrite Off
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            // VivifyTemplate Libraries
+            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
+            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
+            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
+            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+            };
+
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+                float2 uv : TEXCOORD0;
+                UNITY_VERTEX_OUTPUT_STEREO
+            };
+
+            float _Sharpness;
+            float _Brightness;
+            float3 _Color;
+
+            v2f vert (appdata v)
+            {
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o)
+
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            fixed4 frag (v2f i) : SV_Target
+            {
+                float2 p = abs(i.uv * 2 - 1);
+
+                float l = length(p);
+                float d = saturate(1 - l);
+                float r = pow(1. - p.x * p.y, _Sharpness);
+                float v = r * d * d * _Brightness;
+
+                return float4(v * _Color,0);
+            }
+            ENDCG
+        }
+    }
+}
