@@ -93,14 +93,14 @@
                 // Flutter
                 v *= saturate(lerp(1, noise1d(_Time.y * 20), _Flutter));
 
+                v = pow(v, _Contrast);
+
                 #if RAINBOW
                 float3 col = rainbow(n * 4 + _Time.y * _TimeScale + n * 2);
                 col = lerp(_Color, col, _MixRainbow);
                 #else
                 float3 col = _Color;
                 #endif
-
-                col = pow(col, _Contrast);
 
                 return float4(v * col, 0);
             }
