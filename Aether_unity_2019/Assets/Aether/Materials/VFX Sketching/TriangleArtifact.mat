@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RingArtifact 1
-  m_Shader: {fileID: 4800000, guid: a4a7d63ccdfe4eb1afd8722a24b63efd, type: 3}
+  m_Name: TriangleArtifact
+  m_Shader: {fileID: 4800000, guid: d63731663469da049b6e38fa4a3d23b5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -56,29 +56,31 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Brightness: 0.26
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _End: 0.4
+    - _FadeOutRadius: 0.79
+    - _FadeOutSize: 0.02
+    - _Falloff: 7.02
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Glow: 0.49
-    - _Intensity: 0.01
+    - _Highlights: 7
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 90.72
-    - _Saturation: 0.59
-    - _Scale: 19.48
+    - _RainbowScale: 1
+    - _Saturation: 0.532
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Start: 0
+    - _TimeScale: 0.1
     - _UVSec: 0
     - _ZWrite: 1
+    - _Zoom: 6.38
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
