@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 81-85 Particles 2
-  m_Shader: {fileID: 4800000, guid: d0b3e8b6d67c43b4b5bfe738696a1509, type: 3}
+  m_Name: 81-85 Sparkle
+  m_Shader: {fileID: 4800000, guid: 72bc975c28f73ae44a5be7ef3f45c18f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -56,38 +56,28 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Brightness: 1.42
+    - _Alpha: 0.5
+    - _Bend: 2.49
+    - _Brightness: 3
     - _BumpScale: 1
-    - _Contrast: 2.88
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _End: 0.3
-    - _Flutter: 0.1
-    - _FocalAmount: 2.24
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Glow: 30.66
-    - _Intensity: 1.14
     - _Metallic: 0
-    - _MixRainbow: 0.79
     - _Mode: 0
-    - _NoiseScale: 9.56
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 3
-    - _Rainbow: 0
-    - _Saturation: 0.161
-    - _Scale: 4
+    - _Sharpness: 15
+    - _Size: 1.39
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Spread: 0.32
     - _SrcBlend: 1
-    - _TimeScale: 0
     - _UVSec: 0
-    - _ZTest: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TextureScale: {r: 39.86, g: 17.19, b: 0, a: 0}
