@@ -1389,6 +1389,34 @@ AnimationClip:
     path: 79-81/Beam
     classID: 23
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 2.75
+        value: 0.07
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.9
+      - serializedVersion: 3
+        time: 3.1
+        value: 0.01
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.9
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Thickness
+    path: 81-85/Sparkle
+    classID: 23
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -1673,6 +1701,13 @@ AnimationClip:
     - serializedVersion: 2
       path: 2929437103
       attribute: 2188529672
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1664592492
+      attribute: 2171776785
       script: {fileID: 0}
       typeID: 23
       customType: 22
@@ -4908,6 +4943,34 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: material._TimeScale
     path: 79-81/Beam
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 2.75
+        value: 0.07
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.9
+      - serializedVersion: 3
+        time: 3.1
+        value: 0.01
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.9
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Thickness
+    path: 81-85/Sparkle
     classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves:
