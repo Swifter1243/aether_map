@@ -45,7 +45,7 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
 
                 return result;
             }
-            
+
             private bool IsPathActive(string path, Dictionary<string, bool> objectActiveStates)
             {
                 return !objectActiveStates.ContainsKey(path) || objectActiveStates[path];
@@ -54,7 +54,7 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
             private bool IsActiveNow(Dictionary<string, bool> objectActiveStates)
             {
                 bool active = true;
-                    
+
                 foreach (string path in m_Paths)
                 {
                     active &= IsPathActive(path, objectActiveStates);
@@ -66,23 +66,24 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
             public void TestActiveTime(Dictionary<string, bool> objectActiveStates, float time)
             {
                 bool active = IsActiveNow(objectActiveStates);
-                
+
                 if (active != m_Active)
                 {
                     activeTimes.Add(time);
                 }
-                
+
                 m_Active = active;
             }
         }
-        
+
         public void Setup(GameObject root, AnimationClip clip)
         {
             m_ParticleSystemPlayers.Clear();
-            
+
             // Setup particle system data
             var particleSystemTrackers =  CollectParticleSystems(root).Select(p =>
             {
+                Debug.Log(p);
                 string path = AnimationUtility.CalculateTransformPath(p.transform, root.transform);
                 return new ParticleSystemActiveTracker(path, p);
             }).ToArray();
@@ -91,11 +92,11 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
             {
                 return;
             }
-            
+
             // Compile SetActive keyframes
             var activeKeyframes = CollectActiveKeyframes(clip).ToList();
             activeKeyframes.Sort((a, b) => a.time.CompareTo(b.time));
-            
+
             Dictionary<string, bool> objectActiveStates = new Dictionary<string, bool>();
             foreach (ActiveKeyframe activeKeyframe in activeKeyframes)
             {
@@ -106,7 +107,7 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
                     particleSystemTracker.TestActiveTime(objectActiveStates, activeKeyframe.time);
                 }
             }
-            
+
             // Add particle system players
             foreach (ParticleSystemActiveTracker particleSystemTracker in particleSystemTrackers)
             {
@@ -128,7 +129,7 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
                             bool active = Mathf.Approximately(key.value, 1f);
                             yield return new ActiveKeyframe
                             {
-                                active = active, 
+                                active = active,
                                 time = key.time,
                                 path = binding.path
                             };
@@ -145,12 +146,12 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
                 yield return rootParticleSystem;
             }
 
-            foreach (ParticleSystem childParticleSystem in root.GetComponentsInChildren<ParticleSystem>())
+            foreach (ParticleSystem childParticleSystem in root.GetComponentsInChildren<ParticleSystem>(true))
             {
                 yield return childParticleSystem;
             }
         }
-        
+
         public void Pause()
         {
             foreach (ParticleSystemPlayer particleSystemPlayer in m_ParticleSystemPlayers)
@@ -158,7 +159,7 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
                 particleSystemPlayer.Pause();
             }
         }
-        
+
         public void Seek(float time)
         {
             foreach (ParticleSystemPlayer particleSystemPlayer in m_ParticleSystemPlayers)
@@ -166,7 +167,7 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
                 particleSystemPlayer.Seek(time);
             }
         }
-        
+
         public void Reset(float time)
         {
             foreach (ParticleSystemPlayer particleSystemPlayer in m_ParticleSystemPlayers)
