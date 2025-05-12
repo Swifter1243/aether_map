@@ -6,6 +6,7 @@ Shader "Swifter/VFX/Star"
         _Size ("Size", Float) = 1.35
         _Spread ("Spread", Float) = 0.2
         _Alpha ("Alpha", Float) = 0.5
+        _Thickness ("Thickness", Float) = 0.07
     }
     SubShader
     {
@@ -48,6 +49,7 @@ Shader "Swifter/VFX/Star"
             float _Size;
             float _Spread;
             float _Alpha;
+            float _Thickness;
 
             v2f vert (appdata v)
             {
@@ -67,10 +69,12 @@ Shader "Swifter/VFX/Star"
                 p *= _Size;
 
                 float s = pow(p.x, _Bend) + pow(p.y, _Bend);
-                float d = abs(s - 1);
+                float d = abs(s - 1) - _Thickness;
 
                 float value = smoothstep(_Spread, 0, d);
                 value *= edgeDist;
+
+                value = pow(value * 2, 7);
 
                 return float4(value, value, value, value * _Alpha);
             }
