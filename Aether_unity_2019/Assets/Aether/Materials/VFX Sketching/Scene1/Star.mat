@@ -24,6 +24,6 @@ Material:
     - _Bend: 0.5
     - _Glow: 0.53
     - _Size: 1.28
-    - _Spread: 0.18
-    - _Thickness: 0.25
+    - _Spread: 0.13
+    - _Thickness: 0.1
     m_Colors: []
