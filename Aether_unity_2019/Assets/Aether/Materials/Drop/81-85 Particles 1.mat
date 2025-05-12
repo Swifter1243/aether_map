@@ -63,14 +63,14 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Glow: 30.66
-    - _Intensity: 1.14
+    - _Glow: 24.34
+    - _Intensity: 4.92
     - _Metallic: 0
     - _Mode: 0
     - _NoiseScale: 9.56
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Saturation: 0.161
+    - _Saturation: 0.568
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
