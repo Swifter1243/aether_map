@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -15,7 +16,20 @@ namespace AnimationCurveManipulationTool {
         }
 
         private static EditorWindow GetCurrentWindow() {
-            var windowType = ReflectionUtility.unityEditorAssembly.GetType("UnityEditor.AnimationWindow");
+            var typeName = "UnityEditor.Enemeteen.EnemeteenWindow";
+            Type windowType = null;
+
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies()) {
+                windowType = asm.GetType(typeName);
+                if (windowType != null)
+                    break;
+            }
+
+            if (windowType == null) {
+                Debug.LogWarning("Could not find type: " + typeName);
+                return null;
+            }
+
             var windows = (EditorWindow[])Resources.FindObjectsOfTypeAll(windowType);
             if (windows.Length == 0) {
                 //return EditorWindow.GetWindow(windowType);

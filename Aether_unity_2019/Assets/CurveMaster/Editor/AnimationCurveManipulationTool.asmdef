@@ -1,7 +1,8 @@
 {
     "name": "AnimationCurveManipulationTool",
-    "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:684d1615aa22b05459f365cb0500fe52"
+    ],
     "includePlatforms": [
         "Editor"
     ],
