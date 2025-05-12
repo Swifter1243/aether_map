@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe6c51e691116b41925bec420f8dea3, type: 3}
+  m_Name: AnimationCurveManipulationConfig
+  m_EditorClassIdentifier: 
+  useCustomSelectionOrder: 1
+  curvePositionRight: 0
+  autoApply: 0
+  displayButtonIcon: 1
+  m_curveLibraries:
+  - m_libraryName: Basic
+    m_guid: def61fff-65e1-4fd8-b1f3-dfeadaaf3306
+    m_curvePresets:
+    - m_presetName: Linear
+      m_curveValue:
+      - 0.0001
+      - 0
+      - 0.9999999
+      - 1
+    - m_presetName: Ease
+      m_curveValue:
+      - 0.25
+      - 0
+      - 0.75
+      - 1
+    - m_presetName: Ease In
+      m_curveValue:
+      - 0.45
+      - 0
+      - 0.9999999
+      - 1
+    - m_presetName: Ease Out
+      m_curveValue:
+      - 0.00000001
+      - 0
+      - 0.55
+      - 1
+    - m_presetName: Quad
+      m_curveValue:
+      - 0.48
+      - 0.05
+      - 0.52
+      - 0.95
+    - m_presetName: Quad In
+      m_curveValue:
+      - 0.25
+      - 0
+      - 0.6
+      - 0.2
+    - m_presetName: Quad Out
+      m_curveValue:
+      - 0.4
+      - 0.8
+      - 0.75
+      - 1
+    - m_presetName: Cubic
+      m_curveValue:
+      - 0.65
+      - 0
+      - 0.35
+      - 1
+    - m_presetName: Cubic In
+      m_curveValue:
+      - 0.4
+      - 0
+      - 0.7
+      - 0.05
+    - m_presetName: Cubic Out
+      m_curveValue:
+      - 0.35
+      - 0.95
+      - 0.6
+      - 1
+    - m_presetName: Quart
+      m_curveValue:
+      - 0.76
+      - 0
+      - 0.24
+      - 1
+    - m_presetName: Quart In
+      m_curveValue:
+      - 0.52
+      - 0
+      - 0.74
+      - 0
+    - m_presetName: Quart Out
+      m_curveValue:
+      - 0.26
+      - 1
+      - 0.48
+      - 1
+    - m_presetName: Quint
+      m_curveValue:
+      - 0.84
+      - 0
+      - 0.16
+      - 1
+    - m_presetName: Quint In
+      m_curveValue:
+      - 0.64
+      - 0
+      - 0.78
+      - 0
+    - m_presetName: Quint Out
+      m_curveValue:
+      - 0.22
+      - 1
+      - 0.36
+      - 1
+    - m_presetName: Expo
+      m_curveValue:
+      - 0.9
+      - 0
+      - 0.1
+      - 1
+    - m_presetName: Expo In
+      m_curveValue:
+      - 0.66
+      - 0
+      - 0.86
+      - 0
+    - m_presetName: Expo Out
+      m_curveValue:
+      - 0.14
+      - 1
+      - 0.34
+      - 1
+    - m_presetName: Circ
+      m_curveValue:
+      - 0.88
+      - 0.14
+      - 0.12
+      - 0.86
+    - m_presetName: Circ In
+      m_curveValue:
+      - 0.54
+      - 0
+      - 0.9999999
+      - 0.44
+    - m_presetName: Circ Out
+      m_curveValue:
+      - 0.00000001
+      - 0.56
+      - 0.46
+      - 1
