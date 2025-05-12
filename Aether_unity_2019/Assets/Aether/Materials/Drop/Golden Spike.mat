@@ -62,8 +62,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FogFar: 400
-    - _FogZEnd: 30
-    - _FogZStart: -2.8
+    - _FogZEnd: 19.21
+    - _FogZStart: -4.8
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
