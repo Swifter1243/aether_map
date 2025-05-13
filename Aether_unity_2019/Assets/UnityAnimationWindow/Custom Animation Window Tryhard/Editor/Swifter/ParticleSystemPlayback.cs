@@ -83,7 +83,6 @@ namespace UnityAnimationWindow.Custom_Animation_Window_Tryhard.Editor.Swifter
             // Setup particle system data
             var particleSystemTrackers =  CollectParticleSystems(root).Select(p =>
             {
-                Debug.Log(p);
                 string path = AnimationUtility.CalculateTransformPath(p.transform, root.transform);
                 return new ParticleSystemActiveTracker(path, p);
             }).ToArray();
