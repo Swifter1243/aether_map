@@ -72,6 +72,8 @@ Material:
     - _GlossyReflections: 1
     - _Light1Enabled: 1
     - _Light1Falloff: 6.4
+    - _Light1Flicker: 0
+    - _Light1Flutter: 0.5
     - _Light1Range: 53.2
     - _Light1Strength: 2.23
     - _Metallic: 0

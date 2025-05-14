@@ -22,6 +22,7 @@ Shader "Custom/SimpleTerrainFog"
         _Light1Strength ("Strength", Float) = 1
         _Light1Range ("Range", Float) = 1
         _Light1Falloff ("Falloff", Float) = 1
+        _Light1Flutter ("Flutter", Float) = 0
         _Light1Position ("Position", Vector) = (0, 0, 0)
 
         [Header(Fog)][Space(10)]
@@ -59,6 +60,8 @@ Shader "Custom/SimpleTerrainFog"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
+            #include "Flutter.hlsl"
+
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
@@ -88,6 +91,7 @@ Shader "Custom/SimpleTerrainFog"
             float _Light1Strength;
             float3 _Light1Position;
             float _Light1Range;
+            float _Light1Flutter;
             float _Light1Falloff;
 
             float3 _FogColor;
@@ -135,7 +139,7 @@ Shader "Custom/SimpleTerrainFog"
                 return alignment * lightStrength * _DiffuseAmount;
             }
 
-            float doPointLight(in v2f i, in float3 lightPos, in float3 lightRange, in float3 lightFalloff, in float3 lightStrength)
+            float doPointLight(in v2f i, in float3 lightPos, in float3 lightRange, in float3 lightFalloff, in float3 lightStrength, in float flutterAmount)
             {
                 float col = 0;
 
@@ -150,6 +154,8 @@ Shader "Custom/SimpleTerrainFog"
 
                 // Add specular
                 col += doSpecular(i, normLightDir, lightStrength * lightDistanceNormalized);
+
+                col *= flutter(flutterAmount);
 
                 return col;
             }
@@ -178,7 +184,7 @@ Shader "Custom/SimpleTerrainFog"
                 #endif
 
                 #if LIGHT_1_ENABLED
-                col += doPointLight(i, _Light1Position, _Light1Range, _Light1Falloff, _Light1Strength) * _Light1Color;
+                col += doPointLight(i, _Light1Position, _Light1Range, _Light1Falloff, _Light1Strength, _Light1Flutter) * _Light1Color;
                 #endif
 
                 #if FOG_ENABLED

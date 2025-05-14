@@ -35,6 +35,7 @@
             #include "UnityCG.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
+            #include "../Flutter.hlsl"
 
             struct appdata
             {
@@ -91,7 +92,7 @@
                 v *= pow(vignette, _FocalAmount);
 
                 // Flutter
-                v *= saturate(lerp(1, noise1d(_Time.y * 20), _Flutter));
+                v *= flutter(_Flutter);
 
                 v = pow(v, _Contrast);
 
