@@ -30,9 +30,8 @@ float4 doSkybox(in float3 dir)
 
 	//return float4(hueCol, 0);
 
-	float horizonAmount = pow(1 - max(0, dir.y), 20);
-
 	#ifdef SKYBOX_HORIZON
+	float horizonAmount = pow(1 - max(0, dir.y), 20);
 	float hueAmount = (1 - horizonAmount);
 	#else
 	float hueAmount = 1;
