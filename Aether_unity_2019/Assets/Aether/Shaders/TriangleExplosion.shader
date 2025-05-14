@@ -119,9 +119,9 @@ Shader "Swifter/TriangleExplosion"
             float4 applyExplosion(in v2g i, in float3 midPoint, in float3 newMidPoint, in float4x4 rotation, out float3 viewDir)
             {
             	float4 pos = i.localPos;
-            	pos.y += 0.01;
-            	pos.xyz *= 1.01;
+            	pos.xyz += i.normal * 0.01;
             	pos.xyz -= midPoint;
+            	pos.xyz *= 1.2;
             	pos = mul(rotation, pos);
             	pos.xyz += newMidPoint;
             	float3 worldPos = mul(unity_ObjectToWorld, pos);
@@ -167,10 +167,10 @@ Shader "Swifter/TriangleExplosion"
             	float3 angularMomentum = random_in_unit_sphere(midPoint) * explosionPower;
             	float4x4 rotate = rotate3D(angularMomentum.x, angularMomentum.y, angularMomentum.z);
 
-            	float3 worldNewMidPoint = mul(unity_ObjectToWorld, newMidpoint);
+            	float3 worldNewMidPoint = mul(unity_ObjectToWorld, float4(newMidpoint, 1));
             	float3 rotatedNormal = mul(rotate, i[0].normal);
             	float3 worldNormal = UnityObjectToWorldNormal(rotatedNormal);
-            	float3 toMidpoint = normalize(worldNewMidPoint - _WorldSpaceCameraPos);
+            	float3 toMidpoint = worldNewMidPoint - _WorldSpaceCameraPos;
             	bool visible = dot(worldNormal, toMidpoint) > 0;
 
             	triangleStream.RestartStrip();
