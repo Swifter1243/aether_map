@@ -11,6 +11,7 @@ Shader "Custom/IntroSkybox"
         _FBM ("Fractional Brownian Motion", Float) = 0.3
         _TimeScale ("Time Scale", Float) = 1
         [Toggle(SKYBOX_HORIZON)] _SkyboxHorizon ("Horizon", Int) = 1
+        [Toggle(SKYBOX_CLOUDS)] _SkyboxClouds ("Clouds", Int) = 1
     }
     SubShader
     {
@@ -33,6 +34,7 @@ Shader "Custom/IntroSkybox"
             #pragma vertex vert
             #pragma fragment frag
             #pragma shader_feature SKYBOX_HORIZON
+            #pragma shader_feature SKYBOX_CLOUDS
 
             #include "UnityCG.cginc"
             #include "IntroSkybox.hlsl"

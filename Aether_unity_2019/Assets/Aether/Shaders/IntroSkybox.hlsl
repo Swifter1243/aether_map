@@ -36,7 +36,10 @@ float4 doSkybox(in float3 dir)
 	#else
 	float hueAmount = 1;
 	#endif
+
+	#ifdef SKYBOX_CLOUDS
 	hueAmount *= pow(simplex(dir * 3), 3.5);
+	#endif
 
 	float3 col = lerp(_HorizonCol, desaturatedHue, hueAmount);
 

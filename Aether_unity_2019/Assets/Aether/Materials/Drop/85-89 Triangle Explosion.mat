@@ -64,23 +64,23 @@ Material:
     - _ExplosionPower: 348.1
     - _ExplosionRange: 7.2
     - _ExplosionTime: 25.83
-    - _FBM: 0.29
+    - _FBM: 1.84
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HueSaturation: 13.02
+    - _HueSaturation: 0.27
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Simplex1Scale: 2
+    - _Simplex1Scale: 1.6
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TimeScale: 1.02
     - _UVSec: 0
     - _Voronoi1Scale: 31.08
-    - _Voronoi2Scale: 21.6
+    - _Voronoi2Scale: 8.2
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
