@@ -63,20 +63,28 @@ Material:
     - _ExplosionFalloff: 4.81
     - _ExplosionPower: 348.1
     - _ExplosionRange: 5.54
-    - _ExplosionTime: 91.59
+    - _ExplosionTime: 78.73
+    - _FBM: 0.29
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HueSaturation: 0.01
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Simplex1Scale: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TimeScale: 1.02
     - _UVSec: 0
+    - _Voronoi1Scale: 31.08
+    - _Voronoi2Scale: 8.1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ExplosionPoint: {r: 0, g: -1.4, b: 0, a: 1}
+    - _HorizonCol: {r: 0.9292453, g: 0.97819203, b: 1, a: 1}
+    - _SkyCol: {r: 1, g: 1, b: 1, a: 1}

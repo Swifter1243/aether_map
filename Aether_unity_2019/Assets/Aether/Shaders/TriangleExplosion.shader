@@ -2,10 +2,21 @@ Shader "Swifter/TriangleExplosion"
 {
     Properties
     {
-    	_ExplosionPoint ("Explosion Point", Vector) = (0, -10, 0)
+    	[Header(Explosion)][Space(20)]
     	_ExplosionTime ("Explosion Time", Float) = 10
     	_ExplosionRange ("Explosion Range", Float) = 5
     	_ExplosionFalloff ("Explosion Falloff", Float) = 2
+    	_ExplosionPoint ("Explosion Point", Vector) = (0, -10, 0)
+
+    	[Header(Sky)][Space(20)]
+        _HorizonCol ("Horizon Color", Color) = (1,1,1)
+        _SkyCol ("Sky Color", Color) = (1,1,1)
+        _HueSaturation ("Hue Saturation", Float) = 0.7
+        _Voronoi1Scale ("Voronoi 1 Scale", Float) = 20
+        _Voronoi2Scale ("Voronoi 2 Scale", Float) = 3
+        _Simplex1Scale ("Simplex 1 Scale", Float) = 3
+        _FBM ("Fractional Brownian Motion", Float) = 0.3
+        _TimeScale ("Time Scale", Float) = 1
     }
     SubShader
     {
@@ -22,12 +33,7 @@ Shader "Swifter/TriangleExplosion"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
-
-            // VivifyTemplate Libraries
-            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+            #include "IntroSkybox.hlsl"
 
             struct appdata
             {
@@ -41,6 +47,7 @@ Shader "Swifter/TriangleExplosion"
 				float4 proj : SV_POSITION;
 				float4 localPos : TEXCOORD0;
 				float3 normal : TEXCOORD1;
+				float3 viewDir : TEXCOORD2;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -48,6 +55,7 @@ Shader "Swifter/TriangleExplosion"
 			{
 				float4 vertex : SV_POSITION;
 				bool visible : TEXCOORD0;
+				float3 viewDir : TEXCOORD1;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -67,6 +75,8 @@ Shader "Swifter/TriangleExplosion"
             	o.localPos = v.vertex;
             	o.localPos.w = 1;
             	o.normal = v.normal;
+            	float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
+            	o.viewDir = normalize(worldPos - _WorldSpaceCameraPos);
                 return o;
             }
 
@@ -106,7 +116,7 @@ Shader "Swifter/TriangleExplosion"
 			    );
             }
 
-            float4 applyExplosion(in v2g i, in float3 midPoint, in float3 newMidPoint, in float4x4 rotation)
+            float4 applyExplosion(in v2g i, in float3 midPoint, in float3 newMidPoint, in float4x4 rotation, out float3 viewDir)
             {
             	float4 pos = i.localPos;
             	pos.y += 0.01;
@@ -114,6 +124,8 @@ Shader "Swifter/TriangleExplosion"
             	pos.xyz -= midPoint;
             	pos = mul(rotation, pos);
             	pos.xyz += newMidPoint;
+            	float3 worldPos = mul(unity_ObjectToWorld, pos);
+            	viewDir = normalize(worldPos - _WorldSpaceCameraPos);
             	return UnityObjectToClipPos(pos);
             }
 
@@ -132,12 +144,15 @@ Shader "Swifter/TriangleExplosion"
 
 				o1.vertex = i[0].proj;
             	o1.visible = true;
+            	o1.viewDir = i[0].viewDir;
 				triangleStream.Append(o1);
 				o2.vertex = i[1].proj;
             	o2.visible = true;
+            	o2.viewDir = i[1].viewDir;
 				triangleStream.Append(o2);
 				o3.vertex = i[2].proj;
             	o3.visible = true;
+            	o3.viewDir = i[2].viewDir;
 				triangleStream.Append(o3);
 
             	float3 midPoint = (i[0].localPos + i[1].localPos + i[2].localPos) * 0.333333;
@@ -160,20 +175,24 @@ Shader "Swifter/TriangleExplosion"
 
             	triangleStream.RestartStrip();
 
-            	o1.vertex = applyExplosion(i[0], midPoint, newMidpoint, rotate);
+            	float3 viewDir;
+            	o1.vertex = applyExplosion(i[0], midPoint, newMidpoint, rotate, viewDir);
             	o1.visible = visible;
+            	o1.viewDir = viewDir;
             	triangleStream.Append(o1);
-            	o2.vertex = applyExplosion(i[1], midPoint, newMidpoint, rotate);
+            	o2.vertex = applyExplosion(i[1], midPoint, newMidpoint, rotate, viewDir);
             	o2.visible = visible;
+            	o2.viewDir = viewDir;
             	triangleStream.Append(o2);
-            	o3.vertex = applyExplosion(i[2], midPoint, newMidpoint, rotate);
+            	o3.vertex = applyExplosion(i[2], midPoint, newMidpoint, rotate, viewDir);
             	o3.visible = visible;
+            	o3.viewDir = viewDir;
             	triangleStream.Append(o3);
 			}
 
             fixed4 frag (g2f i) : SV_Target
             {
-                return i.visible ? float4(0, 1, 0, 0) : float4(0, 0, 0, 1);
+                return i.visible ? doSkybox(i.viewDir) : float4(0, 0, 0, 1);
             }
             ENDCG
         }
