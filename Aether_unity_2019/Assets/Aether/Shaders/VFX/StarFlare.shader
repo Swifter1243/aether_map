@@ -5,6 +5,7 @@ Properties
         _Sharpness ("Sharpness", Float) = 15
         _Brightness ("Brightness", Float) = 3
         _Color ("Color", Color) = (1,1,1)
+        _Flutter ("Flutter", Float) = 0
     }
     SubShader
     {
@@ -24,10 +25,12 @@ Properties
             #include "UnityCG.cginc"
 
             // VivifyTemplate Libraries
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+
+            #include "../Flutter.hlsl"
 
             struct appdata
             {
@@ -46,6 +49,7 @@ Properties
             float _Sharpness;
             float _Brightness;
             float3 _Color;
+            float _Flutter;
 
             v2f vert (appdata v)
             {
@@ -66,6 +70,8 @@ Properties
                 float d = saturate(1 - l);
                 float r = pow(1. - p.x * p.y, _Sharpness);
                 float v = r * d * d * _Brightness;
+
+                v *= flutter(_Flutter);
 
                 return float4(v * _Color,0);
             }

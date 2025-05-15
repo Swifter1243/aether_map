@@ -7,6 +7,7 @@ Shader "Swifter/VFX/RingArtifact"
         _End ("End", Float) = 0.3
         _Power ("Power", Float) = 3
         _Scale ("Scale", Float) = 4
+        _Flutter ("Flutter", Float) = 0
     }
     SubShader
     {
@@ -31,6 +32,7 @@ Shader "Swifter/VFX/RingArtifact"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+            #include "../Flutter.hlsl"
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -60,6 +62,7 @@ Shader "Swifter/VFX/RingArtifact"
             float _End;
             float _Power;
             float _Scale;
+            float _Flutter;
 
             fixed4 frag(v2f i) : SV_Target
             {
@@ -72,6 +75,8 @@ Shader "Swifter/VFX/RingArtifact"
                 float vEnd = smoothstep(1, _End, len);
 
                 float v = pow(vStart * vEnd, _Power) * _Intensity;
+
+                v *= flutter(_Flutter);
 
                 float3 ringCol = lerp(1, rainbow(len * _Scale), _Saturation);
 

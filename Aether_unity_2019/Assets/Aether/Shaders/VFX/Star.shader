@@ -7,6 +7,7 @@ Shader "Swifter/VFX/Star"
         _Spread ("Spread", Float) = 0.2
         _Alpha ("Alpha", Float) = 0.5
         _Thickness ("Thickness", Float) = 0.07
+        _Flutter ("Flutter", Float) = 0
     }
     SubShader
     {
@@ -27,10 +28,12 @@ Shader "Swifter/VFX/Star"
             #include "UnityCG.cginc"
 
             // VivifyTemplate Libraries
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+
+            #include "../Flutter.hlsl"
 
             struct appdata
             {
@@ -51,6 +54,7 @@ Shader "Swifter/VFX/Star"
             float _Spread;
             float _Alpha;
             float _Thickness;
+            float _Flutter;
 
             v2f vert (appdata v)
             {
@@ -76,6 +80,8 @@ Shader "Swifter/VFX/Star"
                 value *= edgeDist;
 
                 value = pow(value * 2, 7);
+
+                value *= flutter(_Flutter);
 
                 return float4(value, value, value, value * _Alpha);
             }
