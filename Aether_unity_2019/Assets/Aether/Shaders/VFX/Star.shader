@@ -16,6 +16,7 @@ Shader "Swifter/VFX/Star"
         }
         Blend One One
         ZWrite Off
+        Cull Off
 
         Pass
         {
