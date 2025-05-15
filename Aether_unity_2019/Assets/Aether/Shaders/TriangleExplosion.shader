@@ -31,6 +31,7 @@ Shader "Swifter/TriangleExplosion"
             #pragma vertex vert
             #pragma geometry geom
             #pragma fragment frag
+            #pragma multi_compile_instancing
 
             #include "UnityCG.cginc"
             #include "IntroSkybox.hlsl"
@@ -69,7 +70,7 @@ Shader "Swifter/TriangleExplosion"
             {
             	v2g o;
                 UNITY_SETUP_INSTANCE_ID(v);
-            	UNITY_TRANSFER_INSTANCE_ID(v, v2g);
+            	UNITY_TRANSFER_INSTANCE_ID(v, o);
 
                 o.proj = UnityObjectToClipPos(v.vertex);
             	o.localPos = v.vertex;
@@ -137,6 +138,10 @@ Shader "Swifter/TriangleExplosion"
 				g2f o1;
 				g2f o2;
 				g2f o3;
+
+            	UNITY_INITIALIZE_OUTPUT(g2f, o1);
+            	UNITY_INITIALIZE_OUTPUT(g2f, o2);
+            	UNITY_INITIALIZE_OUTPUT(g2f, o3);
 
 				UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[0], o1);
 				UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[0], o2);
