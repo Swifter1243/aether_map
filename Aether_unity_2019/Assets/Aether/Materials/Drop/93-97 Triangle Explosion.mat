@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 85-89 Triangle Explosion
+  m_Name: 93-97 Triangle Explosion
   m_Shader: {fileID: 4800000, guid: 27eac803e5b43154a9bd35cfeb450112, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -60,10 +60,10 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _ExplosionFalloff: 4.81
+    - _ExplosionFalloff: 11.97
     - _ExplosionPower: 348.1
-    - _ExplosionRange: 7.2
-    - _ExplosionTime: 25.83
+    - _ExplosionRange: 8
+    - _ExplosionTime: 20.97
     - _FBM: 1.84
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -85,6 +85,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ExplosionPoint: {r: 0, g: -1.4, b: 0, a: 1}
+    - _ExplosionPoint: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonCol: {r: 0.9292453, g: 0.97819203, b: 1, a: 1}
     - _SkyCol: {r: 1, g: 1, b: 1, a: 1}

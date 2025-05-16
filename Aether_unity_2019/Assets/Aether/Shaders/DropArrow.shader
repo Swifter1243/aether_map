@@ -4,6 +4,7 @@ Shader "Swifter/DropArrow"
     {
         _Offset ("Offset", Vector) = (0,0,0)
         _FogHeight ("Fog Height", Float) = 3
+        [Toggle(IS_PARTICLE)] _IsParticle ("Is Particle", Int) = 0
     }
     SubShader
     {
@@ -18,6 +19,7 @@ Shader "Swifter/DropArrow"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature IS_PARTICLE
 
             #include "UnityCG.cginc"
 
@@ -30,6 +32,9 @@ Shader "Swifter/DropArrow"
             struct appdata
             {
                 float4 vertex : POSITION;
+                #if IS_PARTICLE
+                float4 texcoord0 : TEXCOORD0;
+                #endif
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
@@ -37,6 +42,7 @@ Shader "Swifter/DropArrow"
             {
                 float4 vertex : SV_POSITION;
                 float fog : TEXCOORD0;
+                float3 test : TEXCOORD1;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -49,10 +55,22 @@ Shader "Swifter/DropArrow"
                 UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o)
 
+                #if IS_PARTICLE
+                float4 center = float4(v.texcoord0.xyz, 1);
+                float4 localPos = v.vertex - center;
+                localPos.xyz *= _Offset.z;
+
+                o.vertex = UnityObjectToClipPos(localPos + center);
+                float fogZ = length(localPos.xyz);
+                #else
                 float3 localPos = v.vertex + _Offset;
 
                 o.vertex = UnityObjectToClipPos(localPos);
-                o.fog = localPos.z / _FogHeight;
+                float fogZ = localPos.z;
+                #endif
+
+                o.fog = fogZ / _FogHeight;
+
                 return o;
             }
 
