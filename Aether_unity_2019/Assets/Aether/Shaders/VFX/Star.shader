@@ -8,6 +8,7 @@ Shader "Swifter/VFX/Star"
         _Alpha ("Alpha", Float) = 0.5
         _Thickness ("Thickness", Float) = 0.07
         _Flutter ("Flutter", Float) = 0
+        _Opacity ("Opacity", Float) = 1
     }
     SubShader
     {
@@ -55,6 +56,7 @@ Shader "Swifter/VFX/Star"
             float _Alpha;
             float _Thickness;
             float _Flutter;
+            float _Opacity;
 
             v2f vert (appdata v)
             {
@@ -82,6 +84,7 @@ Shader "Swifter/VFX/Star"
                 value = pow(value * 2, 7);
 
                 value *= flutter(_Flutter);
+                value = saturate(value) * _Opacity;
 
                 return float4(value, value, value, value * _Alpha);
             }

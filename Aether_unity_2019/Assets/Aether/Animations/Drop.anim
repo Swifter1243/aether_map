@@ -4449,82 +4449,511 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.9227521
       - serializedVersion: 3
-        time: 8.25
-        value: 2.1563725
-        inSlope: 21.138065
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.42481777
-        outWeight: 0.29532665
-      - serializedVersion: 3
-        time: 8.3
-        value: 0.045301437
-        inSlope: 9.041302
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.3729975
-        outWeight: 0.25214675
-      - serializedVersion: 3
-        time: 8.366667
-        value: 2.1563725
-        inSlope: 21.138065
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.42481777
-        outWeight: 0.29532665
-      - serializedVersion: 3
-        time: 8.416667
-        value: 0.58956563
-        inSlope: 9.041302
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.3729975
-        outWeight: 0.25214675
-      - serializedVersion: 3
-        time: 8.466666
-        value: 2.1563725
-        inSlope: 21.138065
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.42481777
-        outWeight: 0.29532665
-      - serializedVersion: 3
-        time: 8.516666
-        value: 1.1090947
-        inSlope: 9.041302
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.3729975
-        outWeight: 0.25214675
-      - serializedVersion: 3
-        time: 8.566667
-        value: 2.6
-        inSlope: -0.24632065
-        outSlope: 0
+        time: 8.183333
+        value: 2.624455
+        inSlope: -0.042297114
+        outSlope: -506813660
         tangentMode: 1
         weightedMode: 3
-        inWeight: 0.42227274
-        outWeight: 0.33333334
+        inWeight: 0.33333334
+        outWeight: 0.00000001
       - serializedVersion: 3
-        time: 9.1
-        value: 0.29248977
-        inSlope: 1.9734185
-        outSlope: Infinity
-        tangentMode: 97
+        time: 8.483334
+        value: -0.026811302
+        inSlope: -0.8392625
+        outSlope: 1.5118743e+10
+        tangentMode: 1
         weightedMode: 3
-        inWeight: 0.713315
-        outWeight: 0.25214675
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.5
+        value: 2.624455
+        inSlope: -0.371974
+        outSlope: -1.1403325e+9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.633333
+        value: -0.026811302
+        inSlope: -1.8883436
+        outSlope: 1.5119607e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.65
+        value: 2.624455
+        inSlope: -0.37199527
+        outSlope: -475358940
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.966666
+        value: -0.00041288137
+        inSlope: -0.78717476
+        outSlope: Infinity
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 1
+      - serializedVersion: 3
+        time: 9.116667
+        value: 1.3908734
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Intensity
     path: 97-101/Sparkle/Rainbow (2)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 4.983333
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 5.2833333
+        value: 0.79730767
+        inSlope: -10.555549
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.3
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.4333334
+        value: 0.79730767
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.45
+        value: 2.8946772
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 5.6833334
+        value: 1.9349499
+        inSlope: -1.3835576
+        outSlope: -0.03448135
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.58232284
+        outWeight: 1
+      - serializedVersion: 3
+        time: 5.7833333
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 89-93/Sparkle/Sparkle (1)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 4.983333
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 5.2833333
+        value: 0.79730767
+        inSlope: -10.555549
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.3
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.4333334
+        value: 0.79730767
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.45
+        value: 2.8946772
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 5.6833334
+        value: 1.9349499
+        inSlope: -1.3835576
+        outSlope: -0.03448135
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.58232284
+        outWeight: 1
+      - serializedVersion: 3
+        time: 5.7833333
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 89-93/Sparkle/Sparkle (2)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 6.5833335
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 6.883333
+        value: 0.79730767
+        inSlope: -10.555549
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6.9
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.0333333
+        value: 0.79730767
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.05
+        value: 2.8946772
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 7.366667
+        value: 0.8237061
+        inSlope: 0.17985559
+        outSlope: Infinity
+        tangentMode: 97
+        weightedMode: 3
+        inWeight: 0.92763114
+        outWeight: 1
+      - serializedVersion: 3
+        time: 7.383333
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 93-97/Sparkle/Sparkle (2)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 6.5833335
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 6.883333
+        value: 0.79730767
+        inSlope: -10.555549
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6.9
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.0333333
+        value: 0.79730767
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.05
+        value: 2.8946772
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 7.366667
+        value: 0.8237061
+        inSlope: 0.14546505
+        outSlope: Infinity
+        tangentMode: 97
+        weightedMode: 3
+        inWeight: 0.92763114
+        outWeight: 1
+      - serializedVersion: 3
+        time: 7.383333
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 93-97/Sparkle/Sparkle (1)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 8.216666
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -506813660
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.516666
+        value: 0.24341089
+        inSlope: -0.8392625
+        outSlope: 1.5118743e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.533334
+        value: 2.8946772
+        inSlope: -0.371974
+        outSlope: -1.1403325e+9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.666667
+        value: 0.24341089
+        inSlope: -1.8883436
+        outSlope: 1.5119607e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.683333
+        value: 2.8946772
+        inSlope: -0.37199527
+        outSlope: -473877800
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 9
+        value: 0.27798802
+        inSlope: -0.78472203
+        outSlope: Infinity
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 1
+      - serializedVersion: 3
+        time: 9.15
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 97-101/Sparkle/Sparkle (2)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 8.216666
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -506813660
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.516666
+        value: 0.24341089
+        inSlope: -0.8392625
+        outSlope: 1.5118743e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.533334
+        value: 2.8946772
+        inSlope: -0.371974
+        outSlope: -1.1403325e+9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.666667
+        value: 0.24341089
+        inSlope: -1.8883436
+        outSlope: 1.5119607e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.683333
+        value: 2.8946772
+        inSlope: -0.37199527
+        outSlope: -475358940
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 9
+        value: 0.2698093
+        inSlope: -0.78717476
+        outSlope: Infinity
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 1
+      - serializedVersion: 3
+        time: 9.15
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 97-101/Sparkle/Sparkle (1)
     classID: 23
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -5350,6 +5779,48 @@ AnimationClip:
     - serializedVersion: 2
       path: 557606759
       attribute: 2262801196
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 4102884663
+      attribute: 2237670731
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3751829236
+      attribute: 2237670731
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1675901680
+      attribute: 2237670731
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1221159219
+      attribute: 2237670731
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2973640594
+      attribute: 2237670731
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2584966225
+      attribute: 2237670731
       script: {fileID: 0}
       typeID: 23
       customType: 22
@@ -13090,77 +13561,68 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.9227521
       - serializedVersion: 3
-        time: 8.25
-        value: 2.1563725
-        inSlope: 21.138065
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.42481777
-        outWeight: 0.29532665
-      - serializedVersion: 3
-        time: 8.3
-        value: 0.045301437
-        inSlope: 9.041302
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.3729975
-        outWeight: 0.25214675
-      - serializedVersion: 3
-        time: 8.366667
-        value: 2.1563725
-        inSlope: 21.138065
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.42481777
-        outWeight: 0.29532665
-      - serializedVersion: 3
-        time: 8.416667
-        value: 0.58956563
-        inSlope: 9.041302
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.3729975
-        outWeight: 0.25214675
-      - serializedVersion: 3
-        time: 8.466666
-        value: 2.1563725
-        inSlope: 21.138065
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.42481777
-        outWeight: 0.29532665
-      - serializedVersion: 3
-        time: 8.516666
-        value: 1.1090947
-        inSlope: 9.041302
-        outSlope: Infinity
-        tangentMode: 97
-        weightedMode: 3
-        inWeight: 0.3729975
-        outWeight: 0.25214675
-      - serializedVersion: 3
-        time: 8.566667
-        value: 2.6
-        inSlope: -0.24632065
-        outSlope: 0
+        time: 8.183333
+        value: 2.624455
+        inSlope: -0.042297114
+        outSlope: -506813660
         tangentMode: 1
         weightedMode: 3
-        inWeight: 0.42227274
-        outWeight: 0.33333334
+        inWeight: 0.33333334
+        outWeight: 0.00000001
       - serializedVersion: 3
-        time: 9.1
-        value: 0.29248977
-        inSlope: 1.9734185
-        outSlope: Infinity
-        tangentMode: 97
+        time: 8.483334
+        value: -0.026811302
+        inSlope: -0.8392625
+        outSlope: 1.5118743e+10
+        tangentMode: 1
         weightedMode: 3
-        inWeight: 0.713315
-        outWeight: 0.25214675
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.5
+        value: 2.624455
+        inSlope: -0.371974
+        outSlope: -1.1403325e+9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.633333
+        value: -0.026811302
+        inSlope: -1.8883436
+        outSlope: 1.5119607e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.65
+        value: 2.624455
+        inSlope: -0.37199527
+        outSlope: -475358940
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.966666
+        value: -0.00041288137
+        inSlope: -0.78717476
+        outSlope: Infinity
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 1
+      - serializedVersion: 3
+        time: 9.116667
+        value: 1.3908734
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -13251,6 +13713,444 @@ AnimationClip:
     attribute: m_LocalPosition.z
     path: 93-97/Sparkle
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 4.983333
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 5.2833333
+        value: 0.79730767
+        inSlope: -10.555549
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.3
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.4333334
+        value: 0.79730767
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.45
+        value: 2.8946772
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 5.6833334
+        value: 1.9349499
+        inSlope: -1.3835576
+        outSlope: -0.03448135
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.58232284
+        outWeight: 1
+      - serializedVersion: 3
+        time: 5.7833333
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 89-93/Sparkle/Sparkle (1)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 4.983333
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 5.2833333
+        value: 0.79730767
+        inSlope: -10.555549
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.3
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.4333334
+        value: 0.79730767
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.45
+        value: 2.8946772
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 5.6833334
+        value: 1.9349499
+        inSlope: -1.3835576
+        outSlope: -0.03448135
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.58232284
+        outWeight: 1
+      - serializedVersion: 3
+        time: 5.7833333
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 89-93/Sparkle/Sparkle (2)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 6.5833335
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 6.883333
+        value: 0.79730767
+        inSlope: -10.555549
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6.9
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.0333333
+        value: 0.79730767
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.05
+        value: 2.8946772
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 7.366667
+        value: 0.8237061
+        inSlope: 0.17985559
+        outSlope: Infinity
+        tangentMode: 97
+        weightedMode: 3
+        inWeight: 0.92763114
+        outWeight: 1
+      - serializedVersion: 3
+        time: 7.383333
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 93-97/Sparkle/Sparkle (2)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 6.5833335
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 6.883333
+        value: 0.79730767
+        inSlope: -10.555549
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6.9
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.0333333
+        value: 0.79730767
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.05
+        value: 2.8946772
+        inSlope: 0
+        outSlope: -0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.4
+      - serializedVersion: 3
+        time: 7.366667
+        value: 0.8237061
+        inSlope: 0.14546505
+        outSlope: Infinity
+        tangentMode: 97
+        weightedMode: 3
+        inWeight: 0.92763114
+        outWeight: 1
+      - serializedVersion: 3
+        time: 7.383333
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 93-97/Sparkle/Sparkle (1)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 8.216666
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -506813660
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.516666
+        value: 0.24341089
+        inSlope: -0.8392625
+        outSlope: 1.5118743e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.533334
+        value: 2.8946772
+        inSlope: -0.371974
+        outSlope: -1.1403325e+9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.666667
+        value: 0.24341089
+        inSlope: -1.8883436
+        outSlope: 1.5119607e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.683333
+        value: 2.8946772
+        inSlope: -0.37199527
+        outSlope: -473877800
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 9
+        value: 0.27798802
+        inSlope: -0.78472203
+        outSlope: Infinity
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 1
+      - serializedVersion: 3
+        time: 9.15
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 97-101/Sparkle/Sparkle (2)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 8.216666
+        value: 2.8946772
+        inSlope: -0.042297114
+        outSlope: -506813660
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.516666
+        value: 0.24341089
+        inSlope: -0.8392625
+        outSlope: 1.5118743e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.533334
+        value: 2.8946772
+        inSlope: -0.371974
+        outSlope: -1.1403325e+9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.666667
+        value: 0.24341089
+        inSlope: -1.8883436
+        outSlope: 1.5119607e+10
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.683333
+        value: 2.8946772
+        inSlope: -0.37199527
+        outSlope: -475358940
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.66918993
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 9
+        value: 0.2698093
+        inSlope: -0.78717476
+        outSlope: Infinity
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.3872068
+        outWeight: 1
+      - serializedVersion: 3
+        time: 9.15
+        value: 2.8946772
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 97-101/Sparkle/Sparkle (1)
+    classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
