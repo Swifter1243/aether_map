@@ -2,7 +2,8 @@ Shader "Swifter/VFX/RingFlare"
 {
     Properties
     {
-        _Saturation ("Saturation", Range(0,1)) = 0.5
+        _Saturation ("Rainbow Amount", Range(0,1)) = 0.5
+        _Color ("Color", Color) = (1,1,1)
         _Intensity ("Intensity", Float) = 3
         _Glow ("Glow", Float) = 32
         _TimeScale ("Time Scale", Float) = 1
@@ -56,6 +57,7 @@ Shader "Swifter/VFX/RingFlare"
             }
 
             float _Saturation;
+            float3 _Color;
             float _Intensity;
             float _Glow;
             float _TimeScale;
@@ -78,7 +80,7 @@ Shader "Swifter/VFX/RingFlare"
 
                 float v = pow(1 - d, _Glow) * n * _Intensity;
 
-                float3 ringCol = lerp(1, rainbow(angle), _Saturation);
+                float3 ringCol = lerp(_Color, rainbow(angle), _Saturation);
 
                 return float4(ringCol * v, 0);
             }
