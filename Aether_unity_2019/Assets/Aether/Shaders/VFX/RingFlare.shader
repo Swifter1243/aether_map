@@ -8,6 +8,7 @@ Shader "Swifter/VFX/RingFlare"
         _Glow ("Glow", Float) = 32
         _TimeScale ("Time Scale", Float) = 1
         _NoiseScale ("Noise Scale", Float) = 30
+        _Flutter ("Flutter", Float) = 0
     }
     SubShader
     {
@@ -32,6 +33,8 @@ Shader "Swifter/VFX/RingFlare"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+
+            #include "../Flutter.hlsl"
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -62,6 +65,7 @@ Shader "Swifter/VFX/RingFlare"
             float _Glow;
             float _TimeScale;
             float _NoiseScale;
+            float _Flutter;
 
             float3 color(float t)
             {
@@ -79,6 +83,8 @@ Shader "Swifter/VFX/RingFlare"
                 float d = max(0, abs(len - 0.5));
 
                 float v = pow(1 - d, _Glow) * n * _Intensity;
+
+                v *= flutter(_Flutter);
 
                 float3 ringCol = lerp(_Color, rainbow(angle), _Saturation);
 

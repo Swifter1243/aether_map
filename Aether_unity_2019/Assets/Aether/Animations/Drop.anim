@@ -581,6 +581,31 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: 97-101/Sparkle
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.433333
+        value: {x: 19.609001, y: -19.436, z: -3.334}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: -1.3151026e+9, y: 549774460, z: 725044100}
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.00000001, y: 0.00000001, z: 0.00000001}
+      - serializedVersion: 3
+        time: 13.25
+        value: {x: 0.34800002, y: -11.384001, z: 7.2850003}
+        inSlope: {x: -1.6031342, y: 0.6701851, z: 0.883842}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: {x: 1, y: 1, z: 1}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 101-109/Whitespace/Star
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -1601,6 +1626,31 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: 97-101/Sparkle/Rainbow
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.433333
+        value: {x: 23.128862, y: 23.128862, z: 23.128843}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: -699419460, y: -699419460, z: -699418900}
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.00000001, y: 0.00000001, z: 0.00000001}
+      - serializedVersion: 3
+        time: 13.25
+        value: {x: 12.88516, y: 12.88516, z: 12.88515}
+        inSlope: {x: -0.8526051, y: -0.8526051, z: -0.8526044}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: {x: 1, y: 1, z: 1}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 101-109/Whitespace/Star
   m_FloatCurves:
   - curve:
       serializedVersion: 2
@@ -6092,6 +6142,13 @@ AnimationClip:
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
+      path: 1230326224
+      attribute: 4
+      script: {fileID: 0}
+      typeID: 4
+      customType: 4
+      isPPtrCurve: 0
+    - serializedVersion: 2
       path: 3249779664
       attribute: 3
       script: {fileID: 0}
@@ -6205,6 +6262,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 930202748
+      attribute: 3
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1230326224
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -16248,6 +16312,174 @@ AnimationClip:
     path: 101-109/Whitespace/Wisps/GlowingWisp (1)
     classID: 23
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.433333
+        value: 23.128862
+        inSlope: 0
+        outSlope: -699419460
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.25
+        value: 12.88516
+        inSlope: -0.8526051
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: 101-109/Whitespace/Star
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.433333
+        value: 23.128862
+        inSlope: 0
+        outSlope: -699419460
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.25
+        value: 12.88516
+        inSlope: -0.8526051
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: 101-109/Whitespace/Star
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.433333
+        value: 23.128843
+        inSlope: 0
+        outSlope: -699418900
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.25
+        value: 12.88515
+        inSlope: -0.8526044
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: 101-109/Whitespace/Star
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.433333
+        value: 19.609001
+        inSlope: 0
+        outSlope: -1.3151026e+9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.25
+        value: 0.34800002
+        inSlope: -1.6031342
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: 101-109/Whitespace/Star
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.433333
+        value: -19.436
+        inSlope: 0
+        outSlope: 549774460
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.25
+        value: -11.384001
+        inSlope: 0.6701851
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: 101-109/Whitespace/Star
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.433333
+        value: -3.334
+        inSlope: 0
+        outSlope: 725044100
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.25
+        value: 7.2850003
+        inSlope: 0.883842
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: 101-109/Whitespace/Star
+    classID: 4
+    script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2
@@ -16727,6 +16959,36 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
     path: 97-101/Sparkle
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: 101-109/Whitespace/Star
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: 101-109/Whitespace/Star
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: 101-109/Whitespace/Star
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

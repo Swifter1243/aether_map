@@ -21,6 +21,7 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _Bend: 0.5
+    - _Flutter: 0.54
     - _Glow: 10.27
     - _Intensity: 5.52
     - _NoiseScale: 30
@@ -29,4 +30,5 @@ Material:
     - _Spread: 0.2
     - _Thickness: 0.25
     - _TimeScale: 0.2
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
