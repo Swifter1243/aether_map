@@ -9,6 +9,7 @@ Shader "Swifter/VFX/Star"
         _Thickness ("Thickness", Float) = 0.07
         _Flutter ("Flutter", Float) = 0
         _Opacity ("Opacity", Float) = 1
+        [Toggle(INVERT)] _Invert ("Invert", Int) = 0
     }
     SubShader
     {
@@ -57,6 +58,7 @@ Shader "Swifter/VFX/Star"
             float _Thickness;
             float _Flutter;
             float _Opacity;
+            bool _Invert;
 
             v2f vert (appdata v)
             {
@@ -84,9 +86,9 @@ Shader "Swifter/VFX/Star"
                 value = pow(value * 2, 7);
 
                 value *= flutter(_Flutter);
-                value = saturate(value) * _Opacity;
 
-                return float4(value, value, value, value * _Alpha);
+                float value2 = _Invert ? -value : value;
+                return float4(value2, value2, value2, value * _Alpha);
             }
             ENDCG
         }
