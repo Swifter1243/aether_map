@@ -1,4 +1,5 @@
-﻿using UnityAnimationWindow.Swifter;
+﻿using System;
+using UnityAnimationWindow.Swifter;
 using UnityEditor;
 using UnityEditorInternal.Enemeteen;
 using UnityEngine;
@@ -10,6 +11,8 @@ class AnimationWindowSettingsGUI
 
     private const int IndentWidth = 10;
     private const int EdgeMargin = 5;
+
+    private Vector2 m_ScrollPosition = Vector2.zero;
 
     private GUIStyle s_MainTitleStyle => new GUIStyle
     {
@@ -53,6 +56,9 @@ class AnimationWindowSettingsGUI
     private static GUIContent s_AudioOffsetField =
         new GUIContent("Offset", "How much to offset the audio by (in beats).");
 
+    private static GUIContent s_IsParticlePlaybackEnabledField =
+        new GUIContent("Particle Playback Enabled", "Look for particle systems in the animation, and play them back in real time.");
+
     private float _indent = 0;
 
     private void IncreaseIndent()
@@ -93,6 +99,8 @@ class AnimationWindowSettingsGUI
 
         GUILayout.Label("Animation Window Settings", s_MainTitleStyle);
 
+        m_ScrollPosition = GUILayout.BeginScrollView(m_ScrollPosition);
+
         VerticalSpace();
         BeginHorizontal();
         state.controlInterface.loop = EditorGUILayout.Toggle(s_LoopAnimationField, state.controlInterface.loop);
@@ -119,12 +127,29 @@ class AnimationWindowSettingsGUI
             DecreaseIndent();
         }
 
+        ParticleSystemControlsState particleControls = state.particleSystemControlsState;
+        VerticalSpace();
+        GUILayout.Label("\u26a0\ufe0f Experimental Feature");
+        BeginHorizontal();
+        bool isParticlePlaybackEnabled = EditorGUILayout.Toggle(s_IsParticlePlaybackEnabledField, particleControls.m_isParticlePlaybackEnabled);
+        if (isParticlePlaybackEnabled != particleControls.m_isParticlePlaybackEnabled)
+            state.particleSystemPlayback.RecalculateTrackers();
+        particleControls.m_isParticlePlaybackEnabled = isParticlePlaybackEnabled;
+        EndHorizontal();
+        if (particleControls.m_isParticlePlaybackEnabled)
+        {
+            IncreaseIndent();
+            ParticleControlsOnGUI(particleControls);
+            DecreaseIndent();
+        }
+
         if (GUI.changed)
         {
             state.audioControlsState.Save();
+            state.particleSystemControlsState.Save();
         }
 
-        GUILayoutUtility.GetRect(hierarchyWidth, hierarchyWidth, 0f, float.MaxValue, GUILayout.ExpandHeight(true));
+        GUILayout.EndScrollView();
     }
 
     private void AudioControlsOnGUI(AudioControlsState audioControls)
@@ -205,7 +230,8 @@ class AnimationWindowSettingsGUI
         EndHorizontal();
 
         BeginHorizontal();
-        audioControls.m_bpmGuidePrecision = EditorGUILayout.IntField(s_BeatPrecisionField, audioControls.m_bpmGuidePrecision);
+        int inputBpmGuidePrecision = EditorGUILayout.IntField(s_BeatPrecisionField, audioControls.m_bpmGuidePrecision);
+        audioControls.m_bpmGuidePrecision = Math.Max(inputBpmGuidePrecision, 1);
         EndHorizontal();
 
         BeginHorizontal();
@@ -215,5 +241,23 @@ class AnimationWindowSettingsGUI
         BeginHorizontal();
         audioControls.m_showBeatLabels = EditorGUILayout.Toggle(s_BeatLabelsField, audioControls.m_showBeatLabels);
         EndHorizontal();
+    }
+
+    private void ParticleControlsOnGUI(ParticleSystemControlsState particleControls)
+    {
+        VerticalSpace();
+
+        GUILayout.Box("For now, " +
+            "particle playback must be recalculated when new particle systems are added/removed, " +
+            "or animations modifying the active/inactive state of a particle system are changed.");
+
+        BeginHorizontal();
+        if (GUILayout.Button("Recalculate Playback"))
+        {
+            state.particleSystemPlayback.RecalculateTrackers();
+        }
+        EndHorizontal();
+
+        VerticalSpace();
     }
 }

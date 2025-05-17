@@ -1,8 +1,9 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
-public class AudioControlsState
+public class AudioControlsState : PlayerPrefsSerializer
 {
     [SerializeField] public bool m_isAudioEnabled = false;
     [SerializeField] public Color m_waveformColor = new Color(0, 0.4f, 0.5f, 1);
@@ -15,6 +16,8 @@ public class AudioControlsState
 
     private AudioClip _m_audioClip;
     private AudioClip m_audioClipVolumeAdjusted;
+
+    protected override string PlayerPrefsKey => "AudioControlsState_";
 
     public AudioClip m_audioClip
     {
@@ -29,67 +32,7 @@ public class AudioControlsState
         }
     }
 
-    private const string PlayerPrefsKey = "AudioControlsState_";
-
-    private bool LoadBool(string name, bool defaultValue = false)
-    {
-        int value = PlayerPrefs.GetInt(PlayerPrefsKey + name, defaultValue ? 1 : 0);
-        return value == 1;
-    }
-
-    private int LoadInt(string name, int defaultValue = 0)
-    {
-        return PlayerPrefs.GetInt(PlayerPrefsKey + name, defaultValue);
-    }
-
-    private string LoadString(string name, string defaultValue = null)
-    {
-        return PlayerPrefs.GetString(PlayerPrefsKey + name, defaultValue);
-    }
-
-    private float LoadFloat(string name, float defaultValue = 0)
-    {
-        return PlayerPrefs.GetFloat(PlayerPrefsKey + name, defaultValue);
-    }
-
-    private Color LoadColor(string name, Color defaultValue = default)
-    {
-        float r = LoadFloat(name + "_r", defaultValue.r);
-        float g = LoadFloat(name + "_g", defaultValue.g);
-        float b = LoadFloat(name + "_b", defaultValue.b);
-        float a = LoadFloat(name + "_a", defaultValue.a);
-        return new Color(r, g, b, a);
-    }
-
-    private void SaveBool(string name, bool value)
-    {
-        PlayerPrefs.SetInt(PlayerPrefsKey + name, value ? 1 : 0);
-    }
-
-    private void SaveInt(string name, int value)
-    {
-        PlayerPrefs.SetInt(PlayerPrefsKey + name, value);
-    }
-
-    private void SaveString(string name, string value)
-    {
-        PlayerPrefs.SetString(PlayerPrefsKey + name, value);
-    }
-
-    private void SaveFloat(string name, float value)
-    {
-        PlayerPrefs.SetFloat(PlayerPrefsKey + name, value);
-    }
-
-    private void SaveColor(string name, Color value)
-    {
-        SaveFloat(name + "_r", value.r);
-        SaveFloat(name + "_g", value.g);
-        SaveFloat(name + "_b", value.b);
-        SaveFloat(name + "_a", value.a);
-    }
-
-    public void Load()
+    public override void Load()
     {
         m_isAudioEnabled = LoadBool("isAudioEnabled");
         string path = LoadString("audioClipPath");
@@ -99,14 +42,14 @@ public class AudioControlsState
         }
         m_waveformColor = LoadColor("waveformColor", new Color(0, 0.4f, 0.5f, 1));
         m_bpmGuideEnabled = LoadBool("bpmGuideEnabled");
-        m_bpm = LoadFloat("bpm", 60);
+        m_bpm = Mathf.Max(1, LoadFloat("bpm", 60));
         m_bpmGuideColor = LoadColor("bpmGuideColor", new Color(1, 1, 1, 0.6f));
         m_showBeatLabels = LoadBool("showBeatLabels");
-        m_bpmGuidePrecision = LoadInt("bpmGuidePrecision", 1);
+        m_bpmGuidePrecision = Math.Max(1, LoadInt("bpmGuidePrecision", 1));
         m_latencyMilliseconds = LoadInt("latencyMilliseconds");
     }
 
-    public void Save()
+    public override void Save()
     {
         SaveBool("isAudioEnabled", m_isAudioEnabled);
         if (m_audioClip != null)

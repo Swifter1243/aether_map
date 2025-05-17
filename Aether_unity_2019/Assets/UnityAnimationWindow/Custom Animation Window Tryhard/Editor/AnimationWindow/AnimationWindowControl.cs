@@ -272,7 +272,7 @@ namespace UnityEditorInternal.Enemeteen {
 				// Auto-Preview when start playing
 				StartPreview();
 				ClearCandidates();
-				
+
 				state.audioControlsState.StopAudio();
 			}
 
@@ -294,7 +294,7 @@ namespace UnityEditorInternal.Enemeteen {
 					}
 				}
 			}
-			
+
 			state.audioControlsState.PlayAudio(time.time + state.GetAudioSecondOffset());
 
 			return true;
@@ -302,8 +302,10 @@ namespace UnityEditorInternal.Enemeteen {
 
 		public void StopPlayback() {
 			state.audioControlsState.StopAudio();
-			state.particleSystemPlayback.Pause();
-			
+
+			if (state.particleSystemControlsState.m_isParticlePlaybackEnabled)
+				state.particleSystemPlayback.Pause();
+
 			if (AnimationMode.InAnimationPlaybackMode()) {
 				AnimationMode.StopAnimationPlaybackMode();
 
@@ -333,13 +335,17 @@ namespace UnityEditorInternal.Enemeteen {
 				{
 					newTime = state.minTime;
 					state.audioControlsState.RestartAudio(newTime + state.GetAudioSecondOffset());
-					state.particleSystemPlayback.Reset(newTime);
+
+					if (state.particleSystemControlsState.m_isParticlePlaybackEnabled)
+						state.particleSystemPlayback.Reset(newTime);
 				}
 				else if (newTime < state.minTime)
 				{
 					newTime = state.maxTime;
 					state.audioControlsState.RestartAudio(newTime + state.GetAudioSecondOffset());
-					state.particleSystemPlayback.Reset(newTime);
+
+					if (state.particleSystemControlsState.m_isParticlePlaybackEnabled)
+						state.particleSystemPlayback.Reset(newTime);
 				}
 			}
 			else {
@@ -356,8 +362,9 @@ namespace UnityEditorInternal.Enemeteen {
 			m_Time = AnimationKeyTime.Time(Mathf.Clamp(newTime, state.minTime, state.maxTime), state.frameRate);
 
 			ResampleAnimation();
-			
-			state.particleSystemPlayback.Seek(newTime);
+
+			if (state.particleSystemControlsState.m_isParticlePlaybackEnabled)
+				state.particleSystemPlayback.Seek(newTime);
 
 			return true;
 		}

@@ -64,13 +64,17 @@ namespace UnityEditorInternal.Enemeteen {
 			state.controlInterface.StopPlayback();
 			state.controlInterface.StartScrubTime();
 			state.controlInterface.SetCurrentTime(MousePositionToTime(evt));
-			state.particleSystemPlayback.Reset(state.controlInterface.time.time);
+
+			if (state.particleSystemControlsState.m_isParticlePlaybackEnabled)
+				state.particleSystemPlayback.Reset(state.controlInterface.time.time);
+
 			return true;
 		}
 
 		private bool OnDragPlayHead(Event evt) {
 			state.controlInterface.SetCurrentTime(MousePositionToTime(evt));
-			state.particleSystemPlayback.Seek(state.controlInterface.time.time);
+			if (state.particleSystemControlsState.m_isParticlePlaybackEnabled)
+				state.particleSystemPlayback.Seek(state.controlInterface.time.time);
 			return true;
 		}
 
