@@ -4,6 +4,7 @@
     {
         _Color ("Color", Color) = (1,1,1)
         _Glow ("Glow", Float) = 0
+        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
     }
     SubShader
     {
@@ -11,6 +12,7 @@
         {
             "RenderType"="Opaque"
         }
+        Cull [_Cull]
 
         Pass
         {
