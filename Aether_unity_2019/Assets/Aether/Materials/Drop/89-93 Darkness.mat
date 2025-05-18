@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Darkness
+  m_Name: 89-93 Darkness
   m_Shader: {fileID: 4800000, guid: b12eab1c94d5408882acc78ba1b9fd09, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -57,6 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0

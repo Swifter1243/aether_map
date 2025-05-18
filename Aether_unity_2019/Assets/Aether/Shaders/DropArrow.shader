@@ -5,6 +5,8 @@ Shader "Swifter/DropArrow"
         _Offset ("Offset", Vector) = (0,0,0)
         _FogHeight ("Fog Height", Float) = 3
         [Toggle(IS_PARTICLE)] _IsParticle ("Is Particle", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Destination Blend", Float) = 6
+        [ToggleUI] _Invert ("Invert", Int) = 0
     }
     SubShader
     {
@@ -12,7 +14,7 @@ Shader "Swifter/DropArrow"
             "RenderType"="Transparent"
             "Queue"="Transparent"
         }
-        Blend One OneMinusSrcColor
+        Blend One [_DstBlend]
 
         Pass
         {
@@ -48,6 +50,7 @@ Shader "Swifter/DropArrow"
 
             float3 _Offset;
             float _FogHeight;
+            bool _Invert;
 
             v2f vert (appdata v)
             {
@@ -76,7 +79,9 @@ Shader "Swifter/DropArrow"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return i.fog;
+                float v = i.fog;
+                float v2 = _Invert ? -v : v;
+                return float4(v2, v2, v2, v);
             }
             ENDCG
         }

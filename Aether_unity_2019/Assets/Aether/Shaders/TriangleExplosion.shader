@@ -2,6 +2,8 @@ Shader "Swifter/TriangleExplosion"
 {
     Properties
     {
+    	_Color ("Color", Color) = (0,0,0,0)
+
     	[Header(Explosion)][Space(20)]
     	_ExplosionTime ("Explosion Time", Float) = 10
     	_ExplosionRange ("Explosion Range", Float) = 5
@@ -61,6 +63,7 @@ Shader "Swifter/TriangleExplosion"
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
+            float4 _Color;
             float3 _ExplosionPoint;
             float _ExplosionTime;
             float _ExplosionRange;
@@ -197,7 +200,7 @@ Shader "Swifter/TriangleExplosion"
 
             fixed4 frag (g2f i) : SV_Target
             {
-                return i.visible ? doSkybox(i.viewDir) : float4(0, 0, 0, 1);
+                return i.visible ? doSkybox(i.viewDir) : _Color;
             }
             ENDCG
         }
