@@ -892,7 +892,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: 3.936}
+        value: {x: 0, y: 0, z: -45.001022}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -901,7 +901,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 15.4
-        value: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: -45.001022}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: -0.52736765}
         tangentMode: 0
@@ -910,7 +910,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.9999999}
       - serializedVersion: 3
         time: 15.716666
-        value: {x: 0, y: 0, z: 48.936554}
+        value: {x: 0, y: 0, z: 3.9355316}
         inSlope: {x: 0, y: 0, z: 1.2280924e+9}
         outSlope: {x: 0, y: 0, z: 613.9202}
         tangentMode: 0
@@ -919,16 +919,16 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.03426607}
       - serializedVersion: 3
         time: 15.916667
-        value: {x: 0, y: 0, z: 47.502438}
-        inSlope: {x: 0, y: 0, z: -20.606272}
-        outSlope: {x: 0, y: 0, z: -20.606272}
+        value: {x: 0, y: 0, z: 2.5014162}
+        inSlope: {x: 0, y: 0, z: -20.60625}
+        outSlope: {x: 0, y: 0, z: -20.60625}
         tangentMode: 0
         weightedMode: 3
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.6237344}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.26894075}
       - serializedVersion: 3
         time: 16.166666
-        value: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: -0.0010223389}
         inSlope: {x: 0, y: 0, z: 1.242209}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -21467,17 +21467,8 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 3.936
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 15.4
-        value: 0
+        value: -45.001022
         inSlope: 0
         outSlope: -0.52736765
         tangentMode: 1
@@ -21486,7 +21477,7 @@ AnimationClip:
         outWeight: 0.9999999
       - serializedVersion: 3
         time: 15.716666
-        value: 48.936554
+        value: 3.9355316
         inSlope: 1.2280924e+9
         outSlope: 613.9202
         tangentMode: 1
@@ -21495,7 +21486,7 @@ AnimationClip:
         outWeight: 0.023437848
       - serializedVersion: 3
         time: 16.166666
-        value: 45
+        value: -0.0010223389
         inSlope: 1.242209
         outSlope: 0
         tangentMode: 1
@@ -22979,7 +22970,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 113-117/Sparkle
+    path: 113-117/Particles 3/System
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -22989,7 +22980,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 113-117/Sparkle
+    path: 113-117/Particles 3/System
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -22999,7 +22990,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 113-117/Sparkle
+    path: 113-117/Particles 3/System
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -23039,7 +23030,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 113-117/Particles 3/System
+    path: 113-117/Sparkle
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -23049,7 +23040,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 113-117/Particles 3/System
+    path: 113-117/Sparkle
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -23059,7 +23050,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 113-117/Particles 3/System
+    path: 113-117/Sparkle
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
