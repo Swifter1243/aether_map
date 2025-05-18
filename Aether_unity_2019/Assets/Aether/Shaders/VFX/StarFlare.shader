@@ -6,6 +6,7 @@ Properties
         _Brightness ("Brightness", Float) = 3
         _Color ("Color", Color) = (1,1,1)
         _Flutter ("Flutter", Float) = 0
+        [ToggleUI] _Invert ("Invert", Int) = 0
     }
     SubShader
     {
@@ -50,6 +51,7 @@ Properties
             float _Brightness;
             float3 _Color;
             float _Flutter;
+            bool _Invert;
 
             v2f vert (appdata v)
             {
@@ -72,8 +74,9 @@ Properties
                 float v = r * d * d * _Brightness;
 
                 v *= flutter(_Flutter);
+                float v2 = _Invert ? -v : v;
 
-                return float4(v * _Color,0);
+                return float4(v2 * _Color,0);
             }
             ENDCG
         }

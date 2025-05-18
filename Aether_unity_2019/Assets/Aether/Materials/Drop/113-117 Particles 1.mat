@@ -64,8 +64,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Glow: 7.8
-    - _Intensity: 1.2
+    - _Glow: 12.48
+    - _Intensity: 2.94
     - _Invert: 1
     - _Metallic: 0
     - _Mode: 0
