@@ -10,6 +10,7 @@ Shader "Swifter/VFX/Star"
         _Flutter ("Flutter", Float) = 0
         _Opacity ("Opacity", Float) = 1
         [ToggleUI] _Invert ("Invert", Int) = 0
+        _Softness ("Softness", Float) = 7
     }
     SubShader
     {
@@ -59,6 +60,7 @@ Shader "Swifter/VFX/Star"
             float _Flutter;
             float _Opacity;
             bool _Invert;
+            float _Softness;
 
             v2f vert (appdata v)
             {
@@ -83,7 +85,7 @@ Shader "Swifter/VFX/Star"
                 float value = smoothstep(_Spread, 0, d);
                 value *= edgeDist;
 
-                value = pow(value * 2, 7);
+                value = pow(value * 2, _Softness);
 
                 value *= flutter(_Flutter);
 
