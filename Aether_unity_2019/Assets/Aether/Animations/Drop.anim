@@ -648,7 +648,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -682,7 +682,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -716,7 +716,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -750,7 +750,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -784,7 +784,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -818,7 +818,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -852,7 +852,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -886,7 +886,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -1318,7 +1318,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1352,7 +1352,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1386,7 +1386,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1420,7 +1420,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1454,7 +1454,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1488,7 +1488,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1522,7 +1522,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1556,7 +1556,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -2237,7 +2237,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
   m_FloatCurves:
   - curve:
       serializedVersion: 2
@@ -6733,7 +6733,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: 111-113/Spikes B
+    path: 111-113/Spikes/Spikes B
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -6761,7 +6761,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: 111-113/Spikes A
+    path: 111-113/Spikes/Spikes A
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -6789,7 +6789,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Brightness
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -6817,7 +6817,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Flutter
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -6845,7 +6845,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._TimeScale
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 23
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -6948,56 +6948,56 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2205376436
+      path: 2247985097
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4279195059
+      path: 4186017230
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2072726458
+      path: 2097517511
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 805478500
+      path: 581190569
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 536907219
+      path: 73908182
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2389187650
+      path: 2853121607
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2812324016
+      path: 2210896565
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 853321539
+      path: 544883854
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -7137,56 +7137,56 @@ AnimationClip:
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2205376436
+      path: 2247985097
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4279195059
+      path: 4186017230
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2072726458
+      path: 2097517511
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 805478500
+      path: 581190569
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 536907219
+      path: 73908182
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2389187650
+      path: 2853121607
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2812324016
+      path: 2210896565
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 853321539
+      path: 544883854
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -7319,7 +7319,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1608141447
+      path: 3660634810
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -8117,35 +8117,35 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 490281039
+      path: 3676892170
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2217757173
+      path: 1109507504
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1608141447
+      path: 3660634810
       attribute: 2237670731
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1608141447
+      path: 3660634810
       attribute: 2178917995
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1608141447
+      path: 3660634810
       attribute: 2188529672
       script: {fileID: 0}
       typeID: 23
@@ -17881,7 +17881,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -17918,7 +17918,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -17955,7 +17955,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -17992,7 +17992,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18029,7 +18029,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18066,7 +18066,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18103,7 +18103,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18140,7 +18140,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18177,7 +18177,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18214,7 +18214,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18251,7 +18251,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18288,7 +18288,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18325,7 +18325,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18362,7 +18362,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18399,7 +18399,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18436,7 +18436,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18473,7 +18473,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18510,7 +18510,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18547,7 +18547,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18584,7 +18584,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18621,7 +18621,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18658,7 +18658,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18695,7 +18695,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18732,7 +18732,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18769,7 +18769,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18806,7 +18806,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18843,7 +18843,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18880,7 +18880,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18917,7 +18917,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18954,7 +18954,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -18991,7 +18991,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19028,7 +19028,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19065,7 +19065,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19102,7 +19102,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19139,7 +19139,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19176,7 +19176,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19213,7 +19213,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19250,7 +19250,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19287,7 +19287,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19324,7 +19324,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19361,7 +19361,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19398,7 +19398,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19435,7 +19435,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19472,7 +19472,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19509,7 +19509,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19546,7 +19546,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19583,7 +19583,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19620,7 +19620,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19648,7 +19648,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: 111-113/Spikes B
+    path: 111-113/Spikes/Spikes B
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -19676,7 +19676,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: 111-113/Spikes A
+    path: 111-113/Spikes/Spikes A
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -19713,7 +19713,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19750,7 +19750,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19787,7 +19787,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -19815,7 +19815,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Brightness
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -19843,7 +19843,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Flutter
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -19871,7 +19871,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._TimeScale
-    path: 111-113/Beam
+    path: 111-113/Spikes/Beam
     classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -20392,7 +20392,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20402,7 +20402,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20412,7 +20412,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 111-113/Spikes A/spike parent (1)/spike piece 1 (1)
+    path: 111-113/Spikes/Spikes B/spike parent (2)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20422,7 +20422,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20432,7 +20432,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20442,7 +20442,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 111-113/Spikes A/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent (1)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20452,7 +20452,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20462,7 +20462,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20472,7 +20472,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 111-113/Spikes B/spike parent (1)/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent (1)/spike piece 1 (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20482,7 +20482,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20492,7 +20492,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20502,7 +20502,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 111-113/Spikes B/spike parent (2)/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent (2)/spike piece 1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20512,7 +20512,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20522,7 +20522,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20532,7 +20532,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 111-113/Spikes A/spike parent (3)/spike piece 1 (3)
+    path: 111-113/Spikes/Spikes A/spike parent (3)/spike piece 1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20542,7 +20542,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20552,7 +20552,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20562,7 +20562,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 111-113/Spikes A/spike parent (2)/spike piece 1 (2)
+    path: 111-113/Spikes/Spikes B/spike parent (3)/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20572,7 +20572,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20582,7 +20582,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20592,7 +20592,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 111-113/Spikes B/spike parent/spike piece 1
+    path: 111-113/Spikes/Spikes A/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20602,7 +20602,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20612,7 +20612,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -20622,7 +20622,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 111-113/Spikes B/spike parent (3)/spike piece 1
+    path: 111-113/Spikes/Spikes B/spike parent/spike piece 1
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
