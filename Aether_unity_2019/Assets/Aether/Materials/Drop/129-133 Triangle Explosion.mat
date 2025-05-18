@@ -61,6 +61,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _ExplosionFalloff: 21.7
+    - _ExplosionNoise: 1.7
     - _ExplosionPower: 348.1
     - _ExplosionRange: 87.21
     - _ExplosionTime: 250.3
