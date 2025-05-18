@@ -8,6 +8,7 @@ Shader "Swifter/VFX/RingArtifact"
         _Power ("Power", Float) = 3
         _Scale ("Scale", Float) = 4
         _Flutter ("Flutter", Float) = 0
+        [ToggleUI] _Invert ("Invert", Int) = 0
     }
     SubShader
     {
@@ -63,6 +64,7 @@ Shader "Swifter/VFX/RingArtifact"
             float _Power;
             float _Scale;
             float _Flutter;
+            bool _Invert;
 
             fixed4 frag(v2f i) : SV_Target
             {
@@ -77,6 +79,8 @@ Shader "Swifter/VFX/RingArtifact"
                 float v = pow(vStart * vEnd, _Power) * _Intensity;
 
                 v *= flutter(_Flutter);
+
+                v = _Invert ? -v : v;
 
                 float3 ringCol = lerp(1, rainbow(len * _Scale), _Saturation);
 

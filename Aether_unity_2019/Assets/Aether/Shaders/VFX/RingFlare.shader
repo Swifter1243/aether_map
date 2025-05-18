@@ -9,6 +9,7 @@ Shader "Swifter/VFX/RingFlare"
         _TimeScale ("Time Scale", Float) = 1
         _NoiseScale ("Noise Scale", Float) = 30
         _Flutter ("Flutter", Float) = 0
+        [ToggleUI] _Invert ("Invert", Int) = 0
     }
     SubShader
     {
@@ -66,6 +67,7 @@ Shader "Swifter/VFX/RingFlare"
             float _TimeScale;
             float _NoiseScale;
             float _Flutter;
+            bool _Invert;
 
             float3 color(float t)
             {
@@ -85,6 +87,8 @@ Shader "Swifter/VFX/RingFlare"
                 float v = pow(1 - d, _Glow) * n * _Intensity;
 
                 v *= flutter(_Flutter);
+
+                v = _Invert ? -v : v;
 
                 float3 ringCol = lerp(_Color, rainbow(angle), _Saturation);
 
