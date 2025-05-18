@@ -58,6 +58,7 @@ Material:
     m_Floats:
     - _Alpha: 0.5
     - _Bend: 0.23
+    - _BlendOp: 2
     - _Brightness: 3
     - _BumpScale: 1
     - _Contrast: 2.2

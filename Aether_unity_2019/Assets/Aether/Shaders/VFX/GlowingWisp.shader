@@ -12,7 +12,7 @@
         _Flutter ("Flutter", float) = 0
         _FocalAmount ("Focal Amount", float) = 2
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
-        [ToggleUI] _Invert ("Invert", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
     }
     SubShader
     {
@@ -23,6 +23,7 @@
         LOD 100
 
         Blend One One
+        BlendOp [_BlendOp]
         ZWrite Off
         ZTest [_ZTest]
 
@@ -67,7 +68,6 @@
             float _FocalAmount;
             float _MixRainbow;
             float _Contrast;
-            bool _Invert;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -98,7 +98,7 @@
 
                 v = pow(v, _Contrast);
 
-                v = _Invert ? -v : v;
+                v = max(v, 0);
 
                 #if RAINBOW
                 float3 col = rainbow(n * 4 + _Time.y * _TimeScale + n * 2);

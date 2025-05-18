@@ -6,7 +6,7 @@ Properties
         _Brightness ("Brightness", Float) = 3
         _Color ("Color", Color) = (1,1,1)
         _Flutter ("Flutter", Float) = 0
-        [ToggleUI] _Invert ("Invert", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
     }
     SubShader
     {
@@ -15,6 +15,7 @@ Properties
             "Queue"="Transparent"
         }
         Blend One One
+        BlendOp [_BlendOp]
         ZWrite Off
 
         Pass

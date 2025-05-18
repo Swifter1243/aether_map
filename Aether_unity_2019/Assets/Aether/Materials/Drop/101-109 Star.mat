@@ -22,11 +22,14 @@ Material:
     m_Floats:
     - _Alpha: 0.5
     - _Bend: 0.5
+    - _BlendOp: 0
+    - _Clamp: 0
     - _Flutter: 0
     - _Glow: 0.53
     - _Invert: 0
     - _Opacity: 1
     - _Size: 1.28
+    - _Softness: 7
     - _Spread: 0.13
     - _Thickness: 0.1
     m_Colors: []

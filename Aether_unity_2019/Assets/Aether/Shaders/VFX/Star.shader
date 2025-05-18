@@ -12,6 +12,7 @@ Shader "Swifter/VFX/Star"
         _Softness ("Softness", Float) = 7
         _Opacity ("Opacity", Float) = 1
         [Toggle(CLAMP)] _Clamp ("Clamp", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
     }
     SubShader
     {
@@ -20,6 +21,7 @@ Shader "Swifter/VFX/Star"
             "Queue"="Transparent"
         }
         Blend One One
+        BlendOp [_BlendOp]
         ZWrite Off
         Cull Off
 
@@ -61,7 +63,6 @@ Shader "Swifter/VFX/Star"
             float _Thickness;
             float _Flutter;
             float _Opacity;
-            bool _Invert;
             float _Softness;
 
             v2f vert (appdata v)
@@ -91,12 +92,9 @@ Shader "Swifter/VFX/Star"
 
                 value *= flutter(_Flutter);
 
-                #if CLAMP
-                value = min(1, value) * _Opacity;
-                #endif
+                value = max(0, value) * _Opacity;
 
-                float value2 = _Invert ? -value : value;
-                return float4(value2, value2, value2, value * _Alpha);
+                return float4(value, value, value, value * _Alpha);
             }
             ENDCG
         }

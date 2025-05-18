@@ -58,8 +58,10 @@ Material:
     m_Floats:
     - _Alpha: 0.5
     - _Bend: 2.49
+    - _BlendOp: 2
     - _Brightness: 3
     - _BumpScale: 1
+    - _Clamp: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -76,6 +78,7 @@ Material:
     - _Sharpness: 15
     - _Size: 1.39
     - _SmoothnessTextureChannel: 0
+    - _Softness: 7
     - _SpecularHighlights: 1
     - _Spread: 0.32
     - _SrcBlend: 1

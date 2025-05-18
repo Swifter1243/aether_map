@@ -6,7 +6,7 @@ Shader "Swifter/DropArrow"
         _FogHeight ("Fog Height", Float) = 3
         [Toggle(IS_PARTICLE)] _IsParticle ("Is Particle", Int) = 0
         [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Destination Blend", Float) = 6
-        [ToggleUI] _Invert ("Invert", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
     }
     SubShader
     {
@@ -15,6 +15,7 @@ Shader "Swifter/DropArrow"
             "Queue"="Transparent"
         }
         Blend One [_DstBlend]
+        BlendOp [_BlendOp]
 
         Pass
         {

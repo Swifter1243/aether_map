@@ -8,7 +8,7 @@ Shader "Swifter/VFX/RingArtifact"
         _Power ("Power", Float) = 3
         _Scale ("Scale", Float) = 4
         _Flutter ("Flutter", Float) = 0
-        [ToggleUI] _Invert ("Invert", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
     }
     SubShader
     {
@@ -18,6 +18,7 @@ Shader "Swifter/VFX/RingArtifact"
             "Queue"="Transparent"
         }
         Blend One One
+        BlendOp [_BlendOp]
         ZWrite Off
 
         Pass
@@ -80,7 +81,7 @@ Shader "Swifter/VFX/RingArtifact"
 
                 v *= flutter(_Flutter);
 
-                v = _Invert ? -v : v;
+                v = max(0, v);
 
                 float3 ringCol = lerp(1, rainbow(len * _Scale), _Saturation);
 
