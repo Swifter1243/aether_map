@@ -8,9 +8,10 @@ Shader "Swifter/VFX/Star"
         _Alpha ("Alpha", Float) = 0.5
         _Thickness ("Thickness", Float) = 0.07
         _Flutter ("Flutter", Float) = 0
-        _Opacity ("Opacity", Float) = 1
         [ToggleUI] _Invert ("Invert", Int) = 0
         _Softness ("Softness", Float) = 7
+        _Opacity ("Opacity", Float) = 1
+        [Toggle(CLAMP)] _Clamp ("Clamp", Int) = 0
     }
     SubShader
     {
@@ -27,6 +28,7 @@ Shader "Swifter/VFX/Star"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature CLAMP
 
             #include "UnityCG.cginc"
 
@@ -88,6 +90,10 @@ Shader "Swifter/VFX/Star"
                 value = pow(value * 2, _Softness);
 
                 value *= flutter(_Flutter);
+
+                #if CLAMP
+                value = min(1, value) * _Opacity;
+                #endif
 
                 float value2 = _Invert ? -value : value;
                 return float4(value2, value2, value2, value * _Alpha);
