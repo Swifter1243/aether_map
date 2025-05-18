@@ -12,6 +12,7 @@
         _Flutter ("Flutter", float) = 0
         _FocalAmount ("Focal Amount", float) = 2
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
+        [ToggleUI] _Invert ("Invert", Int) = 0
     }
     SubShader
     {
@@ -66,6 +67,7 @@
             float _FocalAmount;
             float _MixRainbow;
             float _Contrast;
+            bool _Invert;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -95,6 +97,8 @@
                 v *= flutter(_Flutter);
 
                 v = pow(v, _Contrast);
+
+                v = _Invert ? -v : v;
 
                 #if RAINBOW
                 float3 col = rainbow(n * 4 + _Time.y * _TimeScale + n * 2);

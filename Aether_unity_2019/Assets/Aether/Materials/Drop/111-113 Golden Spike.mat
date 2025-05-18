@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 78-81 Flare Center
-  m_Shader: {fileID: 4800000, guid: 8325ce697c6a3c840b9084ade332aaf2, type: 3}
-  m_ShaderKeywords: 
+  m_Name: 111-113 Golden Spike
+  m_Shader: {fileID: 4800000, guid: 155b41acd434e264cab9d6ad297cfa99, type: 3}
+  m_ShaderKeywords: AMBIENT_ENABLED FOG_ENABLED LIGHT_1_ENABLED
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -56,24 +56,45 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Brightness: 3
+    - _AmbientEnabled: 1
+    - _AmbientStrength: 0.97
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DiffuseAmount: 1
     - _DstBlend: 0
+    - _FogEnabled: 1
+    - _FogFar: 400
+    - _FogZEnd: 19.21
+    - _FogZStart: -4.8
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Light1Enabled: 1
+    - _Light1Falloff: 6.4
+    - _Light1Flicker: 0
+    - _Light1Flutter: 0.5
+    - _Light1Range: 53.2
+    - _Light1Strength: -23.72
     - _Metallic: 0
+    - _MetallicAmount: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Sharpness: 92.68
     - _SmoothnessTextureChannel: 0
+    - _SpecularAmount: 25.3
     - _SpecularHighlights: 1
+    - _SpecularPower: 16
     - _SrcBlend: 1
+    - _SunEnabled: 0
+    - _SunStrength: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.7883908, b: 0.2028302, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FogColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Light1Color: {r: 1, g: 0.85262364, b: 0.25943398, a: 1}
+    - _Light1Position: {r: 0, g: 7.09, b: 20, a: 1}
+    - _SunColor: {r: 1, g: 0.9875, b: 0.75, a: 1}

@@ -9,7 +9,7 @@ Shader "Swifter/VFX/Star"
         _Thickness ("Thickness", Float) = 0.07
         _Flutter ("Flutter", Float) = 0
         _Opacity ("Opacity", Float) = 1
-        [Toggle(INVERT)] _Invert ("Invert", Int) = 0
+        [ToggleUI] _Invert ("Invert", Int) = 0
     }
     SubShader
     {

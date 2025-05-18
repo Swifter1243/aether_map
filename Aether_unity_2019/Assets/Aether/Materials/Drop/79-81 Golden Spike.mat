@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Golden Spike
+  m_Name: 79-81 Golden Spike
   m_Shader: {fileID: 4800000, guid: 155b41acd434e264cab9d6ad297cfa99, type: 3}
   m_ShaderKeywords: AMBIENT_ENABLED FOG_ENABLED LIGHT_1_ENABLED
   m_LightmapFlags: 4
