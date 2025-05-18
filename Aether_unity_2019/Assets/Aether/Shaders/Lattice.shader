@@ -6,6 +6,7 @@ Shader "Swifter/Lattice"
         _ShockwaveDistance ("Shockwave Distance", Float) = 10
         _ShockwaveWidth ("Shockwave Width", Float) = 4
         _ShockwaveBrightness ("Shockwave Brightness", Float) = 1
+        _PerspectiveWarp ("Perspective Warp", Float) = 1
 
     	[Header(Sky)][Space(20)]
         _HorizonCol ("Horizon Color", Color) = (1,1,1)
@@ -64,6 +65,7 @@ Shader "Swifter/Lattice"
             float _ShockwaveDistance;
             float _ShockwaveWidth;
             float _ShockwaveBrightness;
+            float _PerspectiveWarp;
 
             v2f vert (appdata v)
             {
@@ -72,6 +74,8 @@ Shader "Swifter/Lattice"
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o)
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                o.vertex.w *= _PerspectiveWarp;
+
                 o.uv = v.uv;
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex);
                 float3 viewVector = o.worldPos - _WorldSpaceCameraPos;
