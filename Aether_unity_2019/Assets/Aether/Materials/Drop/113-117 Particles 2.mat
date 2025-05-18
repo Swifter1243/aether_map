@@ -64,7 +64,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _End: 0.3
+    - _End: 0.06
     - _Flutter: 0.1
     - _FocalAmount: 2.24
     - _GlossMapScale: 1
@@ -79,9 +79,9 @@ Material:
     - _NoiseScale: 9.56
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 8.06
+    - _Power: 29.86
     - _Rainbow: 1
-    - _Saturation: 0.744
+    - _Saturation: 0.832
     - _Scale: 6.87
     - _Size: 1.35
     - _SmoothnessTextureChannel: 0

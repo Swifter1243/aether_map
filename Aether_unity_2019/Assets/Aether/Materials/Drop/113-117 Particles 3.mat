@@ -72,7 +72,7 @@ Material:
     - _Intensity: 1.14
     - _Invert: 1
     - _Metallic: 0
-    - _MixRainbow: 0.56
+    - _MixRainbow: 0.25
     - _Mode: 0
     - _NoiseScale: 9.56
     - _OcclusionStrength: 1
@@ -89,6 +89,6 @@ Material:
     - _ZTest: 2
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6084906, g: 1, b: 0.99688035, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _TextureScale: {r: 8.31, g: 0.11, b: 0, a: 0}

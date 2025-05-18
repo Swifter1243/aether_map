@@ -64,8 +64,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Glow: 24.34
-    - _Intensity: 4.92
+    - _Glow: 7.8
+    - _Intensity: 1.2
     - _Invert: 1
     - _Metallic: 0
     - _Mode: 0
@@ -80,5 +80,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.18396229, b: 0.18396229, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
