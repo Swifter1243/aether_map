@@ -92,7 +92,11 @@ Shader "Swifter/VFX/Star"
 
                 value *= flutter(_Flutter);
 
+                #if CLAMP
+                value = saturate(value) * _Opacity;
+                #else
                 value = max(0, value) * _Opacity;
+                #endif
 
                 return float4(value, value, value, value * _Alpha);
             }
