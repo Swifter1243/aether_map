@@ -72,14 +72,14 @@ Shader "Swifter/DropArrow"
                 float fogZ = localPos.z;
                 #endif
 
-                o.fog = saturate(fogZ / _FogHeight);
+                o.fog = fogZ / _FogHeight;
 
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float v = i.fog;
+                float v = saturate(i.fog);
                 return float4(v, v, v, v);
             }
             ENDCG
