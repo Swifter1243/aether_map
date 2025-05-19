@@ -51,7 +51,6 @@ Shader "Swifter/DropArrow"
 
             float3 _Offset;
             float _FogHeight;
-            bool _Invert;
 
             v2f vert (appdata v)
             {
@@ -73,7 +72,7 @@ Shader "Swifter/DropArrow"
                 float fogZ = localPos.z;
                 #endif
 
-                o.fog = fogZ / _FogHeight;
+                o.fog = saturate(fogZ / _FogHeight);
 
                 return o;
             }
@@ -81,8 +80,7 @@ Shader "Swifter/DropArrow"
             fixed4 frag (v2f i) : SV_Target
             {
                 float v = i.fog;
-                float v2 = _Invert ? -v : v;
-                return float4(v2, v2, v2, v);
+                return float4(v, v, v, v);
             }
             ENDCG
         }
