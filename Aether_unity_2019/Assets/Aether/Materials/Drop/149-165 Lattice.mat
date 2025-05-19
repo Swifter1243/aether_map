@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 141-149 Lattice
+  m_Name: 149-165 Lattice
   m_Shader: {fileID: 4800000, guid: b70bc59f108678e44af0ef2e429f22b0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -65,7 +65,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HueSaturation: 0.9
+    - _HueSaturation: 0.97
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -80,12 +80,12 @@ Material:
     - _SrcBlend: 1
     - _TimeScale: 1
     - _UVSec: 0
-    - _Voronoi1Scale: 48.56
-    - _Voronoi2Scale: 3
+    - _Voronoi1Scale: 2.72
+    - _Voronoi2Scale: 16.4
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _ShockwaveSource: {r: 0, g: 62.17, b: 77.2, a: 1}
-    - _SkyCol: {r: 0.4764151, g: 1, b: 0.978623, a: 1}
+    - _ShockwaveSource: {r: -92.5, g: 1.5, b: 0, a: 1}
+    - _SkyCol: {r: 0.9103774, g: 0.932783, b: 1, a: 1}

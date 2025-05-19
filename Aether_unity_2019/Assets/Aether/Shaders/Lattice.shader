@@ -7,6 +7,7 @@ Shader "Swifter/Lattice"
         _ShockwaveWidth ("Shockwave Width", Float) = 4
         _ShockwaveBrightness ("Shockwave Brightness", Float) = 1
         _PerspectiveWarp ("Perspective Warp", Float) = 1
+        _Border ("Border", Float) = 0.1
 
     	[Header(Sky)][Space(20)]
         _HorizonCol ("Horizon Color", Color) = (1,1,1)
@@ -66,6 +67,7 @@ Shader "Swifter/Lattice"
             float _ShockwaveWidth;
             float _ShockwaveBrightness;
             float _PerspectiveWarp;
+            float _Border;
 
             v2f vert (appdata v)
             {
@@ -98,7 +100,7 @@ Shader "Swifter/Lattice"
                 col *= max(0, dot(i.worldNormal, normalize(toSource)));
 
                 float border = abs(min(min(min(i.uv.x, 1 - i.uv.x), i.uv.y), 1 - i.uv.y));
-                col *= step(border, 0.1);
+                col *= step(border, _Border);
 
                 return float4(col, 0);
             }
