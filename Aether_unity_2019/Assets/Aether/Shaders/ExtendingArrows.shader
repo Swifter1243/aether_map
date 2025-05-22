@@ -33,7 +33,8 @@ Shader "Swifter/ExtendingArrows"
             {
                 float4 vertex : POSITION;
                 float4 texcoord0 : TEXCOORD0;
-                float2 texcoord1 : TEXCOORD1;
+                float4 texcoord1 : TEXCOORD1;
+                float4 texcoord2 : TEXCOORD2;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
@@ -61,6 +62,11 @@ Shader "Swifter/ExtendingArrows"
                 return float3(0, t * 6, 0) + circleOffset * (t * _TwistRadius);
             }
 
+            inline float projectOnPlane( float3 vec, float3 normal )
+            {
+                return dot( vec, normal );
+            }
+
             v2f vert (appdata v)
             {
                 UNITY_SETUP_INSTANCE_ID(v);
@@ -71,17 +77,28 @@ Shader "Swifter/ExtendingArrows"
                 float size = v.texcoord0.w;
                 float2 random = v.texcoord1.xy;
 
+                float3 localY = normalize(float3(v.texcoord1.zw, v.texcoord2.x));
+                float3 localZ = float3(0, 0, 1);
+                float3 localX = normalize(cross(localY, localZ));
+                localZ = normalize(cross(localY, localX));
+
                 float4 localPos = v.vertex;
                 localPos.xyz = (localPos.xyz - center) / size / _TipBase;
 
-                float t = min(1, localPos.y);
-                if (localPos.y < 1)
+                float3 p = float3(
+                    projectOnPlane(localPos.xyz, localX),
+                    projectOnPlane(localPos.xyz, localY),
+                    projectOnPlane(localPos.xyz, localZ)
+                );
+
+                float t = min(1, p.y);
+                if (p.y < 1)
                 {
-                    localPos.y = 0;
+                    p.y = 0;
                 }
                 else
                 {
-                    localPos.y -= 1;
+                    p.y -= 1;
                 }
                 o.test = t;
 
@@ -97,8 +114,9 @@ Shader "Swifter/ExtendingArrows"
                 forward = normalize(cross(right, normal));
 
                 float3x3 m = transpose(float3x3(right, normal, forward));
-                localPos.xyz = mul(m, localPos.xyz) + pathNow;
+                p.xyz = mul(m, p.xyz) + pathNow;
 
+                localPos.xyz = p.x * localX + p.y * localY + p.z * localZ;
                 localPos.xyz = localPos.xyz * size * _TipBase + center;
 
                 o.vertex = UnityObjectToClipPos(localPos);
