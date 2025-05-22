@@ -4,6 +4,7 @@ Shader "Swifter/ExtendingArrows"
     {
         _TipBase ("Tip Base", Float) = 28.2
         _StretchLength ("Stretch Length", Float) = 1
+        _StretchVariation ("Stretch Variation", Float) = 0
         _TwistSpeed ("Twist Speed", Float) = 3
         _TwistRadius ("Twist Radius", Float) = 1
         _TwistAmount ("Twist Amount", Float) = 1
@@ -43,9 +44,8 @@ Shader "Swifter/ExtendingArrows"
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
-            float _StretchStart;
-            float _StretchEnd;
             float _StretchLength;
+            float _StretchVariation;
             float _TipBase;
             float _TwistAmount;
             float _TwistSpeed;
@@ -66,7 +66,6 @@ Shader "Swifter/ExtendingArrows"
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o)
-                /*localPos.y += smoothstep(_StretchStart, _StretchEnd * size, t) * _StretchLength;*/
 
                 float3 center = v.texcoord0.xyz;
                 float size = v.texcoord0.w;
@@ -86,7 +85,8 @@ Shader "Swifter/ExtendingArrows"
                 }
                 o.test = t;
 
-                t *= _StretchLength;
+                float length = _StretchLength + (random - 0.5) * _StretchVariation;
+                t *= length;
 
                 float3 pathNow = path(t, random);
                 float3 pathAhead = path(t + 0.01, random);

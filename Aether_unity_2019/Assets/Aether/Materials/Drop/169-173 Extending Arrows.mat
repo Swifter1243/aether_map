@@ -72,14 +72,15 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StretchEnd: 29.61
-    - _StretchLength: 1.29
+    - _StretchLength: 1.18
     - _StretchStart: 0
+    - _StretchVariation: 0.17
     - _TipBase: 28.2
     - _Twist: 3.31
-    - _TwistAmount: 2.5
+    - _TwistAmount: 4.56
     - _TwistAmplitude: 1
-    - _TwistRadius: 1
-    - _TwistSpeed: 1
+    - _TwistRadius: 0.35
+    - _TwistSpeed: 3.07
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
