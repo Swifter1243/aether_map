@@ -8,6 +8,10 @@ Shader "Swifter/ExtendingArrows"
         _TwistSpeed ("Twist Speed", Float) = 3
         _TwistRadius ("Twist Radius", Float) = 1
         _TwistAmount ("Twist Amount", Float) = 1
+
+        _WavePosition ("Wave Position", Float) = 0
+        _WaveSpread ("Wave Spread", Float) = 2
+        _WaveAmplitude ("Wave Amplitude", Float) = 3
     }
     SubShader
     {
@@ -51,15 +55,18 @@ Shader "Swifter/ExtendingArrows"
             float _TwistAmount;
             float _TwistSpeed;
             float _TwistRadius;
+            float _WavePosition;
+            float _WaveSpread;
+            float _WaveAmplitude;
 
-            float3 path(float t, in float2 phases)
+            float3 path(in float t, in float2 phases, in float radius, in float amount, in float speed)
             {
                 float3 circleOffset = float3(
-                    sin(t * phases.x * _TwistAmount + _Time.y * _TwistSpeed),
+                    sin(t * phases.x * amount + _Time.y * speed + phases.x * UNITY_TWO_PI),
                     0,
-                    cos(t * phases.y * _TwistAmount + _Time.y * _TwistSpeed));
+                    cos(t * phases.y * amount + _Time.y * speed + phases.y * UNITY_TWO_PI));
 
-                return float3(0, t * 6, 0) + circleOffset * (t * _TwistRadius);
+                return float3(0, t * 6, 0) + circleOffset * radius;
             }
 
             inline float projectOnPlane( float3 vec, float3 normal )
@@ -105,8 +112,12 @@ Shader "Swifter/ExtendingArrows"
                 float length = _StretchLength + (random - 0.5) * _StretchVariation;
                 t *= length;
 
-                float3 pathNow = path(t, random);
-                float3 pathAhead = path(t + 0.01, random);
+                float waveDist = abs(t - _WavePosition);
+                float wave = smoothstep(_WaveSpread, 0, waveDist);
+                float radius = _TwistRadius * t + wave * _WaveAmplitude * pow(t, 0.3);
+
+                float3 pathNow = path(t, random, radius, _TwistAmount, _TwistSpeed);
+                float3 pathAhead = path(t + 0.01, random, radius, _TwistAmount, _TwistSpeed);
                 float3 normal = normalize(pathAhead - pathNow);
 
                 float3 forward = float3(0, 0, 1);
@@ -125,7 +136,7 @@ Shader "Swifter/ExtendingArrows"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return i.test;
+                return 1- i.test;
             }
             ENDCG
         }
