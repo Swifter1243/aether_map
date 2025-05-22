@@ -12,6 +12,9 @@ Shader "Swifter/ExtendingArrows"
         _WavePosition ("Wave Position", Float) = 0
         _WaveSpread ("Wave Spread", Float) = 2
         _WaveAmplitude ("Wave Amplitude", Float) = 3
+
+        _Opacity ("Opacity", Float) = 1
+        _TipBrightness ("Tip Brightness", Float) = 0
     }
     SubShader
     {
@@ -45,7 +48,7 @@ Shader "Swifter/ExtendingArrows"
             struct v2f
             {
                 float4 vertex : SV_POSITION;
-                float test : TEXCOORD0;
+                float pathPosition : TEXCOORD0;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -58,6 +61,8 @@ Shader "Swifter/ExtendingArrows"
             float _WavePosition;
             float _WaveSpread;
             float _WaveAmplitude;
+            float _Opacity;
+            float _TipBrightness;
 
             float3 path(in float t, in float2 phases, in float radius, in float amount, in float speed)
             {
@@ -107,7 +112,7 @@ Shader "Swifter/ExtendingArrows"
                 {
                     p.y -= 1;
                 }
-                o.test = t;
+                o.pathPosition = t;
 
                 float length = _StretchLength + (random - 0.5) * _StretchVariation;
                 t *= length;
@@ -136,7 +141,10 @@ Shader "Swifter/ExtendingArrows"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return 1- i.test;
+                float v = (1 - i.pathPosition);
+                v = lerp(v, pow(i.pathPosition, 5), _TipBrightness);
+
+                return v * _Opacity;
             }
             ENDCG
         }
