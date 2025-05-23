@@ -122,7 +122,7 @@ Shader "Swifter/VortexBlit"
 
                 float3 beamMist = n * saturate(1 - distToCenter / _VortexBeamRadius) * _VortexBeamBrightness * _LightColor;
                 float mainColorBrightness = d * n * _VortexMainBrightness;
-                float density = mainColorBrightness + beamMist;
+                float density = mainColorBrightness + beamMist * 2;
 
                 float cutoffStart = smoothstep(_CutoffHeights[0], _CutoffHeights[1], p.y);
                 float cutoffEnd = smoothstep(_CutoffHeights[3], _CutoffHeights[2], p.y);
@@ -130,7 +130,7 @@ Shader "Swifter/VortexBlit"
 
                 density += lightAmount(toCenter) * lerp(n, 1, 0.1);
 
-                return density * 5;
+                return density * 4;
             }
 
             float3 sampleColor(float3 toCenter, float distToCenter)
