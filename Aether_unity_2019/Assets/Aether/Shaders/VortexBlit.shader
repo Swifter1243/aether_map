@@ -166,7 +166,8 @@ Shader "Swifter/VortexBlit"
                 float zDepth = LinearEyeDepth(depth);
 
                 float2 screenCoord = i.uv * _ScreenParams.xy;
-                float totalDist = toVolumeStart + InterleavedGradientNoise(screenCoord * 2) * _StepSize * _StepNoise;
+                float noiseOffset = (_Time.y * 200 % 1);
+                float totalDist = toVolumeStart + InterleavedGradientNoise(screenCoord * 2 + noiseOffset) * _StepSize * _StepNoise;
                 float stepSize = _StepSize;
 
                 float3 col = 0;
