@@ -1,4 +1,4 @@
-import * as rm from "https://deno.land/x/remapper@4.0.0/src/mod.ts"
+import * as rm from "https://deno.land/x/remapper@4.1.0/src/mod.ts"
 import * as bundleInfo from './bundleinfo.json' with { type: 'json' }
 
 const pipeline = await rm.createPipeline({ bundleInfo })
@@ -123,5 +123,9 @@ await Promise.all([
 // ----------- { OUTPUT } -----------
 
 pipeline.export({
-    outputDirectory: '../OutputMaps/Aether'
+    outputDirectory: '../OutputMaps/Aether',
+    zip: {
+        name: 'Aether.zip',
+        includeBundles: true
+    }
 })
