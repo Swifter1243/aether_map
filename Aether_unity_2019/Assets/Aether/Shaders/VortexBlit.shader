@@ -190,7 +190,7 @@ Shader "Swifter/VortexBlit"
             }
             ENDCG
         }
-        Pass // Blur
+        Pass // Blur + Composition
         {
             CGPROGRAM
             #pragma vertex vert
@@ -198,6 +198,7 @@ Shader "Swifter/VortexBlit"
 
             #include "UnityCG.cginc"
 
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture1);
             float4 _VortexTexture1_TexelSize;
 
@@ -234,40 +235,8 @@ Shader "Swifter/VortexBlit"
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
-                return blur(i.uv);
-            }
-            ENDCG
-        }
-        Pass // Composition
-        {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-
-            #include "UnityCG.cginc"
-
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_VortexTexture2);
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
-
-            v2f_img vert (appdata_img v)
-            {
-                UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_OUTPUT(v2f_img, v2f_img o);
-                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = v.texcoord;
-
-                return o;
-            }
-
-            fixed4 frag (v2f_img i) : SV_Target
-            {
-                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
-
-                float2 normalizedUV = UnityStereoTransformScreenSpaceTex(i.uv);
-                float4 vortexCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_VortexTexture2, normalizedUV);
-                float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, normalizedUV);
+                float4 vortexCol = blur(i.uv);
+                float4 screenCol = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, UnityStereoTransformScreenSpaceTex(i.uv));
 
                 return vortexCol + screenCol * 0.01;
             }

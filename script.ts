@@ -82,11 +82,6 @@ function intro(map: rm.V3Difficulty) {
         id: '_VortexTexture1'
     })
 
-    const vortexTexture2 = rm.createScreenTexture(map, {
-        beat: TIMES.INTRO3,
-        id: '_VortexTexture2'
-    })
-
     const vortexDuration = 99999
 
     rm.blit(map, {
@@ -101,17 +96,8 @@ function intro(map: rm.V3Difficulty) {
     rm.blit(map, {
         beat: TIMES.INTRO3,
         asset: materials.vortexblit.path,
-        destination: vortexTexture2.id,
         pass: 1,
         priority: 1,
-        duration: vortexDuration
-    })
-
-    rm.blit(map, {
-        beat: TIMES.INTRO3,
-        asset: materials.vortexblit.path,
-        pass: 2,
-        priority: 2,
         duration: vortexDuration
     })
 }
