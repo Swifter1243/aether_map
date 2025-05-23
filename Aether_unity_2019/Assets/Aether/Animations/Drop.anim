@@ -17951,6 +17951,34 @@ AnimationClip:
     path: 173-177/Parent/Extending Arrows
     classID: 199
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 39.733334
+        value: 1.37
+        inSlope: 0
+        outSlope: -0.39133716
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.806127
+      - serializedVersion: 3
+        time: 41.25
+        value: 0.1
+        inSlope: -0.080761746
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.7739452
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._TwistRadius
+    path: 173-177/Parent/Extending Arrows
+    classID: 199
+    script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 12.433333
@@ -20362,6 +20390,13 @@ AnimationClip:
     - serializedVersion: 2
       path: 4192984845
       attribute: 2395590330
+      script: {fileID: 0}
+      typeID: 199
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 4192984845
+      attribute: 2397219886
       script: {fileID: 0}
       typeID: 199
       customType: 22
@@ -47262,6 +47297,34 @@ AnimationClip:
     attribute: localEulerAnglesRaw.z
     path: 173-177/Parent
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 39.733334
+        value: 1.37
+        inSlope: 0
+        outSlope: -0.39133716
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.806127
+      - serializedVersion: 3
+        time: 41.25
+        value: 0.1
+        inSlope: -0.080761746
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.7739452
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._TwistRadius
+    path: 173-177/Parent/Extending Arrows
+    classID: 199
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
