@@ -3,6 +3,7 @@ Shader "Swifter/VortexBlit"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _NoiseTex ("Noise Texture", 3D) = "white" {}
         _Steps ("Steps", Int) = 16
         _StepSize ("Step Size", Float) = 60
         _StepNoise ("Step Noise", Float) = 1
@@ -63,6 +64,7 @@ Shader "Swifter/VortexBlit"
             float _LightRadius;
 
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
+            sampler3D _NoiseTex;
 
             v2f vert (appdata_base v)
             {
@@ -110,10 +112,14 @@ Shader "Swifter/VortexBlit"
                 float3 rotatedP = rotateY(toCenter, distToCenter * _VortexTwistRadialRate + _Time.y * _VortexTwistTimeRate + p.y * _VortexTwistYRate) + _VortexCenter;
                 rotatedP.y *= 0.7;
 
-                float3 n = simplex(rotatedP * _VortexNoiseScale);
-                n += simplex(rotatedP * _VortexNoiseScale * 4 + n + _Time.y * _VortexTwistTimeRate) * 0.25;
-                n += simplex(rotatedP * _VortexNoiseScale * 8 + n + _Time.y * _VortexTwistTimeRate) * 0.125;
-                n = pow(n, 10);
+                //float3 n = simplex(rotatedP * _VortexNoiseScale);
+                //n += simplex(rotatedP * _VortexNoiseScale * 4 + n + _Time.y * _VortexTwistTimeRate) * 0.25;
+                //n += simplex(rotatedP * _VortexNoiseScale * 8 + n + _Time.y * _VortexTwistTimeRate) * 0.125;
+
+                float n = tex3D(_NoiseTex, rotatedP * _VortexNoiseScale).x;
+                //n += tex3D(_NoiseTex, rotatedP * _VortexNoiseScale * 2).x * 0.2;
+                //n += tex3D(_NoiseTex, rotatedP * _VortexNoiseScale * 8).x * 0.125;
+                //n = pow(n, 10);
 
                 float radiusProgress = saturate(invLerp(_RadiusSizes[0], _RadiusSizes[2], p.y));
                 float radius = lerp(_RadiusSizes[1], _RadiusSizes[3], radiusProgress);
@@ -132,7 +138,7 @@ Shader "Swifter/VortexBlit"
 
                 density += lightAmount(toCenter) * lerp(n, 1, 0.1);
 
-                return density * 3;
+                return density * 5;
             }
 
             float3 sampleColor(float3 toCenter, float distToCenter)

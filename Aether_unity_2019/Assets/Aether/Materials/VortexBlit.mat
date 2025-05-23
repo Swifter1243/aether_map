@@ -23,19 +23,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 11700000, guid: 2fa5a971d159b1a4186300ddb9df6f5f, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BlurRadius: 0
     - _BlurSteps: 3
     - _LightBrightness: 3
     - _LightRadius: 1027.35
     - _StepNoise: 1
-    - _StepSize: 80.8
-    - _Steps: 14
-    - _VolumeStartZ: 363.3
+    - _StepSize: 55.98
+    - _Steps: 16
+    - _VolumeStartZ: 322.6
     - _VortexBeamBrightness: 20.45
     - _VortexBeamRadius: 186.8
     - _VortexMainBrightness: 3.1
-    - _VortexNoiseScale: 0.004
+    - _VortexNoiseScale: 0.002
     - _VortexTwistRadialRate: 0.001
     - _VortexTwistTimeRate: 0.1
     - _VortexTwistYRate: 0.005
