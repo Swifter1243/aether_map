@@ -2496,7 +2496,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.00000001, z: 0.33333334}
       - serializedVersion: 3
-        time: 42.783333
+        time: 42.8
         value: {x: 0, y: -3.5589395, z: 0}
         inSlope: {x: 0, y: -4.89863, z: 0}
         outSlope: {x: 0, y: Infinity, z: 0}
@@ -18162,7 +18162,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 41.683334
+        time: 41.7
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -18264,7 +18264,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 41.683334
+        time: 41.7
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -18286,6 +18286,43 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_IsActive
     path: 177-181/Particles Parent/Particles 2
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 42.516666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 42.816666
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 177-181/Particles Parent/Particles 5
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves:
@@ -20747,6 +20784,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 154178481
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2538866194
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -47736,7 +47780,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 41.683334
+        time: 41.7
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -47838,7 +47882,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 41.683334
+        time: 41.7
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -47984,7 +48028,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.00000001
       - serializedVersion: 3
-        time: 42.783333
+        time: 42.8
         value: -3.5589395
         inSlope: -4.89863
         outSlope: Infinity
@@ -48044,6 +48088,43 @@ AnimationClip:
     attribute: m_LocalPosition.z
     path: 177-181/Particles Parent
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 42.516666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 42.816666
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 177-181/Particles Parent/Particles 5
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:

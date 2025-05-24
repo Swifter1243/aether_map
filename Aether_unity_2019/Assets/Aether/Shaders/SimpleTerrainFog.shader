@@ -1,4 +1,4 @@
-Shader "Custom/SimpleTerrainFog"
+Shader "Swifter/SimpleTerrainFog"
 {
     Properties
     {
