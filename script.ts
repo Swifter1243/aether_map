@@ -111,7 +111,7 @@ await Promise.all([
 pipeline.export({
     outputDirectory: '../OutputMaps/Aether',
     zip: {
-        name: 'Aether.zip',
+        name: 'Aether',
         includeBundles: true
     }
 })
