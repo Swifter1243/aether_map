@@ -145,10 +145,10 @@ Shader "Swifter/ExtendingArrows"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float v = (1 - i.pathPosition);
-                v = lerp(v, pow(i.pathPosition, 5), _TipBrightness);
+                float fade = smoothstep(0.1, 1, i.pathPosition);
+                fade = lerp(1 - fade, pow(fade, 5), _TipBrightness);
 
-                return v * _Opacity;
+                return fade * _Opacity;
             }
             ENDCG
         }
