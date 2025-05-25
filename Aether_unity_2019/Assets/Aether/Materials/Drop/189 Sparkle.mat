@@ -58,9 +58,9 @@ Material:
     m_Floats:
     - _Alpha: 0.5
     - _Bend: 0.49
-    - _BlendDst: 1
-    - _BlendOp: 2
-    - _BlendSrc: 1
+    - _BlendDst: 6
+    - _BlendOp: 0
+    - _BlendSrc: 6
     - _Brightness: 3
     - _BumpScale: 1
     - _Clamp: 1
@@ -87,7 +87,7 @@ Material:
     - _StencilComp: 3
     - _StencilPass: 2
     - _StencilRef: 0
-    - _Thickness: 0.07
+    - _Thickness: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
