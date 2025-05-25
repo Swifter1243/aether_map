@@ -89,4 +89,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _SkyCol: {r: 0.37184107, g: 1, b: 0.25943398, a: 1}
+    - _SkyCol: {r: 0.2588235, g: 0.90298873, b: 1, a: 1}

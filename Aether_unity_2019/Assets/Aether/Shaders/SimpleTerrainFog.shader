@@ -31,12 +31,24 @@ Shader "Swifter/SimpleTerrainFog"
         _FogFar ("Fog Far", Float) = 400
         _FogZStart ("Fog Z Start", Float) = 0
         _FogZEnd ("Fog Z End", Float) = 30
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
     }
     SubShader
     {
         Tags
         {
             "RenderType"="Opaque"
+        }
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
         }
 
         Pass
