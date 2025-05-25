@@ -10,6 +10,7 @@ Shader "Swifter/TriangleExplosion"
     	_ExplosionFalloff ("Explosion Falloff", Float) = 2
     	_ExplosionPoint ("Explosion Point", Vector) = (0, -10, 0)
     	_ExplosionNoise ("Explosion Noise", Float) = 0
+    	_ExplosionSpin ("Explosion Spin", Float) = 1
 
     	[Header(Sky)][Space(20)]
         _HorizonCol ("Horizon Color", Color) = (1,1,1)
@@ -72,6 +73,7 @@ Shader "Swifter/TriangleExplosion"
             float _ExplosionRange;
             float _ExplosionFalloff;
             float _ExplosionNoise;
+            float _ExplosionSpin;
 
             v2g vert (appdata v)
             {
@@ -177,7 +179,7 @@ Shader "Swifter/TriangleExplosion"
 
             	float3 noise = random_in_unit_sphere(midPoint);
             	float3 newMidpoint = midPoint + travelDir * (explosionPower + noise.x * _ExplosionNoise);
-            	float3 angularMomentum = noise * explosionPower;
+            	float3 angularMomentum = noise * explosionPower * _ExplosionSpin;
             	float4x4 rotate = rotate3D(angularMomentum.x, angularMomentum.y, angularMomentum.z);
 
             	float3 worldNewMidPoint = mul(unity_ObjectToWorld, float4(newMidpoint, 1));
