@@ -16,6 +16,11 @@ Shader "Swifter/SimpleSkybox"
         _CloudAmount ("Cloud Amount", Float) = 1
         [Toggle(SKYBOX_CLOUD_FOG)] _SkyboxCloudFog ("Cloud Fog", Int) = 0
         _SkyboxCloudFogDistance ("Cloud Fog Distance", Float) = 100
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
     }
     SubShader
     {
@@ -23,6 +28,13 @@ Shader "Swifter/SimpleSkybox"
             "RenderType"="Opaque"
         }
         Cull Off
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
+        }
 
         Pass
         {
