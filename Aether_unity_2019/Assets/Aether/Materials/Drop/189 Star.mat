@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 189 Star
   m_Shader: {fileID: 4800000, guid: 72bc975c28f73ae44a5be7ef3f45c18f, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: CLAMP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -58,9 +58,11 @@ Material:
     m_Floats:
     - _Alpha: 0.5
     - _Bend: 0.5
+    - _BlendDst: 6
     - _BlendOp: 2
+    - _BlendSrc: 0
     - _BumpScale: 1
-    - _Clamp: 0
+    - _Clamp: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0

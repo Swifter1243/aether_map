@@ -8,11 +8,12 @@ Shader "Swifter/VFX/Star"
         _Alpha ("Alpha", Float) = 0.5
         _Thickness ("Thickness", Float) = 0.07
         _Flutter ("Flutter", Float) = 0
-        [ToggleUI] _Invert ("Invert", Int) = 0
         _Softness ("Softness", Float) = 7
         _Opacity ("Opacity", Float) = 1
         [Toggle(CLAMP)] _Clamp ("Clamp", Int) = 0
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 1
     }
     SubShader
     {
@@ -20,7 +21,7 @@ Shader "Swifter/VFX/Star"
             "RenderType"="Transparent"
             "Queue"="Transparent"
         }
-        Blend One One
+        Blend [_BlendSrc] [_BlendDst]
         BlendOp [_BlendOp]
         ZWrite Off
         Cull Off
