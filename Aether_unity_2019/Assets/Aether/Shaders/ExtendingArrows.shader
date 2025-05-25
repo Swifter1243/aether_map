@@ -15,12 +15,16 @@ Shader "Swifter/ExtendingArrows"
 
         _Opacity ("Opacity", Float) = 1
         _TipBrightness ("Tip Brightness", Float) = 0
+
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 0
     }
     SubShader
     {
         Tags {
             "RenderType"="Opaque"
         }
+        Blend [_BlendSrc] [_BlendDst]
 
         Pass
         {
