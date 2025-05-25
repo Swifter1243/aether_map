@@ -9,7 +9,7 @@ Shader "Swifter/Lattice"
         _PerspectiveWarp ("Perspective Warp", Float) = 1
         _Border ("Border", Float) = 0.1
 
-    	[Header(Sky)][Space(20)]
+    	[Header(Sky)][Space(10)]
         _HorizonCol ("Horizon Color", Color) = (1,1,1)
         _SkyCol ("Sky Color", Color) = (1,1,1)
         _HueSaturation ("Hue Saturation", Float) = 0.7
@@ -18,11 +18,23 @@ Shader "Swifter/Lattice"
         _Simplex1Scale ("Simplex 1 Scale", Float) = 3
         _FBM ("Fractional Brownian Motion", Float) = 0.3
         _TimeScale ("Time Scale", Float) = 1
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
     }
     SubShader
     {
         Tags {
             "RenderType"="Opaque"
+        }
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
         }
 
         Pass

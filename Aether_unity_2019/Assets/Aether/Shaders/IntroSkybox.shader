@@ -14,6 +14,11 @@ Shader "Swifter/IntroSkybox"
         [Toggle(SKYBOX_CLOUDS)] _SkyboxClouds ("Clouds", Int) = 1
         _CloudPow ("Cloud Pow", Float) = 3.5
         _CloudAmount ("Cloud Amount", Float) = 1
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
     }
     SubShader
     {
@@ -21,6 +26,13 @@ Shader "Swifter/IntroSkybox"
         {
             "RenderType"="Background"
             "Queue"="Background"
+        }
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
         }
 
         Pass

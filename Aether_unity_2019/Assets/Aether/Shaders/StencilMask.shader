@@ -3,7 +3,6 @@
     Properties
     {
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Int) = 2
-        [KeywordEnum(Off, On)] _ZWrite ("ZWrite", Int) = 1
         _StencilRef ("Stencil Ref", Int) = 1
     }
     SubShader
@@ -13,13 +12,14 @@
             "RenderType"="Opaque"
         }
         Cull [_Cull]
-        ZWrite [_ZWrite]
+        ZWrite Off
         Blend Zero One
 
         Stencil
         {
             Ref [_StencilRef]
             Comp Always
+            Pass Replace
         }
 
         Pass
