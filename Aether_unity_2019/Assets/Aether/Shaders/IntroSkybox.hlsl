@@ -11,6 +11,8 @@ float _Voronoi2Scale;
 float _Simplex1Scale;
 float _FBM;
 float _TimeScale;
+float _CloudPow;
+float _CloudAmount;
 
 float4 doSkybox(in float3 dir)
 {
@@ -38,7 +40,7 @@ float4 doSkybox(in float3 dir)
 	#endif
 
 	#ifdef SKYBOX_CLOUDS
-	hueAmount *= pow(simplex(dir * 3), 3.5);
+	hueAmount *= lerp(1, pow(simplex(dir * 3), _CloudPow), _CloudAmount);
 	#endif
 
 	float3 col = lerp(_HorizonCol, desaturatedHue, hueAmount);

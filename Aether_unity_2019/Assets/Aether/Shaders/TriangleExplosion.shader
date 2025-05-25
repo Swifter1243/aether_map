@@ -20,6 +20,8 @@ Shader "Swifter/TriangleExplosion"
         _Simplex1Scale ("Simplex 1 Scale", Float) = 3
         _FBM ("Fractional Brownian Motion", Float) = 0.3
         _TimeScale ("Time Scale", Float) = 1
+        _CloudPow ("Cloud Pow", Float) = 3.5
+        _CloudAmount ("Cloud Amount", Float) = 1
     }
     SubShader
     {

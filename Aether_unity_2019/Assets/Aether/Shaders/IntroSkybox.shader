@@ -1,4 +1,4 @@
-Shader "Custom/IntroSkybox"
+Shader "Swifter/IntroSkybox"
 {
     Properties
     {
@@ -12,6 +12,8 @@ Shader "Custom/IntroSkybox"
         _TimeScale ("Time Scale", Float) = 1
         [Toggle(SKYBOX_HORIZON)] _SkyboxHorizon ("Horizon", Int) = 1
         [Toggle(SKYBOX_CLOUDS)] _SkyboxClouds ("Clouds", Int) = 1
+        _CloudPow ("Cloud Pow", Float) = 3.5
+        _CloudAmount ("Cloud Amount", Float) = 1
     }
     SubShader
     {
