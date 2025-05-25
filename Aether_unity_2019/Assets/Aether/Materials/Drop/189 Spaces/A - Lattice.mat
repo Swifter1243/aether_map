@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: A - Lattice
   m_Shader: {fileID: 4800000, guid: b70bc59f108678e44af0ef2e429f22b0, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _SKYBOXVECTOR_NORMAL
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -65,15 +65,15 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HueSaturation: 0.4
+    - _HueSaturation: 0.55
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PerspectiveWarp: 1
-    - _ShockwaveBrightness: 1
-    - _ShockwaveDistance: 170.8
-    - _ShockwaveWidth: 146.5
+    - _ShockwaveBrightness: 4.8
+    - _ShockwaveDistance: 102.6
+    - _ShockwaveWidth: 70.8
     - _Simplex1Scale: 3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -81,14 +81,14 @@ Material:
     - _StencilComp: 3
     - _StencilPass: 0
     - _StencilRef: 1
-    - _TimeScale: 1
+    - _TimeScale: 0.2
     - _UVSec: 0
-    - _Voronoi1Scale: 2.72
-    - _Voronoi2Scale: 16.4
+    - _Voronoi1Scale: 19.94
+    - _Voronoi2Scale: 2.64
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _ShockwaveSource: {r: 0, g: 0, b: 0, a: 1}
-    - _SkyCol: {r: 0.9103774, g: 0.932783, b: 1, a: 1}
+    - _ShockwaveSource: {r: 17.8, g: -65.62, b: 0, a: 1}
+    - _SkyCol: {r: 0.6839622, g: 0.9930629, b: 1, a: 1}
