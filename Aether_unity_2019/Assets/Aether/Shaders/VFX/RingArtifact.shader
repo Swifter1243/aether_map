@@ -9,6 +9,11 @@ Shader "Swifter/VFX/RingArtifact"
         _Scale ("Scale", Float) = 4
         _Flutter ("Flutter", Float) = 0
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
     }
     SubShader
     {
@@ -20,6 +25,13 @@ Shader "Swifter/VFX/RingArtifact"
         Blend One One
         BlendOp [_BlendOp]
         ZWrite Off
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
+        }
 
         Pass
         {

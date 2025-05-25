@@ -11,9 +11,16 @@ Shader "Swifter/VFX/Star"
         _Softness ("Softness", Float) = 7
         _Opacity ("Opacity", Float) = 1
         [Toggle(CLAMP)] _Clamp ("Clamp", Int) = 0
+
+        [Header(Blend)][Space(10)]
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
         [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
         [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 1
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
     }
     SubShader
     {
@@ -25,6 +32,13 @@ Shader "Swifter/VFX/Star"
         BlendOp [_BlendOp]
         ZWrite Off
         Cull Off
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
+        }
 
         Pass
         {
