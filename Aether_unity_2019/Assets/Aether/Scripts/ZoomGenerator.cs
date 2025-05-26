@@ -19,7 +19,8 @@ namespace Aether.Scripts
         public float startTime;
         public float endTime;
         public float zoomDuration = 10;
-        public float zoomTimeOffset = -3;
+        public float scaleTimeOffset = -8;
+        public float rotateTimeOffset = 0;
         public float zoomFrequency = 3;
         public Vector3 zoomEndSize = Vector3.one * 1000;
 
@@ -145,31 +146,34 @@ namespace Aether.Scripts
 
         private void AddZoomInAnimation(AnimationClip clip, string path, float startTime, float endTime)
         {
-            startTime += zoomTimeOffset;
-            endTime += zoomTimeOffset;
+            float scaleStartTime = startTime + scaleTimeOffset;
+            float scaleEndTime = endTime + scaleTimeOffset;
 
             // Zoom (scale)
-            AnimationCurve scaleXCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.x, 50);
-            AnimationCurve scaleYCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.y, 50);
-            AnimationCurve scaleZCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.z, 50);
+            AnimationCurve scaleXCurve = GenerateLogZoomCurve(scaleStartTime, 0, scaleEndTime, zoomEndSize.x, 50);
+            AnimationCurve scaleYCurve = GenerateLogZoomCurve(scaleStartTime, 0, scaleEndTime, zoomEndSize.y, 50);
+            AnimationCurve scaleZCurve = GenerateLogZoomCurve(scaleStartTime, 0, scaleEndTime, zoomEndSize.z, 50);
 
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.x", scaleXCurve);
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.y", scaleYCurve);
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.z", scaleZCurve);
 
             // Random spin on X, Y, Z axes
-            float startAngleX = Random.Range(0f, 360f);
-            float endAngleX = startAngleX + Random.Range(90f, 720f);
+            float startAngleX = Random.Range(-180, 180);
+            float endAngleX = -startAngleX;
 
-            float startAngleY = Random.Range(0f, 360f);
-            float endAngleY = startAngleY + Random.Range(90f, 720f);
+            float startAngleY = Random.Range(-180, 180);
+            float endAngleY = -startAngleY;
 
-            float startAngleZ = Random.Range(0f, 360f);
-            float endAngleZ = startAngleZ + Random.Range(90f, 720f);
+            float startAngleZ = Random.Range(-180, 180);
+            float endAngleZ = -startAngleZ;
 
-            AnimationCurve rotX = AnimationCurve.Linear(startTime, startAngleX, endTime, endAngleX);
-            AnimationCurve rotY = AnimationCurve.Linear(startTime, startAngleY, endTime, endAngleY);
-            AnimationCurve rotZ = AnimationCurve.Linear(startTime, startAngleZ, endTime, endAngleZ);
+            float rotationStartTime = startTime + rotateTimeOffset;
+            float rotationEndTime = endTime + rotateTimeOffset;
+
+            AnimationCurve rotX = AnimationCurve.Linear(rotationStartTime, startAngleX, rotationEndTime, endAngleX);
+            AnimationCurve rotY = AnimationCurve.Linear(rotationStartTime, startAngleY, rotationEndTime, endAngleY);
+            AnimationCurve rotZ = AnimationCurve.Linear(rotationStartTime, startAngleZ, rotationEndTime, endAngleZ);
 
             clip.SetCurve(path, typeof(Transform), "localEulerAnglesRaw.x", rotX);
             clip.SetCurve(path, typeof(Transform), "localEulerAnglesRaw.y", rotY);
