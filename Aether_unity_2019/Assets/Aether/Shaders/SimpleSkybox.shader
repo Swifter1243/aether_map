@@ -41,6 +41,7 @@ Shader "Swifter/SimpleSkybox"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_instancing
             #pragma shader_feature SKYBOX_HORIZON
             #pragma shader_feature SKYBOX_CLOUDS
             #pragma shader_feature SKYBOX_CLOUD_FOG
@@ -87,7 +88,9 @@ Shader "Swifter/SimpleSkybox"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                #if SKYBOX_CLOUD_FOG
                 _CloudAmount = i.viewDir.w / _SkyboxCloudFogDistance;
+                #endif
 
                 return doSkybox(i.viewDir);
             }
