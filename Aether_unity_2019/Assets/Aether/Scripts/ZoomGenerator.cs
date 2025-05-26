@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -18,6 +19,7 @@ namespace Aether.Scripts
         public float startTime;
         public float endTime;
         public float zoomDuration = 10;
+        public float zoomTimeOffset = -3;
         public float zoomFrequency = 3;
         public Vector3 zoomEndSize = Vector3.one * 1000;
 
@@ -92,12 +94,64 @@ namespace Aether.Scripts
             }
         }
 
+        private AnimationCurve GenerateLogZoomCurve(float startTime, float startScale, float endTime, float endScale, int steps = 10)
+        {
+            AnimationCurve curve = new AnimationCurve();
+
+            // Prevent invalid logs
+            float safeStart = Mathf.Max(startScale, 0.0001f);
+            float safeEnd = Mathf.Max(endScale, 0.0001f);
+
+            List<Keyframe> keys = new List<Keyframe>();
+
+            for (int i = 0; i <= steps; i++)
+            {
+                float t = i / (float)steps;
+                float time = Mathf.Lerp(startTime, endTime, t);
+                float value = safeStart * Mathf.Pow(safeEnd / safeStart, t);
+
+                keys.Add(new Keyframe(time, value));
+            }
+
+            // Compute tangents based on slope between neighbors
+            for (int i = 0; i < keys.Count; i++)
+            {
+                Keyframe key = keys[i];
+                float inTangent = 0f, outTangent = 0f;
+
+                if (i > 0)
+                {
+                    float dx = keys[i].time - keys[i - 1].time;
+                    float dy = keys[i].value - keys[i - 1].value;
+                    inTangent = dy / dx;
+                }
+
+                if (i < keys.Count - 1)
+                {
+                    float dx = keys[i + 1].time - keys[i].time;
+                    float dy = keys[i + 1].value - keys[i].value;
+                    outTangent = dy / dx;
+                }
+
+                key.inTangent = inTangent;
+                key.outTangent = outTangent;
+
+                keys[i] = key;
+            }
+
+            curve.keys = keys.ToArray();
+            return curve;
+        }
+
         private void AddZoomInAnimation(AnimationClip clip, string path, float startTime, float endTime)
         {
+            startTime += zoomTimeOffset;
+            endTime += zoomTimeOffset;
+
             // Zoom (scale)
-            AnimationCurve scaleXCurve = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.x);
-            AnimationCurve scaleYCurve = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.y);
-            AnimationCurve scaleZCurve = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.z);
+            AnimationCurve scaleXCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.x, 50);
+            AnimationCurve scaleYCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.y, 50);
+            AnimationCurve scaleZCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.z, 50);
 
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.x", scaleXCurve);
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.y", scaleYCurve);
