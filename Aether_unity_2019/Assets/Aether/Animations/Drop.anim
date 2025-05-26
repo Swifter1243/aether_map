@@ -1664,6 +1664,256 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: 189/Spaces/C
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 48
+        value: {x: 15.351291, y: 284.18628, z: 337.7504}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 60.40296, y: 60.5247, z: 12.726389}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 58
+        value: {x: 619.3809, y: 889.4333, z: 465.01428}
+        inSlope: {x: 60.40296, y: 60.5247, z: 12.726389}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_48
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 51
+        value: {x: 93.08383, y: 52.29608, z: 38.193497}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 16.443592, y: 54.740425, z: 53.82014}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 61
+        value: {x: 257.51974, y: 599.7003, z: 576.3949}
+        inSlope: {x: 16.443592, y: 54.740425, z: 53.82014}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_51
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 54
+        value: {x: 322.9825, y: 67.00686, z: 316.39178}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 65.03708, y: 19.49936, z: 42.547577}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 64
+        value: {x: 973.3533, y: 262.00046, z: 741.86755}
+        inSlope: {x: 65.03708, y: 19.49936, z: 42.547577}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_54
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 57
+        value: {x: 80.047806, y: 93.778244, z: 13.497219}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 57.921154, y: 48.188248, z: 30.08454}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 67
+        value: {x: 659.25934, y: 575.6607, z: 314.34262}
+        inSlope: {x: 57.921154, y: 48.188248, z: 30.08454}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_57
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 60
+        value: {x: 8.436298, y: 297.81418, z: 320.8296}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 61.486008, y: 54.872524, z: 22.445263}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 70
+        value: {x: 623.2964, y: 846.5394, z: 545.2822}
+        inSlope: {x: 61.486008, y: 54.872524, z: 22.445263}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_60
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 63
+        value: {x: 2.4605513, y: 107.96756, z: 316.09317}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 70.685394, y: 34.836372, z: 56.544773}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 73
+        value: {x: 709.3145, y: 456.33127, z: 881.5409}
+        inSlope: {x: 70.685394, y: 34.836372, z: 56.544773}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_63
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 66
+        value: {x: 40.77623, y: 10.734286, z: 100.9936}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 34.581245, y: 30.018723, z: 23.549911}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 76
+        value: {x: 386.58868, y: 310.9215, z: 336.4927}
+        inSlope: {x: 34.581245, y: 30.018723, z: 23.549911}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_66
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 69
+        value: {x: 79.13632, y: 126.35344, z: 71.730125}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 19.573431, y: 44.91646, z: 25.548073}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 79
+        value: {x: 274.87064, y: 575.518, z: 327.21085}
+        inSlope: {x: 19.573431, y: 44.91646, z: 25.548073}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_69
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 72
+        value: {x: 340.28162, y: 3.5035229, z: 240.89795}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 42.340588, y: 12.073025, z: 47.696312}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 82
+        value: {x: 763.6875, y: 124.23377, z: 717.8611}
+        inSlope: {x: 42.340588, y: 12.073025, z: 47.696312}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_72
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 75
+        value: {x: 314.33215, y: 227.27, z: 190.69693}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 41.54308, y: 36.47724, z: 52.878487}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      - serializedVersion: 3
+        time: 85
+        value: {x: 729.76294, y: 592.0424, z: 719.4818}
+        inSlope: {x: 41.54308, y: 36.47724, z: 52.878487}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0, z: 0}
+        outWeight: {x: 0, y: 0, z: 0}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 189/Spaces/D/Zooms/Zoom_75
   m_PositionCurves:
   - curve:
       serializedVersion: 2

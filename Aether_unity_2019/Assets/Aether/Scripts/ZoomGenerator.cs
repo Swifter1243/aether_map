@@ -94,13 +94,32 @@ namespace Aether.Scripts
 
         private void AddZoomInAnimation(AnimationClip clip, string path, float startTime, float endTime)
         {
-            AnimationCurve curveX = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.x);
-            AnimationCurve curveY = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.y);
-            AnimationCurve curveZ = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.z);
+            // Zoom (scale)
+            AnimationCurve scaleXCurve = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.x);
+            AnimationCurve scaleYCurve = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.y);
+            AnimationCurve scaleZCurve = AnimationCurve.Linear(startTime, 0, endTime, zoomEndSize.z);
 
-            clip.SetCurve(path, typeof(Transform), "m_LocalScale.x", curveX);
-            clip.SetCurve(path, typeof(Transform), "m_LocalScale.y", curveY);
-            clip.SetCurve(path, typeof(Transform), "m_LocalScale.z", curveZ);
+            clip.SetCurve(path, typeof(Transform), "m_LocalScale.x", scaleXCurve);
+            clip.SetCurve(path, typeof(Transform), "m_LocalScale.y", scaleYCurve);
+            clip.SetCurve(path, typeof(Transform), "m_LocalScale.z", scaleZCurve);
+
+            // Random spin on X, Y, Z axes
+            float startAngleX = Random.Range(0f, 360f);
+            float endAngleX = startAngleX + Random.Range(90f, 720f);
+
+            float startAngleY = Random.Range(0f, 360f);
+            float endAngleY = startAngleY + Random.Range(90f, 720f);
+
+            float startAngleZ = Random.Range(0f, 360f);
+            float endAngleZ = startAngleZ + Random.Range(90f, 720f);
+
+            AnimationCurve rotX = AnimationCurve.Linear(startTime, startAngleX, endTime, endAngleX);
+            AnimationCurve rotY = AnimationCurve.Linear(startTime, startAngleY, endTime, endAngleY);
+            AnimationCurve rotZ = AnimationCurve.Linear(startTime, startAngleZ, endTime, endAngleZ);
+
+            clip.SetCurve(path, typeof(Transform), "localEulerAnglesRaw.x", rotX);
+            clip.SetCurve(path, typeof(Transform), "localEulerAnglesRaw.y", rotY);
+            clip.SetCurve(path, typeof(Transform), "localEulerAnglesRaw.z", rotZ);
         }
     }
 }
