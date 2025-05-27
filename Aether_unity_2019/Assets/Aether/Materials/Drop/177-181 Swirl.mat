@@ -97,6 +97,9 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularPower: 16
     - _SrcBlend: 1
+    - _StencilComp: 8
+    - _StencilPass: 2
+    - _StencilRef: 0
     - _SunEnabled: 0
     - _SunStrength: 1
     - _TimeScale: 1

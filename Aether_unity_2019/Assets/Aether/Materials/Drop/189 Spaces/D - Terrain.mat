@@ -59,8 +59,8 @@ Material:
     - _AmbientEnabled: 1
     - _AmbientStrength: 0.3
     - _BumpScale: 1
-    - _CloudAmount: 1.17
-    - _CloudPow: 0.6
+    - _CloudAmount: 0.35
+    - _CloudPow: 1.44
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DiffuseAmount: 1
@@ -73,7 +73,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HueSaturation: 0.7
+    - _HueSaturation: -0.07
     - _Light1Enabled: 0
     - _Light1Falloff: 1
     - _Light1Flutter: 0
@@ -85,7 +85,7 @@ Material:
     - _Parallax: 0.02
     - _Simplex1Scale: 3
     - _SkyboxCloudFog: 1
-    - _SkyboxCloudFogDistance: 93.82
+    - _SkyboxCloudFogDistance: 62.89
     - _SkyboxClouds: 1
     - _SkyboxHorizon: 0
     - _SmoothnessTextureChannel: 0
@@ -111,5 +111,5 @@ Material:
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
     - _Light1Color: {r: 1, g: 1, b: 1, a: 1}
     - _Light1Position: {r: 0, g: 0, b: 0, a: 1}
-    - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
+    - _SkyCol: {r: 0, g: 0.38660192, b: 1, a: 1}
     - _SunColor: {r: 1, g: 1, b: 1, a: 1}

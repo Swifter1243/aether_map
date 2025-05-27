@@ -89,7 +89,7 @@ Shader "Swifter/SimpleSkybox"
             fixed4 frag(v2f i) : SV_Target
             {
                 #if SKYBOX_CLOUD_FOG
-                _CloudAmount = i.viewDir.w / _SkyboxCloudFogDistance;
+                _CloudAmount *= i.viewDir.w / _SkyboxCloudFogDistance;
                 #endif
 
                 return doSkybox(i.viewDir);
