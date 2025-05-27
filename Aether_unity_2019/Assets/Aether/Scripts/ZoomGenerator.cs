@@ -65,11 +65,8 @@ namespace Aether.Scripts
                 if (zoom.prefab == null) continue;
 
                 GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(zoom.prefab, parentObj);
-                instance.transform.localScale = Vector3.zero;
                 instance.transform.localPosition = Vector3.zero;
-                instance.transform.localRotation = Quaternion.identity;
                 instance.name = $"Zoom_{currentStartTime}";
-                instance.SetActive(false);
 
                 string path = AnimationUtility.CalculateTransformPath(instance.transform, rootObj);
 
