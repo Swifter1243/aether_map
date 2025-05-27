@@ -108,7 +108,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -1443520412
+  randomSeed: -1158452524
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -666,7 +666,7 @@ ParticleSystem:
     radiusThickness: 0.14
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 90, y: 72.6, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -803,7 +803,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
+      value: 324.6
       mode: 0
       spread: 0
       speed:
@@ -3494,7 +3494,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0
-      minScalar: 0.17453292
+      minScalar: 0.052359875
       maxCurve:
         serializedVersion: 2
         m_Curve:
