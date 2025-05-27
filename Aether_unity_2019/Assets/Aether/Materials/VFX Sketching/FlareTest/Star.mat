@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Star
   m_Shader: {fileID: 4800000, guid: 72bc975c28f73ae44a5be7ef3f45c18f, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: CLAMP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,12 +20,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Alpha: 0.5
+    - _Alpha: 0
     - _Bend: 0.4
     - _BlendDst: 1
     - _BlendOp: 0
     - _BlendSrc: 1
-    - _Clamp: 0
+    - _Clamp: 1
     - _Flutter: 0.1
     - _Glow: 0.53
     - _Opacity: 1
