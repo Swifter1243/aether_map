@@ -11,6 +11,12 @@ Shader "Swifter/VFX/TriangleArtifact"
         _Brightness ("Brightness", Float) = 1
         _Highlights ("Highlights", Float) = 20
         _Falloff ("Falloff", Float) = 9
+        _Flutter ("Flutter", Float) = 0
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
     }
     SubShader
     {
@@ -21,6 +27,13 @@ Shader "Swifter/VFX/TriangleArtifact"
         }
         Blend One One
         ZWrite Off
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
+        }
 
         Pass
         {
@@ -35,6 +48,8 @@ Shader "Swifter/VFX/TriangleArtifact"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+
+            #include "../Flutter.hlsl"
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -57,6 +72,7 @@ Shader "Swifter/VFX/TriangleArtifact"
             float _Brightness;
             float _Highlights;
             float _Falloff;
+            float _Flutter;
 
             v2f vert(appdata v)
             {
@@ -110,6 +126,8 @@ Shader "Swifter/VFX/TriangleArtifact"
 
                 col *= _Brightness;
                 col *= pow(pixelCenterDist + n * 0.2, _Falloff);
+
+                col *= flutter(_Flutter);
 
                 return float4(col, 0);
             }

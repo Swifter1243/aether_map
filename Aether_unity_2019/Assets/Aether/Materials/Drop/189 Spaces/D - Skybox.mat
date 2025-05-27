@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: D - Skybox
   m_Shader: {fileID: 4800000, guid: 4a7c14a86573a01489d1e91ada7098b8, type: 3}
-  m_ShaderKeywords: SKYBOX_CLOUDS
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -21,11 +21,11 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _CloudAmount: 1
-    - _CloudPow: 5.25
+    - _CloudPow: 1.26
     - _FBM: 1.71
-    - _HueSaturation: 0
+    - _HueSaturation: 0.84
     - _Simplex1Scale: 1.75
-    - _SkyboxClouds: 1
+    - _SkyboxClouds: 0
     - _SkyboxHorizon: 0
     - _StencilComp: 8
     - _StencilPass: 2
@@ -35,4 +35,4 @@ Material:
     - _Voronoi2Scale: 11.3
     m_Colors:
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
+    - _SkyCol: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
