@@ -98,7 +98,7 @@ namespace Aether.Scripts
             }
         }
 
-        private AnimationCurve GenerateLogZoomCurve(float startTime, float startScale, float endTime, float endScale, int steps = 10)
+        private AnimationCurve GenerateLogZoomCurve(float visibilityStart, float startTime, float startScale, float endTime, float endScale, int steps = 10)
         {
             AnimationCurve curve = new AnimationCurve();
 
@@ -112,6 +112,10 @@ namespace Aether.Scripts
             {
                 float t = i / (float)steps;
                 float time = Mathf.Lerp(startTime, endTime, t);
+
+                if (time < visibilityStart)
+                    continue;
+
                 float value = safeStart * Mathf.Pow(safeEnd / safeStart, t);
 
                 keys.Add(new Keyframe(time, value));
@@ -149,10 +153,12 @@ namespace Aether.Scripts
 
         private void AddZoomInAnimation(AnimationClip clip, string path, float startTime, float endTime)
         {
+            float visibilityStart = startTime + zoomDuration * enableTimeOffsetPercentage;
+
             // Zoom (scale)
-            AnimationCurve scaleXCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.x, 50);
-            AnimationCurve scaleYCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.y, 50);
-            AnimationCurve scaleZCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.z, 50);
+            AnimationCurve scaleXCurve = GenerateLogZoomCurve(visibilityStart, startTime, 0, endTime, zoomEndSize.x, 50);
+            AnimationCurve scaleYCurve = GenerateLogZoomCurve(visibilityStart, startTime, 0, endTime, zoomEndSize.y, 50);
+            AnimationCurve scaleZCurve = GenerateLogZoomCurve(visibilityStart, startTime, 0, endTime, zoomEndSize.z, 50);
 
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.x", scaleXCurve);
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.y", scaleYCurve);
@@ -185,7 +191,7 @@ namespace Aether.Scripts
             // Active state
             AnimationCurve visibilityCurve = new AnimationCurve();
             visibilityCurve.AddKey(new Keyframe(0, 0));
-            visibilityCurve.AddKey(new Keyframe(startTime + zoomDuration * enableTimeOffsetPercentage, 1));
+            visibilityCurve.AddKey(new Keyframe(visibilityStart, 1));
             visibilityCurve.AddKey(new Keyframe(endTime, 0));
 
             AnimationUtility.SetKeyLeftTangentMode(visibilityCurve, 0, AnimationUtility.TangentMode.Constant);
