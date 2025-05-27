@@ -3,6 +3,8 @@ Shader "Swifter/ZoomTerrain"
     Properties
     {
         _GlassRefraction ("Glass Refraction", Float) = 0.4
+        _FadeDistanceStart ("Fade Distance Start", Float) = 500
+        _FadeDistanceEnd ("Fade Distance End", Float) = 800
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -55,10 +57,13 @@ Shader "Swifter/ZoomTerrain"
                 float2 uv : TEXCOORD0;
                 float4 screenUV : TEXCOORD1;
                 float4 normalScreenUV : TEXCOORD2;
+                float fog : TEXCOORD3;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
             float _GlassRefraction;
+            float _FadeDistanceStart;
+            float _FadeDistanceEnd;
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_GrabTexture1);
 
             v2f vert (appdata v)
@@ -75,6 +80,11 @@ Shader "Swifter/ZoomTerrain"
                 float4 normalOffsetClipPos = UnityObjectToClipPos(normalOffsetLocalPos);
                 o.normalScreenUV = ComputeScreenPos(normalOffsetClipPos);
 
+                float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
+                float3 viewVector = worldPos - _WorldSpaceCameraPos;
+                float viewDistance = length(viewVector);
+                o.fog = smoothstep(_FadeDistanceStart, _FadeDistanceEnd, viewDistance);
+
                 return o;
             }
 
@@ -90,7 +100,11 @@ Shader "Swifter/ZoomTerrain"
 
                 float4 normalScreenUV = i.normalScreenUV / i.normalScreenUV.w;
 
-                return sampleScreen(normalScreenUV) * 0.8;
+                float4 col = sampleScreen(normalScreenUV) * 0.8;
+
+                col = lerp(col, sampleScreen(screenUV), i.fog);
+
+                return col;
             }
             ENDCG
         }
