@@ -11,6 +11,7 @@ Shader "Swifter/VFX/Star"
         _Softness ("Softness", Float) = 7
         _Opacity ("Opacity", Float) = 1
         [Toggle(CLAMP)] _Clamp ("Clamp", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
 
         [Header(Blend)][Space(10)]
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
@@ -31,6 +32,7 @@ Shader "Swifter/VFX/Star"
         Blend [_BlendSrc] [_BlendDst]
         BlendOp [_BlendOp]
         ZWrite Off
+        ZTest [_ZTest]
         Cull Off
 
         Stencil
