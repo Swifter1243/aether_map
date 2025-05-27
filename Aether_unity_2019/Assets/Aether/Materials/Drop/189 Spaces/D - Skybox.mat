@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: D - Skybox
-  m_Shader: {fileID: 4800000, guid: 4a7c14a86573a01489d1e91ada7098b8, type: 3}
+  m_Shader: {fileID: 4800000, guid: 91de63d3a739c3741840cd3b39b46587, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -27,9 +27,9 @@ Material:
     - _Simplex1Scale: 1.75
     - _SkyboxClouds: 0
     - _SkyboxHorizon: 0
-    - _StencilComp: 8
-    - _StencilPass: 2
-    - _StencilRef: 0
+    - _StencilComp: 3
+    - _StencilPass: 0
+    - _StencilRef: 4
     - _TimeScale: 1
     - _Voronoi1Scale: 20.72
     - _Voronoi2Scale: 11.3
