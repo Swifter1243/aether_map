@@ -22,8 +22,18 @@ Material:
     m_Floats:
     - _Alpha: 0.5
     - _Bend: 0.4
+    - _BlendDst: 1
+    - _BlendOp: 0
+    - _BlendSrc: 1
+    - _Clamp: 0
+    - _Flutter: 0
     - _Glow: 0.53
+    - _Opacity: 1
     - _Size: 2.9
+    - _Softness: 7
     - _Spread: 0.09
-    - _Thickness: 0.25
+    - _StencilComp: 8
+    - _StencilPass: 2
+    - _StencilRef: 0
+    - _Thickness: -0
     m_Colors: []
