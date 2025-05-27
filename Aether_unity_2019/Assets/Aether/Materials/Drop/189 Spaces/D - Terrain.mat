@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: D - Terrain
   m_Shader: {fileID: 4800000, guid: 155b41acd434e264cab9d6ad297cfa99, type: 3}
-  m_ShaderKeywords: AMBIENT_ENABLED FOG_ENABLED LIGHT_1_ENABLED SHADING SKYBOX_CLOUDS
+  m_ShaderKeywords: FOG_ENABLED LIGHT_1_ENABLED SHADING SKYBOX_CLOUDS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AmbientEnabled: 1
+    - _AmbientEnabled: 0
     - _AmbientStrength: 0.17
     - _BumpScale: 1
     - _CloudAmount: 0.35
@@ -114,6 +114,6 @@ Material:
     - _FogColor: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
     - _Light1Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Light1Position: {r: 0, g: 0, b: 197.3, a: 1}
+    - _Light1Position: {r: 0, g: 0, b: 43.8, a: 1}
     - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
     - _SunColor: {r: 1, g: 1, b: 1, a: 1}
