@@ -24,6 +24,7 @@ namespace Aether.Scripts
         public float endTime;
         public float zoomDuration = 10;
         public float rotateTimeOffsetPercentage = 0.4f;
+        public float enableTimeOffsetPercentage = 0.2f;
         public float zoomFrequency = 3;
         public Vector3 zoomEndSize = Vector3.one * 1000;
 
@@ -184,7 +185,7 @@ namespace Aether.Scripts
             // Active state
             AnimationCurve visibilityCurve = new AnimationCurve();
             visibilityCurve.AddKey(new Keyframe(0, 0));
-            visibilityCurve.AddKey(new Keyframe(startTime, 1));
+            visibilityCurve.AddKey(new Keyframe(startTime + zoomDuration * enableTimeOffsetPercentage, 1));
             visibilityCurve.AddKey(new Keyframe(endTime, 0));
 
             AnimationUtility.SetKeyLeftTangentMode(visibilityCurve, 0, AnimationUtility.TangentMode.Constant);
