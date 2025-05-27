@@ -166,6 +166,9 @@ namespace Aether.Scripts
 
             float startAngleZ = Random.Range(-180, 180);
             float endAngleZ = -startAngleZ;
+            float zRoll = Random.Range(0, 360);
+            startAngleZ += zRoll;
+            endAngleZ += zRoll;
 
             float rotationStartTime = startTime + zoomDuration * rotateTimeOffsetPercentage;
             float rotationEndTime = endTime + zoomDuration * rotateTimeOffsetPercentage;
