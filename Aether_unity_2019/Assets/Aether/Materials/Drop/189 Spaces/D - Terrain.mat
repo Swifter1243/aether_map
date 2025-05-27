@@ -8,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: D - Terrain
-  m_Shader: {fileID: 4800000, guid: 155b41acd434e264cab9d6ad297cfa99, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8d76ba14cd362484bb6019283939aa29, type: 3}
   m_ShaderKeywords: FOG_ENABLED LIGHT_1_ENABLED SHADING SKYBOX_CLOUDS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 1200
+  m_CustomRenderQueue: 1400
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -72,6 +72,7 @@ Material:
     - _FogHeightFalloffSlope: 200
     - _FogZEnd: 30
     - _FogZStart: -131
+    - _GlassRefraction: 0.36
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
