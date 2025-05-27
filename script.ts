@@ -11,8 +11,9 @@ const TIMES = {
     INTRO1: 5,
     INTRO2: 37,
     INTRO3: 64,
-    FIRSTDROP_1: 69,
-    FIRSTDROP_2: 77
+    DROP_INTRO: 69,
+    DROP: 77,
+    DROP_END: 261
 } as const
 
 // ----------- { SCRIPT } -----------
@@ -24,6 +25,7 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
     visualsSetup(map)
     
     intro(map)
+    drop(map)
 }
 
 function infoSetup(map: rm.V3Difficulty) {
@@ -78,14 +80,14 @@ function intro(map: rm.V3Difficulty) {
     const tempScene = prefabs.intro_2.instantiate(map, TIMES.INTRO3)
 
     const vortexTexture1 = rm.createScreenTexture(map, {
-        beat: TIMES.INTRO3,
+        beat: TIMES.DROP_INTRO,
         id: '_VortexTexture1'
     })
 
-    const vortexDuration = 99999
+    const vortexDuration = TIMES.DROP - TIMES.DROP_INTRO
 
     rm.blit(map, {
-        beat: TIMES.INTRO3,
+        beat: TIMES.DROP_INTRO,
         asset: materials.vortexblit.path,
         destination: vortexTexture1.id,
         pass: 0,
@@ -94,12 +96,22 @@ function intro(map: rm.V3Difficulty) {
     })
 
     rm.blit(map, {
-        beat: TIMES.INTRO3,
+        beat: TIMES.DROP_INTRO,
         asset: materials.vortexblit.path,
         pass: 1,
         priority: 1,
         duration: vortexDuration
     })
+
+    vortexTexture1.destroyObject(TIMES.DROP)
+    tempScene.destroyObject(TIMES.DROP)
+}
+
+function drop(map: rm.V3Difficulty)
+{
+    const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
+
+    dropScene.destroyObject(TIMES.DROP_END)
 }
 
 await Promise.all([
