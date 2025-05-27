@@ -64,7 +64,7 @@ namespace Aether.Scripts
                 ZoomObject zoom = objects[(int)(Random.value * objects.Length)];
                 if (zoom.prefab == null) continue;
 
-                GameObject instance = Instantiate(zoom.prefab, parentObj);
+                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(zoom.prefab, parentObj);
                 instance.transform.localScale = Vector3.zero;
                 instance.transform.localPosition = Vector3.zero;
                 instance.transform.localRotation = Quaternion.identity;
