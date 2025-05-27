@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: D - Terrain
   m_Shader: {fileID: 4800000, guid: ab7375d0ba2a32749a55f9e7aa466e61, type: 3}
-  m_ShaderKeywords: AMBIENT_ENABLED FOG_ENABLED SKYBOX_CLOUDS SKYBOX_CLOUD_FOG SUN_ENABLED
+  m_ShaderKeywords: AMBIENT_ENABLED FOG_ENABLED SHADING SKYBOX_CLOUDS SKYBOX_CLOUD_FOG
+    SUN_ENABLED
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -73,7 +74,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HueSaturation: -0.07
+    - _HueSaturation: 0
     - _Light1Enabled: 0
     - _Light1Falloff: 1
     - _Light1Flutter: 0
@@ -83,6 +84,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ShadingAmount: 0.2
+    - _ShadingEnabled: 1
     - _Simplex1Scale: 3
     - _SkyboxCloudFog: 1
     - _SkyboxCloudFogDistance: 62.89

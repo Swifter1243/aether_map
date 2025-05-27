@@ -21,6 +21,9 @@ Shader "Swifter/SimpleSkybox"
         _StencilRef ("Stencil Ref", Int) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
         [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
+
+        [Toggle(SHADING)] _ShadingEnabled ("Shading Enabled", Int) = 0
+        _ShadingAmount ("Shading Amount", Float) = 0.2
     }
     SubShader
     {
@@ -45,6 +48,7 @@ Shader "Swifter/SimpleSkybox"
             #pragma shader_feature SKYBOX_HORIZON
             #pragma shader_feature SKYBOX_CLOUDS
             #pragma shader_feature SKYBOX_CLOUD_FOG
+            #pragma shader_feature SHADING
 
             #include "UnityCG.cginc"
             #include "IntroSkybox.hlsl"
@@ -52,6 +56,9 @@ Shader "Swifter/SimpleSkybox"
             struct appdata
             {
                 float4 vertex : POSITION;
+                #if SHADING
+                float3 normal : NORMAL;
+                #endif
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
@@ -59,10 +66,14 @@ Shader "Swifter/SimpleSkybox"
             {
                 float4 vertex : SV_POSITION;
                 float4 viewDir : TEXCOORD0;
+                #if SHADING
+                float3 normal : TEXCOORD1;
+                #endif
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
             float _SkyboxCloudFogDistance;
+            float _ShadingAmount;
 
             v2f vert (appdata v)
             {
@@ -76,12 +87,18 @@ Shader "Swifter/SimpleSkybox"
                 float3 viewVector = worldPos - _WorldSpaceCameraPos;
                 float4 viewDir;
                 viewDir.xyz = normalize(viewVector);
+
                 #if SKYBOX_CLOUD_FOG
                 viewDir.w = length(viewVector);
                 #else
                 viewDir.w = 1;
                 #endif
+
                 o.viewDir = viewDir;
+
+                #if SHADING
+                o.normal = v.normal;
+                #endif
 
                 return o;
             }
@@ -92,7 +109,14 @@ Shader "Swifter/SimpleSkybox"
                 _CloudAmount *= i.viewDir.w / _SkyboxCloudFogDistance;
                 #endif
 
-                return doSkybox(i.viewDir);
+                float4 color = doSkybox(i.viewDir);
+
+                #if SHADING
+                float shading = dot(i.normal, float3(0, 1, 0)) * 0.5 + 0.5;
+                color.rgb *= lerp(1, shading, _ShadingAmount);
+                #endif
+
+                return color;
             }
             ENDCG
         }
