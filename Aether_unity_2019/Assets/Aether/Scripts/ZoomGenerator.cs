@@ -19,8 +19,7 @@ namespace Aether.Scripts
         public float startTime;
         public float endTime;
         public float zoomDuration = 10;
-        public float scaleTimeOffset = -8;
-        public float rotateTimeOffset = 0;
+        public float rotateTimeOffsetPercentage = 0.4f;
         public float zoomFrequency = 3;
         public Vector3 zoomEndSize = Vector3.one * 1000;
 
@@ -70,6 +69,7 @@ namespace Aether.Scripts
                 instance.transform.localPosition = Vector3.zero;
                 instance.transform.localRotation = Quaternion.identity;
                 instance.name = $"Zoom_{currentStartTime}";
+                instance.SetActive(false);
 
                 string path = AnimationUtility.CalculateTransformPath(instance.transform, rootObj);
 
@@ -146,13 +146,10 @@ namespace Aether.Scripts
 
         private void AddZoomInAnimation(AnimationClip clip, string path, float startTime, float endTime)
         {
-            float scaleStartTime = startTime + scaleTimeOffset;
-            float scaleEndTime = endTime + scaleTimeOffset;
-
             // Zoom (scale)
-            AnimationCurve scaleXCurve = GenerateLogZoomCurve(scaleStartTime, 0, scaleEndTime, zoomEndSize.x, 50);
-            AnimationCurve scaleYCurve = GenerateLogZoomCurve(scaleStartTime, 0, scaleEndTime, zoomEndSize.y, 50);
-            AnimationCurve scaleZCurve = GenerateLogZoomCurve(scaleStartTime, 0, scaleEndTime, zoomEndSize.z, 50);
+            AnimationCurve scaleXCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.x, 50);
+            AnimationCurve scaleYCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.y, 50);
+            AnimationCurve scaleZCurve = GenerateLogZoomCurve(startTime, 0, endTime, zoomEndSize.z, 50);
 
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.x", scaleXCurve);
             clip.SetCurve(path, typeof(Transform), "m_LocalScale.y", scaleYCurve);
@@ -168,8 +165,8 @@ namespace Aether.Scripts
             float startAngleZ = Random.Range(-180, 180);
             float endAngleZ = -startAngleZ;
 
-            float rotationStartTime = startTime + rotateTimeOffset;
-            float rotationEndTime = endTime + rotateTimeOffset;
+            float rotationStartTime = startTime + zoomDuration * rotateTimeOffsetPercentage;
+            float rotationEndTime = endTime + zoomDuration * rotateTimeOffsetPercentage;
 
             AnimationCurve rotX = AnimationCurve.Linear(rotationStartTime, startAngleX, rotationEndTime, endAngleX);
             AnimationCurve rotY = AnimationCurve.Linear(rotationStartTime, startAngleY, rotationEndTime, endAngleY);
@@ -178,6 +175,18 @@ namespace Aether.Scripts
             clip.SetCurve(path, typeof(Transform), "localEulerAnglesRaw.x", rotX);
             clip.SetCurve(path, typeof(Transform), "localEulerAnglesRaw.y", rotY);
             clip.SetCurve(path, typeof(Transform), "localEulerAnglesRaw.z", rotZ);
+
+            // Active state
+            AnimationCurve visibilityCurve = new AnimationCurve();
+            visibilityCurve.AddKey(new Keyframe(0, 0));
+            visibilityCurve.AddKey(new Keyframe(startTime, 1));
+            visibilityCurve.AddKey(new Keyframe(endTime, 0));
+
+            AnimationUtility.SetKeyLeftTangentMode(visibilityCurve, 0, AnimationUtility.TangentMode.Constant);
+            AnimationUtility.SetKeyLeftTangentMode(visibilityCurve, 1, AnimationUtility.TangentMode.Constant);
+            AnimationUtility.SetKeyLeftTangentMode(visibilityCurve, 2, AnimationUtility.TangentMode.Constant);
+
+            clip.SetCurve(path, typeof(GameObject), "m_IsActive", visibilityCurve);
         }
     }
 }
