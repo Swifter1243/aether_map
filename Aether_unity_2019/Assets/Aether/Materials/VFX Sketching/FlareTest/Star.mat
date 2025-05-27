@@ -36,5 +36,5 @@ Material:
     - _StencilPass: 0
     - _StencilRef: 4
     - _Thickness: -0
-    - _ZTest: 4
+    - _ZTest: 8
     m_Colors: []

@@ -83,6 +83,7 @@ Material:
     - _StencilRef: 4
     - _TimeScale: 0.1
     - _UVSec: 0
+    - _ZTest: 8
     - _ZWrite: 1
     - _Zoom: 6.38
     m_Colors:

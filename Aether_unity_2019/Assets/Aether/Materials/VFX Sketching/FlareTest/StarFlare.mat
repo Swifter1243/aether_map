@@ -82,6 +82,7 @@ Material:
     - _StencilPass: 0
     - _StencilRef: 4
     - _UVSec: 0
+    - _ZTest: 8
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}

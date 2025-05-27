@@ -12,6 +12,7 @@ Shader "Swifter/VFX/TriangleArtifact"
         _Highlights ("Highlights", Float) = 20
         _Falloff ("Falloff", Float) = 9
         _Flutter ("Flutter", Float) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -27,6 +28,7 @@ Shader "Swifter/VFX/TriangleArtifact"
         }
         Blend One One
         ZWrite Off
+        ZTest [_ZTest]
 
         Stencil
         {

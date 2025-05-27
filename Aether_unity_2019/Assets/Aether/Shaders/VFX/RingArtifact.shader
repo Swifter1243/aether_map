@@ -9,6 +9,7 @@ Shader "Swifter/VFX/RingArtifact"
         _Scale ("Scale", Float) = 4
         _Flutter ("Flutter", Float) = 0
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -25,6 +26,7 @@ Shader "Swifter/VFX/RingArtifact"
         Blend One One
         BlendOp [_BlendOp]
         ZWrite Off
+        ZTest [_ZTest]
 
         Stencil
         {

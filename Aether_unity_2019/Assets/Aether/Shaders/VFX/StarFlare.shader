@@ -7,6 +7,7 @@ Properties
         _Color ("Color", Color) = (1,1,1)
         _Flutter ("Flutter", Float) = 0
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -22,6 +23,7 @@ Properties
         Blend One One
         BlendOp [_BlendOp]
         ZWrite Off
+        ZTest [_ZTest]
 
         Stencil
         {
