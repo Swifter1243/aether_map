@@ -75,6 +75,7 @@ namespace Aether.Scripts
                 currentStartTime += zoomFrequency;
             }
 
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(parent.scene);
             AssetDatabase.SaveAssets();
         }
 
