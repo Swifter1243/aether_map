@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: 1300
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -36,4 +36,5 @@ Material:
     - _StencilPass: 0
     - _StencilRef: 4
     - _Thickness: -0
+    - _ZTest: 4
     m_Colors: []
