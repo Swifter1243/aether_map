@@ -67,6 +67,8 @@ Material:
     - _FBM: 0.8
     - _FogEnabled: 1
     - _FogFar: 400
+    - _FogHeightFalloffEnabled: 0
+    - _FogHeightFalloffSlope: 200
     - _FogZEnd: 31.8
     - _FogZStart: -30.6
     - _GlossMapScale: 1

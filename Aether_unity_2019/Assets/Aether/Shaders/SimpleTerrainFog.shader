@@ -31,6 +31,8 @@ Shader "Swifter/SimpleTerrainFog"
         _FogFar ("Fog Far", Float) = 400
         _FogZStart ("Fog Z Start", Float) = 0
         _FogZEnd ("Fog Z End", Float) = 30
+        [Toggle(FOG_HEIGHT_FALLOFF)] _FogHeightFalloffEnabled ("Height Falloff", Int) = 0
+        _FogHeightFalloffSlope ("Height Falloff Slope", Float) = 200
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -62,6 +64,7 @@ Shader "Swifter/SimpleTerrainFog"
             #pragma shader_feature SUN_ENABLED
             #pragma shader_feature LIGHT_1_ENABLED
             #pragma shader_feature FOG_ENABLED
+            #pragma shader_feature FOG_HEIGHT_FALLOFF
 
             #include "UnityCG.cginc"
             #include "UnityStandardParticleInstancing.cginc"
@@ -110,6 +113,7 @@ Shader "Swifter/SimpleTerrainFog"
             float _FogFar;
             float _FogZStart;
             float _FogZEnd;
+            float _FogHeightFalloffSlope;
 
             v2f vert(appdata v)
             {
@@ -127,7 +131,10 @@ Shader "Swifter/SimpleTerrainFog"
                 float camDistance = length(viewVector);
                 float distanceFog = smoothstep(0, _FogFar, camDistance);
                 distanceFog = pow(distanceFog, 3);
-                distanceFog = saturate(distanceFog - worldPos.y / 200);
+
+                #if FOG_HEIGHT_FALLOFF
+                distanceFog = saturate(distanceFog - worldPos.y / _FogHeightFalloffSlope);
+                #endif
 
                 o.distanceFog = distanceFog;
                 o.viewDir = viewDir;

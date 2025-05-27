@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: IntroTerrain
   m_Shader: {fileID: 4800000, guid: 155b41acd434e264cab9d6ad297cfa99, type: 3}
-  m_ShaderKeywords: AMBIENT_ENABLED FOG_ENABLED SUN_ENABLED
+  m_ShaderKeywords: AMBIENT_ENABLED FOG_ENABLED FOG_HEIGHT_FALLOFF SUN_ENABLED
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -25,16 +25,22 @@ Material:
     - _DiffuseAmount: 1
     - _FogEnabled: 1
     - _FogFar: 407.3
+    - _FogHeightFalloffEnabled: 1
+    - _FogHeightFalloffSlope: 200
     - _FogZEnd: 9.8
     - _FogZStart: -28.6
     - _Light1Enabled: 0
     - _Light1Falloff: 1
+    - _Light1Flutter: 0
     - _Light1Range: 1
     - _Light1Strength: 1
     - _Metallic: 0
     - _Particle: 0
     - _SpecularAmount: 1
     - _SpecularPower: 16
+    - _StencilComp: 8
+    - _StencilPass: 2
+    - _StencilRef: 0
     - _SunEnabled: 1
     - _SunStrength: 0.05
     m_Colors:
