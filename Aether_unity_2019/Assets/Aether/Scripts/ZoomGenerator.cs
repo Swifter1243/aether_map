@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Aether.Scripts
 {
     public class ZoomGenerator : MonoBehaviour
@@ -23,7 +27,7 @@ namespace Aether.Scripts
         public float zoomFrequency = 3;
         public Vector3 zoomEndSize = Vector3.one * 1000;
 
-
+#if UNITY_EDITOR
         private void DestroyChildren(Transform transform)
         {
             while (transform.childCount > 0)
@@ -186,5 +190,6 @@ namespace Aether.Scripts
 
             clip.SetCurve(path, typeof(GameObject), "m_IsActive", visibilityCurve);
         }
+#endif
     }
 }
