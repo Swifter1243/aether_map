@@ -85,8 +85,9 @@ Shader "Swifter/ExtendingArrows"
 
             v2f vert (appdata v)
             {
+                v2f o;
                 UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o)
 
                 float3 center = v.texcoord0.xyz;

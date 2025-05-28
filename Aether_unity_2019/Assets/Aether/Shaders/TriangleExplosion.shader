@@ -56,6 +56,7 @@ Shader "Swifter/TriangleExplosion"
 				float3 normal : TEXCOORD1;
 				float3 viewDir : TEXCOORD2;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
+				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			struct g2f
