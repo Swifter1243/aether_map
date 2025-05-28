@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AmbientSkybox
-  m_Shader: {fileID: 4800000, guid: 91de63d3a739c3741840cd3b39b46587, type: 3}
+  m_Name: BackgroundFlare
+  m_Shader: {fileID: 4800000, guid: 8325ce697c6a3c840b9084ade332aaf2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -56,11 +56,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Alpha: 0.5
+    - _Bend: 0.5
+    - _BlendOp: 0
+    - _Brightness: 24.6
     - _BumpScale: 1
-    - _CenterHighlightPower: 4
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Flutter: 0.19
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -68,22 +72,18 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RainbowOffset: 0.3
-    - _RainbowScale: 3
-    - _Saturation: 0.7
+    - _Sharpness: 203.2
+    - _Size: 1.35
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Spread: 0.2
     - _SrcBlend: 1
     - _StencilComp: 8
     - _StencilPass: 2
     - _StencilRef: 0
-    - _TimeScale: 0.2
     - _UVSec: 0
-    - _VoronoiAmount: 0.09
-    - _VoronoiScale: 3
-    - _XFalloff: 5.97
-    - _YFalloff: 15
+    - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
