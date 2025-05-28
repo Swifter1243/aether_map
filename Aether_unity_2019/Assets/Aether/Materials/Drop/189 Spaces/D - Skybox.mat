@@ -13,26 +13,14 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 1100
+  m_CustomRenderQueue: 1000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _CloudAmount: 1
-    - _CloudPow: 1.26
-    - _FBM: 1.71
-    - _HueSaturation: 0.84
-    - _Simplex1Scale: 1.75
-    - _SkyboxClouds: 0
-    - _SkyboxHorizon: 0
-    - _StencilComp: 3
-    - _StencilPass: 0
-    - _StencilRef: 4
-    - _TimeScale: 1
-    - _Voronoi1Scale: 20.72
-    - _Voronoi2Scale: 11.3
-    m_Colors:
-    - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _SkyCol: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
+    - _StencilComp: 8
+    - _StencilPass: 2
+    - _StencilRef: 0
+    m_Colors: []
