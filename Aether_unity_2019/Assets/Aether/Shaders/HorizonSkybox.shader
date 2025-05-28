@@ -2,6 +2,16 @@ Shader "Swifter/HorizonSkybox"
 {
     Properties
     {
+        _RainbowScale ("Rainbow Scale", Float) = 3
+        _RainbowOffset ("Rainbow Offset", Float) = 0.3
+        _TimeScale ("Time Scale", Float) = 0.2
+        _VoronoiScale ("Voronoi Scale", Float) = 3
+        _VoronoiAmount ("Voronoi Amount", Float) = 0.9
+        _Saturation ("_Saturation", Float) = 0.7
+        _XFalloff ("_XFalloff", Float) = 10
+        _YFalloff ("_YFalloff", Float) = 15
+        _CenterHighlightPower ("_CenterHighlightPower", Float) = 4
+
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
@@ -59,18 +69,28 @@ Shader "Swifter/HorizonSkybox"
                 return o;
             }
 
+            float _RainbowScale;
+            float _RainbowOffset;
+            float _TimeScale;
+            float _VoronoiScale;
+            float _VoronoiAmount;
+            float _Saturation;
+            float _XFalloff;
+            float _YFalloff;
+            float _CenterHighlightPower;
+
             fixed4 frag (v2f i) : SV_Target
             {
                 float t = abs(i.localPos.y);
-                t += voronoi(abs(i.localPos.xyz) * 3 - _Time.y * 0.2) * 0.9;
+                t += voronoi(abs(i.localPos.xyz) * _VoronoiScale - _Time.y * _TimeScale) * _VoronoiAmount;
 
-                float3 col = rainbow(t * 3 + 0.3);
-                col = lerp(1, col, 0.7);
+                float3 col = rainbow(t * _RainbowScale + _RainbowOffset);
+                col = lerp(1, col, _Saturation);
 
-                col *= pow(1 - abs(i.localPos.x), 10);
-                col *= pow(1 - abs(i.localPos.y), 15);
+                col *= pow(1 - abs(i.localPos.x), _XFalloff);
+                col *= pow(1 - abs(i.localPos.y), _YFalloff);
 
-                col += pow(col, 4) * 1;
+                col += pow(col, _CenterHighlightPower);
 
                 return float4(col, 0);
             }
