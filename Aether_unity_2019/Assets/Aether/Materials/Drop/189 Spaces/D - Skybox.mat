@@ -20,7 +20,16 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _CenterHighlightPower: 4
+    - _RainbowOffset: 0.3
+    - _RainbowScale: 3
+    - _Saturation: 0.7
     - _StencilComp: 8
     - _StencilPass: 2
     - _StencilRef: 0
+    - _TimeScale: 0.2
+    - _VoronoiAmount: 0.9
+    - _VoronoiScale: 3
+    - _XFalloff: 10
+    - _YFalloff: 15
     m_Colors: []
