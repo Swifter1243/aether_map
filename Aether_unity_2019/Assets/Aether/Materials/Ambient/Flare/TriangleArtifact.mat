@@ -64,7 +64,7 @@ Material:
     - _FadeOutRadius: 0.79
     - _FadeOutSize: 0.02
     - _Falloff: 7.02
-    - _Flutter: 0.62
+    - _Flutter: 0.2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
