@@ -75,7 +75,7 @@ Material:
     - _FogHeightFalloffSlope: 200
     - _FogZEnd: 30
     - _FogZStart: -131
-    - _GlassRefraction: 2.46
+    - _GlassRefraction: -0.46
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1

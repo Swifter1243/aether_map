@@ -63,7 +63,7 @@ Material:
     - _DstBlend: 0
     - _FadeDistanceEnd: 481.77
     - _FadeDistanceStart: 0
-    - _GlassRefraction: 1.94
+    - _GlassRefraction: 0.77
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
