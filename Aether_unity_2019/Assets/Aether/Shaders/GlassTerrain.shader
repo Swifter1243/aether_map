@@ -138,5 +138,38 @@ Shader "Swifter/GlassTerrain"
             }
             ENDCG
         }
+        Pass
+        {
+            Tags {"LightMode"="ShadowCaster"}
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile_shadowcaster
+            #pragma multi_compile_instancing
+            #pragma instancing_options procedural:vertInstancingSetup
+            #include "UnityCG.cginc"
+            #include "UnityStandardParticleInstancing.cginc"
+
+            struct v2f {
+                V2F_SHADOW_CASTER;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+            };
+
+            v2f vert(appdata_base v)
+            {
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, v2f o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o)
+                TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
+                return o;
+            }
+
+            float4 frag(v2f i) : SV_Target
+            {
+                SHADOW_CASTER_FRAGMENT(i)
+            }
+            ENDCG
+        }
     }
 }
