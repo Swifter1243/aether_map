@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Terrain
   m_Shader: {fileID: 4800000, guid: 8d76ba14cd362484bb6019283939aa29, type: 3}
-  m_ShaderKeywords: HEIGHT_FOG
+  m_ShaderKeywords: DISTANCE_FOG HEIGHT_FOG
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -61,8 +61,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DistanceFogEnabled: 1
     - _DstBlend: 0
-    - _FadeDistanceEnd: 800
-    - _FadeDistanceStart: 500
+    - _FadeDistanceEnd: 518.9
+    - _FadeDistanceStart: 0
     - _GlassRefraction: 1.94
     - _GlossMapScale: 1
     - _Glossiness: 0.5
