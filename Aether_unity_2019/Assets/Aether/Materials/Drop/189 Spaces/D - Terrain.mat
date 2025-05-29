@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: D - Terrain
   m_Shader: {fileID: 4800000, guid: 8d76ba14cd362484bb6019283939aa29, type: 3}
-  m_ShaderKeywords: FOG_ENABLED LIGHT_1_ENABLED SHADING SKYBOX_CLOUDS
+  m_ShaderKeywords: DISTANCE_FOG FOG_ENABLED LIGHT_1_ENABLED SHADING SKYBOX_CLOUDS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -64,6 +64,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DiffuseAmount: 1
+    - _DistanceFogEnabled: 1
     - _DstBlend: 0
     - _FBM: 0.3
     - _FadeDistanceEnd: 400
@@ -78,6 +79,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HeightFogEnabled: 0
+    - _HeightFogEnd: 10
+    - _HeightFogStart: 0
     - _HueSaturation: 0.79
     - _Light1Enabled: 1
     - _Light1Falloff: 3.19
