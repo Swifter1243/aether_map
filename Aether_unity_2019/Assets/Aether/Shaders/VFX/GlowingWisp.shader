@@ -33,8 +33,11 @@
             #pragma vertex vert
             #pragma fragment frag
             #pragma shader_feature RAINBOW
+            #pragma multi_compile_instancing
+            #pragma instancing_options procedural:vertInstancingSetup
 
             #include "UnityCG.cginc"
+            #include "UnityStandardParticleInstancing.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             #include "../Flutter.hlsl"
