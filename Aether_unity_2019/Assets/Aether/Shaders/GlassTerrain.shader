@@ -1,4 +1,4 @@
-Shader "Swifter/ZoomTerrain"
+Shader "Swifter/GlassTerrain"
 {
     Properties
     {
