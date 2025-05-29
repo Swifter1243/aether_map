@@ -40,7 +40,7 @@ float3 getLightDirection()
     return normalize(_WorldSpaceLightPos0.xyz);
 }
 
-float4 sampleReflectionProbe(float3 viewVector) 
+float4 sampleReflectionProbe(float3 viewVector)
 {
     return float4(DecodeHDR(UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, viewVector, 0), unity_SpecCube0_HDR), 0);
 }
@@ -52,7 +52,7 @@ float2 rotate2D(float a, float2 p)
     return mul(float2x2(c, -s, s, c), p);
 }
 
-float3 rotateX(float a, float3 p) 
+float3 rotateX(float a, float3 p)
 {
     return float3(
         p.x,
@@ -60,7 +60,7 @@ float3 rotateX(float a, float3 p)
     );
 }
 
-float3 rotateY(float a, float3 p) 
+float3 rotateY(float a, float3 p)
 {
     float2 xz = rotate2D(a, p.xz);
 
@@ -71,7 +71,7 @@ float3 rotateY(float a, float3 p)
     );
 }
 
-float3 rotateZ(float a, float3 p) 
+float3 rotateZ(float a, float3 p)
 {
     return float3(
         rotate2D(a, p.xy),
@@ -79,7 +79,7 @@ float3 rotateZ(float a, float3 p)
     );
 }
 
-float3 rotatePoint(float3 a, float3 p) 
+float3 rotatePoint(float3 a, float3 p)
 {
     float cx = cos(a.x);
     float sx = sin(a.x);
@@ -87,7 +87,7 @@ float3 rotatePoint(float3 a, float3 p)
     float sy = sin(a.y);
     float cz = cos(a.z);
     float sz = sin(a.z);
-    
+
     return float3(
         p.x * (cy*cx) + p.y * (sz*sy*cx - cz*sx) + p.z * (cz*sy*cx + sz*sx),
         p.x * (cy*sx) + p.y * (sz*sy*sx + cz*cx) + p.z * (cz*sy*sx - sz*cx),
@@ -160,4 +160,21 @@ float3 rotateLookOnAxis(float3 forward, float3 up, float3 p)
     float3x3 m = matrixFromBasis(right, up, forward);
 
     return -mul(m, p);
+}
+
+float4x4 rotate3DMatrix(float x, float y, float z)
+{
+    float cx = cos(x);
+    float sx = sin(x);
+    float cy = cos(y);
+    float sy = sin(y);
+    float cz = cos(z);
+    float sz = sin(z);
+
+    return float4x4(
+        cy*cx, sz*sy*cx - cz*sx, cz*sy*cx + sz*sx, 0,
+        cy*sx, sz*sy*sx + cz*cx, cz*sy*sx - sz*cx, 0,
+        -sy, sz*cy, cz*cy, 0,
+        0, 0, 0, 1
+    );
 }

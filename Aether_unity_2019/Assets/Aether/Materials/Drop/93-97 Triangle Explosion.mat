@@ -57,13 +57,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _CloudAmount: 1
+    - _CloudPow: 3.5
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _ExplosionFalloff: 11.97
+    - _ExplosionNoise: 0
     - _ExplosionPower: 348.1
     - _ExplosionRange: 8
-    - _ExplosionTime: 20.97
+    - _ExplosionSpin: 1
+    - _ExplosionTime: 12.2
     - _FBM: 1.84
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -77,6 +81,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _StencilRef: 1
     - _TimeScale: 1.02
     - _UVSec: 0
     - _Voronoi1Scale: 31.08

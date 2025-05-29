@@ -187,3 +187,11 @@ float noise1d( float x )
     // quartic polynomial
     return s*f*(f-1.0)*((16.0*k-4.0)*f*(f-1.0)-1.0);
 }
+
+float3 random_in_unit_sphere(float3 seed)
+{
+	float3 h = hash(seed) * float3(2., 6.28318530718, 1.) - float3(1, 0, 0);
+	float phi = h.y;
+	float r = pow(h.z, 1. / 3.);
+	return r * float3(sqrt(1. - h.x * h.x) * float2(sin(phi), cos(phi)), h.x);
+}
