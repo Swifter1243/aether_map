@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Terrain
-  m_Shader: {fileID: 4800000, guid: 8d76ba14cd362484bb6019283939aa29, type: 3}
-  m_ShaderKeywords: DISTANCE_FOG HEIGHT_FOG
+  m_Name: 189 - Ground Fog
+  m_Shader: {fileID: 4800000, guid: d0b3e8b6d67c43b4b5bfe738696a1509, type: 3}
+  m_ShaderKeywords: RAINBOW
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: 4000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -56,32 +56,33 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BlendOp: 0
+    - _Brightness: 0.04
     - _BumpScale: 1
+    - _Contrast: 1.06
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistanceFogEnabled: 1
     - _DstBlend: 0
-    - _FadeDistanceEnd: 518.9
-    - _FadeDistanceStart: 0
-    - _GlassRefraction: 1.94
+    - _Flutter: 0
+    - _FocalAmount: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightFogEnabled: 1
-    - _HeightFogEnd: 0
-    - _HeightFogStart: -1.35
     - _Metallic: 0
+    - _MixRainbow: 0.44
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Rainbow: 1
+    - _RainbowScale: 1.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilComp: 8
-    - _StencilPass: 2
-    - _StencilRef: 0
+    - _TimeScale: 1
     - _UVSec: 0
+    - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _TextureScale: {r: 11.64, g: 6.62, b: 0, a: 0}
