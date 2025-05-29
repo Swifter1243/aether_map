@@ -26,6 +26,7 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
     
     intro(map)
     drop(map)
+    ambient(map)
 }
 
 function infoSetup(map: rm.V3Difficulty) {
@@ -112,6 +113,13 @@ function drop(map: rm.V3Difficulty)
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
 
     dropScene.destroyObject(TIMES.DROP_END)
+}
+
+function ambient(map: rm.V3Difficulty)
+{
+    const ambientScene = prefabs.ambient.instantiate(map, TIMES.DROP_END)
+
+    // TODO: ambientScene.destroyObject(???)
 }
 
 await Promise.all([
