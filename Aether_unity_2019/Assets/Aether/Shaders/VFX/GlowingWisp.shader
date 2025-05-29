@@ -6,6 +6,7 @@
         _Color ("Color", Color) = (1,1,1)
         [Toggle(RAINBOW)] _Rainbow ("Use Rainbow", Int) = 0
         _MixRainbow ("Mix Rainbow", Float) = 0.8
+        _RainbowScale ("Rainbow Scale", Float) = 4
         _Brightness ("Brightness", Float) = 2
         _Contrast ("Contrast", Float) = 2.2
         _TimeScale ("Time Scale", float) = 1
@@ -70,6 +71,7 @@
             float _Flutter;
             float _FocalAmount;
             float _MixRainbow;
+            float _RainbowScale;
             float _Contrast;
 
             fixed4 frag (v2f i) : SV_Target
@@ -104,7 +106,7 @@
                 v = max(v, 0);
 
                 #if RAINBOW
-                float3 col = rainbow(n * 4 + _Time.y * _TimeScale + n * 2);
+                float3 col = rainbow(n * _RainbowScale + _Time.y * _TimeScale * _RainbowScale * 0.25 + n * _RainbowScale * 0.5);
                 col = lerp(_Color, col, _MixRainbow);
                 #else
                 float3 col = _Color;
