@@ -70,7 +70,7 @@ Material:
     - _Parallax: 0.02
     - _RainbowOffset: 0.3
     - _RainbowScale: 3
-    - _Saturation: 0.7
+    - _Saturation: 0.52
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
