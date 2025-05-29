@@ -69,7 +69,7 @@ Material:
     - _GlossyReflections: 1
     - _HeightFogEnabled: 1
     - _HeightFogEnd: 0
-    - _HeightFogStart: -5
+    - _HeightFogStart: -1.35
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
