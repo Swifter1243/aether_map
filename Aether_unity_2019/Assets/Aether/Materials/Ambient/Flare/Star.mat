@@ -32,9 +32,9 @@ Material:
     - _Size: 2.9
     - _Softness: 7
     - _Spread: 0.09
-    - _StencilComp: 8
-    - _StencilPass: 2
-    - _StencilRef: 0
+    - _StencilComp: 3
+    - _StencilPass: 0
+    - _StencilRef: 1
     - _Thickness: -0
     - _ZTest: 8
     m_Colors: []

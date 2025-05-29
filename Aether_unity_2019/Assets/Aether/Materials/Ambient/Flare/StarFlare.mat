@@ -59,7 +59,7 @@ Material:
     - _Alpha: 0.5
     - _Bend: 0.5
     - _BlendOp: 0
-    - _Brightness: 66.2
+    - _Brightness: 18.1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -79,7 +79,7 @@ Material:
     - _Spread: 0.2
     - _SrcBlend: 1
     - _StencilComp: 8
-    - _StencilPass: 2
+    - _StencilPass: 0
     - _StencilRef: 0
     - _UVSec: 0
     - _ZTest: 8
