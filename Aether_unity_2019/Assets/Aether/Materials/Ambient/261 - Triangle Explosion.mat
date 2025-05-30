@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 261 - Triangle Explosion
   m_Shader: {fileID: 4800000, guid: 27eac803e5b43154a9bd35cfeb450112, type: 3}
-  m_ShaderKeywords: SKYBOX_CLOUDS
+  m_ShaderKeywords: DISTANCE_FOG SKYBOX_CLOUDS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -56,21 +56,28 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BlendOp: 0
     - _BumpScale: 1
     - _CloudAmount: 1.96
     - _CloudPow: 0.55
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DistanceFogEnabled: 1
+    - _DstBlend: 6
     - _ExplosionFalloff: 1
     - _ExplosionNoise: 0.97
     - _ExplosionRange: 106.5
     - _ExplosionSpin: 1.12
     - _ExplosionTime: 0.26
     - _FBM: 0.3
+    - _FadeDistanceEnd: 370.6
+    - _FadeDistanceStart: 227.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HeightFogEnabled: 0
+    - _HeightFogEnd: 10
+    - _HeightFogStart: 0
     - _HueSaturation: 0.2
     - _Metallic: 0
     - _Mode: 0
@@ -83,7 +90,7 @@ Material:
     - _SkyboxHorizon: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 3
     - _StencilRef: 10
     - _TimeScale: 1
     - _UVSec: 0
