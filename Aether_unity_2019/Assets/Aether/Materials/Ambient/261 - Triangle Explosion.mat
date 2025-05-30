@@ -70,8 +70,8 @@ Material:
     - _ExplosionSpin: 1.12
     - _ExplosionTime: 0.26
     - _FBM: 0.3
-    - _FadeDistanceEnd: 370.6
-    - _FadeDistanceStart: 227.5
+    - _FadeDistanceEnd: 528.9
+    - _FadeDistanceStart: -79.6
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
