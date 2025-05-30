@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 189 - Terrain
-  m_Shader: {fileID: 4800000, guid: 8d76ba14cd362484bb6019283939aa29, type: 3}
-  m_ShaderKeywords: DISTANCE_FOG HEIGHT_FOG
+  m_Name: 261 - Extending Arrows
+  m_Shader: {fileID: 4800000, guid: 74b6248656457c746b3f4b675c8d092b, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: 2003
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -56,31 +56,34 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BlendDst: 1
+    - _BlendSrc: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistanceFogEnabled: 1
     - _DstBlend: 0
-    - _FadeDistanceEnd: 481.77
-    - _FadeDistanceStart: 0
-    - _GlassRefraction: 0.77
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightFogEnabled: 1
-    - _HeightFogEnd: 0
-    - _HeightFogStart: -1.35
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Opacity: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilComp: 8
-    - _StencilPass: 2
-    - _StencilRef: 0
+    - _StretchLength: 2.43
+    - _StretchVariation: 3.36
+    - _TipBase: 65.4
+    - _TipBrightness: 1
+    - _TwistAmount: 1
+    - _TwistRadius: 1
+    - _TwistSpeed: 0.12
     - _UVSec: 0
+    - _WaveAmplitude: 1.04
+    - _WavePosition: 3.51
+    - _WaveSpread: 2.32
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

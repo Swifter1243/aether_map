@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 189 - Triangle Explosion
-  m_Shader: {fileID: 4800000, guid: 27eac803e5b43154a9bd35cfeb450112, type: 3}
-  m_ShaderKeywords: SKYBOX_CLOUDS
+  m_Name: 261 - Ground Fog
+  m_Shader: {fileID: 4800000, guid: d0b3e8b6d67c43b4b5bfe738696a1509, type: 3}
+  m_ShaderKeywords: RAINBOW
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2001
+  m_CustomRenderQueue: 4000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -56,43 +56,33 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BlendOp: 0
+    - _Brightness: 0.04
     - _BumpScale: 1
-    - _CloudAmount: 1.96
-    - _CloudPow: 0.55
+    - _Contrast: 1.06
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _ExplosionFalloff: 1
-    - _ExplosionNoise: 0.97
-    - _ExplosionRange: 106.5
-    - _ExplosionSpin: 1.12
-    - _ExplosionTime: 0.26
-    - _FBM: 0.3
+    - _Flutter: 0
+    - _FocalAmount: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HueSaturation: 0.2
     - _Metallic: 0
+    - _MixRainbow: 0.44
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Simplex1Scale: 3
-    - _SkyboxCloudFog: 0
-    - _SkyboxCloudFogDistance: 100
-    - _SkyboxClouds: 1
-    - _SkyboxHorizon: 0
+    - _Rainbow: 1
+    - _RainbowScale: 1.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilRef: 10
     - _TimeScale: 1
     - _UVSec: 0
-    - _Voronoi1Scale: 20
-    - _Voronoi2Scale: 3
+    - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ExplosionPoint: {r: 0, g: 27.9, b: 0, a: 1}
-    - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
+    - _TextureScale: {r: 11.64, g: 6.62, b: 0, a: 0}
