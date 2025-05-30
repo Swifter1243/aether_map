@@ -21,8 +21,12 @@ Shader "Swifter/TriangleExplosion"
         _Simplex1Scale ("Simplex 1 Scale", Float) = 3
         _FBM ("Fractional Brownian Motion", Float) = 0.3
         _TimeScale ("Time Scale", Float) = 1
+        [Toggle(SKYBOX_HORIZON)] _SkyboxHorizon ("Horizon", Int) = 0
+        [Toggle(SKYBOX_CLOUDS)] _SkyboxClouds ("Clouds", Int) = 0
         _CloudPow ("Cloud Pow", Float) = 3.5
         _CloudAmount ("Cloud Amount", Float) = 1
+        [Toggle(SKYBOX_CLOUD_FOG)] _SkyboxCloudFog ("Cloud Fog", Int) = 0
+        _SkyboxCloudFogDistance ("Cloud Fog Distance", Float) = 100
     }
     SubShader
     {
@@ -127,7 +131,7 @@ Shader "Swifter/TriangleExplosion"
             	float explosionPower = _ExplosionTime * explosionInfluence;
 
             	float3 noise = random_in_unit_sphere(midPoint);
-            	float3 newMidpoint = midPoint + travelDir * (explosionPower + noise.x * _ExplosionNoise);
+            	float3 newMidpoint = midPoint + travelDir * (explosionPower + noise.x * _ExplosionNoise * explosionPower);
             	float3 angularMomentum = noise * explosionPower * _ExplosionSpin;
             	float4x4 rotate = rotate3DMatrix(angularMomentum.x, angularMomentum.y, angularMomentum.z);
 
@@ -160,6 +164,9 @@ Shader "Swifter/TriangleExplosion"
             #pragma geometry geom
             #pragma fragment frag
             #pragma multi_compile_instancing
+            #pragma shader_feature SKYBOX_HORIZON
+            #pragma shader_feature SKYBOX_CLOUDS
+            #pragma shader_feature SKYBOX_CLOUD_FOG
 
             #include "UnityCG.cginc"
             #include "IntroSkybox.hlsl"
@@ -246,7 +253,7 @@ Shader "Swifter/TriangleExplosion"
             	float explosionPower = _ExplosionTime * explosionInfluence;
 
             	float3 noise = random_in_unit_sphere(midPoint);
-            	float3 newMidpoint = midPoint + travelDir * (explosionPower + noise.x * _ExplosionNoise);
+            	float3 newMidpoint = midPoint + travelDir * (explosionPower + noise.x * _ExplosionNoise * explosionPower);
             	float3 angularMomentum = noise * explosionPower * _ExplosionSpin;
             	float4x4 rotate = rotate3DMatrix(angularMomentum.x, angularMomentum.y, angularMomentum.z);
 
@@ -283,6 +290,9 @@ Shader "Swifter/TriangleExplosion"
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_instancing
+            #pragma shader_feature SKYBOX_HORIZON
+            #pragma shader_feature SKYBOX_CLOUDS
+            #pragma shader_feature SKYBOX_CLOUD_FOG
 
             #include "UnityCG.cginc"
             #include "IntroSkybox.hlsl"
