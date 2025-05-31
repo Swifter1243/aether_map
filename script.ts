@@ -104,9 +104,9 @@ function intro(map: rm.V3Difficulty) {
     })
     
     moveScene(map, prefabs.intro_1, TIMES.INTRO1, TIMES.INTRO2)
-    bokeh(materials.introbokeh, map, TIMES.INTRO1)
+    bokeh(materials.introbokeh, map, TIMES.INTRO1, 10, 15)
     moveScene(map, prefabs.intro_2, TIMES.INTRO2, TIMES.INTRO3)
-    bokeh(materials.introbokeh, map, TIMES.INTRO2)
+    bokeh(materials.introbokeh, map, TIMES.INTRO2, 10, 15)
 
     const tempScene = prefabs.intro_2.instantiate(map, TIMES.INTRO3)
 
