@@ -4,6 +4,7 @@ Shader "Swifter/Blit/Bokeh"
     {
         _MainTex ("Texture", 2D) = "white" {}
     	_Radius ("Radius", Float) = 0.1
+    	_RadiusFlutter ("Radius Flutter", Float) = 0
     	_Steps ("Steps", Int) = 25
     	_Gamma ("Gamma", Float) = 4
 
@@ -25,10 +26,12 @@ Shader "Swifter/Blit/Bokeh"
             #include "UnityCG.cginc"
 
             // VivifyTemplate Libraries
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+
+            #include "../Flutter.hlsl"
 
             struct appdata
             {
@@ -51,6 +54,7 @@ Shader "Swifter/Blit/Bokeh"
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
             float2 _MainTex_TexelSize;
             float _Radius;
+            float _RadiusFlutter;
             int _Steps;
             float _Gamma;
             float _FocalDistance;
@@ -88,6 +92,8 @@ Shader "Swifter/Blit/Bokeh"
             	#else
             	float radius = _Radius;
             	#endif
+
+            	radius *= flutter(_RadiusFlutter);
 
             	// ADAPTED FROM: https://github.com/XorDev/Bokeh/wiki
 
