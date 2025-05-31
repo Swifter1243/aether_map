@@ -61824,6 +61824,21 @@ MonoBehaviour:
   postProcessingMaterial: {fileID: 2100000, guid: 5925f612338ef3a48bcd567e6e69d2bf,
     type: 2}
   pass: 0
+--- !u!114 &945470284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945470282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8ac420c119e69489f20a7ee3f6ebee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessingMaterial: {fileID: 2100000, guid: f8a76adf19a69184aa3ffa80efb8ab64,
+    type: 2}
+  pass: 0
 --- !u!1 &946322531
 GameObject:
   m_ObjectHideFlags: 0
