@@ -26,6 +26,22 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
     
     intro(map)
     drop(map)
+
+    const dropAmbientTransitionDuration = 16
+    const transitionMat = materials['drop-ambient transition']
+    const mixProperty: keyof typeof transitionMat['propertyTypes'] = '_Mix'
+    transitionMat.blit(map, {
+        beat: TIMES.DROP_END - dropAmbientTransitionDuration / 2,
+        duration: dropAmbientTransitionDuration,
+        properties: [
+            {
+                id: mixProperty,
+                type: transitionMat.propertyTypes[mixProperty],
+                value: [[0, 0], [1, 0.5, 'easeInCubic'], [0, 1, 'easeOutExpo']]
+            }
+        ]
+    })
+
     ambient(map)
 }
 
