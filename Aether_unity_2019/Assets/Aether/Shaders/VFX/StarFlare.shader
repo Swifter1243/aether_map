@@ -5,6 +5,7 @@ Properties
         _Sharpness ("Sharpness", Float) = 15
         _Brightness ("Brightness", Float) = 3
         _Color ("Color", Color) = (1,1,1)
+        _Alpha ("Alpha", Float) = 0
         _Flutter ("Flutter", Float) = 0
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
@@ -65,6 +66,7 @@ Properties
             float _Sharpness;
             float _Brightness;
             float3 _Color;
+            float _Alpha;
             float _Flutter;
 
             v2f vert (appdata v)
@@ -90,7 +92,7 @@ Properties
 
                 v *= flutter(_Flutter);
 
-                return float4(v * _Color,0);
+                return float4(v * _Color,v * _Alpha);
             }
             ENDCG
         }
