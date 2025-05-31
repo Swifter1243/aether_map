@@ -3,13 +3,13 @@ Shader "Swifter/Blit/Bokeh"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-    	_Radius ("Radius", Float) = 0.1
-    	_Steps ("Steps", Int) = 25
-    	_Gamma ("Gamma", Float) = 4
+    	_Radius ("Radius", Float) = 3
+    	_Steps ("Steps", Int) = 15
+    	_Gamma ("Gamma", Float) = 7
 
     	[Toggle(DEPTH_OF_FIELD)] _DepthOfFieldEnabled ("Depth Of Field", Int) = 0
     	_FocalDistance ("Focal Distance", Float) = 100
-    	_FocalFalloff ("Focal Falloff", Float) = 5
+    	_FocalFalloff ("Focal Falloff", Float) = 0.01
     }
     SubShader
     {
