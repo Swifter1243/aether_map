@@ -37,7 +37,7 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
             {
                 id: mixProperty,
                 type: transitionMat.propertyTypes[mixProperty],
-                value: [[0, 0], [1, 0.5, 'easeInCubic'], [0, 1, 'easeOutExpo']]
+                value: [[0, 0.48], [1, 0.5, 'easeInCubic'], [0, 1, 'easeOutExpo']]
             }
         ]
     })
