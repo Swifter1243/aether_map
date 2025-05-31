@@ -83,6 +83,18 @@ function moveScene(map: rm.V3Difficulty, prefab: rm.Prefab, start: number, end: 
     instance.destroyObject(end)
 }
 
+function bokehFlutter(map: rm.AbstractDifficulty, beat: number, duration = 10, radius = 25)
+{
+    materials.introbokeh.blit(map, {
+        beat,
+        duration
+    })
+
+    materials.introbokeh.set(map, {
+        _Radius: [[radius, 0], [0, 1, 'easeOutSine']],
+    }, beat, duration)
+}
+
 function intro(map: rm.V3Difficulty) {
     rm.setRenderingSettings(map, {
         beat: TIMES.INTRO1,
@@ -92,7 +104,9 @@ function intro(map: rm.V3Difficulty) {
     })
     
     moveScene(map, prefabs.intro_1, TIMES.INTRO1, TIMES.INTRO2)
+    bokehFlutter(map, TIMES.INTRO1)
     moveScene(map, prefabs.intro_2, TIMES.INTRO2, TIMES.INTRO3)
+    bokehFlutter(map, TIMES.INTRO2)
 
     const tempScene = prefabs.intro_2.instantiate(map, TIMES.INTRO3)
 

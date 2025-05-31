@@ -61,9 +61,10 @@ Material:
     - _DepthOfFieldEnabled: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FocalDistance: 171.7
-    - _FocalFalloff: 0.01
-    - _Gamma: 2.7
+    - _FocalDistance: 15.99
+    - _FocalFalloff: 0.001
+    - _Gamma: 5.4
+    - _GammaFlutter: 1.4
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -71,7 +72,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Radius: 10.6
+    - _Radius: 7
     - _RadiusFlutter: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
