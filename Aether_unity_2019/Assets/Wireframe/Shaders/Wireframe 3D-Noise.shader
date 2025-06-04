@@ -23,7 +23,7 @@ Shader "Mawntee/Beat Saber Wireframe 3D-Noise"
 
 	SubShader
 	{
-        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+        Tags { "RenderType"="Opaque" }
         Blend SrcColor OneMinusSrcColor
         Cull [_CullMode]
 		Pass
@@ -45,11 +45,5 @@ Shader "Mawntee/Beat Saber Wireframe 3D-Noise"
 
 			ENDCG
 		}
-		//Pass
-		//{
-		//    ZWrite On
-		//    ColorMask 0
-		//}
-		UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
 	}
 }
