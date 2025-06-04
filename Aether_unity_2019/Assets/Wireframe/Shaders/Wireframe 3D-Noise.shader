@@ -10,15 +10,6 @@ Shader "Mawntee/Beat Saber Wireframe 3D-Noise"
 		_BaseColor ("Base Color", Color) = (0.0, 0.0, 0.0, 1.0)
 		_MaxTriSize ("Max Tri Size", RANGE(0, 1000)) = 25
 
-		[Header(3D Noise)]
-        [PowerSlider(.3)]_Noise ("Noise", Range(0, 1)) = 1
-        _NoiseScroll ("Noise Scroll", Vector) = (0.1, 0.1,0,0)
-        _NoiseSize ("Noise1 Size", Range(0, 1)) = 1
-        _NoiseSize2 ("Noise2 Size", Range(0, 1)) = 1
-        _NoisePower ("Noise1 Power", Range(0, 10)) = 1
-        _NoisePower2 ("Noise2 Power", Range(0, 10)) = 1
-        [NoScaleOffset]_Volume ("3D Noise Tex", 3D) = ""{}
-
 		[Header(Beat Saber)]
         [Space(5)]
 		_Glow ("Glow", RANGE(0, 1)) = 0
