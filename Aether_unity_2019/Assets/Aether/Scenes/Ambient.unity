@@ -49138,12 +49138,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1920243167}
+    m_TransformParent: {fileID: 1431544474}
     m_Modifications:
     - target: {fileID: 824592098668457777, guid: fc1c257692dc12d46b2769a0fcd11526,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 824592098668457777, guid: fc1c257692dc12d46b2769a0fcd11526,
         type: 3}
@@ -49163,7 +49163,7 @@ PrefabInstance:
     - target: {fileID: 824592098668457777, guid: fc1c257692dc12d46b2769a0fcd11526,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.56
+      value: 0.56000006
       objectReference: {fileID: 0}
     - target: {fileID: 824592098668457777, guid: fc1c257692dc12d46b2769a0fcd11526,
         type: 3}
@@ -49183,17 +49183,17 @@ PrefabInstance:
     - target: {fileID: 824592098668457777, guid: fc1c257692dc12d46b2769a0fcd11526,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 824592098668457777, guid: fc1c257692dc12d46b2769a0fcd11526,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 824592098668457777, guid: fc1c257692dc12d46b2769a0fcd11526,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 824592098668457777, guid: fc1c257692dc12d46b2769a0fcd11526,
         type: 3}
@@ -108885,6 +108885,7 @@ Transform:
   m_Children:
   - {fileID: 1044680093}
   - {fileID: 1841120429}
+  - {fileID: 701098031}
   m_Father: {fileID: 1920243167}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -110732,7 +110733,7 @@ Transform:
   m_LocalScale: {x: 0.25693, y: 0.25693, z: 0.25693}
   m_Children: []
   m_Father: {fileID: 1920243167}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1582359762
 ParticleSystemRenderer:
@@ -137600,7 +137601,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1431544474}
-  - {fileID: 701098031}
   - {fileID: 1582359761}
   m_Father: {fileID: 583263114}
   m_RootOrder: 6
