@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 325.5 - Tower Glow
+  m_Name: 353 - Tower Glow
   m_Shader: {fileID: 4800000, guid: 8325ce697c6a3c840b9084ade332aaf2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -58,7 +58,7 @@ Material:
     m_Floats:
     - _Alpha: 0
     - _BlendOp: 0
-    - _Brightness: 0.26
+    - _Brightness: 1.57
     - _BumpScale: 1
     - _Cull: 0
     - _Cutoff: 0.5
@@ -72,16 +72,16 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Sharpness: 148.5
+    - _Sharpness: 153.41
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilComp: 8
+    - _StencilComp: 3
     - _StencilPass: 2
-    - _StencilRef: 0
+    - _StencilRef: 1
     - _UVSec: 0
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8820755, g: 0.95964813, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
