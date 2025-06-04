@@ -16,6 +16,7 @@ Shader "Swifter/GraphicText"
             "RenderType"="Transparent"
             "Queue"="Transparent"
         }
+        Blend One One
 
         Pass
         {
