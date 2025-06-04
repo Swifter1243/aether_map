@@ -82,7 +82,7 @@ Shader "Swifter/GraphicText"
                 float value = smoothstep(0.5 - _Sharpness, 0.5 + _Sharpness, sdf);
                 value *= _Opacity;
 
-                return value;
+                return float4(value, value, value, value * _Glow);
             }
             ENDCG
         }
