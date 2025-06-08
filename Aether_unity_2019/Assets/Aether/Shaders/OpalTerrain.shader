@@ -3,7 +3,9 @@ Shader "Swifter/OpalTerrain"
     Properties
     {
         _Depth ("Depth", Float) = 1
-        _Scale ("Scale", Float) = 5
+        _NoiseScale ("Noise Scale", Float) = 1
+        _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 0.75
+        _SurfaceDistortion ("Surface Distortion", Float) = 0.1
     }
     SubShader
     {
@@ -22,7 +24,7 @@ Shader "Swifter/OpalTerrain"
 
             // VivifyTemplate Libraries
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
@@ -40,11 +42,14 @@ Shader "Swifter/OpalTerrain"
                 float3 linePoint : TEXCOORD1;
                 float3 planeNormal : TEXCOORD2;
                 float3 planePoint : TEXCOORD3;
+                float3 localPos : TEXCOORD4;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
             float _Depth;
-            float _Scale;
+            float _NoiseScale;
+            float _AngleRainbowInfluence;
+            float _SurfaceDistortion;
 
             float3 intersectLineWithPlane(in float3 planePoint, in float3 planeNormal, in float3 linePoint, in float3 lineDir)
             {
@@ -69,6 +74,7 @@ Shader "Swifter/OpalTerrain"
                 o.planePoint = planePoint;
                 o.lineDir = viewDir;
                 o.linePoint = localCameraPos;
+                o.localPos = v.vertex;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 return o;
@@ -78,11 +84,22 @@ Shader "Swifter/OpalTerrain"
             {
                 float3 intersectionPoint = intersectLineWithPlane(i.planePoint, i.planeNormal, i.linePoint, i.lineDir);
 
-                float n = voronoi(intersectionPoint * _Scale);
+                float3 surfaceN = voronoi(i.localPos * _NoiseScale * 0.9);
+                float3 n1 = voronoi(intersectionPoint * _NoiseScale * 20 + surfaceN.z * _SurfaceDistortion);
+                float3 n2 = voronoi(intersectionPoint * _NoiseScale + n1.x * 0.9 + surfaceN.z * _SurfaceDistortion);
 
-                return n;
+                float3 n = n1 * 0.2 + n2;
+                float3 internalNormal = float3(n.xy, 0);
+                float3 reflection = reflect(i.lineDir, internalNormal);
 
-                return float4(intersectionPoint, 0);
+                float d = dot(i.planeNormal, reflection) * _AngleRainbowInfluence;
+
+                float3 hue = rainbow(d);
+                float saturation = surfaceN.x * n2.x;
+
+                float3 col = lerp(1, hue, saturation);
+
+                return float4(col, 0);
             }
             ENDCG
         }
