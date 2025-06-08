@@ -35,8 +35,8 @@ Shader "Swifter/OpalTerrain"
             struct v2f
             {
                 float4 vertex : SV_POSITION;
-                float3 worldPos : TEXCOORD0;
-                float3 worldCenter : TEXCOORD1;
+                float3 lineDir : TEXCOORD0;
+                float3 linePoint : TEXCOORD1;
                 float3 planeNormal : TEXCOORD2;
                 float3 planePoint : TEXCOORD3;
                 UNITY_VERTEX_OUTPUT_STEREO
@@ -51,8 +51,6 @@ Shader "Swifter/OpalTerrain"
                 return linePoint + t * lineDir;
             }
 
-            #define WORLD_CENTER unity_ObjectToWorld._m03_m13_m23
-
             v2f vert (appdata v)
             {
                 v2f o;
@@ -60,14 +58,15 @@ Shader "Swifter/OpalTerrain"
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o)
 
-                float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
-                float3 worldNormal = UnityObjectToWorldNormal(v.normal);
-                float3 planePoint = WORLD_CENTER - worldNormal * _Depth;
+                float3 planePoint = -v.normal * _Depth;
+                float3 localCameraPos = mul(unity_WorldToObject, float4(_WorldSpaceCameraPos, 1));
+                float3 viewVector = v.vertex - localCameraPos;
+                float3 viewDir = normalize(viewVector);
 
-                o.worldPos = worldPos;
-                o.worldCenter = WORLD_CENTER;
-                o.planeNormal = worldNormal;
+                o.planeNormal = v.normal;
                 o.planePoint = planePoint;
+                o.lineDir = viewDir;
+                o.linePoint = localCameraPos;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 return o;
@@ -75,12 +74,7 @@ Shader "Swifter/OpalTerrain"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float3 viewVector = i.worldPos - _WorldSpaceCameraPos;
-                float3 viewDir = normalize(viewVector);
-
-                float3 intersectionPoint = intersectLineWithPlane(i.planePoint, i.planeNormal, _WorldSpaceCameraPos, viewDir);
-
-                intersectionPoint -= i.worldCenter;
+                float3 intersectionPoint = intersectLineWithPlane(i.planePoint, i.planeNormal, i.linePoint, i.lineDir);
 
                 float n = voronoi(intersectionPoint * 2);
 
