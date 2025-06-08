@@ -4,6 +4,8 @@ Shader "Swifter/OpalTerrain"
     {
         _Depth ("Depth", Float) = 1
         _NoiseScale ("Noise Scale", Float) = 1
+        _SurfaceScale ("Surface Scale", Float) = 0.5
+        _DetailScale ("Detail Scale", Float) = 20
         _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 0.75
         _NoiseRainbowInfluence ("Noise Rainbow Influence", Float) = 1
         _SurfaceDistortion ("Surface Distortion", Float) = 0.1
@@ -50,6 +52,8 @@ Shader "Swifter/OpalTerrain"
 
             float _Depth;
             float _NoiseScale;
+            float _SurfaceScale;
+            float _DetailScale;
             float _AngleRainbowInfluence;
             float _NoiseRainbowInfluence;
             float _SurfaceDistortion;
@@ -88,15 +92,15 @@ Shader "Swifter/OpalTerrain"
             {
                 float3 intersectionPoint = intersectLineWithPlane(i.planePoint, i.planeNormal, i.linePoint, i.lineDir);
 
-                float3 surfaceN = voronoi(i.localPos * _NoiseScale * 0.9);
-                float3 n1 = voronoi(intersectionPoint * _NoiseScale * 20 + surfaceN.z * _SurfaceDistortion);
+                float3 surfaceN = voronoi(i.localPos * _NoiseScale * _SurfaceScale);
+                float3 n1 = voronoi(intersectionPoint * _NoiseScale * _DetailScale + surfaceN.z * _SurfaceDistortion);
                 float3 n2 = voronoi(intersectionPoint * _NoiseScale + n1.x * _FBM + surfaceN.z * _SurfaceDistortion);
 
                 float d = dot(i.planeNormal, i.lineDir) * _AngleRainbowInfluence;
                 d += n2.x * _NoiseRainbowInfluence;
 
                 float3 hue = rainbow(d);
-                float saturation = surfaceN.x * n2.x;
+                float saturation = surfaceN.y * n2.x;
 
                 float3 col = lerp(1, hue, saturation);
 
