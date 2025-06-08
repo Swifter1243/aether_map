@@ -4,12 +4,12 @@ Shader "Swifter/OpalTerrain"
     {
         _Depth ("Depth", Float) = 1
         _NoiseScale ("Noise Scale", Float) = 1
-        _SurfaceScale ("Surface Scale", Float) = 0.5
-        _DetailScale ("Detail Scale", Float) = 20
-        _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 0.75
-        _NoiseRainbowInfluence ("Noise Rainbow Influence", Float) = 1
+        _SurfaceScale ("Surface Scale", Float) = 3
+        _DetailScale ("Detail Scale", Float) = 1
+        _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 5
+        _NoiseRainbowInfluence ("Noise Rainbow Influence", Float) = 2
         _SurfaceDistortion ("Surface Distortion", Float) = 0.1
-        _FBM ("FBM", Float) = 0.9
+        _FBM ("FBM", Float) = 3
     }
     SubShader
     {
