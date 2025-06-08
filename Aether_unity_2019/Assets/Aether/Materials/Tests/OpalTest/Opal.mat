@@ -56,11 +56,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AngleRainbowInfluence: 5
+    - _AngleRainbowInfluence: -2.94
     - _BumpScale: 1
     - _CellRainbowInfluence: 0
     - _Cutoff: 0.5
-    - _Depth: 2.03
+    - _Darkness: 3
+    - _Depth: 7.11
     - _DetailNormalMapScale: 1
     - _DetailScale: 1
     - _DstBlend: 0
@@ -68,10 +69,11 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _IQR: 1.45
     - _Metallic: 0
     - _Mode: 0
     - _NoiseRainbowInfluence: 2
-    - _NoiseScale: 0.39
+    - _NoiseScale: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Scale: 0.83

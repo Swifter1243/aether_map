@@ -2,8 +2,8 @@ Shader "Swifter/OpalTerrain"
 {
     Properties
     {
-        _Depth ("Depth", Float) = 1
-        _NoiseScale ("Noise Scale", Float) = 1
+        _Depth ("Depth", Float) = 7
+        _NoiseScale ("Noise Scale", Float) = 0.5
         _SurfaceScale ("Surface Scale", Float) = 3
         _DetailScale ("Detail Scale", Float) = 1
         _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 5
@@ -11,6 +11,7 @@ Shader "Swifter/OpalTerrain"
         _SurfaceDistortion ("Surface Distortion", Float) = 0.1
         _Darkness ("Darkness", Float) = 3
         _FBM ("FBM", Float) = 3
+        _IQR ("Refractive Index", Float) = 1.45
     }
     SubShader
     {
@@ -43,10 +44,9 @@ Shader "Swifter/OpalTerrain"
             struct v2f
             {
                 float4 vertex : SV_POSITION;
-                float3 lineDir : TEXCOORD0;
+                float3 viewDir : TEXCOORD0;
                 float3 localPos : TEXCOORD1;
-                float3 planeNormal : TEXCOORD2;
-                float3 planePoint : TEXCOORD3;
+                float3 normal : TEXCOORD2;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -59,13 +59,7 @@ Shader "Swifter/OpalTerrain"
             float _SurfaceDistortion;
             float _FBM;
             float _Darkness;
-
-            float3 intersectLineWithPlane(in float3 planePoint, in float3 planeNormal, in float3 linePoint, in float3 lineDir)
-            {
-                float denom = dot(planeNormal, lineDir);
-                float t = dot(planeNormal, planePoint - linePoint) / denom;
-                return linePoint + t * lineDir;
-            }
+            float _IQR;
 
             v2f vert (appdata v)
             {
@@ -74,14 +68,12 @@ Shader "Swifter/OpalTerrain"
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o)
 
-                float3 planePoint = -v.normal * _Depth;
                 float3 localCameraPos = mul(unity_WorldToObject, float4(_WorldSpaceCameraPos, 1));
                 float3 viewVector = v.vertex - localCameraPos;
                 float3 viewDir = normalize(viewVector);
 
-                o.planeNormal = v.normal;
-                o.planePoint = planePoint;
-                o.lineDir = viewDir;
+                o.normal = v.normal;
+                o.viewDir = viewDir;
                 o.localPos = v.vertex;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -90,13 +82,18 @@ Shader "Swifter/OpalTerrain"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float3 intersectionPoint = intersectLineWithPlane(i.planePoint, i.planeNormal, i.localPos, i.lineDir);
+                float3 refraction = refract(i.viewDir, i.normal, 1 / _IQR);
+                float3 incoming = refraction;
+
+                float incomingDepth = -dot(incoming, i.normal);
+                float3 scaledIncoming = incoming * (_Depth / incomingDepth);
+                float3 intersectionPoint = i.localPos + scaledIncoming;
 
                 float3 surfaceN = voronoi(i.localPos * _NoiseScale * _SurfaceScale);
                 float3 n1 = voronoi(intersectionPoint * _NoiseScale * _DetailScale + surfaceN.z * _SurfaceDistortion);
                 float3 n2 = voronoi(intersectionPoint * _NoiseScale + n1.x * _FBM + surfaceN.z * _SurfaceDistortion);
 
-                float d = dot(i.planeNormal, i.lineDir) * _AngleRainbowInfluence;
+                float d = dot(i.normal, i.viewDir) * _AngleRainbowInfluence;
                 d += n2.x * _NoiseRainbowInfluence;
 
                 float3 hue = rainbow(d);
