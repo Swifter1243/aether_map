@@ -60,18 +60,18 @@ Material:
     - _BumpScale: 1
     - _CellRainbowInfluence: 0
     - _Cutoff: 0.5
-    - _Depth: 1.48
+    - _Depth: 2.03
     - _DetailNormalMapScale: 1
     - _DetailScale: 1
     - _DstBlend: 0
-    - _FBM: 3
+    - _FBM: 1.96
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _NoiseRainbowInfluence: 2
-    - _NoiseScale: 1
+    - _NoiseScale: 0.39
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Scale: 0.83

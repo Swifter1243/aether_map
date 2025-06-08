@@ -9,6 +9,7 @@ Shader "Swifter/OpalTerrain"
         _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 5
         _NoiseRainbowInfluence ("Noise Rainbow Influence", Float) = 2
         _SurfaceDistortion ("Surface Distortion", Float) = 0.1
+        _Darkness ("Darkness", Float) = 3
         _FBM ("FBM", Float) = 3
     }
     SubShader
@@ -58,6 +59,7 @@ Shader "Swifter/OpalTerrain"
             float _NoiseRainbowInfluence;
             float _SurfaceDistortion;
             float _FBM;
+            float _Darkness;
 
             float3 intersectLineWithPlane(in float3 planePoint, in float3 planeNormal, in float3 linePoint, in float3 lineDir)
             {
@@ -102,7 +104,9 @@ Shader "Swifter/OpalTerrain"
                 float3 hue = rainbow(d);
                 float saturation = pow(surfaceN.y, 2) * n2.x;
 
-                float3 col = lerp(1, hue, saturation);
+                float3 blackCol = lerp(0, hue, pow(saturation, 3));
+                float3 whiteCol = lerp(1, hue, saturation);
+                float3 col = lerp(blackCol, whiteCol, pow(n2.y, _Darkness));
 
                 return float4(col, 0);
             }
