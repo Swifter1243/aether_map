@@ -100,7 +100,7 @@ Shader "Swifter/OpalTerrain"
                 d += n2.x * _NoiseRainbowInfluence;
 
                 float3 hue = rainbow(d);
-                float saturation = surfaceN.y * n2.x;
+                float saturation = pow(surfaceN.y, 2) * n2.x;
 
                 float3 col = lerp(1, hue, saturation);
 
