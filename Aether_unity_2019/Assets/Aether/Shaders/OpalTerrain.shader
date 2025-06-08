@@ -7,6 +7,7 @@ Shader "Swifter/OpalTerrain"
         _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 0.75
         _NoiseRainbowInfluence ("Noise Rainbow Influence", Float) = 1
         _SurfaceDistortion ("Surface Distortion", Float) = 0.1
+        _FBM ("FBM", Float) = 0.9
     }
     SubShader
     {
@@ -52,6 +53,7 @@ Shader "Swifter/OpalTerrain"
             float _AngleRainbowInfluence;
             float _NoiseRainbowInfluence;
             float _SurfaceDistortion;
+            float _FBM;
 
             float3 intersectLineWithPlane(in float3 planePoint, in float3 planeNormal, in float3 linePoint, in float3 lineDir)
             {
@@ -88,7 +90,7 @@ Shader "Swifter/OpalTerrain"
 
                 float3 surfaceN = voronoi(i.localPos * _NoiseScale * 0.9);
                 float3 n1 = voronoi(intersectionPoint * _NoiseScale * 20 + surfaceN.z * _SurfaceDistortion);
-                float3 n2 = voronoi(intersectionPoint * _NoiseScale + n1.x * 0.9 + surfaceN.z * _SurfaceDistortion);
+                float3 n2 = voronoi(intersectionPoint * _NoiseScale + n1.x * _FBM + surfaceN.z * _SurfaceDistortion);
 
                 float d = dot(i.planeNormal, i.lineDir) * _AngleRainbowInfluence;
                 d += n2.x * _NoiseRainbowInfluence;

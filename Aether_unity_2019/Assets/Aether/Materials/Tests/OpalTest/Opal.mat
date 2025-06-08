@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Opal
   m_Shader: {fileID: 4800000, guid: 1aba8e9557ae37f41bae3bcc6ab45107, type: 3}
-  m_ShaderKeywords:
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -63,6 +63,7 @@ Material:
     - _Depth: 2.26
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _FBM: 0.9
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
