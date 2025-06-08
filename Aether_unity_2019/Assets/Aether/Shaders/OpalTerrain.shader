@@ -3,6 +3,7 @@ Shader "Swifter/OpalTerrain"
     Properties
     {
         _Depth ("Depth", Float) = 1
+        _Scale ("Scale", Float) = 5
     }
     SubShader
     {
@@ -43,6 +44,7 @@ Shader "Swifter/OpalTerrain"
             };
 
             float _Depth;
+            float _Scale;
 
             float3 intersectLineWithPlane(in float3 planePoint, in float3 planeNormal, in float3 linePoint, in float3 lineDir)
             {
@@ -76,7 +78,7 @@ Shader "Swifter/OpalTerrain"
             {
                 float3 intersectionPoint = intersectLineWithPlane(i.planePoint, i.planeNormal, i.linePoint, i.lineDir);
 
-                float n = voronoi(intersectionPoint * 2);
+                float n = voronoi(intersectionPoint * _Scale);
 
                 return n;
 
