@@ -44,10 +44,9 @@ Shader "Swifter/OpalTerrain"
             {
                 float4 vertex : SV_POSITION;
                 float3 lineDir : TEXCOORD0;
-                float3 linePoint : TEXCOORD1;
+                float3 localPos : TEXCOORD1;
                 float3 planeNormal : TEXCOORD2;
                 float3 planePoint : TEXCOORD3;
-                float3 localPos : TEXCOORD4;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -83,7 +82,6 @@ Shader "Swifter/OpalTerrain"
                 o.planeNormal = v.normal;
                 o.planePoint = planePoint;
                 o.lineDir = viewDir;
-                o.linePoint = localCameraPos;
                 o.localPos = v.vertex;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -92,7 +90,7 @@ Shader "Swifter/OpalTerrain"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float3 intersectionPoint = intersectLineWithPlane(i.planePoint, i.planeNormal, i.linePoint, i.lineDir);
+                float3 intersectionPoint = intersectLineWithPlane(i.planePoint, i.planeNormal, i.localPos, i.lineDir);
 
                 float3 surfaceN = voronoi(i.localPos * _NoiseScale * _SurfaceScale);
                 float3 n1 = voronoi(intersectionPoint * _NoiseScale * _DetailScale + surfaceN.z * _SurfaceDistortion);
