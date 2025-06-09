@@ -13,6 +13,7 @@ Shader "Swifter/Gemstone"
         _FBM ("FBM", Float) = 2
         _IOR ("Refractive Index", Float) = 1.45
         _Color ("Color", Color) = (1,1,1)
+        _Brightness ("Brightness", Float) = 1
 
         [Header(Fog)][Space(10)]
         _FogColor ("Fog Color", Color) = (1,1,1)
@@ -24,12 +25,17 @@ Shader "Swifter/Gemstone"
         [Toggle(HEIGHT_FOG)] _HeightFogEnabled ("Height Fog Enabled", Int) = 0
         _HeightFogStart ("Height Fog Start", Float) = 0
         _HeightFogEnd ("Height Fog End", Float) = 10
+
+    	[Header(Blend)][Space(10)]
+        [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend ("Source Blend", Float) = 0
+        [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Destination Blend", Float) = 6
     }
     SubShader
     {
         Tags {
             "RenderType"="Opaque"
         }
+        Blend [_SrcBlend] [_DstBlend]
 
         Pass
         {
@@ -82,6 +88,7 @@ Shader "Swifter/Gemstone"
             float _Darkness;
             float _IOR;
             float3 _Color;
+            float _Brightness;
 
             float3 _FogColor;
             float _FadeDistanceStart;
@@ -161,7 +168,7 @@ Shader "Swifter/Gemstone"
                 col = lerp(_FogColor, col, fog);
                 #endif
 
-                return float4(col, 0);
+                return float4(col * _Brightness, 0);
             }
             ENDCG
         }
