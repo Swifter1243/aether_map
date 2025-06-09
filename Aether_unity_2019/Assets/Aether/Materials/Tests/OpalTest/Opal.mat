@@ -56,16 +56,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AngleRainbowInfluence: 1
+    - _AngleRainbowInfluence: 5
     - _BumpScale: 1
     - _CellRainbowInfluence: 0
     - _Cutoff: 0.5
-    - _Darkness: 6.1
-    - _Depth: 7.11
+    - _Darkness: 1.5
+    - _Depth: 3
     - _DetailNormalMapScale: 1
     - _DetailScale: 1
     - _DstBlend: 0
-    - _FBM: 1.96
+    - _FBM: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -85,5 +85,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.7688679, g: 1, b: 0.9178873, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

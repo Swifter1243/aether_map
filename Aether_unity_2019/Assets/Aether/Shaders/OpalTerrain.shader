@@ -2,15 +2,15 @@ Shader "Swifter/OpalTerrain"
 {
     Properties
     {
-        _Depth ("Depth", Float) = 7
+        _Depth ("Depth", Float) = 3
         _NoiseScale ("Noise Scale", Float) = 0.5
         _SurfaceScale ("Surface Scale", Float) = 3
         _DetailScale ("Detail Scale", Float) = 1
         _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 5
         _NoiseRainbowInfluence ("Noise Rainbow Influence", Float) = 2
         _SurfaceDistortion ("Surface Distortion", Float) = 0.1
-        _Darkness ("Darkness", Float) = 3
-        _FBM ("FBM", Float) = 3
+        _Darkness ("Darkness", Float) = 1.5
+        _FBM ("FBM", Float) = 2
         _IQR ("Refractive Index", Float) = 1.45
         _Color ("Color", Color) = (1,1,1)
     }
