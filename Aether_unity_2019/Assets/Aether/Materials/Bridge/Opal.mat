@@ -68,7 +68,7 @@ Material:
     - _DistanceFogEnabled: 1
     - _DstBlend: 0
     - _FBM: 2.54
-    - _FadeDistanceEnd: 80
+    - _FadeDistanceEnd: 177
     - _FadeDistanceStart: 11.15
     - _GlossMapScale: 1
     - _Glossiness: 0.5
