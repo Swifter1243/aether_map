@@ -56,32 +56,32 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AngleRainbowInfluence: 2
+    - _AngleRainbowInfluence: 1.01
     - _Brightness: 1
     - _BumpScale: 1
     - _CellRainbowInfluence: 0
     - _Cutoff: 0.5
-    - _Darkness: 2.18
-    - _Depth: 6.09
+    - _Darkness: 0.98
+    - _Depth: 7.51
     - _DetailNormalMapScale: 1
     - _DetailScale: 1.84
     - _DistanceFogEnabled: 1
     - _DstBlend: 0
-    - _FBM: 1.24
-    - _FadeDistanceEnd: 86.8
-    - _FadeDistanceStart: -22.8
+    - _FBM: 0.82
+    - _FadeDistanceEnd: 80
+    - _FadeDistanceStart: 11.15
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HeightFogEnabled: 0
     - _HeightFogEnd: 10
     - _HeightFogStart: 0
-    - _IOR: 1.45
+    - _IOR: 1.18
     - _IQR: 1.15
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseRainbowInfluence: 1.01
-    - _NoiseScale: 0.16
+    - _NoiseRainbowInfluence: 1.82
+    - _NoiseScale: 0.33
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Scale: 0.83
@@ -89,7 +89,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SurfaceDistortion: 0.1
-    - _SurfaceScale: 21.56
+    - _SurfaceScale: 4.02
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
