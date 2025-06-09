@@ -1,4 +1,4 @@
-Shader "Swifter/OpalTerrain"
+Shader "Swifter/Gemstone"
 {
     Properties
     {
@@ -11,7 +11,7 @@ Shader "Swifter/OpalTerrain"
         _SurfaceDistortion ("Surface Distortion", Float) = 0.1
         _Darkness ("Darkness", Float) = 1.5
         _FBM ("FBM", Float) = 2
-        _IQR ("Refractive Index", Float) = 1.45
+        _IOR ("Refractive Index", Float) = 1.45
         _Color ("Color", Color) = (1,1,1)
     }
     SubShader
@@ -60,7 +60,7 @@ Shader "Swifter/OpalTerrain"
             float _SurfaceDistortion;
             float _FBM;
             float _Darkness;
-            float _IQR;
+            float _IOR;
             float3 _Color;
 
             v2f vert (appdata v)
@@ -84,7 +84,7 @@ Shader "Swifter/OpalTerrain"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float3 refraction = refract(i.viewDir, i.normal, 1 / _IQR);
+                float3 refraction = refract(i.viewDir, i.normal, 1 / _IOR);
                 float3 incoming = refraction;
 
                 float incomingDepth = -dot(incoming, i.normal);
