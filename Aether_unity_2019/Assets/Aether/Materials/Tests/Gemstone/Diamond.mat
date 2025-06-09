@@ -57,6 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AngleRainbowInfluence: 2
+    - _Brightness: 1
     - _BumpScale: 1
     - _CellRainbowInfluence: 0
     - _Cutoff: 0.5
@@ -64,11 +65,17 @@ Material:
     - _Depth: 0.5
     - _DetailNormalMapScale: 1
     - _DetailScale: 1.84
+    - _DistanceFogEnabled: 1
     - _DstBlend: 0
     - _FBM: 3.04
+    - _FadeDistanceEnd: 800
+    - _FadeDistanceStart: 500
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HeightFogEnabled: 0
+    - _HeightFogEnd: 10
+    - _HeightFogStart: 0
     - _IOR: 2.418
     - _IQR: 1.15
     - _Metallic: 0
@@ -88,3 +95,4 @@ Material:
     m_Colors:
     - _Color: {r: 0.43867922, g: 0.7703687, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FogColor: {r: 1, g: 1, b: 1, a: 1}
