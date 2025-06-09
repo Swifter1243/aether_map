@@ -152,6 +152,8 @@ Shader "Swifter/Gemstone"
                 float3 whiteCol = lerp(_Color, hue, saturation);
                 float3 col = lerp(blackCol, whiteCol, pow(n2.y, _Darkness));
 
+                col *= _Brightness;
+
                 #if DISTANCE_FOG || HEIGHT_FOG
                 float fog = 1;
 
@@ -168,7 +170,7 @@ Shader "Swifter/Gemstone"
                 col = lerp(_FogColor, col, fog);
                 #endif
 
-                return float4(col * _Brightness, 0);
+                return float4(col, 0);
             }
             ENDCG
         }
