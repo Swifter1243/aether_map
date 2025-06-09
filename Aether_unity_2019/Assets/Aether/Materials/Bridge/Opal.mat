@@ -61,7 +61,7 @@ Material:
     - _BumpScale: 1
     - _CellRainbowInfluence: 0
     - _Cutoff: 0.5
-    - _Darkness: 1.78
+    - _Darkness: 1.18
     - _Depth: 7.51
     - _DetailNormalMapScale: 1
     - _DetailScale: -0.21
@@ -89,7 +89,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SurfaceDistortion: 0.1
-    - _SurfaceScale: 4
+    - _SurfaceScale: 1.77
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
