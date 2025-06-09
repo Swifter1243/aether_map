@@ -68,8 +68,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RainbowOffset: 0.3
-    - _RainbowScale: 3.8
+    - _RainbowOffset: 0.01
+    - _RainbowScale: 3.4
     - _Saturation: 0.52
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -79,7 +79,7 @@ Material:
     - _StencilRef: 0
     - _TimeScale: 0.2
     - _UVSec: 0
-    - _VoronoiAmount: 0.09
+    - _VoronoiAmount: 0.03
     - _VoronoiScale: 3
     - _XFalloff: 5.97
     - _YFalloff: 15
