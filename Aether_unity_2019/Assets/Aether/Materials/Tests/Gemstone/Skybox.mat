@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skybox
+  m_Shader: {fileID: 4800000, guid: 4a7c14a86573a01489d1e91ada7098b8, type: 3}
+  m_ShaderKeywords: SKYBOX_CLOUDS SKYBOX_HORIZON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - _CloudAmount: 1
+    - _CloudPow: 3.5
+    - _FBM: 0.1
+    - _HueSaturation: 0
+    - _Simplex1Scale: 4.63
+    - _SkyboxClouds: 1
+    - _SkyboxHorizon: 1
+    - _StencilComp: 8
+    - _StencilPass: 2
+    - _StencilRef: 0
+    - _TimeScale: 1.02
+    - _Voronoi1Scale: 31.08
+    - _Voronoi2Scale: 3.58
+    m_Colors:
+    - _HorizonCol: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
+    - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
