@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Opal
+  m_Name: Diamond
   m_Shader: {fileID: 4800000, guid: 1aba8e9557ae37f41bae3bcc6ab45107, type: 3}
   m_ShaderKeywords: DISTANCE_FOG HEIGHT_FOG
   m_LightmapFlags: 4
@@ -57,11 +57,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AngleRainbowInfluence: 1.84
-    - _Brightness: 1.47
+    - _Brightness: 1.23
     - _BumpScale: 1
     - _CellRainbowInfluence: 0
     - _Cutoff: 0.5
-    - _Darkness: 1.97
+    - _Darkness: 1.86
     - _Depth: 7.51
     - _DetailNormalMapScale: 1
     - _DetailScale: -0.21
@@ -76,7 +76,7 @@ Material:
     - _HeightFogEnabled: 1
     - _HeightFogEnd: 0
     - _HeightFogStart: -10.8
-    - _IOR: 1.42
+    - _IOR: 1.13
     - _IQR: 1.15
     - _Metallic: 0
     - _Mode: 0
@@ -93,6 +93,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8726415, g: 0.966211, b: 1, a: 1}
+    - _Color: {r: 0.6650944, g: 0.94864786, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FogColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
