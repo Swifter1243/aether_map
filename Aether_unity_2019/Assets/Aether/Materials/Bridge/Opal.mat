@@ -61,7 +61,7 @@ Material:
     - _BumpScale: 1
     - _CellRainbowInfluence: 0
     - _Cutoff: 0.5
-    - _Darkness: 1.18
+    - _Darkness: 2.19
     - _Depth: 7.51
     - _DetailNormalMapScale: 1
     - _DetailScale: -0.21
@@ -74,13 +74,13 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HeightFogEnabled: 1
-    - _HeightFogEnd: 2.02
-    - _HeightFogStart: -17.95
-    - _IOR: 1.18
+    - _HeightFogEnd: 0
+    - _HeightFogStart: -10.8
+    - _IOR: 1.42
     - _IQR: 1.15
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseRainbowInfluence: 1.18
+    - _NoiseRainbowInfluence: 1.57
     - _NoiseScale: 0.7
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -93,6 +93,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.9009434, g: 0.9848897, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FogColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
