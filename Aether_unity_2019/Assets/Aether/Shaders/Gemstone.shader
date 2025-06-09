@@ -13,6 +13,17 @@ Shader "Swifter/Gemstone"
         _FBM ("FBM", Float) = 2
         _IOR ("Refractive Index", Float) = 1.45
         _Color ("Color", Color) = (1,1,1)
+
+        [Header(Fog)][Space(10)]
+        _FogColor ("Fog Color", Color) = (1,1,1)
+
+        [Toggle(DISTANCE_FOG)] _DistanceFogEnabled ("Distance Fog Enabled", Int) = 1
+        _FadeDistanceStart ("Fade Distance Start", Float) = 500
+        _FadeDistanceEnd ("Fade Distance End", Float) = 800
+
+        [Toggle(HEIGHT_FOG)] _HeightFogEnabled ("Height Fog Enabled", Int) = 0
+        _HeightFogStart ("Height Fog Start", Float) = 0
+        _HeightFogEnd ("Height Fog End", Float) = 10
     }
     SubShader
     {
@@ -26,6 +37,9 @@ Shader "Swifter/Gemstone"
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_instancing
+            #pragma shader_feature DISTANCE_FOG
+            #pragma shader_feature HEIGHT_FOG
+
 
             #include "UnityCG.cginc"
 
@@ -48,6 +62,12 @@ Shader "Swifter/Gemstone"
                 float3 viewDir : TEXCOORD0;
                 float3 localPos : TEXCOORD1;
                 float3 normal : TEXCOORD2;
+                #if DISTANCE_FOG || HEIGHT_FOG
+                float3 worldPos : TEXCOORD3;
+                #endif
+                #if DISTANCE_FOG
+                float distanceFog : TEXCOORD4;
+                #endif
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -63,6 +83,12 @@ Shader "Swifter/Gemstone"
             float _IOR;
             float3 _Color;
 
+            float3 _FogColor;
+            float _FadeDistanceStart;
+            float _FadeDistanceEnd;
+            float _HeightFogStart;
+            float _HeightFogEnd;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -77,6 +103,20 @@ Shader "Swifter/Gemstone"
                 o.normal = v.normal;
                 o.viewDir = viewDir;
                 o.localPos = v.vertex;
+
+                #if DISTANCE_FOG || HEIGHT_FOG
+                float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
+                #endif
+
+                #if HEIGHT_FOG
+                o.worldPos = worldPos;
+                #endif
+
+                #if DISTANCE_FOG
+                float3 worldViewVector = worldPos - _WorldSpaceCameraPos;
+                float viewDistance = length(worldViewVector);
+                o.distanceFog = smoothstep(_FadeDistanceEnd, _FadeDistanceStart, viewDistance);
+                #endif
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 return o;
@@ -104,6 +144,22 @@ Shader "Swifter/Gemstone"
                 float3 blackCol = hue * pow(saturation, 3);
                 float3 whiteCol = lerp(_Color, hue, saturation);
                 float3 col = lerp(blackCol, whiteCol, pow(n2.y, _Darkness));
+
+                #if DISTANCE_FOG || HEIGHT_FOG
+                float fog = 1;
+
+                #if DISTANCE_FOG
+                fog *= i.distanceFog;
+                #endif
+
+                #if HEIGHT_FOG
+                float heightFog = smoothstep(_HeightFogStart, _HeightFogEnd, i.worldPos.y);
+                heightFog = pow(heightFog, 10);
+                fog *= heightFog;
+                #endif
+
+                col = lerp(_FogColor, col, fog);
+                #endif
 
                 return float4(col, 0);
             }
