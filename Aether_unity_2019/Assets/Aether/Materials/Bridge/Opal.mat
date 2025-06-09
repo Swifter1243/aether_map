@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Opal
   m_Shader: {fileID: 4800000, guid: 1aba8e9557ae37f41bae3bcc6ab45107, type: 3}
-  m_ShaderKeywords: DISTANCE_FOG
+  m_ShaderKeywords: DISTANCE_FOG HEIGHT_FOG
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -73,14 +73,14 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightFogEnabled: 0
-    - _HeightFogEnd: 10
-    - _HeightFogStart: 0
+    - _HeightFogEnabled: 1
+    - _HeightFogEnd: 2.02
+    - _HeightFogStart: -17.95
     - _IOR: 1.18
     - _IQR: 1.15
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseRainbowInfluence: 0.9
+    - _NoiseRainbowInfluence: 1.18
     - _NoiseScale: 0.7
     - _OcclusionStrength: 1
     - _Parallax: 0.02
