@@ -50,6 +50,27 @@ function infoSetup(map: rm.V3Difficulty) {
     map.require('Vivify')
     map.require('Noodle Extensions')
     map.require('Chroma')
+
+    map.difficultyInfo.settingsSetter = {
+        graphics: {
+            mainEffectGraphicsSettings: 'On',
+            maxShockwaveParticles: 0,
+            screenDisplacementEffectsEnabled: true,
+        },
+        chroma: {
+            disableEnvironmentEnhancements: false,
+        },
+        modifiers: {
+            noFailOn0Energy: true,
+        },
+        playerOptions: {
+            leftHanded: false,
+            reduceDebris: false,
+            noteJumpDurationTypeSettings: 'Dynamic'
+        },
+        colors: {},
+        environments: {},
+    }
 }
 
 function visualsSetup(map: rm.V3Difficulty) {
