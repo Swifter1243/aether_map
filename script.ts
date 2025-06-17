@@ -13,7 +13,8 @@ const TIMES = {
     INTRO3: 64,
     DROP_INTRO: 69,
     DROP: 77,
-    DROP_END: 261
+    DROP_END: 261,
+    BRIDGE: 373 
 } as const
 
 // ----------- { SCRIPT } -----------
@@ -151,7 +152,7 @@ function ambient(map: rm.V3Difficulty)
 
     bokeh(materials["261 - bokeh"], map, TIMES.DROP_END, 10, 4)
 
-    // TODO: ambientScene.destroyObject(???)
+    ambientScene.destroyObject(TIMES.BRIDGE)
 }
 
 await Promise.all([
