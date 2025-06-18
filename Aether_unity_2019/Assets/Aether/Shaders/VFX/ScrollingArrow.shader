@@ -21,6 +21,7 @@ Shader "Swifter/VFX/ScrollingArrow"
         Blend [_BlendSrc] [_BlendDst]
         BlendOp [_BlendOp]
         Cull Off
+        ZWrite Off
 
         Pass
         {
