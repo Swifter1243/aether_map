@@ -1309,7 +1309,25 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 12.4
+        time: 12.816667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 13.65
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.483334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -1346,7 +1364,25 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 12.816667
+        time: 13.233334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.066667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.9
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -1366,17 +1402,53 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 11.983334
-        value: 2.1458476
+        value: 6.7924175
         inSlope: 0
-        outSlope: -166762580
+        outSlope: -564775360
         tangentMode: 1
         weightedMode: 3
         inWeight: 0.33333334
         outWeight: 0.00000001
       - serializedVersion: 3
         time: 12.4
+        value: 4.0971246
+        inSlope: -47714210
+        outSlope: -575634900
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 12.816667
         value: 1.3500001
-        inSlope: -14088688
+        inSlope: -48631656
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 13.65
+        value: 5.565754
+        inSlope: 0
+        outSlope: -598938800
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.066667
+        value: 2.707415
+        inSlope: -50600460
+        outSlope: -284433920
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.483334
+        value: 1.3500001
+        inSlope: -24029978
         outSlope: 0
         tangentMode: 1
         weightedMode: 3
@@ -1396,15 +1468,51 @@ AnimationClip:
         time: 12.4
         value: 2.1458476
         inSlope: 0
-        outSlope: -166762580
+        outSlope: -82603560
         tangentMode: 1
         weightedMode: 3
         inWeight: 0.33333334
         outWeight: 0.00000001
       - serializedVersion: 3
         time: 12.816667
+        value: 1.7516354
+        inSlope: -6978639
+        outSlope: -84159016
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.233334
         value: 1.3500001
-        inSlope: -14088688
+        inSlope: -7110049
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 14.066667
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603560
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.483334
+        value: 1.7516354
+        inSlope: -6978639
+        outSlope: -84159016
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.9
+        value: 1.3500001
+        inSlope: -7110049
         outSlope: 0
         tangentMode: 1
         weightedMode: 3
@@ -1416,6 +1524,244 @@ AnimationClip:
     attribute: material._Size
     path: Thump Particles/2/Particles
     classID: 199
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.816667
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603500
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.233334
+        value: 1.7516357
+        inSlope: -6978634.5
+        outSlope: -84159256
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.65
+        value: 1.3500001
+        inSlope: -7110069.5
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 14.483334
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603500
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.9
+        value: 1.7516357
+        inSlope: -6978634.5
+        outSlope: -84159256
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 15.316667
+        value: 1.3500001
+        inSlope: -7110069.5
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Size
+    path: Thump Particles/3/Particles
+    classID: 199
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 13.233334
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603800
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.65
+        value: 1.7516352
+        inSlope: -6978659
+        outSlope: -84158960
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.066667
+        value: 1.3500001
+        inSlope: -7110045
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 14.9
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603800
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 15.316667
+        value: 1.7516352
+        inSlope: -6978659
+        outSlope: -84158960
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 15.733334
+        value: 1.3500001
+        inSlope: -7110045
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Size
+    path: Thump Particles/4/Particles
+    classID: 199
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 13.233334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.066667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.9
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 15.733334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Thump Particles/4
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 12.816667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 13.65
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.483334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 15.316667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Thump Particles/3
+    classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -1501,6 +1847,34 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 199
       customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 72691926
+      attribute: 2329410383
+      script: {fileID: 0}
+      typeID: 199
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 762193237
+      attribute: 2329410383
+      script: {fileID: 0}
+      typeID: 199
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 52703527
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2638259332
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
@@ -2822,7 +3196,25 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 12.4
+        time: 12.816667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 13.65
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.483334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -2859,7 +3251,25 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 12.816667
+        time: 13.233334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.066667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.9
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -2879,17 +3289,53 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 11.983334
-        value: 2.1458476
+        value: 6.7924175
         inSlope: 0
-        outSlope: -166762580
+        outSlope: -564775360
         tangentMode: 1
         weightedMode: 3
         inWeight: 0.33333334
         outWeight: 0.00000001
       - serializedVersion: 3
         time: 12.4
+        value: 4.0971246
+        inSlope: -47714210
+        outSlope: -575634900
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 12.816667
         value: 1.3500001
-        inSlope: -14088688
+        inSlope: -48631656
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 13.65
+        value: 5.565754
+        inSlope: 0
+        outSlope: -598938800
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.066667
+        value: 2.707415
+        inSlope: -50600460
+        outSlope: -284433920
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.483334
+        value: 1.3500001
+        inSlope: -24029978
         outSlope: 0
         tangentMode: 1
         weightedMode: 3
@@ -2909,15 +3355,51 @@ AnimationClip:
         time: 12.4
         value: 2.1458476
         inSlope: 0
-        outSlope: -166762580
+        outSlope: -82603560
         tangentMode: 1
         weightedMode: 3
         inWeight: 0.33333334
         outWeight: 0.00000001
       - serializedVersion: 3
         time: 12.816667
+        value: 1.7516354
+        inSlope: -6978639
+        outSlope: -84159016
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.233334
         value: 1.3500001
-        inSlope: -14088688
+        inSlope: -7110049
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 14.066667
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603560
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.483334
+        value: 1.7516354
+        inSlope: -6978639
+        outSlope: -84159016
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.9
+        value: 1.3500001
+        inSlope: -7110049
         outSlope: 0
         tangentMode: 1
         weightedMode: 3
@@ -2929,6 +3411,244 @@ AnimationClip:
     attribute: material._Size
     path: Thump Particles/2/Particles
     classID: 199
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 12.816667
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603500
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.233334
+        value: 1.7516357
+        inSlope: -6978634.5
+        outSlope: -84159256
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.65
+        value: 1.3500001
+        inSlope: -7110069.5
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 14.483334
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603500
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.9
+        value: 1.7516357
+        inSlope: -6978634.5
+        outSlope: -84159256
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 15.316667
+        value: 1.3500001
+        inSlope: -7110069.5
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Size
+    path: Thump Particles/3/Particles
+    classID: 199
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 13.233334
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603800
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 13.65
+        value: 1.7516352
+        inSlope: -6978659
+        outSlope: -84158960
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 14.066667
+        value: 1.3500001
+        inSlope: -7110045
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 14.9
+        value: 2.1458476
+        inSlope: 0
+        outSlope: -82603800
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 15.316667
+        value: 1.7516352
+        inSlope: -6978659
+        outSlope: -84158960
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 15.733334
+        value: 1.3500001
+        inSlope: -7110045
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Size
+    path: Thump Particles/4/Particles
+    classID: 199
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 13.233334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.066667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.9
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 15.733334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Thump Particles/4
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 12.816667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 13.65
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 14.483334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 15.316667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Thump Particles/3
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
