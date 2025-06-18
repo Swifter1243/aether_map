@@ -8726,7 +8726,7 @@ ParticleSystemRenderer:
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 527.3
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -8822,14 +8822,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 159690823
+  randomSeed: -1741528533
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -8999,7 +8999,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 5.2
-      minScalar: 10
+      minScalar: 51.06
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9051,8 +9051,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 63.66
-      minScalar: 100
+      scalar: 6
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9263,8 +9263,8 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5235988
-      minScalar: -0.5235988
+      scalar: 3.1415925
+      minScalar: -3.1415925
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9460,7 +9460,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 10.8
+      value: 14.57
       mode: 0
       spread: 0
       speed:
@@ -9755,20 +9755,29 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0.59410614
-          outSlope: -0.59410614
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.14967076
+          inSlope: -0.13915475
+          outSlope: -2.2801027
+          tangentMode: 1
+          weightedMode: 3
+          inWeight: 1
+          outWeight: 0.3593217
         - serializedVersion: 3
-          time: 0.97465515
+          time: 0.76488954
+          value: 0.47438607
+          inSlope: -0.1349299
+          outSlope: -0.1349299
+          tangentMode: 1
+          weightedMode: 3
+          inWeight: 0.56307846
+          outWeight: 0.32619599
+        - serializedVersion: 3
+          time: 0.9534912
           value: 0
-          inSlope: -2.737563
-          outSlope: -2.737563
+          inSlope: -0.13377428
+          outSlope: -0.13377428
           tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.08245321
+          weightedMode: 3
+          inWeight: 0.3402803
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
