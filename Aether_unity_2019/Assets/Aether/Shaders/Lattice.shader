@@ -54,7 +54,7 @@ Shader "Swifter/Lattice"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
-            #include "IntroSkybox.hlsl"
+            #include "RainbowSkybox.hlsl"
 
             struct appdata
             {

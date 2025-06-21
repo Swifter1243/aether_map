@@ -51,7 +51,7 @@ Shader "Swifter/SimpleSkybox"
             #pragma shader_feature SHADING
 
             #include "UnityCG.cginc"
-            #include "IntroSkybox.hlsl"
+            #include "RainbowSkybox.hlsl"
 
             struct appdata
             {

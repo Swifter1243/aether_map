@@ -51,7 +51,7 @@ Shader "Swifter/IntroSkybox"
             #pragma shader_feature SKYBOX_CLOUDS
 
             #include "UnityCG.cginc"
-            #include "IntroSkybox.hlsl"
+            #include "RainbowSkybox.hlsl"
 
             struct appdata {
                 float4 vertex : POSITION;

@@ -186,8 +186,8 @@ Shader "Swifter/TriangleExplosion"
             #pragma shader_feature HEIGHT_FOG
 
             #include "UnityCG.cginc"
-            #include "IntroSkybox.hlsl"
-			#include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
+            #include "RainbowSkybox.hlsl"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
 
             struct appdata
             {
@@ -348,9 +348,9 @@ Shader "Swifter/TriangleExplosion"
             #pragma shader_feature HEIGHT_FOG
 
             #include "UnityCG.cginc"
-            #include "IntroSkybox.hlsl"
+            #include "RainbowSkybox.hlsl"
 
-            struct appdata
+			struct appdata
             {
                 float4 vertex : POSITION;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
