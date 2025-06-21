@@ -14,7 +14,8 @@ const TIMES = {
     DROP_INTRO: 69,
     DROP: 77,
     DROP_END: 261,
-    BRIDGE: 373 
+    BRIDGE: 373,
+    DROP2_BUILDUP: 509
 } as const
 
 // ----------- { SCRIPT } -----------
@@ -44,6 +45,7 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
     })
 
     ambient(map)
+    bridge(map)
 }
 
 function infoSetup(map: rm.V3Difficulty) {
@@ -174,6 +176,13 @@ function ambient(map: rm.V3Difficulty)
     bokeh(materials["261 - bokeh"], map, TIMES.DROP_END, 10, 4)
 
     ambientScene.destroyObject(TIMES.BRIDGE)
+}
+
+function bridge(map: rm.V3Difficulty)
+{
+    const bridgeScene = prefabs.bridge.instantiate(map, TIMES.BRIDGE)
+
+    bridgeScene.destroyObject(TIMES.DROP2_BUILDUP)
 }
 
 await Promise.all([
