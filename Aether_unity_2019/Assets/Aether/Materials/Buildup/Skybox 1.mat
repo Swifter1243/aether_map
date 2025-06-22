@@ -23,6 +23,7 @@ Material:
     - _BorderFalloff: 0.9
     - _BorderWidth: 1
     - _HueScale: 0.09
+    - _Layer1GlowThresh: 0.33
     - _Layer1HueScale: 0.03
     - _Layer1Saturation: 0.6
     - _NoiseScale: 0.12
