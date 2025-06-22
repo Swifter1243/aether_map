@@ -20,8 +20,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _BorderFalloff: 0.9
-    - _BorderWidth: 1
+    - _BorderFalloff: 1.5
+    - _BorderWidth: 13.42
     - _CloudAmount: 1.21
     - _CloudPow: 1.56
     - _FBM: 0.3
