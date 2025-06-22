@@ -40,7 +40,7 @@ Shader "Swifter/VFX/ShockwaveParticle"
             struct v2f
             {
                 float4 vertex : SV_POSITION;
-                float3 localPos : TEXCOORD0;
+                float3 worldPos : TEXCOORD0;
                 float3 center : TEXCOORD1;
                 float2 uv : TEXCOORD2;
                 UNITY_VERTEX_OUTPUT_STEREO
@@ -62,14 +62,14 @@ Shader "Swifter/VFX/ShockwaveParticle"
                 float3 center = v.texcoord0.xyz;
                 float2 uv = float2(v.texcoord0.w, v.texcoord1.x);
 
-                o.localPos = v.vertex;
+                o.worldPos = v.vertex;
                 o.center = center;
                 o.uv = uv;
                 return o;
             }
 
-            float2 localToScreen(float3 pos) {
-                float4 v = ComputeGrabScreenPos(UnityObjectToClipPos(pos));
+            float2 worldToScreen(float3 pos) {
+                float4 v = ComputeGrabScreenPos(UnityWorldToClipPos(pos));
                 return v.xy / v.w;
             }
 
@@ -87,8 +87,8 @@ Shader "Swifter/VFX/ShockwaveParticle"
                 float ring = smoothstep(0, 1, pow(circleDist, _RingSharpness));
 
                 float distortion = _Distortion;
-                float3 samplePos = (i.localPos - i.center) * (1 + ring * distortion) + i.center;
-                float2 screenUV = localToScreen(samplePos);
+                float3 samplePos = (i.worldPos - i.center) * (1 + ring * distortion) + i.center;
+                float2 screenUV = worldToScreen(samplePos);
 
                 return sampleScreen(screenUV);
             }
