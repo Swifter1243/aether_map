@@ -207,7 +207,7 @@
                 float3 noise = voronoiNoise(noiseVal, true);
                 float3 col = rand1dTo3d(noise.y);
                 if (noise.y < _GlowThresh) {
-                    col = float3(1,1,1);
+                    col = 1;
                     alpha = 1;
                 }
 
