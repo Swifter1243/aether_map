@@ -477,6 +477,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635161250}
     m_Modifications:
+    - target: {fileID: 1372637740873069620, guid: d103a204603d91c4787fc570c678c82a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7135301530256399037, guid: d103a204603d91c4787fc570c678c82a,
         type: 3}
       propertyPath: m_Name
@@ -757,6 +762,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635161250}
     m_Modifications:
+    - target: {fileID: 1372637740873069620, guid: d103a204603d91c4787fc570c678c82a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7135301530256399037, guid: d103a204603d91c4787fc570c678c82a,
         type: 3}
       propertyPath: m_Name
@@ -5789,6 +5799,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635161250}
     m_Modifications:
+    - target: {fileID: 1372637740873069620, guid: d103a204603d91c4787fc570c678c82a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7135301528912186406, guid: d103a204603d91c4787fc570c678c82a,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -6062,6 +6077,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635161250}
     m_Modifications:
+    - target: {fileID: 1372637740873069620, guid: d103a204603d91c4787fc570c678c82a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7135301530256399037, guid: d103a204603d91c4787fc570c678c82a,
         type: 3}
       propertyPath: m_Name
@@ -6371,6 +6391,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635161250}
     m_Modifications:
+    - target: {fileID: 1372637740873069620, guid: d103a204603d91c4787fc570c678c82a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7135301530256399037, guid: d103a204603d91c4787fc570c678c82a,
         type: 3}
       propertyPath: m_Name
