@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skybox 1
+  m_Name: 525 - Skybox
   m_Shader: {fileID: 4800000, guid: e3538c5d6ee8bba42a86218c3c58c27d, type: 3}
   m_ShaderKeywords: SKYBOX_CLOUDS WAVE
   m_LightmapFlags: 4

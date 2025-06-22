@@ -40,7 +40,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Skybox
+    path: 509/Skybox
   m_FloatCurves:
   - curve:
       serializedVersion: 2
@@ -58,7 +58,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WorldOffset.x
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -77,7 +77,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WorldOffset.y
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -114,7 +114,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WorldOffset.z
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -133,7 +133,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WorldOffset.w
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -170,7 +170,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Rotation
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -270,7 +270,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Twist
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -892,7 +892,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._NoiseOffset.x
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -920,7 +920,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Layer1BaseBrightness
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -948,7 +948,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Layer1GlowThresh
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -976,7 +976,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BorderWidth
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1103,7 +1103,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WaveZ
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1131,8 +1131,73 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WaveFalloff
-    path: Skybox
+    path: 509/Skybox
     classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 6.616667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 509
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 6.616667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 13.25
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 525
+    classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -1143,91 +1208,105 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 769641564
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 2395652039
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 2199749904
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 85836429
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 2269818361
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 2175454482
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 2241588077
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 2264640470
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 2358540897
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1570914450
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1713532475
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1697751744
       attribute: 232770652
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 501206108
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 887481240
+      path: 1697751744
       attribute: 1038077020
       script: {fileID: 0}
       typeID: 23
@@ -1239,7 +1318,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 8.316667
+    m_StopTime: 13.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -1271,7 +1350,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WorldOffset.x
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1290,7 +1369,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WorldOffset.y
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1327,7 +1406,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WorldOffset.z
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1346,7 +1425,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WorldOffset.w
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1383,7 +1462,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Rotation
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1483,7 +1562,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Twist
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1511,7 +1590,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Skybox
+    path: 509/Skybox
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1530,7 +1609,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Skybox
+    path: 509/Skybox
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1549,7 +1628,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Skybox
+    path: 509/Skybox
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2171,7 +2250,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._NoiseOffset.x
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2199,7 +2278,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Layer1BaseBrightness
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2227,7 +2306,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Layer1GlowThresh
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2255,7 +2334,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BorderWidth
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2382,7 +2461,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WaveZ
-    path: Skybox
+    path: 509/Skybox
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2410,8 +2489,73 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._WaveFalloff
-    path: Skybox
+    path: 509/Skybox
     classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 6.616667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 509
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 6.616667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 13.25
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 525
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
