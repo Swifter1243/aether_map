@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Skybox 1
   m_Shader: {fileID: 4800000, guid: e3538c5d6ee8bba42a86218c3c58c27d, type: 3}
-  m_ShaderKeywords: SKYBOX_CLOUDS
+  m_ShaderKeywords: SKYBOX_CLOUDS WAVE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -44,6 +44,9 @@ Material:
     - _Twist: 0
     - _Voronoi1Scale: 20
     - _Voronoi2Scale: 3
+    - _WaveEnabled: 1
+    - _WaveFalloff: 0.4
+    - _WaveZ: 20
     m_Colors:
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseOffset: {r: 0, g: 0, b: 0, a: 1}

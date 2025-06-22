@@ -18,6 +18,11 @@
         _Layer1Alpha ("Layer 1 Alpha", Float) = 0.3
         _Layer1BaseBrightness ("Base Brightness", Float) = 1
 
+        [Header(Wave)][Space(10)]
+        [Toggle(WAVE)] _WaveEnabled ("Wave Enabled", Int) = 0
+        _WaveZ ("Wave Z", Float) = 20
+        _WaveFalloff ("Wave Falloff", Float) = 0.4
+
         [Header(Layer 2)][Space(10)]
         _HorizonCol ("Horizon Color", Color) = (1,1,1)
         _SkyCol ("Sky Color", Color) = (1,1,1)
@@ -46,6 +51,7 @@
             #pragma shader_feature SKYBOX_HORIZON
             #pragma shader_feature SKYBOX_CLOUDS
             #pragma shader_feature SKYBOX_CLOUD_FOG
+            #pragma shader_feature WAVE
 
             #include "UnityCG.cginc"
 
@@ -79,6 +85,8 @@
             float _Layer1GlowThresh;
             float _Layer1Alpha;
             float _Layer1BaseBrightness;
+            float _WaveZ;
+            float _WaveFalloff;
 
             v2f vert (appdata v)
             {
@@ -201,7 +209,14 @@
                 float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
                 layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
                 layer1Rainbow *= _Layer1BaseBrightness;
-                bool layer1Mix = noise.y < _Layer1GlowThresh;
+                float layer1Mix = noise.y < _Layer1GlowThresh;
+
+                #if WAVE
+                float wave = noise.z * exp(abs(projectedPos.z - _WaveZ) * _WaveFalloff);
+                wave = step(wave, 0.3);
+                layer1Mix = min(1, layer1Mix + wave);
+                #endif
+
                 float layer1Alpha = layer1Mix * _Layer1Alpha;
                 float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
 
