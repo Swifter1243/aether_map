@@ -79,6 +79,22 @@ function bokeh(material: rm.Material, map: rm.AbstractDifficulty, beat: number, 
     }, beat, duration)
 }
 
+function fadeWhite(map: rm.AbstractDifficulty, beat: number, duration: number, amount = 1) {
+    const transitionMat = materials['fadewhite']
+    const mixProperty: keyof typeof transitionMat['propertyTypes'] = '_Mix'
+    transitionMat.blit(map, {
+        beat: beat - duration / 2,
+        duration,
+        properties: [
+            {
+                id: mixProperty,
+                type: transitionMat.propertyTypes[mixProperty],
+                value: [[0, 0.48], [amount, 0.5, 'easeInCubic'], [0, 1, 'easeOutExpo']]
+            }
+        ]
+    })
+}
+
 function intro(map: rm.V3Difficulty) {
     const introScene = prefabs.intro.instantiate(map, TIMES.INTRO)
     
@@ -91,21 +107,8 @@ function intro(map: rm.V3Difficulty) {
 function drop(map: rm.V3Difficulty)
 {
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
-    
-    const dropAmbientTransitionDuration = 16
-    const transitionMat = materials['drop-ambient transition']
-    const mixProperty: keyof typeof transitionMat['propertyTypes'] = '_Mix'
-    transitionMat.blit(map, {
-        beat: TIMES.DROP_END - dropAmbientTransitionDuration / 2,
-        duration: dropAmbientTransitionDuration,
-        properties: [
-            {
-                id: mixProperty,
-                type: transitionMat.propertyTypes[mixProperty],
-                value: [[0, 0.48], [1, 0.5, 'easeInCubic'], [0, 1, 'easeOutExpo']]
-            }
-        ]
-    })
+
+    fadeWhite(map, TIMES.DROP_END, 16)
 
     dropScene.destroyObject(TIMES.DROP_END)
 }
@@ -129,6 +132,8 @@ function bridge(map: rm.V3Difficulty)
 function buildup(map: rm.V3Difficulty)
 {
     const buildupScene = prefabs.buildup.instantiate(map, TIMES.BUILDUP)
+
+    fadeWhite(map, TIMES.BUILDUP, 16)
 
     // TODO: buildupScene.destroyObject
 }
