@@ -167,18 +167,23 @@
                 noisePos.xy = rotate2D(noisePos.z * _Twist + _Rotation, noisePos.xy);
                 float3 noise = voronoiNoise(noisePos, true);
 
+                // Crack
                 float border = noise.z;
                 border *= exp(abs(noisePos.y) * _BorderFalloff);
                 float crack = step(border, _BorderWidth);
 
+                // Layer 1
                 float3 layer1Rainbow = rainbow(noisePos.z * _Layer1HueScale + noise.y);
                 layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
                 bool layer1Mix = noise.y < _Layer1GlowThresh;
                 float layer1Alpha = layer1Mix * _Layer1Alpha;
                 float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
 
-                float4 col = lerp(layer1Col, float4(noise, 0), crack);
+                // Layer 2
+                float4 layer2Col = float4(noise, 0);
 
+                // Final
+                float4 col = lerp(layer1Col, layer2Col, crack);
                 return col;
             }
             ENDCG
