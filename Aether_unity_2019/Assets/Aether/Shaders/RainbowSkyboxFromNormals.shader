@@ -1,4 +1,4 @@
-Shader "Swifter/SimpleSkybox"
+Shader "Swifter/RainbowSkyboxFromNormals"
 {
     Properties
     {
