@@ -67,6 +67,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GlowThresh: 0.752
+    - _HueScale: 0.27
     - _Metallic: 0
     - _Mode: 0
     - _NoiseScale: 0.11

@@ -10,6 +10,7 @@
         _OffsetZ ("Offset Z", Float) = 0
         _Scale ("World Scale", Float) = 200
         _NoiseScale ("Noise Scale", Float) = 4
+        _HueScale ("Hue Scale", Float) = 1
         _Border ("Border Width", Float) = 0
         _GlowThresh ("Glow Threshold", Range(0, 1)) = 0.1
         _AddAlpha ("Add Alpha", Range(0, 1)) = 0
@@ -49,6 +50,7 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+
             float _Rotation;
             float _Twist;
             float _OffsetX;
@@ -56,6 +58,7 @@
             float _OffsetZ;
             float _Scale;
             float _NoiseScale;
+            float _HueScale;
             float _Border;
             float _GlowThresh;
             float _AddAlpha;
@@ -226,7 +229,8 @@
                 alpha += isBorder / 5;
 
                 // Color correction
-                float hue = worldPos.z / (XYlen * 1.2);
+                float hue = worldPos.z / XYlen;
+                hue *= _HueScale;
                 col = hsvNode(col, hue, 0.7, 1);
 
                 return float4(col, alpha);
