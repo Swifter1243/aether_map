@@ -45,5 +45,6 @@ Material:
     - _Voronoi2Scale: 3
     m_Colors:
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseOffset: {r: 0, g: 0, b: 0, a: 1}
     - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
     - _WorldOffset: {r: 0, g: 0, b: 0, a: 1}

@@ -6,6 +6,7 @@
         _Twist ("Twist", Float) = 0
         _WorldOffset ("World Offset", Vector) = (0,0,0)
         _NoiseScale ("Noise Scale", Float) = 4
+        _NoiseOffset ("Noise Offset", Vector) = (0,0,0)
         _BorderWidth ("Border Width", Float) = 0
         _BorderFalloff ("Border Falloff", Float) = 1
 
@@ -68,6 +69,7 @@
             float _Twist;
             float3 _WorldOffset;
             float _NoiseScale;
+            float3 _NoiseOffset;
             float _Layer1HueScale;
             float _Layer1NoiseHueAmt;
             float _Layer1Saturation;
@@ -184,24 +186,24 @@
 
                 // Voronoi noise
                 XYlen *= _NoiseScale;
-                float3 noisePos = worldPos / XYlen;
-                noisePos.xy = rotate2D(noisePos.z * _Twist + _Rotation, noisePos.xy);
-                float3 noise = voronoiNoise(noisePos, true);
+                float3 projectedPos = worldPos / XYlen;
+                projectedPos.xy = rotate2D(projectedPos.z * _Twist + _Rotation, projectedPos.xy);
+                float3 noise = voronoiNoise(projectedPos + _NoiseOffset, true);
 
                 // Crack
                 float border = noise.z;
-                border *= exp(abs(noisePos.y) * _BorderFalloff);
+                border *= exp(abs(projectedPos.y) * _BorderFalloff);
                 float crack = step(border, _BorderWidth);
 
                 // Layer 1
-                float3 layer1Rainbow = rainbow(noisePos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
+                float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
                 layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
                 bool layer1Mix = noise.y < _Layer1GlowThresh;
                 float layer1Alpha = layer1Mix * _Layer1Alpha;
                 float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
 
                 // Layer 2
-                float4 layer2Col = doSkybox(normalize(noisePos));
+                float4 layer2Col = doSkybox(normalize(projectedPos));
 
                 // Final
                 float4 col = lerp(layer1Col, layer2Col, crack);
