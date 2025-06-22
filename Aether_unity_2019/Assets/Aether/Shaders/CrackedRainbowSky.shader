@@ -10,9 +10,6 @@
         _OffsetZ ("Offset Z", Float) = 0
         _Scale ("World Scale", Float) = 200
         _Border ("Border Width", Float) = 0
-        _HighColor ("High Color", Color) = (0,0,0)
-        _LowColor ("Low Color", Color) = (0,0,0)
-        _BlendColor ("Blend Color", Range(0, 1)) = 0
         _GlowThresh ("Glow Threshold", Range(0, 1)) = 0.1
         _AddAlpha ("Add Alpha", Range(0, 1)) = 0
     }
@@ -58,9 +55,6 @@
             float _OffsetZ;
             float _Scale;
             float _Border;
-            float3 _HighColor;
-            float3 _LowColor;
-            float _BlendColor;
             float _GlowThresh;
             float _AddAlpha;
 
@@ -206,9 +200,7 @@
                 worldPos.xy = rotate2D(_Twist + _Rotation, worldPos.xy);
 
                 // Rotation
-                float atanY = atan2(worldPos.y, -12.7);
                 float XYlen = length(float3(worldPos.y, 14.7, worldPos.x));
-                float rotation = atanY / XYlen;
 
                 // Border
                 _Border /= abs(worldPos.y);
@@ -234,11 +226,6 @@
                 // Color correction
                 float hue = worldPos.z / (XYlen * 1.2);
                 col = hsvNode(col, hue, 0.7, 1);
-
-                // Blend color
-                float luma = col.x * 0.3333 + col.y * 0.3333 + col.z * 0.3333;
-                float3 blendCol = lerpHSV(_LowColor, _HighColor, luma * 1);
-                col = lerp(col, blendCol, _BlendColor);
 
                 return float4(col, alpha);
             }
