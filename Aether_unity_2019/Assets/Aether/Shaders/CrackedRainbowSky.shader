@@ -2,7 +2,6 @@
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
         _Rotation ("Rotation", Float) = 0
         _Twist ("Twist", Float) = 0
         _WorldOffset ("World Offset", Vector) = (0,0,0)
@@ -34,20 +33,15 @@
             struct appdata
             {
                 float4 vertex : POSITION;
-                // float2 uv : TEXCOORD0;
             };
 
             struct v2f
             {
-                // float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
             };
 
             uniform float3 _Position;
-
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
 
             float _Rotation;
             float _Twist;
@@ -64,7 +58,6 @@
                 v2f o;
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex);
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
 
