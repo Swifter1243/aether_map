@@ -11,6 +11,7 @@
 
         [Header(Layer 1)][Space(10)]
         _Layer1HueScale ("Hue Scale", Float) = 1
+        _Layer1NoiseHueAmt ("Noise Hue Amount", Float) = 0.3
         _Layer1Saturation ("Saturation", Float) = 0.5
         _Layer1GlowThresh ("Glow Threshold", Range(0,1)) = 0.5
         _Layer1Alpha ("Layer 1 Alpha", Float) = 0.3
@@ -68,6 +69,7 @@
             float3 _WorldOffset;
             float _NoiseScale;
             float _Layer1HueScale;
+            float _Layer1NoiseHueAmt;
             float _Layer1Saturation;
             float _BorderWidth;
             float _BorderFalloff;
@@ -192,7 +194,7 @@
                 float crack = step(border, _BorderWidth);
 
                 // Layer 1
-                float3 layer1Rainbow = rainbow(noisePos.z * _Layer1HueScale + noise.y);
+                float3 layer1Rainbow = rainbow(noisePos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
                 layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
                 bool layer1Mix = noise.y < _Layer1GlowThresh;
                 float layer1Alpha = layer1Mix * _Layer1Alpha;

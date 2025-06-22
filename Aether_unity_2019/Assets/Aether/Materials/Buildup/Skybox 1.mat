@@ -23,14 +23,15 @@ Material:
     - _BorderFalloff: 0.9
     - _BorderWidth: 1
     - _CloudAmount: 1.21
-    - _CloudPow: 2.52
+    - _CloudPow: 1.56
     - _FBM: 0.3
     - _HueSaturation: 0
     - _HueScale: 0.09
     - _Layer1Alpha: 0.1
-    - _Layer1GlowThresh: 0.305
+    - _Layer1GlowThresh: 0.219
     - _Layer1HueScale: 0.01
-    - _Layer1Saturation: 0.6
+    - _Layer1NoiseHueAmt: 0.3
+    - _Layer1Saturation: 0.4
     - _NoiseScale: 0.12
     - _Rotation: 0
     - _Simplex1Scale: 3
