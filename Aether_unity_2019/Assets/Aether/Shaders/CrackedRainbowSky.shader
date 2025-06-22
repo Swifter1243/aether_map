@@ -5,9 +5,7 @@
         _MainTex ("Texture", 2D) = "white" {}
         _Rotation ("Rotation", Float) = 0
         _Twist ("Twist", Float) = 0
-        _OffsetX ("Offset X", Float) = 0
-        _OffsetY ("Offset Y", Float) = 0
-        _OffsetZ ("Offset Z", Float) = 0
+        _WorldOffset ("World Offset", Vector) = (0,0,0)
         _Scale ("World Scale", Float) = 200
         _NoiseScale ("Noise Scale", Float) = 4
         _HueScale ("Hue Scale", Float) = 1
@@ -53,9 +51,7 @@
 
             float _Rotation;
             float _Twist;
-            float _OffsetX;
-            float _OffsetY;
-            float _OffsetZ;
+            float3 _WorldOffset;
             float _Scale;
             float _NoiseScale;
             float _HueScale;
@@ -199,7 +195,7 @@
             {
                 // World position stuff
                 float3 worldPos = i.worldPos;
-                worldPos += float3(_OffsetX, _OffsetY, _OffsetZ);
+                worldPos += _WorldOffset;
                 worldPos *= _Scale;
                 _Twist *= max(0, i.worldPos.z / 200);
                 worldPos.xy = rotate2D(_Twist + _Rotation, worldPos.xy);
