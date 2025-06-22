@@ -7,9 +7,13 @@ Properties
         _Color ("Color", Color) = (1,1,1)
         _Alpha ("Alpha", Float) = 0
         _Flutter ("Flutter", Float) = 0
-        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
+
+        [Header(Blend)][Space(10)]
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 1
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -22,7 +26,7 @@ Properties
             "RenderType"="Transparent"
             "Queue"="Transparent"
         }
-        Blend One One
+        Blend [_BlendSrc] [_BlendDst]
         BlendOp [_BlendOp]
         ZWrite Off
         ZTest [_ZTest]
