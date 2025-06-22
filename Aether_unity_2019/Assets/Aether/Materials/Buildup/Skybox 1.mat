@@ -69,13 +69,14 @@ Material:
     - _GlowThresh: 0.752
     - _Metallic: 0
     - _Mode: 0
+    - _NoiseScale: 0.11
     - _OcclusionStrength: 1
     - _OffsetX: 0
     - _OffsetY: 0
     - _OffsetZ: 0
     - _Parallax: 0.02
     - _Rotation: 1.84
-    - _Scale: 200
+    - _Scale: 204.67
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

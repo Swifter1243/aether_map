@@ -9,6 +9,7 @@
         _OffsetY ("Offset Y", Float) = 0
         _OffsetZ ("Offset Z", Float) = 0
         _Scale ("World Scale", Float) = 200
+        _NoiseScale ("Noise Scale", Float) = 4
         _Border ("Border Width", Float) = 0
         _GlowThresh ("Glow Threshold", Range(0, 1)) = 0.1
         _AddAlpha ("Add Alpha", Range(0, 1)) = 0
@@ -54,6 +55,7 @@
             float _OffsetY;
             float _OffsetZ;
             float _Scale;
+            float _NoiseScale;
             float _Border;
             float _GlowThresh;
             float _AddAlpha;
@@ -207,7 +209,7 @@
                 float3 worldHue = hsv2rgb(float3(abs(worldPos.y) / _Scale / 1000,1,1));
 
                 // Voronoi noise
-                XYlen /= -4.5;
+                XYlen *= _NoiseScale;
                 float alpha = _AddAlpha;
                 float3 noiseVal = worldPos / XYlen;
                 float3 noise = voronoiNoise(noiseVal, true);
