@@ -13,6 +13,7 @@
         _Layer1HueScale ("Hue Scale", Float) = 1
         _Layer1Saturation ("Saturation", Float) = 0.5
         _Layer1GlowThresh ("Glow Threshold", Range(0,1)) = 0.5
+        _Layer1Alpha ("Layer 1 Alpha", Float) = 0.3
     }
     SubShader
     {
@@ -52,6 +53,7 @@
             float _BorderWidth;
             float _BorderFalloff;
             float _Layer1GlowThresh;
+            float _Layer1Alpha;
 
             v2f vert (appdata v)
             {
@@ -171,8 +173,9 @@
 
                 float3 layer1Rainbow = rainbow(noisePos.z * _Layer1HueScale + noise.y);
                 layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
-                float layer1Mix = noise.y < _Layer1GlowThresh;
-                float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Mix);
+                bool layer1Mix = noise.y < _Layer1GlowThresh;
+                float layer1Alpha = layer1Mix * _Layer1Alpha;
+                float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
 
                 float4 col = lerp(layer1Col, float4(noise, 0), crack);
 
