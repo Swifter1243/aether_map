@@ -16,7 +16,7 @@ const TIMES = {
     DROP: 77,
     DROP_END: 261,
     BRIDGE: 373,
-    DROP2_BUILDUP: 509
+    BUILDUP: 509
 } as const
 
 // ----------- { SCRIPT } -----------
@@ -123,7 +123,7 @@ function bridge(map: rm.V3Difficulty)
 {
     const bridgeScene = prefabs.bridge.instantiate(map, TIMES.BRIDGE)
 
-    bridgeScene.destroyObject(TIMES.DROP2_BUILDUP)
+    bridgeScene.destroyObject(TIMES.BUILDUP)
 }
 
 await Promise.all([
