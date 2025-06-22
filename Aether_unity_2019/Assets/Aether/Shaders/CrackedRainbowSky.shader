@@ -16,6 +16,7 @@
         _Layer1Saturation ("Saturation", Float) = 0.5
         _Layer1GlowThresh ("Glow Threshold", Range(0,1)) = 0.5
         _Layer1Alpha ("Layer 1 Alpha", Float) = 0.3
+        _Layer1BaseBrightness ("Base Brightness", Float) = 1
 
         [Header(Layer 2)][Space(10)]
         _HorizonCol ("Horizon Color", Color) = (1,1,1)
@@ -77,6 +78,7 @@
             float _BorderFalloff;
             float _Layer1GlowThresh;
             float _Layer1Alpha;
+            float _Layer1BaseBrightness;
 
             v2f vert (appdata v)
             {
@@ -198,6 +200,7 @@
                 // Layer 1
                 float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
                 layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
+                layer1Rainbow *= _Layer1BaseBrightness;
                 bool layer1Mix = noise.y < _Layer1GlowThresh;
                 float layer1Alpha = layer1Mix * _Layer1Alpha;
                 float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
