@@ -150,12 +150,12 @@
                 // World position stuff
                 float3 worldPos = i.worldPos;
                 worldPos += _WorldOffset;
-                worldPos.xy = rotate2D(i.worldPos.z * _Twist + _Rotation, worldPos.xy);
                 float XYlen = length(worldPos.xy);
 
                 // Voronoi noise
                 XYlen *= _NoiseScale;
                 float3 noisePos = worldPos / XYlen;
+                noisePos.xy = rotate2D(noisePos.z * _Twist + _Rotation, noisePos.xy);
                 float3 noise = voronoiNoise(noisePos, true);
 
                 float border = noise.z;
