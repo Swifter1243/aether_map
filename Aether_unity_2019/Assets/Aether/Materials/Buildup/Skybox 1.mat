@@ -28,6 +28,7 @@ Material:
     - _HueSaturation: 0
     - _HueScale: 0.09
     - _Layer1Alpha: 0.1
+    - _Layer1BaseBrightness: 1
     - _Layer1GlowThresh: 0.219
     - _Layer1HueScale: 0.01
     - _Layer1NoiseHueAmt: 0.3
