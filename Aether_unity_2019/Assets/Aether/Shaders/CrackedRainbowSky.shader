@@ -5,10 +5,10 @@
         _Rotation ("Rotation", Float) = 0
         _Twist ("Twist", Float) = 0
         _WorldOffset ("World Offset", Vector) = (0,0,0)
-        _Scale ("World Scale", Float) = 200
+        _WorldScale ("World Scale", Float) = 200
         _NoiseScale ("Noise Scale", Float) = 4
         _HueScale ("Hue Scale", Float) = 1
-        _Border ("Border Width", Float) = 0
+        _BorderWidth ("Border Width", Float) = 0
         _GlowThresh ("Glow Threshold", Range(0, 1)) = 0.1
         _AddAlpha ("Add Alpha", Range(0, 1)) = 0
     }
@@ -46,10 +46,10 @@
             float _Rotation;
             float _Twist;
             float3 _WorldOffset;
-            float _Scale;
+            float _WorldScale;
             float _NoiseScale;
             float _HueScale;
-            float _Border;
+            float _BorderWidth;
             float _GlowThresh;
             float _AddAlpha;
 
@@ -189,7 +189,7 @@
                 // World position stuff
                 float3 worldPos = i.worldPos;
                 worldPos += _WorldOffset;
-                worldPos *= _Scale;
+                worldPos *= _WorldScale;
                 _Twist *= max(0, i.worldPos.z / 200);
                 worldPos.xy = rotate2D(_Twist + _Rotation, worldPos.xy);
 
@@ -197,8 +197,8 @@
                 float XYlen = length(float3(worldPos.y, 14.7, worldPos.x));
 
                 // Border
-                _Border /= abs(worldPos.y);
-                float3 worldHue = hsv2rgb(float3(abs(worldPos.y) / _Scale / 1000,1,1));
+                _BorderWidth /= abs(worldPos.y);
+                float3 worldHue = hsv2rgb(float3(abs(worldPos.y) / _WorldScale / 1000,1,1));
 
                 // Voronoi noise
                 XYlen *= _NoiseScale;
@@ -213,7 +213,7 @@
 
                 // Apply border
                 float valueChange = fwidth(noiseVal.z) * 0.5;
-                float isBorder = 1 - smoothstep(_Border - valueChange, _Border + valueChange, noise.z);
+                float isBorder = 1 - smoothstep(_BorderWidth - valueChange, _BorderWidth + valueChange, noise.z);
                 col = lerp(col, worldHue, isBorder);
                 alpha += isBorder / 5;
 
