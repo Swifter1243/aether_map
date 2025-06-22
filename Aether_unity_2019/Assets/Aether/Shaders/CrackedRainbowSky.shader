@@ -14,6 +14,22 @@
         _Layer1Saturation ("Saturation", Float) = 0.5
         _Layer1GlowThresh ("Glow Threshold", Range(0,1)) = 0.5
         _Layer1Alpha ("Layer 1 Alpha", Float) = 0.3
+
+        [Header(Layer 2)][Space(10)]
+        _HorizonCol ("Horizon Color", Color) = (1,1,1)
+        _SkyCol ("Sky Color", Color) = (1,1,1)
+        _HueSaturation ("Hue Saturation", Float) = 0.7
+        _Voronoi1Scale ("Voronoi 1 Scale", Float) = 20
+        _Voronoi2Scale ("Voronoi 2 Scale", Float) = 3
+        _Simplex1Scale ("Simplex 1 Scale", Float) = 3
+        _FBM ("Fractional Brownian Motion", Float) = 0.3
+        _TimeScale ("Time Scale", Float) = 1
+        [Toggle(SKYBOX_HORIZON)] _SkyboxHorizon ("Horizon", Int) = 1
+        [Toggle(SKYBOX_CLOUDS)] _SkyboxClouds ("Clouds", Int) = 1
+        _CloudPow ("Cloud Pow", Float) = 3.5
+        _CloudAmount ("Cloud Amount", Float) = 1
+        [Toggle(SKYBOX_CLOUD_FOG)] _SkyboxCloudFog ("Cloud Fog", Int) = 0
+        _SkyboxCloudFogDistance ("Cloud Fog Distance", Float) = 100
     }
     SubShader
     {
@@ -24,14 +40,17 @@
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature SKYBOX_HORIZON
+            #pragma shader_feature SKYBOX_CLOUDS
+            #pragma shader_feature SKYBOX_CLOUD_FOG
 
             #include "UnityCG.cginc"
 
             // VivifyTemplate Libraries
-            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
-            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
+            #include "RainbowSkybox.hlsl"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+
 
             struct appdata
             {
@@ -180,7 +199,7 @@
                 float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
 
                 // Layer 2
-                float4 layer2Col = float4(noise, 0);
+                float4 layer2Col = doSkybox(normalize(noisePos));
 
                 // Final
                 float4 col = lerp(layer1Col, layer2Col, crack);

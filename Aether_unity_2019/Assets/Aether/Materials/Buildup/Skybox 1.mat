@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Skybox 1
   m_Shader: {fileID: 4800000, guid: e3538c5d6ee8bba42a86218c3c58c27d, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: SKYBOX_CLOUDS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -22,13 +22,27 @@ Material:
     m_Floats:
     - _BorderFalloff: 0.9
     - _BorderWidth: 1
+    - _CloudAmount: 1.21
+    - _CloudPow: 2.52
+    - _FBM: 0.3
+    - _HueSaturation: 0
     - _HueScale: 0.09
     - _Layer1Alpha: 0.1
-    - _Layer1GlowThresh: 0.571
-    - _Layer1HueScale: 0.03
+    - _Layer1GlowThresh: 0.305
+    - _Layer1HueScale: 0.01
     - _Layer1Saturation: 0.6
     - _NoiseScale: 0.12
     - _Rotation: 0
+    - _Simplex1Scale: 3
+    - _SkyboxCloudFog: 0
+    - _SkyboxCloudFogDistance: 100
+    - _SkyboxClouds: 1
+    - _SkyboxHorizon: 0
+    - _TimeScale: 0.3
     - _Twist: 0
+    - _Voronoi1Scale: 20
+    - _Voronoi2Scale: 3
     m_Colors:
+    - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
+    - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
     - _WorldOffset: {r: 0, g: 0, b: 0, a: 1}
