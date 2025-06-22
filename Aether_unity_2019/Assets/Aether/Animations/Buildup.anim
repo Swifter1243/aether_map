@@ -215,16 +215,25 @@ AnimationClip:
         tangentMode: 1
         weightedMode: 3
         inWeight: 0.98931885
-        outWeight: 0.33165085
+        outWeight: 0.33189148
       - serializedVersion: 3
-        time: 8.316667
-        value: 2.7757566
-        inSlope: 0
-        outSlope: 0
+        time: 6.2833333
+        value: 2.7897131
+        inSlope: -0.012621664
+        outSlope: 0.03708604
         tangentMode: 1
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+        weightedMode: 3
+        inWeight: 0.33412638
+        outWeight: 0.9502462
+      - serializedVersion: 3
+        time: 6.616667
+        value: 4.067874
+        inSlope: 60.964508
+        outSlope: -0.009084062
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.059230298
+        outWeight: 0.3335422
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2262,6 +2271,71 @@ AnimationClip:
     path: 509/Star Particles
     classID: 198
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 6.5333333
+        value: -0.6801329
+        inSlope: 0
+        outSlope: 129.88538
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.0046979804
+      - serializedVersion: 3
+        time: 7.5833335
+        value: 0.017118376
+        inSlope: 0.0015493617
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 12.9
+        value: -0.0083740335
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Rotation
+    path: 525/Skybox
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 6.5333333
+        value: -0.028387204
+        inSlope: 0
+        outSlope: 1156432.9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.7
+        value: 0
+        inSlope: 0.0004475807
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Twist
+    path: 525/Skybox
+    classID: 23
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -2437,6 +2511,20 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 198
       customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 476618505
+      attribute: 2395652039
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 476618505
+      attribute: 2199749904
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 1697751744
@@ -2623,16 +2711,25 @@ AnimationClip:
         tangentMode: 1
         weightedMode: 3
         inWeight: 0.98931885
-        outWeight: 0.33165085
+        outWeight: 0.33189148
       - serializedVersion: 3
-        time: 8.316667
-        value: 2.7757566
-        inSlope: 0
-        outSlope: 0
+        time: 6.2833333
+        value: 2.7897131
+        inSlope: -0.012621664
+        outSlope: 0.03708604
         tangentMode: 1
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+        weightedMode: 3
+        inWeight: 0.33412638
+        outWeight: 0.9502462
+      - serializedVersion: 3
+        time: 6.616667
+        value: 4.067874
+        inSlope: 60.964508
+        outSlope: -0.009084062
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.059230298
+        outWeight: 0.3335422
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -4930,6 +5027,71 @@ AnimationClip:
     attribute: VelocityModule.orbitalZ.scalar
     path: 509/Star Particles
     classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 6.5333333
+        value: -0.6801329
+        inSlope: 0
+        outSlope: 129.88538
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.0046979804
+      - serializedVersion: 3
+        time: 7.5833335
+        value: 0.017118376
+        inSlope: 0.0015493617
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 12.9
+        value: -0.0083740335
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Rotation
+    path: 525/Skybox
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 6.5333333
+        value: -0.028387204
+        inSlope: 0
+        outSlope: 1156432.9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 8.7
+        value: 0
+        inSlope: 0.0004475807
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Twist
+    path: 525/Skybox
+    classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
