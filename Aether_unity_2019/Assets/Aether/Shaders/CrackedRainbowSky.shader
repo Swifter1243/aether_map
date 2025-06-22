@@ -158,11 +158,15 @@
                 float3 noisePos = worldPos / XYlen;
                 float3 noise = voronoiNoise(noisePos, true);
 
-                float border = noise.z + abs(noisePos.y);
+                float border = noise.z;
 
-                return border;
+                border *= exp(abs(noisePos.y));
+                border -= 0.5;
+                float crack = step(border, 0);
 
-                return float4(noise, 0);
+                float3 col = lerp(1, noise, crack);
+
+                return float4(col, 0);
             }
             ENDCG
         }
