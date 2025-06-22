@@ -2165,22 +2165,31 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -70.545074
+        value: -51.74057
         inSlope: 111.171875
-        outSlope: 688.22906
+        outSlope: 867.15283
         tangentMode: 1
         weightedMode: 3
         inWeight: 0.33333334
-        outWeight: 0.051897053
+        outWeight: 0.014405451
       - serializedVersion: 3
-        time: 1.6666666
-        value: -0.72060174
-        inSlope: 4.028058
+        time: 1.8666667
+        value: -0.8034668
+        inSlope: 1.2862648
         outSlope: 0
         tangentMode: 1
         weightedMode: 3
-        inWeight: 1
+        inWeight: 0.98286
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.4666667
+        value: -0.2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2213,6 +2222,43 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: EmissionModule.rateOverTime.scalar
+    path: 509/Star Particles
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 2.35
+        value: 0
+        inSlope: 0
+        outSlope: -0.018222228
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.6620255
+      - serializedVersion: 3
+        time: 3.2166667
+        value: -0.79654694
+        inSlope: -14.555986
+        outSlope: 5.0651026
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.07437751
+        outWeight: 0.08127112
+      - serializedVersion: 3
+        time: 5.6666665
+        value: -0.1
+        inSlope: 0.120573744
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.5022626
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: VelocityModule.orbitalZ.scalar
     path: 509/Star Particles
     classID: 198
     script: {fileID: 0}
@@ -2381,6 +2427,13 @@ AnimationClip:
     - serializedVersion: 2
       path: 3937847453
       attribute: 2883525743
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3937847453
+      attribute: 1016915871
       script: {fileID: 0}
       typeID: 198
       customType: 27
@@ -4781,22 +4834,31 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -70.545074
+        value: -51.74057
         inSlope: 111.171875
-        outSlope: 688.22906
+        outSlope: 867.15283
         tangentMode: 1
         weightedMode: 3
         inWeight: 0.33333334
-        outWeight: 0.051897053
+        outWeight: 0.014405451
       - serializedVersion: 3
-        time: 1.6666666
-        value: -0.72060174
-        inSlope: 4.028058
+        time: 1.8666667
+        value: -0.8034668
+        inSlope: 1.2862648
         outSlope: 0
         tangentMode: 1
         weightedMode: 3
-        inWeight: 1
+        inWeight: 0.98286
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.4666667
+        value: -0.2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -4829,6 +4891,43 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: EmissionModule.rateOverTime.scalar
+    path: 509/Star Particles
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 2.35
+        value: 0
+        inSlope: 0
+        outSlope: -0.018222228
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.6620255
+      - serializedVersion: 3
+        time: 3.2166667
+        value: -0.79654694
+        inSlope: -14.555986
+        outSlope: 5.0651026
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.07437751
+        outWeight: 0.08127112
+      - serializedVersion: 3
+        time: 5.6666665
+        value: -0.1
+        inSlope: 0.120573744
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.5022626
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: VelocityModule.orbitalZ.scalar
     path: 509/Star Particles
     classID: 198
     script: {fileID: 0}
