@@ -5,12 +5,9 @@
         _Rotation ("Rotation", Float) = 0
         _Twist ("Twist", Float) = 0
         _WorldOffset ("World Offset", Vector) = (0,0,0)
-        _WorldScale ("World Scale", Float) = 200
         _NoiseScale ("Noise Scale", Float) = 4
         _HueScale ("Hue Scale", Float) = 1
         _BorderWidth ("Border Width", Float) = 0
-        _GlowThresh ("Glow Threshold", Range(0, 1)) = 0.1
-        _AddAlpha ("Add Alpha", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -41,17 +38,13 @@
                 float3 worldPos : TEXCOORD0;
             };
 
-            uniform float3 _Position;
-
             float _Rotation;
             float _Twist;
             float3 _WorldOffset;
-            float _WorldScale;
             float _NoiseScale;
             float _HueScale;
             float _BorderWidth;
             float _GlowThresh;
-            float _AddAlpha;
 
             v2f vert (appdata v)
             {
@@ -189,40 +182,19 @@
                 // World position stuff
                 float3 worldPos = i.worldPos;
                 worldPos += _WorldOffset;
-                worldPos *= _WorldScale;
-                _Twist *= max(0, i.worldPos.z / 200);
-                worldPos.xy = rotate2D(_Twist + _Rotation, worldPos.xy);
-
-                // Rotation
-                float XYlen = length(float3(worldPos.y, 14.7, worldPos.x));
-
-                // Border
-                _BorderWidth /= abs(worldPos.y);
-                float3 worldHue = hsv2rgb(float3(abs(worldPos.y) / _WorldScale / 1000,1,1));
+                worldPos.xy = rotate2D(i.worldPos.z * _Twist + _Rotation, worldPos.xy);
+                float XYlen = length(worldPos.xy);
 
                 // Voronoi noise
                 XYlen *= _NoiseScale;
-                float alpha = _AddAlpha;
-                float3 noiseVal = worldPos / XYlen;
-                float3 noise = voronoiNoise(noiseVal, true);
-                float3 col = rand1dTo3d(noise.y);
-                if (noise.y < _GlowThresh) {
-                    col = 1;
-                    alpha = 1;
-                }
+                float3 noisePos = worldPos / XYlen;
+                float3 noise = voronoiNoise(noisePos, true);
 
-                // Apply border
-                float valueChange = fwidth(noiseVal.z) * 0.5;
-                float isBorder = 1 - smoothstep(_BorderWidth - valueChange, _BorderWidth + valueChange, noise.z);
-                col = lerp(col, worldHue, isBorder);
-                alpha += isBorder / 5;
+                float border = noise.z + abs(noisePos.y);
 
-                // Color correction
-                float hue = worldPos.z / XYlen;
-                hue *= _HueScale;
-                col = hsvNode(col, hue, 0.7, 1);
+                return border;
 
-                return float4(col, alpha);
+                return float4(noise, 0);
             }
             ENDCG
         }
