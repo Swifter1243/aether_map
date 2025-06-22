@@ -47,6 +47,7 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
 
     ambient(map)
     bridge(map)
+    buildup(map)
 }
 
 function infoSetup(map: rm.V3Difficulty) {
@@ -124,6 +125,13 @@ function bridge(map: rm.V3Difficulty)
     const bridgeScene = prefabs.bridge.instantiate(map, TIMES.BRIDGE)
 
     bridgeScene.destroyObject(TIMES.BUILDUP)
+}
+
+function buildup(map: rm.V3Difficulty)
+{
+    const buildupScene = prefabs.buildup.instantiate(map, TIMES.BUILDUP)
+
+    // TODO: buildupScene.destroyObject
 }
 
 await Promise.all([
