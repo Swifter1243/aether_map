@@ -5,6 +5,7 @@
         _Rotation ("Rotation", Float) = 0
         _Twist ("Twist", Float) = 0
         _WorldOffset ("World Offset", Vector) = (0,0,0)
+        _WorldScale ("World Scale", Vector) = (900,900,900)
         _NoiseScale ("Noise Scale", Float) = 4
         _NoiseOffset ("Noise Offset", Vector) = (0,0,0)
         _BorderWidth ("Border Width", Float) = 0
@@ -69,12 +70,13 @@
             struct v2f
             {
                 float4 vertex : SV_POSITION;
-                float3 worldPos : TEXCOORD0;
+                float3 localPos : TEXCOORD0;
             };
 
             float _Rotation;
             float _Twist;
             float3 _WorldOffset;
+            float3 _WorldScale;
             float _NoiseScale;
             float3 _NoiseOffset;
             float _Layer1HueScale;
@@ -91,7 +93,7 @@
             v2f vert (appdata v)
             {
                 v2f o;
-                o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+                o.localPos = v.vertex;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 return o;
             }
@@ -190,7 +192,7 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 // World position stuff
-                float3 worldPos = i.worldPos;
+                float3 worldPos = i.localPos * _WorldScale;
                 worldPos += _WorldOffset;
                 float XYlen = length(worldPos.xy);
 
