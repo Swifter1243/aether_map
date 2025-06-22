@@ -8,6 +8,7 @@
         _NoiseScale ("Noise Scale", Float) = 4
         _HueScale ("Hue Scale", Float) = 1
         _BorderWidth ("Border Width", Float) = 0
+        _BorderFalloff ("Border Falloff", Float) = 1
     }
     SubShader
     {
@@ -44,6 +45,7 @@
             float _NoiseScale;
             float _HueScale;
             float _BorderWidth;
+            float _BorderFalloff;
             float _GlowThresh;
 
             v2f vert (appdata v)
@@ -159,7 +161,7 @@
                 float3 noise = voronoiNoise(noisePos, true);
 
                 float border = noise.z;
-                border *= exp(abs(noisePos.y));
+                border *= exp(abs(noisePos.y) * _BorderFalloff);
                 float crack = step(border, _BorderWidth);
 
                 float3 col = lerp(1, noise, crack);

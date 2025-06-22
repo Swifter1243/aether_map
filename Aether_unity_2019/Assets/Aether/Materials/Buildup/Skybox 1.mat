@@ -20,7 +20,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _BorderWidth: 0.87
+    - _BorderFalloff: 0.9
+    - _BorderWidth: 1
     - _HueScale: 1
     - _NoiseScale: 0.12
     - _Rotation: 0
