@@ -43,6 +43,7 @@ Shader "Swifter/VFX/ShockwaveParticle"
                 float3 worldPos : TEXCOORD0;
                 float3 center : TEXCOORD1;
                 float2 uv : TEXCOORD2;
+                float distortion : TEXCOORD3;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -65,6 +66,7 @@ Shader "Swifter/VFX/ShockwaveParticle"
                 o.worldPos = v.vertex;
                 o.center = center;
                 o.uv = uv;
+                o.distortion = v.color.x;
                 return o;
             }
 
@@ -86,7 +88,7 @@ Shader "Swifter/VFX/ShockwaveParticle"
                 float circleDist = 1 - abs(0.5 - min(1, length(centerUV))) * 2;
                 float ring = smoothstep(0, 1, pow(circleDist, _RingSharpness));
 
-                float distortion = _Distortion;
+                float distortion = _Distortion * i.distortion;
                 float3 samplePos = (i.worldPos - i.center) * (1 + ring * distortion) + i.center;
                 float2 screenUV = worldToScreen(samplePos);
 
