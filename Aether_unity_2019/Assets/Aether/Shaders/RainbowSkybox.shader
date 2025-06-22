@@ -2,6 +2,7 @@ Shader "Swifter/RainbowSkybox"
 {
     Properties
     {
+        _TotalScale ("Total Scale", Float) = 1
         _HorizonCol ("Horizon Color", Color) = (1,1,1)
         _SkyCol ("Sky Color", Color) = (1,1,1)
         _HueSaturation ("Hue Saturation", Float) = 0.7
@@ -24,8 +25,7 @@ Shader "Swifter/RainbowSkybox"
     {
         Tags
         {
-            "RenderType"="Background"
-            "Queue"="Background"
+            "RenderType"="Opaque"
         }
 
         Stencil
@@ -64,6 +64,8 @@ Shader "Swifter/RainbowSkybox"
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
+            float _TotalScale;
+
             v2f vert(appdata v)
             {
                 v2f o;
@@ -72,7 +74,7 @@ Shader "Swifter/RainbowSkybox"
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.localPos = v.vertex;
+                o.localPos = v.vertex * _TotalScale;
                 return o;
             }
 

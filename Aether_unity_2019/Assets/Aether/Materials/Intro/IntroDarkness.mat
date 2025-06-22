@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IntroSkybox
-  m_Shader: {fileID: 4800000, guid: 4a7c14a86573a01489d1e91ada7098b8, type: 3}
-  m_ShaderKeywords: SKYBOX_CLOUDS SKYBOX_HORIZON
+  m_Name: IntroDarkness
+  m_Shader: {fileID: 4800000, guid: b12eab1c94d5408882acc78ba1b9fd09, type: 3}
+  m_ShaderKeywords: SKYBOX_CLOUDS SKYBOX_HORIZON _ZWRITE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -22,18 +22,22 @@ Material:
     m_Floats:
     - _CloudAmount: 1
     - _CloudPow: 3.5
-    - _FBM: 0.1
-    - _HueSaturation: 0.01
-    - _Simplex1Scale: 2
+    - _Cull: 1
+    - _FBM: 0.3
+    - _Glow: 0
+    - _HueSaturation: 0.7
+    - _Simplex1Scale: 3
     - _SkyboxClouds: 1
     - _SkyboxHorizon: 1
     - _StencilComp: 8
     - _StencilPass: 2
     - _StencilRef: 0
-    - _TimeScale: 1.02
-    - _TotalScale: 2
-    - _Voronoi1Scale: 31.08
-    - _Voronoi2Scale: 1.31
+    - _TimeScale: 1
+    - _TotalScale: 1
+    - _Voronoi1Scale: 20
+    - _Voronoi2Scale: 3
+    - _ZWrite: 1
     m_Colors:
-    - _HorizonCol: {r: 0.8066038, g: 0.94084346, b: 1, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
     - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
