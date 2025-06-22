@@ -74,12 +74,12 @@ Material:
     - _OffsetY: 0
     - _OffsetZ: 0
     - _Parallax: 0.02
-    - _Rotation: 84.24
+    - _Rotation: 1.84
     - _Scale: 200
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Twist: 44.04
+    - _Twist: 0.7
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

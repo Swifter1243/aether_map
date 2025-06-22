@@ -31,7 +31,7 @@
             // VivifyTemplate Libraries
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
             struct appdata
@@ -164,23 +164,6 @@
                 return float3(minDistToCell, random, minEdgeDistance);
             }
 
-            // yoink https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Rotate-About-Axis-Node.html
-            float3 rotateOnAxis(float3 In, float3 Axis, float Rotation)
-            {
-                Rotation = radians(Rotation);
-                float s = sin(Rotation);
-                float c = cos(Rotation);
-                float one_minus_c = 1.0 - c;
-
-                Axis = normalize(Axis);
-                float3x3 rot_mat =
-                {   one_minus_c * Axis.x * Axis.x + c, one_minus_c * Axis.x * Axis.y - Axis.z * s, one_minus_c * Axis.z * Axis.x + Axis.y * s,
-                    one_minus_c * Axis.x * Axis.y + Axis.z * s, one_minus_c * Axis.y * Axis.y + c, one_minus_c * Axis.y * Axis.z - Axis.x * s,
-                    one_minus_c * Axis.z * Axis.x - Axis.y * s, one_minus_c * Axis.y * Axis.z + Axis.x * s, one_minus_c * Axis.z * Axis.z + c
-                };
-                return mul(rot_mat,  In);
-            }
-
             float3 hsv2rgb(float3 c)
             {
                 float4 K = float4(1., 2./3., 1./3., 3.);
@@ -220,13 +203,12 @@
                 worldPos += float3(_OffsetX, _OffsetY, _OffsetZ);
                 worldPos *= _Scale;
                 _Twist *= max(0, i.worldPos.z / 200);
-                worldPos = rotateOnAxis(worldPos, float3(0,0,1), _Twist + _Rotation);
+                worldPos.xy = rotate2D(_Twist + _Rotation, worldPos.xy);
 
                 // Rotation
                 float atanY = atan2(worldPos.y, -12.7);
                 float XYlen = length(float3(worldPos.y, 14.7, worldPos.x));
                 float rotation = atanY / XYlen;
-                rotation = radians(rotation);
 
                 // Border
                 _Border /= abs(worldPos.y);
@@ -250,7 +232,6 @@
                 alpha += isBorder / 5;
 
                 // Color correction
-                col = rotateOnAxis(col, float3(0,1,0), rotation);
                 float hue = worldPos.z / (XYlen * 1.2);
                 col = hsvNode(col, hue, 0.7, 1);
 
