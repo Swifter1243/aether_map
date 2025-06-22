@@ -24,7 +24,7 @@
 
             // VivifyTemplate Libraries
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
@@ -164,9 +164,14 @@
                 border *= exp(abs(noisePos.y) * _BorderFalloff);
                 float crack = step(border, _BorderWidth);
 
-                float3 col = lerp(1, noise, crack);
+                float4 layer1Rainbow = float4(rainbow(noisePos.z * _HueScale + noise.y), 0);
+                layer1Rainbow = lerp(layer1Rainbow, 1, 0.8);
+                float layer1Mix = noise.y > 0.5;
+                float4 layer1Col = lerp(layer1Rainbow, 1, layer1Mix);
 
-                return float4(col, 0);
+                float4 col = lerp(layer1Col, float4(noise, 0), crack);
+
+                return col;
             }
             ENDCG
         }

@@ -22,7 +22,7 @@ Material:
     m_Floats:
     - _BorderFalloff: 0.9
     - _BorderWidth: 1
-    - _HueScale: 1
+    - _HueScale: 0.09
     - _NoiseScale: 0.12
     - _Rotation: 0
     - _Twist: 0
