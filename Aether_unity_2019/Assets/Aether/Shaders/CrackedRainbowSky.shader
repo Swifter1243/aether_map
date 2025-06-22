@@ -6,9 +6,12 @@
         _Twist ("Twist", Float) = 0
         _WorldOffset ("World Offset", Vector) = (0,0,0)
         _NoiseScale ("Noise Scale", Float) = 4
-        _HueScale ("Hue Scale", Float) = 1
         _BorderWidth ("Border Width", Float) = 0
         _BorderFalloff ("Border Falloff", Float) = 1
+
+        [Header(Layer 1)][Space(10)]
+        _Layer1HueScale ("Hue Scale", Float) = 1
+        _Layer1Saturation ("Saturation", Float) = 0.5
     }
     SubShader
     {
@@ -43,7 +46,8 @@
             float _Twist;
             float3 _WorldOffset;
             float _NoiseScale;
-            float _HueScale;
+            float _Layer1HueScale;
+            float _Layer1Saturation;
             float _BorderWidth;
             float _BorderFalloff;
             float _GlowThresh;
@@ -164,8 +168,8 @@
                 border *= exp(abs(noisePos.y) * _BorderFalloff);
                 float crack = step(border, _BorderWidth);
 
-                float4 layer1Rainbow = float4(rainbow(noisePos.z * _HueScale + noise.y), 0);
-                layer1Rainbow = lerp(layer1Rainbow, 1, 0.8);
+                float4 layer1Rainbow = float4(rainbow(noisePos.z * _Layer1HueScale + noise.y), 0);
+                layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
                 float layer1Mix = noise.y > 0.5;
                 float4 layer1Col = lerp(layer1Rainbow, 1, layer1Mix);
 
