@@ -37,12 +37,7 @@ Shader "Swifter/RainbowSkybox"
 
         Pass
         {
-            ZWrite Off
-            Cull Off
-            Fog
-            {
-                Mode Off
-            }
+            Cull Front
 
             CGPROGRAM
             #pragma vertex vert

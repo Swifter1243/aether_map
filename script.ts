@@ -80,12 +80,6 @@ function visualsSetup(map: rm.V3Difficulty) {
     rm.environmentRemoval(map, [
         'Environment'
     ])
-
-    rm.setCameraProperty(map, {
-        properties: {
-            clearFlags: 'Skybox'
-        }
-    })
 }
 
 function bokeh(material: rm.Material, map: rm.AbstractDifficulty, beat: number, duration = 10, radius = 25)
@@ -101,13 +95,6 @@ function bokeh(material: rm.Material, map: rm.AbstractDifficulty, beat: number, 
 }
 
 function intro(map: rm.V3Difficulty) {
-    rm.setRenderingSettings(map, {
-        beat: TIMES.INTRO1,
-        renderSettings: {
-            skybox: materials.introskybox.path
-        }
-    })
-
     const introScene = prefabs.intro.instantiate(map, TIMES.INTRO)
     
     bokeh(materials.introbokeh, map, TIMES.INTRO1, 10, 15)
