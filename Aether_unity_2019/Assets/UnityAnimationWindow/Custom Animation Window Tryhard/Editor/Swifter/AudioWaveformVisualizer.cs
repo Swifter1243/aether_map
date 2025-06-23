@@ -14,7 +14,7 @@ class AudioWaveformVisualizer
     private const int MaxWindowSamples = 100;
     private const int BeatLabelWidth = 40;
     private const float SubBeatLineInset = 0.2f;
-    
+
     private GUIStyle s_beatLabelStyle =>
         new GUIStyle
         {
@@ -35,7 +35,7 @@ class AudioWaveformVisualizer
         float endX = audioWaveformRect.xMax;
         float middleY = audioWaveformRect.center.y;
         float halfHeight = audioWaveformRect.height / 2;
-        
+
         AudioClip clip = state.audioControlsState.m_audioClip;
         if (!clip)
         {
@@ -53,17 +53,17 @@ class AudioWaveformVisualizer
                 {
                     continue;
                 }
-                
+
                 float waveformHeight = halfHeight * sample;
                 waveformHeight = Mathf.Max(waveformHeight, 1);
-            
+
                 float y1 = middleY - waveformHeight;
                 float y2 = middleY + waveformHeight;
-            
+
                 DrawVerticalLineFast(x, y1, y2);
             }
         }
-        
+
         GL.End();
     }
 
@@ -75,11 +75,11 @@ class AudioWaveformVisualizer
         float bpm = state.audioControlsState.m_bpm;
         float step = 60f / state.audioControlsState.m_bpmGuidePrecision / bpm;
         float startTimeBounded = Mathf.Ceil(startTime / step) * step;
-        
+
         GUI.BeginGroup(audioBPMRect);
-        
+
         DrawBeatGuides(audioBPMRect, step, startTimeBounded, endTime, bpm);
-        
+
         float pixelDistance = state.TimeToPixel(step) - state.zeroTimePixel;
         float minimumPixelDistance = BeatLabelWidth;
         while (pixelDistance < minimumPixelDistance)
@@ -93,7 +93,7 @@ class AudioWaveformVisualizer
         {
             DrawBeatLabels(step, startTimeBounded, endTime, bpm);
         }
-        
+
         GUI.EndGroup();
     }
 
@@ -110,14 +110,14 @@ class AudioWaveformVisualizer
         GL.Begin(GL.LINES);
         HandleUtility.ApplyWireMaterial();
         GL.Color(state.audioControlsState.m_bpmGuideColor);
-        
+
         float subBeatLineInset = audioBPMRect.height * SubBeatLineInset;
-        
+
         for (float t = startTimeBounded; t < endTime; t += step)
         {
             float x = state.TimeToPixel(t);
             float beat = TimingUtility.SecondsToBeat(bpm, t) + state.GetAudioBeatOffset();
-            
+
             if (IsOnExactBeat(beat))
             {
                 DrawVerticalLineFast(x, 0, audioBPMRect.height);
@@ -133,7 +133,7 @@ class AudioWaveformVisualizer
     private void DrawBeatLabels(float step, float startTimeBounded, float endTime, float bpm)
     {
         GUIStyle labelStyle = s_beatLabelStyle;
-            
+
         for (float t = startTimeBounded; t < endTime; t += step)
         {
             float x = state.TimeToPixel(t);
@@ -141,7 +141,7 @@ class AudioWaveformVisualizer
 
             if (IsOnExactBeat(beat))
             {
-                GUI.Label(new Rect(x + 4, -1, BeatLabelWidth, 20), Mathf.RoundToInt(beat).ToString(), labelStyle);   
+                GUI.Label(new Rect(x + 4, -1, BeatLabelWidth, 20), Mathf.RoundToInt(beat).ToString(), labelStyle);
             }
         }
     }
@@ -160,27 +160,27 @@ class AudioWaveformVisualizer
     {
         float x1 = x - 0.5f;
         float x2 = x + 0.5f;
-        
+
         float t1 = PixelToTime(audioWaveformRect, x1);
         float t2 = PixelToTime(audioWaveformRect, x2);
 
-        if (t1 < 0 || t2 > clip.length)
+        t1 += state.GetAudioSecondOffset();
+        t2 += state.GetAudioSecondOffset();
+
+        if (t1 < 0 || t2 >= clip.length)
         {
             return -1;
         }
 
-        t1 += state.GetAudioSecondOffset();
-        t2 += state.GetAudioSecondOffset();
-        
         int p1 = AudioClipUtility.SecondsToSamplePosition(clip, t1);
         int p2 = AudioClipUtility.SecondsToSamplePosition(clip, t2);
-        
+
         int width = p2 - p1;
         width = Math.Min(width, MaxWindowSamples);
         clip.GetData(_samples, p1);
-        
+
         float s = 0;
-        
+
         for (int i = 0; i < width; i++)
         {
             s += Math.Abs(_samples[i]);
