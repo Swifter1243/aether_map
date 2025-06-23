@@ -223,6 +223,7 @@
                 float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
 
                 // Layer 2
+                projectedPos.xy = rotate2D(projectedPos.z * _Twist + _Rotation, projectedPos.xy);
                 float4 layer2Col = doSkybox(normalize(projectedPos));
 
                 // Final
