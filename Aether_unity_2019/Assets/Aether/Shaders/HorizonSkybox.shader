@@ -12,6 +12,8 @@ Shader "Swifter/HorizonSkybox"
         _YFalloff ("_YFalloff", Float) = 15
         _CenterHighlightPower ("_CenterHighlightPower", Float) = 4
         _Brightness ("Brightness", Float) = 1
+        [Toggle(HORIZON)] _HorizonEnabled ("Horizon", Int) = 0
+        _HorizonSize ("Horizon Size", Float) = 0.04
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -37,6 +39,7 @@ Shader "Swifter/HorizonSkybox"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature HORIZON
 
             #include "UnityCG.cginc"
 
@@ -80,6 +83,7 @@ Shader "Swifter/HorizonSkybox"
             float _YFalloff;
             float _CenterHighlightPower;
             float _Brightness;
+            float _HorizonSize;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -95,6 +99,10 @@ Shader "Swifter/HorizonSkybox"
                 col += pow(col, _CenterHighlightPower);
 
                 col *= _Brightness;
+
+                #if HORIZON
+                col *= smoothstep(-_HorizonSize, _HorizonSize, i.localPos.y);
+                #endif
 
                 return float4(col, 0);
             }

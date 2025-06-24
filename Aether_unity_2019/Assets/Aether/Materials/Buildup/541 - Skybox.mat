@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 541 - Skybox
   m_Shader: {fileID: 4800000, guid: 91de63d3a739c3741840cd3b39b46587, type: 3}
-  m_ShaderKeywords: SKYBOX_CLOUDS SKYBOX_HORIZON
+  m_ShaderKeywords: HORIZON SKYBOX_CLOUDS SKYBOX_HORIZON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -68,6 +68,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HorizonEnabled: 1
+    - _HorizonSize: 0.02
     - _HueSaturation: 0.7
     - _Metallic: 0
     - _Mode: 0
@@ -86,6 +88,7 @@ Material:
     - _StencilPass: 0
     - _StencilRef: 0
     - _TimeScale: 0.01
+    - _TopOnly: 0
     - _TotalScale: 1
     - _UVSec: 0
     - _Voronoi1Scale: 20
