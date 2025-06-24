@@ -5555,6 +5555,43 @@ AnimationClip:
     path: 541/Big Laser/Flare/Rings/Ring (1)
     classID: 23
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.016666
+        value: 0.10858628
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 22.35
+        value: 1
+        inSlope: 0.36138391
+        outSlope: 0.36138391
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 25.883333
+        value: 10.634806
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 541/Terrain/Dust
+    classID: 199
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -6037,6 +6074,13 @@ AnimationClip:
       attribute: 2262801196
       script: {fileID: 0}
       typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3621211330
+      attribute: 2237670731
+      script: {fileID: 0}
+      typeID: 199
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
@@ -13440,6 +13484,43 @@ AnimationClip:
     attribute: m_LocalPosition.z
     path: 541/Terrain
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.016666
+        value: 0.10858628
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 22.35
+        value: 1
+        inSlope: 0.36138391
+        outSlope: 0.36138391
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 25.883333
+        value: 10.634806
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 541/Terrain/Dust
+    classID: 199
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
