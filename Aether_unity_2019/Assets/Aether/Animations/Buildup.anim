@@ -5217,21 +5217,188 @@ AnimationClip:
         tangentMode: 0
         weightedMode: 3
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.27387932
+      - serializedVersion: 3
+        time: 23.283333
+        value: 0.5614998
+        inSlope: 0.736821
+        outSlope: 0.41498813
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.026793433
+        outWeight: 0.19556645
       - serializedVersion: 3
         time: 26.5
-        value: 1.9396362
-        inSlope: 3.1548994
-        outSlope: 3.1548994
+        value: 1.766085
+        inSlope: 0.11888638
+        outSlope: 0.11888638
         tangentMode: 0
         weightedMode: 3
-        inWeight: 0.038242124
+        inWeight: 0.43714467
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Brightness
     path: 541/Skybox
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 26.483334
+        value: 11.75
+        inSlope: 3.3674846
+        outSlope: 3.3674846
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.09492402
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 541/Big Laser/Tilt/Laser Parent/Laser
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 21.2
+        value: 0
+        inSlope: 0.008582887
+        outSlope: 0.008582887
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.94615763
+      - serializedVersion: 3
+        time: 23.183332
+        value: 0.15490429
+        inSlope: 0.06559144
+        outSlope: 0.06559144
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.36006197
+      - serializedVersion: 3
+        time: 26.483334
+        value: 0.4
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Opacity
+    path: 541/Big Laser/Tilt/Star
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.166666
+        value: 0
+        inSlope: 0
+        outSlope: 0.0014475198
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.64480275
+      - serializedVersion: 3
+        time: 26.483334
+        value: 0.07
+        inSlope: 0.3753189
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.004502952
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Intensity
+    path: 541/Big Laser/Flare/Ring
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.166666
+        value: 0
+        inSlope: 0
+        outSlope: 0.0014475198
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.64480275
+      - serializedVersion: 3
+        time: 26.483334
+        value: 0.07
+        inSlope: 0.3753189
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.004502952
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Intensity
+    path: 541/Big Laser/Flare/Ring (1)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 23.366667
+        value: 1.3006897
+        inSlope: 0.6425672
+        outSlope: 1.3124427
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.21143089
+        outWeight: 0.32699502
+      - serializedVersion: 3
+        time: 26.483334
+        value: 3.4927063
+        inSlope: 0.8990283
+        outSlope: 0.8990283
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.35770312
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 541/Big Laser/Flare/Star Flare
     classID: 23
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -5650,6 +5817,41 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 3946375289
+      attribute: 2237670731
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 529260123
+      attribute: 2237670731
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3606053949
+      attribute: 2282272135
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 934235089
+      attribute: 2262801196
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1086472528
+      attribute: 2262801196
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3842989370
       attribute: 2237670731
       script: {fileID: 0}
       typeID: 23
@@ -12528,21 +12730,188 @@ AnimationClip:
         tangentMode: 0
         weightedMode: 3
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.27387932
+      - serializedVersion: 3
+        time: 23.283333
+        value: 0.5614998
+        inSlope: 0.736821
+        outSlope: 0.41498813
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.026793433
+        outWeight: 0.19556645
       - serializedVersion: 3
         time: 26.5
-        value: 1.9396362
-        inSlope: 3.1548994
-        outSlope: 3.1548994
+        value: 1.766085
+        inSlope: 0.11888638
+        outSlope: 0.11888638
         tangentMode: 0
         weightedMode: 3
-        inWeight: 0.038242124
+        inWeight: 0.43714467
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Brightness
     path: 541/Skybox
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 26.483334
+        value: 11.75
+        inSlope: 3.3674846
+        outSlope: 3.3674846
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.09492402
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 541/Big Laser/Tilt/Laser Parent/Laser
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 21.2
+        value: 0
+        inSlope: 0.008582887
+        outSlope: 0.008582887
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.94615763
+      - serializedVersion: 3
+        time: 23.183332
+        value: 0.15490429
+        inSlope: 0.06559144
+        outSlope: 0.06559144
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.36006197
+      - serializedVersion: 3
+        time: 26.483334
+        value: 0.4
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Opacity
+    path: 541/Big Laser/Tilt/Star
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.166666
+        value: 0
+        inSlope: 0
+        outSlope: 0.0014475198
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.64480275
+      - serializedVersion: 3
+        time: 26.483334
+        value: 0.07
+        inSlope: 0.3753189
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.004502952
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Intensity
+    path: 541/Big Laser/Flare/Ring
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.166666
+        value: 0
+        inSlope: 0
+        outSlope: 0.0014475198
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.64480275
+      - serializedVersion: 3
+        time: 26.483334
+        value: 0.07
+        inSlope: 0.3753189
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.004502952
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Intensity
+    path: 541/Big Laser/Flare/Ring (1)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 16.166666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 23.366667
+        value: 1.3006897
+        inSlope: 0.6425672
+        outSlope: 1.3124427
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.21143089
+        outWeight: 0.32699502
+      - serializedVersion: 3
+        time: 26.483334
+        value: 3.4927063
+        inSlope: 0.8990283
+        outSlope: 0.8990283
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.35770312
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._Brightness
+    path: 541/Big Laser/Flare/Star Flare
     classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves:
