@@ -139,6 +139,11 @@ function buildup(map: rm.V3Difficulty)
     buildupScene.destroyObject(TIMES.OUTRO)
 }
 
+function outro(map: rm.V3Difficulty)
+{
+    const outroScene = prefabs.outro.instantiate(map, TIMES.OUTRO)
+}
+
 await Promise.all([
     doMap('ExpertPlusStandard')
 ])
