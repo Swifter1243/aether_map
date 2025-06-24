@@ -11,6 +11,7 @@ Shader "Swifter/HorizonSkybox"
         _XFalloff ("_XFalloff", Float) = 10
         _YFalloff ("_YFalloff", Float) = 15
         _CenterHighlightPower ("_CenterHighlightPower", Float) = 4
+        _Brightness ("Brightness", Float) = 1
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -78,6 +79,7 @@ Shader "Swifter/HorizonSkybox"
             float _XFalloff;
             float _YFalloff;
             float _CenterHighlightPower;
+            float _Brightness;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -91,6 +93,8 @@ Shader "Swifter/HorizonSkybox"
                 col *= pow(1 - abs(i.localPos.y), _YFalloff);
 
                 col += pow(col, _CenterHighlightPower);
+
+                col *= _Brightness;
 
                 return float4(col, 0);
             }
