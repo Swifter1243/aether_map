@@ -16,7 +16,8 @@ const TIMES = {
     DROP: 77,
     DROP_END: 261,
     BRIDGE: 373,
-    BUILDUP: 509
+    BUILDUP: 509,
+    OUTRO: 573
 } as const
 
 // ----------- { SCRIPT } -----------
@@ -135,7 +136,7 @@ function buildup(map: rm.V3Difficulty)
 
     fadeWhite(map, TIMES.BUILDUP, 16)
 
-    // TODO: buildupScene.destroyObject
+    buildupScene.destroyObject(TIMES.OUTRO)
 }
 
 await Promise.all([
