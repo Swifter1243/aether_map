@@ -79,7 +79,7 @@ Shader "Swifter/DeathRay"
                 
                 float fresnel = 1 - edgeSmooth(i.uv.x + (n - 0.75) * _BorderNoiseAmount, 3);
                 fresnel -= _BorderCutoff;
-                fresnel = round(fresnel);
+                fresnel = round(fresnel * 5) / 3;
 
                 col *= fresnel;
 
