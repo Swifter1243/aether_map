@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutroBlackSkybox
+  m_Name: SolidSkybox
   m_Shader: {fileID: 4800000, guid: b12eab1c94d5408882acc78ba1b9fd09, type: 3}
   m_ShaderKeywords: _ZWRITE_ON
   m_LightmapFlags: 4
