@@ -73,8 +73,11 @@ Shader "Swifter/DeathRay"
 
                 float timeStepped = round(_Time.y / _BorderNoiseTimeStep) * _BorderNoiseTimeStep;
                 float nTime = (timeStepped * 9.2873) % 20;
+                
                 float n = simplex(float3(i.uv * _BorderNoiseScale, nTime));
-                float fresnel = 1 - edgeSmooth(i.uv.x + (n - 0.5) * _BorderNoiseAmount, 3);
+                n += simplex(float3(i.uv * _BorderNoiseScale * 2, nTime)) * 0.5;
+                
+                float fresnel = 1 - edgeSmooth(i.uv.x + (n - 0.75) * _BorderNoiseAmount, 3);
                 fresnel -= _BorderCutoff;
                 fresnel = round(fresnel);
 
