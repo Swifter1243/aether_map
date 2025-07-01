@@ -78,7 +78,7 @@ Shader "Swifter/DeathRay"
                 
                 float2 texCoord = i.uv;
                 texCoord.y += nTime;
-                texCoord.x = (texCoord.x * 2 - 1) * 0.4 + 0.5;
+                texCoord.x = (texCoord.x * 2 - 1) * 0.8 + 0.5;
                 texCoord.x = saturate(texCoord.x);
 
                 float n = simplex(float3(i.uv * _BorderNoiseScale, nTime));
@@ -88,7 +88,7 @@ Shader "Swifter/DeathRay"
                 
                 fixed4 col = tex2D(_MainTex, texCoord).r;
 
-                col -= (1 - tex2D(_MainTex, texCoord + float2(0, 0.3)).r) * 0.8;
+                col -= (1 - tex2D(_MainTex, texCoord + float2(0, 0.1)).r) * 0.8;
                 
                 float fresnel = 1 - edgeSmooth(i.uv.x + (n - 0.75) * _BorderNoiseAmount, 3);
                 fresnel -= _BorderCutoff;
