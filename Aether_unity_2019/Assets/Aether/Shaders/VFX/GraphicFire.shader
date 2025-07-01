@@ -83,14 +83,19 @@ Shader "Swifter/VFX/GraphicFire"
                 float2 fireUV = movingUV * _Noise1Scale;
                 fireUV.y += _Time.y * _TimeScale * 2;
                 
-                float n = simplex(fireUV);
+                float v = simplex(fireUV);
 
                 fireUV = movingUV * _Noise2Scale;
                 fireUV.y += _Time.y * _TimeScale;
                 
-                n -= voronoi(fireUV + n * _FBM) * 0.3;
+                v -= voronoi(fireUV + v * _FBM) * 0.3;
+                v = saturate(v);
 
-                if (step(i.uv.y, n))
+                float2 centerUV = abs(i.uv * 2 - 1);
+                float border = 1 - length(centerUV);
+                border = min(1, border * 2);
+
+                if (step(i.uv.y * border, v))
                     discard;
 
                 return _Color;
