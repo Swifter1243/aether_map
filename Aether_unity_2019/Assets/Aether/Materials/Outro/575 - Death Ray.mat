@@ -59,8 +59,9 @@ Material:
     - _BorderCutoff: 0.45
     - _BorderNoise: 0.3
     - _BorderNoiseAmount: 0.4
-    - _BorderNoiseScale: 15.38
+    - _BorderNoiseScale: 7
     - _BorderNoiseTimeStep: 0.09
+    - _Brightness: 7
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -72,6 +73,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Posterization: 3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

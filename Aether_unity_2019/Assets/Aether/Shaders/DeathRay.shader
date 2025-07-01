@@ -7,6 +7,8 @@ Shader "Swifter/DeathRay"
         _BorderNoiseAmount ("Border Noise Amount", Float) = 0.3
         _BorderNoiseScale ("Border Noise Scale", Float) = 10
         _BorderCutoff ("Border Cutoff", Float) = 0.2
+        _Posterization ("Posterization", Int) = 2
+        _Brightness ("Brightness", Float) = 1
     }
     SubShader
     {
@@ -49,6 +51,8 @@ Shader "Swifter/DeathRay"
             float _BorderNoiseAmount;
             float _BorderNoiseScale;
             float _BorderCutoff;
+            float _Posterization;
+            float _Brightness;
 
             v2f vert (appdata v)
             {
@@ -79,7 +83,7 @@ Shader "Swifter/DeathRay"
                 
                 float fresnel = 1 - edgeSmooth(i.uv.x + (n - 0.75) * _BorderNoiseAmount, 3);
                 fresnel -= _BorderCutoff;
-                fresnel = round(fresnel * 5) / 3;
+                fresnel = round(fresnel * _Brightness) / _Posterization;
 
                 col *= fresnel;
 
