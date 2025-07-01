@@ -6,6 +6,7 @@ Shader "Swifter/VFX/GraphicFire"
         _Noise2Scale ("Noise 2 Scale", Float) = 8
         _TimeScale ("Time Scale", Float) = 1.5
         _FBM ("Fractional Brownian Motion", Float) = 0.2
+        _Color ("Color", Color) = (0,0,0)
     }
     SubShader
     {
@@ -47,6 +48,7 @@ Shader "Swifter/VFX/GraphicFire"
             float _Noise2Scale;
             float _TimeScale;
             float _FBM;
+            float4 _Color;
 
             v2f vert (appdata v)
             {
@@ -72,7 +74,10 @@ Shader "Swifter/VFX/GraphicFire"
                 
                 n -= voronoi(fireUV + n * _FBM) * 0.3;
 
-                return 1 - step(i.uv.y, n);
+                if (step(i.uv.y, n))
+                    discard;
+
+                return _Color;
             }
             ENDCG
         }
