@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 575 - Fire Particles
   m_Shader: {fileID: 4800000, guid: 4a0b009a546d73d4eb10211d92b26bca, type: 3}
-  m_ShaderKeywords: RAINBOW
+  m_ShaderKeywords: IS_PARTICLE RAINBOW
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -69,6 +69,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _IsParticle: 1
     - _Metallic: 0
     - _MixRainbow: 1.49
     - _Mode: 0

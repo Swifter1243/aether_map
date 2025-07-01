@@ -7,6 +7,7 @@ Shader "Swifter/VFX/GraphicFire"
         _TimeScale ("Time Scale", Float) = 1.5
         _FBM ("Fractional Brownian Motion", Float) = 0.2
         _Color ("Color", Color) = (0,0,0)
+        [Toggle(IS_PARTICLE)] _IsParticle ("Is Particle", Int) = 0
     }
     SubShader
     {
@@ -21,6 +22,7 @@ Shader "Swifter/VFX/GraphicFire"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature IS_PARTICLE
 
             #include "UnityCG.cginc"
 
@@ -33,14 +35,17 @@ Shader "Swifter/VFX/GraphicFire"
             struct appdata
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                float4 texcoord0 : TEXCOORD0;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+                float2 uv : TEXCOORD0;
+                #if IS_PARTICLE
+                float random : TEXCOORD1;
+                #endif
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -58,18 +63,29 @@ Shader "Swifter/VFX/GraphicFire"
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = v.texcoord0.xy;
+
+                #if IS_PARTICLE
+                o.random = v.texcoord0.z;
+                #endif
+                
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 fireUV = i.uv * _Noise1Scale;
+                float2 movingUV = i.uv;
+
+                #if IS_PARTICLE
+                movingUV.y += i.random;
+                #endif
+                
+                float2 fireUV = movingUV * _Noise1Scale;
                 fireUV.y += _Time.y * _TimeScale * 2;
                 
                 float n = simplex(fireUV);
 
-                fireUV = i.uv * _Noise2Scale;
+                fireUV = movingUV * _Noise2Scale;
                 fireUV.y += _Time.y * _TimeScale;
                 
                 n -= voronoi(fireUV + n * _FBM) * 0.3;
