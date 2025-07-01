@@ -73,10 +73,17 @@ Shader "Swifter/DeathRay"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
-
                 float timeStepped = round(_Time.y / _BorderNoiseTimeStep) * _BorderNoiseTimeStep;
                 float nTime = (timeStepped * 9.2873) % 20;
+                
+                float2 texCoord = i.uv;
+                texCoord.y += nTime;
+                texCoord.x = (texCoord.x * 2 - 1) * 0.8 + 0.5;
+                texCoord.x = saturate(texCoord.x);
+                
+                fixed4 col = tex2D(_MainTex, texCoord).r;
+
+                col -= (1 - tex2D(_MainTex, texCoord + float2(0, 0.2)).r) * 0.8;
                 
                 float n = simplex(float3(i.uv * _BorderNoiseScale, nTime));
                 n += simplex(float3(i.uv * _BorderNoiseScale * 2, nTime)) * 0.5;
