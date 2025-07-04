@@ -694,6 +694,34 @@ AnimationClip:
     path: 573/Position/Shake/Death Ray/Mask/Beam Cover
     classID: 1
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.81666666
+        value: 0.13673343
+        inSlope: 0
+        outSlope: 15092984
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 2.9666667
+        value: 0.6933794
+        inSlope: 0.009893207
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.7963933
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._ClipLevel
+    path: 573/Position/Shake/Scenery/Rotated/Ground
+    classID: 23
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -820,6 +848,13 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 1
       customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1656843510
+      attribute: 2211131256
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
       isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
@@ -2144,6 +2179,34 @@ AnimationClip:
     attribute: m_LocalScale.z
     path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.81666666
+        value: 0.13673343
+        inSlope: 0
+        outSlope: 15092984
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 2.9666667
+        value: 0.6933794
+        inSlope: 0.009893207
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.7963933
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._ClipLevel
+    path: 573/Position/Shake/Scenery/Rotated/Ground
+    classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
