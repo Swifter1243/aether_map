@@ -9,6 +9,7 @@ Shader "Swifter/DeathRay"
         _BorderCutoff ("Border Cutoff", Float) = 0.2
         _Posterization ("Posterization", Int) = 2
         _Brightness ("Brightness", Float) = 1
+        _Alpha ("Alpha", Float) = 0.5
     }
     SubShader
     {
@@ -54,6 +55,7 @@ Shader "Swifter/DeathRay"
             float _Posterization;
             float _Brightness;
             float _Flutter;
+            float _Alpha;
 
             v2f vert (appdata v)
             {
@@ -95,9 +97,10 @@ Shader "Swifter/DeathRay"
                 fresnel -= _BorderCutoff;
                 fresnel = round(fresnel * _Posterization * _Brightness) / _Posterization;
 
-                col *= fresnel;
+                col.rgb *= fresnel;
 
                 col = lerp(col, 1 - col, step(noise1d(_Time.y * 15), 0));
+                col.a *= _Alpha;
 
                 return col;
             }
