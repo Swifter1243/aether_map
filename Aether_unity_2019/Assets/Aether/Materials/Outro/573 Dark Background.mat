@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 573 Sparkle
-  m_Shader: {fileID: 4800000, guid: 72bc975c28f73ae44a5be7ef3f45c18f, type: 3}
+  m_Name: 573 Dark Background
+  m_Shader: {fileID: 4800000, guid: 8325ce697c6a3c840b9084ade332aaf2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3002
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -56,40 +56,44 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Alpha: 0.5
-    - _Bend: 0.32
+    - _Alpha: 0
     - _BlendDst: 1
-    - _BlendOp: 0
+    - _BlendOp: 2
     - _BlendSrc: 1
-    - _Brightness: 3
+    - _Brightness: 6
     - _BumpScale: 1
-    - _Clamp: 0
+    - _Contrast: 2.2
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Flutter: 0
+    - _Flutter: 0.1
+    - _FocalAmount: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Glow: 32
+    - _Intensity: 3
     - _Metallic: 0
+    - _MixRainbow: 0.8
     - _Mode: 0
+    - _NoiseScale: 30
     - _OcclusionStrength: 1
-    - _Opacity: 1
     - _Parallax: 0.02
-    - _Sharpness: 15
-    - _Size: 1.39
+    - _Rainbow: 0
+    - _Saturation: 0.5
+    - _Sharpness: 116.91
     - _SmoothnessTextureChannel: 0
-    - _Softness: 7
     - _SpecularHighlights: 1
-    - _Spread: 0.32
     - _SrcBlend: 1
     - _StencilComp: 8
     - _StencilPass: 2
     - _StencilRef: 0
-    - _Thickness: 0.07
+    - _TimeScale: 1
     - _UVSec: 0
-    - _ZTest: 4
+    - _ZTest: 8
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _TextureScale: {r: 5, g: 5, b: 0, a: 0}
