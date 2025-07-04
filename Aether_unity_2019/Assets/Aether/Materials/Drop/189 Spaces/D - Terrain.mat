@@ -67,7 +67,7 @@ Material:
     - _DistanceFogEnabled: 1
     - _DstBlend: 0
     - _FBM: 0.3
-    - _FadeDistanceEnd: 400
+    - _FadeDistanceEnd: 300
     - _FadeDistanceStart: 0
     - _FogEnabled: 1
     - _FogFar: 222.4
