@@ -4,6 +4,7 @@ Shader "Swifter/HeightCrack"
     {
         _HeightMap ("Height Map", 2D) = "white" {}
         _ClipLevel ("Clip Level", Range(0,1)) = 0.5
+        _ClipSmoothing ("Clip Smoothing", Float) = 0.01
     }
     SubShader
     {
@@ -41,6 +42,7 @@ Shader "Swifter/HeightCrack"
 
             sampler2D _HeightMap;
             float _ClipLevel;
+            float _ClipSmoothing;
 
             v2f vert (appdata v)
             {
@@ -56,11 +58,9 @@ Shader "Swifter/HeightCrack"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_HeightMap, i.uv).x;
-
-                col = 1 - step(col, _ClipLevel);
-
-                return col;
+                fixed4 height = tex2D(_HeightMap, i.uv).x;
+                float v = smoothstep(_ClipLevel - _ClipSmoothing, _ClipLevel + _ClipSmoothing, height);
+                return float4(v, v, v, 0);
             }
             ENDCG
         }
