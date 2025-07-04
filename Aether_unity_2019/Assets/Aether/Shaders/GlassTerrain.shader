@@ -3,6 +3,9 @@ Shader "Swifter/GlassTerrain"
     Properties
     {
         _GlassRefraction ("Glass Refraction", Float) = 0.4
+        _SpecularAmount ("Specular Amount", Float) = 1
+        _SpecularPower ("Specular Power", Float) = 16
+        _DiffuseAmount ("Diffuse Amount", Float) = 1
 
         [Toggle(DISTANCE_FOG)] _DistanceFogEnabled ("Distance Fog Enabled", Int) = 1
         _FadeDistanceStart ("Fade Distance Start", Float) = 500
@@ -11,6 +14,15 @@ Shader "Swifter/GlassTerrain"
         [Toggle(HEIGHT_FOG)] _HeightFogEnabled ("Height Fog Enabled", Int) = 0
         _HeightFogStart ("Height Fog Start", Float) = 0
         _HeightFogEnd ("Height Fog End", Float) = 10
+
+        [Header(Light 1)][Space(10)]
+        [Toggle(LIGHT_1_ENABLED)] _Light1Enabled ("Enabled", Int) = 0
+        _Light1Color ("Color", Color) = (1,1,1)
+        _Light1Strength ("Strength", Float) = 1
+        _Light1Range ("Range", Float) = 1
+        _Light1Falloff ("Falloff", Float) = 1
+        _Light1Flutter ("Flutter", Float) = 0
+        _Light1Position ("Position", Vector) = (0, 0, 0)
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
@@ -41,15 +53,20 @@ Shader "Swifter/GlassTerrain"
             #pragma instancing_options procedural:vertInstancingSetup
             #pragma shader_feature DISTANCE_FOG
             #pragma shader_feature HEIGHT_FOG
+            #pragma shader_feature LIGHT_1_ENABLED
+
+            #define LIGHT_ENABLED LIGHT_1_ENABLED
 
             #include "UnityCG.cginc"
             #include "UnityStandardParticleInstancing.cginc"
 
             // VivifyTemplate Libraries
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
+
+            #include "Flutter.hlsl"
 
             struct appdata
             {
@@ -67,15 +84,30 @@ Shader "Swifter/GlassTerrain"
                 #if DISTANCE_FOG
                 float distanceFog : TEXCOORD3;
                 #endif
+                #if LIGHT_ENABLED
+                float3 viewDir : TEXCOORD4;
+                float3 worldNormal : TEXCOORD5;
+                #endif
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
             float _GlassRefraction;
+            float _SpecularAmount;
+            float _SpecularPower;
+            float _DiffuseAmount;
+
             float _FadeDistanceStart;
             float _FadeDistanceEnd;
             float _HeightFogStart;
             float _HeightFogEnd;
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_GrabTexture1);
+
+            float3 _Light1Color;
+            float _Light1Strength;
+            float3 _Light1Position;
+            float _Light1Range;
+            float _Light1Flutter;
+            float _Light1Falloff;
 
             v2f vert (appdata v)
             {
@@ -100,6 +132,12 @@ Shader "Swifter/GlassTerrain"
                 o.distanceFog = smoothstep(_FadeDistanceEnd, _FadeDistanceStart, viewDistance);
                 #endif
 
+                #if LIGHT_ENABLED
+                float3 viewDir = normalize(viewVector);
+                o.viewDir = viewDir;
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                #endif
+
                 return o;
             }
 
@@ -107,6 +145,43 @@ Shader "Swifter/GlassTerrain"
             {
                 return UNITY_SAMPLE_SCREENSPACE_TEXTURE(_GrabTexture1, screenUV);
             }
+
+            #if LIGHT_ENABLED
+            float doSpecular(in v2f i, float3 normLightDir, in float3 lightStrength)
+            {
+                const float3 reflectionDir = reflect(normLightDir, i.worldNormal);
+                const float specAngle = max(dot(reflectionDir, i.viewDir), 0.0);
+                const float specular = pow(specAngle, _SpecularPower);
+                return specular * _SpecularAmount * lightStrength;
+            }
+
+            float doDiffuse(in v2f i, in float3 normLightDir, in float lightStrength)
+            {
+                float alignment = max(dot(i.worldNormal, normLightDir), 0);
+                return alignment * lightStrength * _DiffuseAmount;
+            }
+
+            float doPointLight(in v2f i, in float3 lightPos, in float3 lightRange, in float3 lightFalloff, in float3 lightStrength, in float flutterAmount)
+            {
+                float col = 0;
+
+                const float3 toLight = lightPos - i.worldPos;
+                const float3 normLightDir = normalize(toLight);
+
+                // Fake lighting calculation with directional light and minimum darkness
+                const float lightDistanceNormalized = 1 - saturate(length(toLight) / lightRange);
+                const float lightAmount = pow(lightDistanceNormalized, lightFalloff);
+                const float diffuse = doDiffuse(i, normLightDir, lightStrength * lightAmount);
+                col += diffuse;
+
+                // Add specular
+                col += doSpecular(i, normLightDir, lightStrength * lightDistanceNormalized);
+
+                col *= flutter(flutterAmount);
+
+                return col;
+            }
+            #endif
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -127,6 +202,10 @@ Shader "Swifter/GlassTerrain"
                 float heightFog = smoothstep(_HeightFogStart, _HeightFogEnd, i.worldPos.y);
                 heightFog = pow(heightFog, 10);
                 fog *= heightFog;
+                #endif
+
+                #if LIGHT_1_ENABLED
+                col.rgb += doPointLight(i, _Light1Position, _Light1Range, _Light1Falloff, _Light1Strength, _Light1Flutter) * _Light1Color;
                 #endif
 
                 col = lerp(sampleScreen(screenUV), col, fog);
