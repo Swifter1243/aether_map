@@ -58,7 +58,7 @@ Material:
     m_Floats:
     - _Alpha: 0
     - _BlendDst: 1
-    - _BlendOp: 2
+    - _BlendOp: 0
     - _BlendSrc: 1
     - _Brightness: 2.8
     - _BumpScale: 1
