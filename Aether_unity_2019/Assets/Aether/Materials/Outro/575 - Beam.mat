@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 575 - Death Ray
+  m_Name: 575 - Beam
   m_Shader: {fileID: 4800000, guid: ee86ca83bcd0a004285edde18ea8e205, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
