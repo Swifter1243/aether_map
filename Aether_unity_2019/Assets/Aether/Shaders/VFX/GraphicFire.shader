@@ -5,6 +5,7 @@ Shader "Swifter/VFX/GraphicFire"
         _Noise1Scale ("Noise 1 Scale", Float) = 3
         _Noise2Scale ("Noise 2 Scale", Float) = 8
         _TimeScale ("Time Scale", Float) = 1.5
+        _TimeStep("Time Step", Float) = 0.09
         _FBM ("Fractional Brownian Motion", Float) = 0.2
         _Color ("Color", Color) = (0,0,0)
         [Toggle(IS_PARTICLE)] _IsParticle ("Is Particle", Int) = 0
@@ -52,8 +53,10 @@ Shader "Swifter/VFX/GraphicFire"
             float _Noise1Scale;
             float _Noise2Scale;
             float _TimeScale;
+            float _TimeStep;
             float _FBM;
             float4 _Color;
+
 
             v2f vert (appdata v)
             {
@@ -74,6 +77,7 @@ Shader "Swifter/VFX/GraphicFire"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float timeStepped = round(_Time.y / _TimeStep) * _TimeStep;
                 float2 movingUV = i.uv;
 
                 #if IS_PARTICLE
@@ -81,12 +85,12 @@ Shader "Swifter/VFX/GraphicFire"
                 #endif
                 
                 float2 fireUV = movingUV * _Noise1Scale;
-                fireUV.y += _Time.y * _TimeScale * 2;
+                fireUV.y += timeStepped * _TimeScale * 2;
                 
                 float v = simplex(fireUV);
 
                 fireUV = movingUV * _Noise2Scale;
-                fireUV.y += _Time.y * _TimeScale;
+                fireUV.y += timeStepped * _TimeScale;
                 
                 v -= voronoi(fireUV + v * _FBM) * 0.3;
                 v = saturate(v);
