@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 575 - Beam
-  m_Shader: {fileID: 4800000, guid: ee86ca83bcd0a004285edde18ea8e205, type: 3}
-  m_ShaderKeywords: 
+  m_Name: 573 - Fire Particles
+  m_Shader: {fileID: 4800000, guid: 4a0b009a546d73d4eb10211d92b26bca, type: 3}
+  m_ShaderKeywords: IS_PARTICLE RAINBOW
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,8 +40,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2fa67671c408f734a9bbb8dad36ff7f9, type: 3}
-        m_Scale: {x: 1, y: 6.07}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -56,29 +56,37 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BorderCutoff: 0.28
-    - _BorderNoise: 0.3
-    - _BorderNoiseAmount: 0.17
-    - _BorderNoiseScale: 7
-    - _BorderNoiseTimeStep: 0.09
+    - _BlendOp: 0
     - _Brightness: 2
     - _BumpScale: 1
+    - _Contrast: 2.2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _FBM: 0.2
+    - _Flutter: 0
+    - _FocalAmount: 0.43
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _IsParticle: 1
     - _Metallic: 0
+    - _MixRainbow: 1.49
     - _Mode: 0
+    - _Noise1Scale: 3
+    - _Noise2Scale: 8
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Posterization: 3
+    - _Rainbow: 1
+    - _RainbowScale: 4
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TimeScale: 2
     - _UVSec: 0
+    - _ZTest: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _TextureScale: {r: 5, g: 5, b: 0, a: 0}
