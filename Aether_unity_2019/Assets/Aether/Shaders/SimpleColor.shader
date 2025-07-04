@@ -21,8 +21,11 @@
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_instancing
+            #pragma instancing_options procedural:vertInstancingSetup
 
             #include "UnityCG.cginc"
+            #include "UnityStandardParticleInstancing.cginc"
 
             struct appdata {
                 float4 vertex : POSITION;
