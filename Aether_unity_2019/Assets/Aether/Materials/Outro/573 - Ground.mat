@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 575 - Ground
+  m_Name: 573 - Ground
   m_Shader: {fileID: 4800000, guid: 3c35e8956d66f604585e4965ea9ad035, type: 3}
   m_ShaderKeywords: _ZWRITE_ON
   m_LightmapFlags: 4
@@ -62,6 +62,7 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _ClipLevel: 0.933
+    - _ClipSmoothing: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
