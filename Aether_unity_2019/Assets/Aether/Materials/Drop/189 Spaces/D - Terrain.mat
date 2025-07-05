@@ -84,10 +84,10 @@ Material:
     - _HeightFogStart: 0
     - _HueSaturation: 0.79
     - _Light1Enabled: 1
-    - _Light1Falloff: 175.5
+    - _Light1Falloff: 25.1
     - _Light1Flutter: 0
-    - _Light1Range: 279.34
-    - _Light1Strength: 4.14
+    - _Light1Range: 47.8
+    - _Light1Strength: 1.39
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -100,7 +100,7 @@ Material:
     - _SkyboxClouds: 1
     - _SkyboxHorizon: 0
     - _SmoothnessTextureChannel: 0
-    - _SpecularAmount: 0.15
+    - _SpecularAmount: 1
     - _SpecularHighlights: 1
     - _SpecularPower: 59.9
     - _SrcBlend: 1

@@ -58,13 +58,16 @@ Material:
     m_Floats:
     - _Alpha: 0
     - _Bend: 0.5
+    - _BlendDst: 1
     - _BlendOp: 0
+    - _BlendSrc: 1
     - _Brightness: 19
     - _BumpScale: 1
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Flutter: 0.45
+    - _Flutter: 0.4
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
