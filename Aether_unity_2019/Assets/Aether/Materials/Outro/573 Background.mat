@@ -67,7 +67,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Flutter: 0.1
+    - _Flutter: 0.55
     - _FocalAmount: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
