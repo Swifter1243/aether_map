@@ -53,12 +53,14 @@ Shader "Swifter/VFX/RingArtifact"
             struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float4 color : COLOR;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct v2f {
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
+                float4 color : TEXCOORD1;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -71,6 +73,7 @@ Shader "Swifter/VFX/RingArtifact"
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
+                o.color = v.color;
                 return o;
             }
 
@@ -100,7 +103,7 @@ Shader "Swifter/VFX/RingArtifact"
 
                 float3 ringCol = lerp(1, rainbow(len * _Scale), _Saturation);
 
-                return float4(ringCol * v, 0);
+                return float4(ringCol * v * i.color.rgb, 0);
             }
             ENDCG
         }
