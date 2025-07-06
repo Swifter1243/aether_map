@@ -3227,171 +3227,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0.81666666
-        value: 0.79542875
-        inSlope: 0
-        outSlope: 141902180
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.33333334
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 1.2333333
-        value: 1.4961114
-        inSlope: 0.14141467
-        outSlope: 13655334
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.0833333
-        value: 1.6336627
-        inSlope: 0.01360842
-        outSlope: 112035576
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.4833333
-        value: 2.1647422
-        inSlope: 0.11165067
-        outSlope: -43098052
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 3.3
-        value: 1.7684711
-        inSlope: -0.030031031
-        outSlope: 0
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.x
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.81666666
-        value: 0.79542875
-        inSlope: 0
-        outSlope: 141902180
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.33333334
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 1.2333333
-        value: 1.4961114
-        inSlope: 0.14141467
-        outSlope: 13655334
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.0833333
-        value: 1.6336627
-        inSlope: 0.01360842
-        outSlope: 112035576
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.4833333
-        value: 2.1647422
-        inSlope: 0.11165067
-        outSlope: -43098052
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 3.3
-        value: 1.7684711
-        inSlope: -0.030031031
-        outSlope: 0
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.y
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.81666666
-        value: 0.79542875
-        inSlope: 0
-        outSlope: 141902180
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.33333334
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 1.2333333
-        value: 1.4961114
-        inSlope: 0.14141467
-        outSlope: 13655334
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.0833333
-        value: 1.6336627
-        inSlope: 0.01360842
-        outSlope: 112035576
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.4833333
-        value: 2.1647422
-        inSlope: 0.11165067
-        outSlope: -43098052
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.6040771
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 3.3
-        value: 1.7684711
-        inSlope: -0.030031031
-        outSlope: 0
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.z
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.81666666
         value: 0.31039417
         inSlope: 0
         outSlope: 905475800
@@ -3450,72 +3285,6 @@ AnimationClip:
     attribute: material._ClipLevel
     path: 573/Position/Shake/Scenery/Rotated/Ground
     classID: 23
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 3.0333333
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.x
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 3.0333333
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.y
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 2.5
-        value: 45
-        inSlope: 0
-        outSlope: -7.494175e+9
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.33333334
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 3.0333333
-        value: 0
-        inSlope: -5.221995
-        outSlope: 0
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.z
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
-    classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -3692,6 +3461,237 @@ AnimationClip:
     path: 573/Position/Shake/Scenery/Shockwave
     classID: 199
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.81666666
+        value: 0.79542875
+        inSlope: 0
+        outSlope: 141902180
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 1.2333333
+        value: 1.4961114
+        inSlope: 0.14141467
+        outSlope: 13655334
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 2.0833333
+        value: 1.6336627
+        inSlope: 0.01360842
+        outSlope: 112035576
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 2.4833333
+        value: 2.1647422
+        inSlope: 0.11165067
+        outSlope: -43098052
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 3.3
+        value: 1.7684711
+        inSlope: -0.030031031
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.81666666
+        value: 0.79542875
+        inSlope: 0
+        outSlope: 141902180
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 1.2333333
+        value: 1.4961114
+        inSlope: 0.14141467
+        outSlope: 13655334
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 2.0833333
+        value: 1.6336627
+        inSlope: 0.01360842
+        outSlope: 112035576
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 2.4833333
+        value: 2.1647422
+        inSlope: 0.11165067
+        outSlope: -43098052
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 3.3
+        value: 1.7684711
+        inSlope: -0.030031031
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.81666666
+        value: 0.79542875
+        inSlope: 0
+        outSlope: 141902180
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 1.2333333
+        value: 1.4961114
+        inSlope: 0.14141467
+        outSlope: 13655334
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 2.0833333
+        value: 1.6336627
+        inSlope: 0.01360842
+        outSlope: 112035576
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 2.4833333
+        value: 2.1647422
+        inSlope: 0.11165067
+        outSlope: -43098052
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.6040771
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 3.3
+        value: 1.7684711
+        inSlope: -0.030031031
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 3.0333333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 3.0333333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 2.5
+        value: 45
+        inSlope: 0
+        outSlope: -7.494175e+9
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 3.0333333
+        value: 0
+        inSlope: -5.221995
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    classID: 4
+    script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2
@@ -3730,7 +3730,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    path: 573/Position/Shake
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3740,17 +3740,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    path: 573/Position/Shake
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3769,8 +3759,18 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 573/Position/Shake
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3780,7 +3780,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 573/Position/Shake
+    path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
