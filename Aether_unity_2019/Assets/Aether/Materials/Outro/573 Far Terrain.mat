@@ -64,7 +64,7 @@ Material:
     - _DiffuseAmount: 1
     - _DstBlend: 0
     - _FogEnabled: 1
-    - _FogFar: 858
+    - _FogFar: 900
     - _FogHeightFalloffEnabled: 0
     - _FogHeightFalloffSlope: 200
     - _FogZEnd: 429.83

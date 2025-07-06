@@ -325,7 +325,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1998587020
+  randomSeed: -1116820296
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5069,8 +5069,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240041088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -11.24, z: 130.3}
-  m_LocalScale: {x: 1.3324, y: 1.3324, z: 1.3324}
+  m_LocalPosition: {x: 0, y: -24.7, z: 250.3}
+  m_LocalScale: {x: 2.8461716, y: 2.8461716, z: 2.8461716}
   m_Children:
   - {fileID: 1372643612}
   m_Father: {fileID: 1606849189}
@@ -5327,7 +5327,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -1998587020
+  randomSeed: -1371416758
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10363,7 +10363,7 @@ Transform:
   m_GameObject: {fileID: 1347173432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6103, y: 1.6103, z: 1.6103}
   m_Children: []
   m_Father: {fileID: 1556595598}
   m_RootOrder: 4
@@ -11063,7 +11063,7 @@ ParticleSystem:
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 0.8
+    radiusThickness: 0.5
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: -90, y: 0, z: 0}
@@ -11146,7 +11146,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 75.4
+      value: 51.87
       mode: 0
       spread: 0
       speed:
