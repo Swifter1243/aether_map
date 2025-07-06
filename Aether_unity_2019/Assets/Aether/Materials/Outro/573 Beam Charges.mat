@@ -70,8 +70,8 @@ Material:
     - _IsParticle: 0
     - _Metallic: 0
     - _Mode: 0
-    - _Noise1Scale: 3.3
-    - _Noise2Scale: 19.37
+    - _Noise1Scale: 2.66
+    - _Noise2Scale: 9.02
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
