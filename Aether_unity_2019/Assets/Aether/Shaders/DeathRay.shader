@@ -102,6 +102,8 @@ Shader "Swifter/DeathRay"
                 col = lerp(col, 1 - col, step(noise1d(_Time.y * 15), 0));
                 col.a *= _Alpha;
 
+                col.rgb = saturate(col.rgb);
+
                 return col;
             }
             ENDCG
