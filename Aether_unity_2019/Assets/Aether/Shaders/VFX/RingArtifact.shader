@@ -8,8 +8,12 @@ Shader "Swifter/VFX/RingArtifact"
         _Power ("Power", Float) = 3
         _Scale ("Scale", Float) = 4
         _Flutter ("Flutter", Float) = 0
-        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
+
+        [Header(Blend)][Space(10)]
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 1
 
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0

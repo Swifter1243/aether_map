@@ -57,9 +57,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Alpha: 0
-    - _BlendDst: 1
+    - _BlendDst: 6
     - _BlendOp: 0
-    - _BlendSrc: 1
+    - _BlendSrc: 4
     - _Brightness: 5.5
     - _BumpScale: 1
     - _Contrast: 2.2
