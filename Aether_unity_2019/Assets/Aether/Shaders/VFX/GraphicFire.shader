@@ -9,6 +9,12 @@ Shader "Swifter/VFX/GraphicFire"
         _FBM ("Fractional Brownian Motion", Float) = 0.2
         _Color ("Color", Color) = (0,0,0)
         [Toggle(IS_PARTICLE)] _IsParticle ("Is Particle", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
+
+        [Header(Blend)][Space(10)]
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 1
     }
     SubShader
     {
@@ -17,6 +23,9 @@ Shader "Swifter/VFX/GraphicFire"
             "Queue"="Transparent"
         }
         Cull Off
+        Blend [_BlendSrc] [_BlendDst]
+        BlendOp [_BlendOp]
+        ZTest [_ZTest]
 
         Pass
         {
@@ -71,7 +80,7 @@ Shader "Swifter/VFX/GraphicFire"
                 #if IS_PARTICLE
                 o.random = v.texcoord0.z;
                 #endif
-                
+
                 return o;
             }
 
@@ -83,15 +92,15 @@ Shader "Swifter/VFX/GraphicFire"
                 #if IS_PARTICLE
                 movingUV.y += i.random;
                 #endif
-                
+
                 float2 fireUV = movingUV * _Noise1Scale;
                 fireUV.y += timeStepped * _TimeScale * 2;
-                
+
                 float v = simplex(fireUV);
 
                 fireUV = movingUV * _Noise2Scale;
                 fireUV.y += timeStepped * _TimeScale;
-                
+
                 v -= voronoi(fireUV + v * _FBM) * 0.3;
                 v = saturate(v);
 
