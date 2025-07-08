@@ -1187,70 +1187,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.81666666
-        value: 0.31039417
-        inSlope: 0
-        outSlope: 905475800
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.33333334
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 0.85
-        value: 0.8111351
-        inSlope: 0.630942
-        outSlope: 7588127.5
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 1.2333333
-        value: 0.84388435
-        inSlope: 0.0052874614
-        outSlope: 2247761
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.0666666
-        value: 0.9176929
-        inSlope: 0.0015662558
-        outSlope: 1193263.2
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.4833333
-        value: 0.92329067
-        inSlope: 0.0008314743
-        outSlope: 1976675
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 3.2666667
-        value: 0.94072366
-        inSlope: 0.0013773612
-        outSlope: 0
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._ClipLevel
-    path: 573/Position/Shake/Scenery/Rotated/Ground
-    classID: 23
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
         time: 0
         value: 1
         inSlope: Infinity
@@ -2168,13 +2104,6 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 1
       customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1656843510
-      attribute: 2211131256
-      script: {fileID: 0}
-      typeID: 23
-      customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 1287201020
@@ -4027,70 +3956,6 @@ AnimationClip:
     attribute: m_LocalScale.z
     path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows
     classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.81666666
-        value: 0.31039417
-        inSlope: 0
-        outSlope: 905475800
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 0.33333334
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 0.85
-        value: 0.8111351
-        inSlope: 0.630942
-        outSlope: 7588127.5
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 1.2333333
-        value: 0.84388435
-        inSlope: 0.0052874614
-        outSlope: 2247761
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.0666666
-        value: 0.9176929
-        inSlope: 0.0015662558
-        outSlope: 1193263.2
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 2.4833333
-        value: 0.92329067
-        inSlope: 0.0008314743
-        outSlope: 1976675
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0.00000001
-      - serializedVersion: 3
-        time: 3.2666667
-        value: 0.94072366
-        inSlope: 0.0013773612
-        outSlope: 0
-        tangentMode: 1
-        weightedMode: 3
-        inWeight: 1
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._ClipLevel
-    path: 573/Position/Shake/Scenery/Rotated/Ground
-    classID: 23
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
