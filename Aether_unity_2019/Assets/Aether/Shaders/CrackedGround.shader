@@ -69,7 +69,7 @@ Shader "Swifter/CrackedGround"
                 v.vertex.y += _HeightOffset;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.depthFog = v.vertex.y;
+                o.depthFog = v.vertex.y - t * 1.5;
 
                 float distFog = min(1, dist / _FogDistance);
                 distFog = pow(distFog, _FogPower);
