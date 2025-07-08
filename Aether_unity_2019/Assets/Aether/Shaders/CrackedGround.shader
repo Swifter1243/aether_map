@@ -6,6 +6,8 @@ Shader "Swifter/CrackedGround"
         _CrackSharpness ("Crack Sharpness", Float) = 1
         _CrackAmplitude ("Crack Amplitude", Float) = 1
         _HeightOffset ("Height Offset", Float) = 0
+        _FogDistance ("Fog Distance", Float) = 1
+        _FogPower ("Fog Power", Float) = 1
     }
     SubShader
     {
@@ -37,6 +39,7 @@ Shader "Swifter/CrackedGround"
             {
                 float4 vertex : SV_POSITION;
                 float depthFog : TEXCOORD0;
+                float distanceFog : TEXCOORD1;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -44,6 +47,8 @@ Shader "Swifter/CrackedGround"
             float _CrackSharpness;
             float _CrackAmplitude;
             float _HeightOffset;
+            float _FogDistance;
+            float _FogPower;
 
             v2f vert (appdata v)
             {
@@ -66,15 +71,21 @@ Shader "Swifter/CrackedGround"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.depthFog = v.vertex.y;
 
+                float distFog = min(1, dist / _FogDistance);
+                distFog = pow(distFog, _FogPower);
+                o.distanceFog = distFog;
+
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float d = 1 - abs(i.depthFog /5);
-                d *= lerp(1, min(1, i.depthFog), 0.9);
+                float v = 1 - abs(i.depthFog /5);
+                v *= lerp(1, min(1, i.depthFog), 0.9);
 
-                return d;
+                v = lerp(v, 1, i.distanceFog);
+
+                return v;
             }
             ENDCG
         }
