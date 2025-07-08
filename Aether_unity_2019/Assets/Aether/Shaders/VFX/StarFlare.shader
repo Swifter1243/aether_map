@@ -121,11 +121,13 @@ Properties
                 v *= flutter(_Flutter);
 
                 #if GRAPHIC
-                float2 fireP = p * _GraphicNoise1Scale - _Time.y * 6;
+                float time = (_Time.y % 300);
+
+                float2 fireP = p * _GraphicNoise1Scale - time * 6;
 
                 float n = simplex(fireP);
 
-                fireP = p * _GraphicNoise2Scale - _Time.y * 3;
+                fireP = p * _GraphicNoise2Scale - time * 3;
 
                 n -= voronoi(fireP + n) * _GraphicNoise2Influence;
 

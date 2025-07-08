@@ -86,7 +86,7 @@ Shader "Swifter/VFX/GraphicFire"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float timeStepped = round(_Time.y / _TimeStep) * _TimeStep;
+                float timeStepped = round((_Time.y % 300) / _TimeStep) * _TimeStep;
                 float2 movingUV = i.uv;
 
                 #if IS_PARTICLE
