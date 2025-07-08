@@ -10,6 +10,15 @@ Properties
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
 
+        [Header(Graphic)][Space(10)]
+        [Toggle(GRAPHIC)] _GraphicEnabled ("Enable Graphic", Int) = 0
+        _GraphicNoise1Scale ("Noise 1 Scale", Float) = 8
+        _GraphicNoise2Scale ("Noise 2 Scale", Float) = 15
+        _GraphicNoise2Influence ("Noise 2 Influence", Float) = 0.4
+        _GraphicNoiseInfluence ("Overall Noise Influence", Float) = 0.3
+        _GraphicCutoff ("Cutoff", Float) = 0.6
+        _GraphicSharpness ("Sharpness", Float) = 2
+
         [Header(Blend)][Space(10)]
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
         [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
@@ -44,6 +53,7 @@ Properties
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature GRAPHIC
 
             #include "UnityCG.cginc"
 
@@ -75,6 +85,13 @@ Properties
             float _Alpha;
             float _Flutter;
 
+            float _GraphicNoise1Scale;
+            float _GraphicNoise2Scale;
+            float _GraphicNoise2Influence;
+            float _GraphicNoiseInfluence;
+            float _GraphicCutoff;
+            float _GraphicSharpness;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -87,6 +104,11 @@ Properties
                 return o;
             }
 
+            inline float posterize(float x, float n)
+            {
+                return round(x * n) / n;
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 p = abs(i.uv * 2 - 1);
@@ -97,6 +119,26 @@ Properties
                 float v = r * d * d * _Brightness;
 
                 v *= flutter(_Flutter);
+
+                #if GRAPHIC
+                float2 fireP = p * _GraphicNoise1Scale - _Time.y * 6;
+
+                float n = simplex(fireP);
+
+                fireP = p * _GraphicNoise2Scale - _Time.y * 3;
+
+                n -= voronoi(fireP + n) * _GraphicNoise2Influence;
+
+                v += n * _GraphicNoiseInfluence;
+
+                v -= _GraphicCutoff;
+
+                v = saturate(v);
+
+                v = posterize(v, 3);
+
+                v *= _GraphicSharpness;
+                #endif
 
                 return float4(v * _Color,v * _Alpha);
             }
