@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: White Strand
   m_Shader: {fileID: 4800000, guid: 70f7d9283f3a4b0d9668ecf5dd2ed984, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: IS_PARTICLE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -66,6 +66,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _IsParticle: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -73,7 +74,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TimeStep: 0.07
+    - _TimeStep: 0.08
+    - _TimeStepRandomness: 0.02
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
