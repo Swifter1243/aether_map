@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: B
+  m_Name: C
   m_Shader: {fileID: 4800000, guid: 8325ce697c6a3c840b9084ade332aaf2, type: 3}
-  m_ShaderKeywords: GRAPHIC
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: 3002
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -74,7 +74,7 @@ Material:
     - _GlossyReflections: 1
     - _Glow: 32
     - _GraphicCutoff: 0.6
-    - _GraphicEnabled: 1
+    - _GraphicEnabled: 0
     - _GraphicNoise1Scale: 5.2
     - _GraphicNoise2Influence: 0.52
     - _GraphicNoise2Scale: 30.61
@@ -101,6 +101,6 @@ Material:
     - _ZTest: 8
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.37034988, g: 0.28627455, b: 1, a: 1}
+    - _Color: {r: 0.45394433, g: 0.28627455, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _TextureScale: {r: 5, g: 5, b: 0, a: 0}

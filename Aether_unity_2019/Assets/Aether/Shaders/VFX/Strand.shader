@@ -5,12 +5,19 @@ Shader "Swifter/VFX/Strand"
         _MainTex ("Texture", 2D) = "white" {}
         _TimeStep ("Time Step", Float) = 0.09
         _Color ("Color", Color) = (1,1,1)
+
+        [Header(Blend)][Space(10)]
+        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 0
     }
     SubShader
     {
         Tags {
             "RenderType"="Opaque"
         }
+        BlendOp [_BlendOp]
+        Blend [_BlendSrc] [_BlendDst]
 
         Pass
         {
