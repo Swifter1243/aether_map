@@ -85,7 +85,7 @@ Shader "Swifter/CrackedGround"
 
                 v = lerp(v, 1, i.distanceFog);
 
-                return v;
+                return float4(v,v,v,0);
             }
             ENDCG
         }
