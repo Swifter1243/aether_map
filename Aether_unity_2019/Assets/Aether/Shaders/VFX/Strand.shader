@@ -5,6 +5,7 @@ Shader "Swifter/VFX/Strand"
         _MainTex ("Texture", 2D) = "white" {}
         _TimeStep ("Time Step", Float) = 0.09
         _Color ("Color", Color) = (1,1,1)
+        _Brightness ("Brightness", Float) = 1
         [KeywordEnum(Off, On)] _ZWrite ("ZWrite", Float) = 1
 
         [Header(Blend)][Space(10)]
@@ -62,6 +63,7 @@ Shader "Swifter/VFX/Strand"
             float _TimeStep;
             float _TimeStepRandomness;
             float4 _Color;
+            float _Brightness;
 
             v2f vert (appdata v)
             {
@@ -103,7 +105,7 @@ Shader "Swifter/VFX/Strand"
                 float cutout = tex2D(_MainTex, texCoord).r;
                 clip(0.5 - cutout);
 
-                return _Color;
+                return _Color * _Brightness;
             }
             ENDCG
         }

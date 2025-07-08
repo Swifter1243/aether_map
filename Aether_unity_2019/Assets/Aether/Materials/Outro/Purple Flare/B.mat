@@ -75,7 +75,7 @@ Material:
     - _Glow: 32
     - _GraphicCutoff: 0.6
     - _GraphicEnabled: 1
-    - _GraphicNoise1Scale: 5.2
+    - _GraphicNoise1Scale: 11.03
     - _GraphicNoise2Influence: 0.52
     - _GraphicNoise2Scale: 30.61
     - _GraphicNoiseInfluence: 0.46

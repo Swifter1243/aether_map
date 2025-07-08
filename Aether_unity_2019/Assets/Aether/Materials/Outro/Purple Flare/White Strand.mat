@@ -59,6 +59,7 @@ Material:
     - _BlendDst: 2
     - _BlendOp: 23
     - _BlendSrc: 2
+    - _Brightness: 1.95
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -74,8 +75,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TimeStep: 0.08
-    - _TimeStepRandomness: 0.02
+    - _TimeStep: 0.09
+    - _TimeStepRandomness: 0.01
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
