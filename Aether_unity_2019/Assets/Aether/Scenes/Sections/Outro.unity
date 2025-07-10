@@ -29938,7 +29938,7 @@ GameObject:
   - component: {fileID: 404764908}
   - component: {fileID: 404764907}
   m_Layer: 0
-  m_Name: Terrain
+  m_Name: Impact Terrain Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84686,7 +84686,7 @@ GameObject:
   - component: {fileID: 1603028108}
   - component: {fileID: 1603028107}
   m_Layer: 0
-  m_Name: Impact Particles
+  m_Name: Fire Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89560,7 +89560,7 @@ GameObject:
   - component: {fileID: 1653993391}
   - component: {fileID: 1653993390}
   m_Layer: 0
-  m_Name: Terrain
+  m_Name: Impact Terrain Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94639,7 +94639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803767184}
   m_LocalRotation: {x: -0.058640275, y: 0.2690505, z: -0.2170424, w: 0.9365179}
-  m_LocalPosition: {x: 0, y: -60.9, z: 250.3}
+  m_LocalPosition: {x: -10.5, y: -16.6, z: 250.3}
   m_LocalScale: {x: 2.84617, y: 2.84617, z: 2.84617}
   m_Children:
   - {fileID: 962570133}
@@ -100010,7 +100010,7 @@ GameObject:
   - component: {fileID: 2078339026}
   - component: {fileID: 2078339025}
   m_Layer: 0
-  m_Name: Impact Particles
+  m_Name: Fire Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100024,7 +100024,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078339023}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 1556595598}
