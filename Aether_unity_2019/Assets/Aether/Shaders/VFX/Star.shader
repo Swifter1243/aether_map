@@ -18,6 +18,15 @@ Shader "Swifter/VFX/Star"
         [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
         [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 1
 
+        [Header(Graphic)][Space(10)]
+        [Toggle(GRAPHIC)] _GraphicEnabled ("Enable Graphic", Int) = 0
+        _GraphicNoise1Scale ("Noise 1 Scale", Float) = 8
+        _GraphicNoise2Scale ("Noise 2 Scale", Float) = 15
+        _GraphicNoise2Influence ("Noise 2 Influence", Float) = 0.4
+        _GraphicNoiseInfluence ("Overall Noise Influence", Float) = 0.3
+        _GraphicCutoff ("Cutoff", Float) = 0.6
+        _GraphicSharpness ("Sharpness", Float) = 2
+
         [Header(Stencil)][Space(10)]
         _StencilRef ("Stencil Ref", Int) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
@@ -48,6 +57,7 @@ Shader "Swifter/VFX/Star"
             #pragma vertex vert
             #pragma fragment frag
             #pragma shader_feature CLAMP
+            #pragma shader_feature GRAPHIC
 
             #include "UnityCG.cginc"
 
@@ -58,6 +68,7 @@ Shader "Swifter/VFX/Star"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
             #include "../Flutter.hlsl"
+            #include "../Graphic.cginc"
 
             struct appdata
             {
@@ -110,11 +121,17 @@ Shader "Swifter/VFX/Star"
 
                 value *= flutter(_Flutter);
 
-                #if CLAMP
-                value = saturate(value) * _Opacity;
-                #else
-                value = max(0, value) * _Opacity;
+                #if GRAPHIC
+                doGraphic(value, p);
                 #endif
+
+                #if CLAMP
+                value = saturate(value);
+                #else
+                value = max(0, value);
+                #endif
+
+                value *= _Opacity;
 
                 return float4(value, value, value, value * _Alpha);
             }

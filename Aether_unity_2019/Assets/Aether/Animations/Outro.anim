@@ -2841,15 +2841,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 5.3166666
-        value: 3.4013271
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 5.4
         value: 2.03
         inSlope: 0
@@ -3154,6 +3145,25 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: material._Thickness
     path: 585/Stars/Scaler/C/Star A (1)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 5.366667
+        value: 0.16
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._GraphicNoiseInfluence
+    path: 585/Stars/Scaler/B/Star A (1)
     classID: 23
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -3501,13 +3511,6 @@ AnimationClip:
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2172829518
-      attribute: 2193741074
-      script: {fileID: 0}
-      typeID: 23
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
       path: 1419508771
       attribute: 2086281974
       script: {fileID: 0}
@@ -3579,6 +3582,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 2172829518
+      attribute: 2193741074
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2172829518
       attribute: 2276555552
       script: {fileID: 0}
       typeID: 23
@@ -3608,6 +3618,13 @@ AnimationClip:
     - serializedVersion: 2
       path: 438825761
       attribute: 2171776785
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2172829518
+      attribute: 2186645053
       script: {fileID: 0}
       typeID: 23
       customType: 22
@@ -7605,15 +7622,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 5.3166666
-        value: 3.4013271
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 5.4
         value: 2.03
         inSlope: 0
@@ -8170,6 +8178,25 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: material._Thickness
     path: 585/Stars/Scaler/C/Star A (1)
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 5.366667
+        value: 0.16
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._GraphicNoiseInfluence
+    path: 585/Stars/Scaler/B/Star A (1)
     classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves:

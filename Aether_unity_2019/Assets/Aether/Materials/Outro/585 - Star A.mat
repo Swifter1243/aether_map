@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 585 - Star A
   m_Shader: {fileID: 4800000, guid: 72bc975c28f73ae44a5be7ef3f45c18f, type: 3}
-  m_ShaderKeywords: CLAMP
+  m_ShaderKeywords: CLAMP GRAPHIC
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -70,6 +70,13 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GraphicCutoff: 1.52
+    - _GraphicEnabled: 1
+    - _GraphicNoise1Scale: 8.53
+    - _GraphicNoise2Influence: 0.4
+    - _GraphicNoise2Scale: 15
+    - _GraphicNoiseInfluence: 1.35
+    - _GraphicSharpness: 2
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1

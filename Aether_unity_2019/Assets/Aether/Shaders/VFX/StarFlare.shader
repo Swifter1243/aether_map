@@ -64,6 +64,7 @@ Properties
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
             #include "../Flutter.hlsl"
+            #include "../Graphic.cginc"
 
             struct appdata
             {
@@ -85,13 +86,6 @@ Properties
             float _Alpha;
             float _Flutter;
 
-            float _GraphicNoise1Scale;
-            float _GraphicNoise2Scale;
-            float _GraphicNoise2Influence;
-            float _GraphicNoiseInfluence;
-            float _GraphicCutoff;
-            float _GraphicSharpness;
-
             v2f vert (appdata v)
             {
                 v2f o;
@@ -102,11 +96,6 @@ Properties
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 return o;
-            }
-
-            inline float posterize(float x, float n)
-            {
-                return round(x * n) / n;
             }
 
             fixed4 frag (v2f i) : SV_Target
@@ -121,25 +110,7 @@ Properties
                 v *= flutter(_Flutter);
 
                 #if GRAPHIC
-                float time = (_Time.y % 300);
-
-                float2 fireP = p * _GraphicNoise1Scale - time * 6;
-
-                float n = simplex(fireP);
-
-                fireP = p * _GraphicNoise2Scale - time * 3;
-
-                n -= voronoi(fireP + n) * _GraphicNoise2Influence;
-
-                v += n * _GraphicNoiseInfluence;
-
-                v -= _GraphicCutoff;
-
-                v = saturate(v);
-
-                v = posterize(v, 3);
-
-                v *= _GraphicSharpness;
+                doGraphic(v, p);
                 #endif
 
                 return float4(v * _Color,v * _Alpha);
