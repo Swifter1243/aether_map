@@ -8,6 +8,8 @@ Shader "Swifter/CrackedGround"
         _HeightOffset ("Height Offset", Float) = 0
         _FogDistance ("Fog Distance", Float) = 1
         _FogPower ("Fog Power", Float) = 1
+
+        [Toggle(INVERT)] _IsInverted ("Invert", Int) = 0
     }
     SubShader
     {
@@ -22,6 +24,7 @@ Shader "Swifter/CrackedGround"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #pragma shader_feature INVERT
 
             // VivifyTemplate Libraries
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
@@ -59,7 +62,9 @@ Shader "Swifter/CrackedGround"
 
                 float dist = length(v.vertex.xz);
                 float t = min(1, dist / _CrackDistance);
+                #if !INVERT
                 t = 1 - t;
+                #endif
                 t = pow(t, _CrackSharpness);
 
                 v.vertex.y -= _HeightOffset;
@@ -84,6 +89,10 @@ Shader "Swifter/CrackedGround"
                 v *= lerp(1, min(1, i.depthFog), 0.9);
 
                 v = lerp(v, 1, i.distanceFog);
+
+                #if INVERT
+                v = 1 - v;
+                #endif
 
                 return float4(v,v,v,0);
             }
