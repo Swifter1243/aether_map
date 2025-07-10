@@ -894,6 +894,31 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: 573/Position/Shake/Death Ray/Mask/Sparkle/Rainbows/Sparkle (1)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 3.0833333
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0.022620775, y: 0.022620775, z: 0.022620775}
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.92762077, y: 0.92762077, z: 0.92762077}
+      - serializedVersion: 3
+        time: 3.2833333
+        value: {x: 1.1524, y: 1.1524, z: 1.1524}
+        inSlope: {x: 4035951.2, y: 4035951.2, z: 4035951.2}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: {x: 0.00000011920929, y: 0.00000011920929, z: 0.00000011920929}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 573/Position/Shake/Scenery
   m_FloatCurves:
   - curve:
       serializedVersion: 2
@@ -2337,11 +2362,11 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.016667
         value: 0.05928967
-        inSlope: 0.084829055
+        inSlope: -0.30149722
         outSlope: 0.016023455
         tangentMode: 1
         weightedMode: 3
-        inWeight: 0.9097351
+        inWeight: 0.96606463
         outWeight: 0.47083232
       - serializedVersion: 3
         time: 4.133333
@@ -2448,6 +2473,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 2065225845
+      attribute: 3
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2117211406
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -5995,11 +6027,11 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.016667
         value: 0.05928967
-        inSlope: 0.084829055
+        inSlope: -0.30149722
         outSlope: 0.016023455
         tangentMode: 1
         weightedMode: 3
-        inWeight: 0.9097351
+        inWeight: 0.96606463
         outWeight: 0.47083232
       - serializedVersion: 3
         time: 4.133333
@@ -6025,6 +6057,90 @@ AnimationClip:
     attribute: simulationSpeed
     path: 581/Scenery/Terrain
     classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 3.0833333
+        value: 1
+        inSlope: 0
+        outSlope: 0.022620775
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.92762077
+      - serializedVersion: 3
+        time: 3.2833333
+        value: 1.1524
+        inSlope: 4035951.2
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: 573/Position/Shake/Scenery
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 3.0833333
+        value: 1
+        inSlope: 0
+        outSlope: 0.022620775
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.92762077
+      - serializedVersion: 3
+        time: 3.2833333
+        value: 1.1524
+        inSlope: 4035951.2
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: 573/Position/Shake/Scenery
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 3.0833333
+        value: 1
+        inSlope: 0
+        outSlope: 0.022620775
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.92762077
+      - serializedVersion: 3
+        time: 3.2833333
+        value: 1.1524
+        inSlope: 4035951.2
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.00000011920929
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: 573/Position/Shake/Scenery
+    classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
