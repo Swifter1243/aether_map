@@ -64,6 +64,7 @@ Material:
     - _DstBlend: 0
     - _FadeDistanceEnd: 800
     - _FadeDistanceStart: 500
+    - _GlassAbsorption: 1
     - _GlassRefraction: 0.4
     - _GlossMapScale: 1
     - _Glossiness: 0.5

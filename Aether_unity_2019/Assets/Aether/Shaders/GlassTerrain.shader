@@ -3,6 +3,7 @@ Shader "Swifter/GlassTerrain"
     Properties
     {
         _GlassRefraction ("Glass Refraction", Float) = 0.4
+        _GlassAbsorption ("Glass Absorption", Float) = 0.8
         _SpecularAmount ("Specular Amount", Float) = 1
         _SpecularPower ("Specular Power", Float) = 16
         _DiffuseAmount ("Diffuse Amount", Float) = 1
@@ -92,6 +93,7 @@ Shader "Swifter/GlassTerrain"
             };
 
             float _GlassRefraction;
+            float _GlassAbsorption;
             float _SpecularAmount;
             float _SpecularPower;
             float _DiffuseAmount;
@@ -190,7 +192,7 @@ Shader "Swifter/GlassTerrain"
 
                 float4 normalScreenUV = i.normalScreenUV / i.normalScreenUV.w;
 
-                float4 col = sampleScreen(normalScreenUV) * 0.8;
+                float4 col = sampleScreen(normalScreenUV) * _GlassAbsorption;
 
                 float fog = 1;
 
