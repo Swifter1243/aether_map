@@ -3295,21 +3295,21 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 5.7833333
-        value: -0.056639984
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
+        value: 0.2642066
+        inSlope: 0.01923254
+        outSlope: -1.2868468
+        tangentMode: 1
+        weightedMode: 3
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.48256204
       - serializedVersion: 3
         time: 5.9166665
         value: -0.14663997
-        inSlope: 0
+        inSlope: -15.251197
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.18089908
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -3482,6 +3482,34 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: simulationSpeed
     path: 573/Position/Shake/Scenery/Rotated/Impact Terrain Big
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 5.8
+        value: 9.623363
+        inSlope: 0
+        outSlope: -783858000
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 6.516667
+        value: 0.2
+        inSlope: -0.64822626
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: simulationSpeed
+    path: 587/Position/Shake/Scenery/Rotated/Impact Terrain Big
     classID: 198
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -3935,6 +3963,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 1171672399
+      attribute: 1451932078
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3848114441
       attribute: 1451932078
       script: {fileID: 0}
       typeID: 198
@@ -8650,21 +8685,21 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 5.7833333
-        value: -0.056639984
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
+        value: 0.2642066
+        inSlope: 0.01923254
+        outSlope: -1.2868468
+        tangentMode: 1
+        weightedMode: 3
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.48256204
       - serializedVersion: 3
         time: 5.9166665
         value: -0.14663997
-        inSlope: 0
+        inSlope: -15.251197
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.18089908
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -8988,6 +9023,34 @@ AnimationClip:
     attribute: m_LocalScale.z
     path: 573/Position/Shake/Scenery/Rotated/Fire Particles
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 5.8
+        value: 9.623363
+        inSlope: 0
+        outSlope: -783858000
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.33333334
+        outWeight: 0.00000001
+      - serializedVersion: 3
+        time: 6.516667
+        value: 0.2
+        inSlope: -0.64822626
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 1
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: simulationSpeed
+    path: 587/Position/Shake/Scenery/Rotated/Impact Terrain Big
+    classID: 198
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
