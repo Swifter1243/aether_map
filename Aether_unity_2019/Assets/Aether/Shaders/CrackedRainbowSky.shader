@@ -204,7 +204,9 @@
 
                 // Crack
                 float border = noise.z;
-                border *= exp(abs(projectedPos.y) * _BorderFalloff);
+                float falloffVal = exp(abs(projectedPos.y) * _BorderFalloff);
+                border *= falloffVal;
+                border = lerp(border, _BorderWidth + 1, min(1, falloffVal / 200));
                 float crack = step(border, _BorderWidth);
 
                 // Layer 1
