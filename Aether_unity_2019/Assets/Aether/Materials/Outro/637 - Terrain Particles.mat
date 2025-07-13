@@ -28,7 +28,7 @@ Material:
     - _AmbientStrength: 0.1
     - _DiffuseAmount: 1
     - _FogEnabled: 1
-    - _FogFar: 957.1
+    - _FogFar: 727.3
     - _FogHeightFalloffEnabled: 0
     - _FogHeightFalloffSlope: 200
     - _FogZEnd: 9.8
