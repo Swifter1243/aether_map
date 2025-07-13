@@ -588,7 +588,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.0001, z: 0.33333334}
       - serializedVersion: 3
         time: 34.566666
-        value: {x: 0, y: -8.774759, z: 0}
+        value: {x: 0, y: -4.855837, z: 0}
         inSlope: {x: 0, y: -0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -4078,6 +4078,34 @@ AnimationClip:
     path: 637/Prewarm/Swirl/Swirling/Closest Ribbons (1)
     classID: 198
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 26.483334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 637/Content
+    classID: 1
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -4638,6 +4666,13 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 198
       customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 4002284066
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 4129058238
@@ -10589,7 +10624,7 @@ AnimationClip:
         outWeight: 0.0001
       - serializedVersion: 3
         time: 34.566666
-        value: -8.774759
+        value: -4.855837
         inSlope: -0
         outSlope: 0
         tangentMode: 1
@@ -10630,6 +10665,34 @@ AnimationClip:
     attribute: simulationSpeed
     path: 637/Prewarm/Swirl/Swirling/Closest Ribbons (1)
     classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 26.483334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 637/Content
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:

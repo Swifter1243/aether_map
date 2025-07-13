@@ -67,7 +67,7 @@ Shader "Swifter/Ribbon"
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-                v.vertex.xyz += simplex(v.vertex.xyz * 0.003 + _Time.y * 0.1) * 10;
+                v.vertex.xyz += simplex(v.vertex.xyz * 0.003 + _Time.y * 0.1) * 4;
                 v.vertex.xyz += simplex(v.vertex.xyz * 0.1 + _Time.y * 0.3) * 2;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
