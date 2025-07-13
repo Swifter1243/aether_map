@@ -19,7 +19,7 @@ Shader "Swifter/Ribbon"
             #include "UnityCG.cginc"
 
             // VivifyTemplate Libraries
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
@@ -49,6 +49,9 @@ Shader "Swifter/Ribbon"
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                v.vertex.xyz += simplex(v.vertex.xyz * 0.003 + _Time.y * 0.1) * 10;
+                v.vertex.xyz += simplex(v.vertex.xyz * 0.1 + _Time.y * 0.3) * 2;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
