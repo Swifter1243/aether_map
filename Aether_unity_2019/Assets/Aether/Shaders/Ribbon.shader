@@ -4,6 +4,7 @@ Shader "Swifter/Ribbon"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Clip ("Clip", Range(0,1)) = 0
+        _Desaturation ("Desaturation", Range(0,1)) = 0.3
 
         [Header(Fog)][Space(10)]
         [Toggle(FOG_ENABLED)] _FogEnabled ("Enabled", Int) = 0
@@ -56,6 +57,7 @@ Shader "Swifter/Ribbon"
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float _Clip;
+            float _Desaturation;
 
             float3 _FogColor;
             float _FogFar;
@@ -98,6 +100,8 @@ Shader "Swifter/Ribbon"
                 clip(1 - tex - _Clip);
 
                 float3 col = i.color;
+
+                col = lerp(col, 1, _Desaturation);
 
                 #if FOG_ENABLED
                 float heightFog = smoothstep(_FogZEnd, _FogZStart, i.pos.y);
