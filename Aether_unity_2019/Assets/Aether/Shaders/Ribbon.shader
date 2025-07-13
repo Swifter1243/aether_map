@@ -3,6 +3,7 @@ Shader "Swifter/Ribbon"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Clip ("Clip", Range(0,1)) = 0
 
         [Header(Fog)][Space(10)]
         [Toggle(FOG_ENABLED)] _FogEnabled ("Enabled", Int) = 0
@@ -54,6 +55,7 @@ Shader "Swifter/Ribbon"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float _Clip;
 
             float3 _FogColor;
             float _FogFar;
@@ -91,6 +93,10 @@ Shader "Swifter/Ribbon"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float tex = tex2D(_MainTex, i.uv.yx).r;
+
+                clip(1 - tex - _Clip);
+
                 float3 col = i.color;
 
                 #if FOG_ENABLED
