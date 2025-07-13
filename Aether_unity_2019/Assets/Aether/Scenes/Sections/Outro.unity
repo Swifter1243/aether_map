@@ -39993,8 +39993,8 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 0
@@ -40607,7 +40607,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 8
-    angle: 0
+    angle: 3.09
     length: 149.46
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
@@ -40922,7 +40922,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1
+        scalar: 40
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -40974,7 +40974,7 @@ ParticleSystem:
           m_RotationOrder: 4
       cycleCount: 1
       repeatInterval: 0.01
-      probability: 0.3
+      probability: 1
   SizeModule:
     enabled: 0
     curve:
@@ -55347,8 +55347,8 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 0
@@ -56276,7 +56276,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1
+        scalar: 40
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -56328,7 +56328,7 @@ ParticleSystem:
           m_RotationOrder: 4
       cycleCount: 1
       repeatInterval: 0.01
-      probability: 0.3
+      probability: 1
   SizeModule:
     enabled: 0
     curve:
@@ -99172,6 +99172,37 @@ Transform:
   m_Father: {fileID: 1175571272}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1627724175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1627724176}
+  m_Layer: 0
+  m_Name: Prewarm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1627724176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627724175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1773250646}
+  m_Father: {fileID: 1766447858}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1631410609
 GameObject:
   m_ObjectHideFlags: 0
@@ -104182,7 +104213,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1773250646}
+  - {fileID: 1627724176}
   m_Father: {fileID: 1175571272}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104209,14 +104240,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773250645}
-  m_LocalRotation: {x: 0, y: -0.15339118, z: 0, w: 0.98816556}
-  m_LocalPosition: {x: 55.405014, y: 0, z: 546.3492}
+  m_LocalRotation: {x: -0, y: -0.15339118, z: -0, w: 0.98816556}
+  m_LocalPosition: {x: 93, y: 0, z: 489.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 506954538}
   - {fileID: 1835316115}
   - {fileID: 1159166898}
-  m_Father: {fileID: 1766447858}
+  m_Father: {fileID: 1627724176}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -17.647001, z: 0}
 --- !u!1 &1789530154
@@ -104582,13 +104613,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835316114}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.03225241, y: 0.045260206, z: -0.027915794, w: 0.99806416}
+  m_LocalPosition: {x: 0, y: 4.2, z: 0}
   m_LocalScale: {x: 0.55548, y: 0.55548, z: 0.55548}
   m_Children: []
   m_Father: {fileID: 1773250646}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.8360002, y: 5.091, z: -3.0340002}
 --- !u!199 &1835316116
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -104667,8 +104698,8 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 0
@@ -104729,7 +104760,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -138483281
+  randomSeed: 193385176
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -105596,7 +105627,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1
+        scalar: 20
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -105648,7 +105679,7 @@ ParticleSystem:
           m_RotationOrder: 4
       cycleCount: 1
       repeatInterval: 0.01
-      probability: 0.3
+      probability: 1
   SizeModule:
     enabled: 0
     curve:
