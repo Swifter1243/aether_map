@@ -39895,7 +39895,7 @@ GameObject:
   - component: {fileID: 506954540}
   - component: {fileID: 506954539}
   m_Layer: 0
-  m_Name: Ribbons
+  m_Name: Core Ribbons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55249,7 +55249,7 @@ GameObject:
   - component: {fileID: 1159166900}
   - component: {fileID: 1159166899}
   m_Layer: 0
-  m_Name: Ribbons (2)
+  m_Name: High Ribbons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104600,7 +104600,7 @@ GameObject:
   - component: {fileID: 1835316117}
   - component: {fileID: 1835316116}
   m_Layer: 0
-  m_Name: Ribbons (1)
+  m_Name: Closest Ribbons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
