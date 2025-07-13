@@ -3,6 +3,13 @@ Shader "Swifter/Ribbon"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+
+        [Header(Fog)][Space(10)]
+        [Toggle(FOG_ENABLED)] _FogEnabled ("Enabled", Int) = 0
+        _FogColor ("Fog Color", Color) = (1,1,1)
+        _FogFar ("Fog Far", Float) = 400
+        _FogZStart ("Fog Z Start", Float) = 0
+        _FogZEnd ("Fog Z End", Float) = 30
     }
     SubShader
     {
@@ -15,6 +22,7 @@ Shader "Swifter/Ribbon"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature FOG_ENABLED
 
             #include "UnityCG.cginc"
 
@@ -37,11 +45,20 @@ Shader "Swifter/Ribbon"
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
                 float4 color : TEXCOORD1;
+                #if FOG_ENABLED
+                float3 pos : TEXCOORD2;
+                float distanceFog : TEXCOORD3;
+                #endif
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+
+            float3 _FogColor;
+            float _FogFar;
+            float _FogZStart;
+            float _FogZEnd;
 
             v2f vert (appdata v)
             {
@@ -57,13 +74,33 @@ Shader "Swifter/Ribbon"
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.color = v.color;
 
+                #if FOG_ENABLED
+                o.pos = v.vertex.xyz;
+
+                float3 viewVector = v.vertex.xyz - _WorldSpaceCameraPos;
+
+                float camDistance = length(viewVector);
+                float distanceFog = smoothstep(0, _FogFar, camDistance);
+                distanceFog = pow(distanceFog, 3);
+
+                o.distanceFog = distanceFog;
+                #endif
+
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float3 col = i.color;
 
-                return i.color;
+                #if FOG_ENABLED
+                float heightFog = smoothstep(_FogZEnd, _FogZStart, i.pos.y);
+                heightFog = pow(heightFog, 10);
+                float fog = 1 - ((1 - heightFog) * (1 - i.distanceFog));
+                col = lerp(col, _FogColor, fog);
+                #endif
+
+                return float4(col, 0);
             }
             ENDCG
         }
