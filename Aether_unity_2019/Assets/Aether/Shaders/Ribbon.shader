@@ -3,6 +3,7 @@ Shader "Swifter/Ribbon"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _ScrollSpeed ("Scroll Speed", Float) = 0.3
         _Clip ("Clip", Range(0,1)) = 0
         _Desaturation ("Desaturation", Range(0,1)) = 0.3
 
@@ -56,6 +57,7 @@ Shader "Swifter/Ribbon"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float _ScrollSpeed;
             float _Clip;
             float _Desaturation;
 
@@ -95,7 +97,10 @@ Shader "Swifter/Ribbon"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float tex = tex2D(_MainTex, i.uv.yx).r;
+                float2 uv = i.uv.yx;
+                uv.y += _ScrollSpeed * _Time.y;
+
+                float tex = tex2D(_MainTex, uv).r;
 
                 clip(1 - tex - _Clip);
 
