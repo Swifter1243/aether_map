@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 637 - Beam
-  m_Shader: {fileID: 4800000, guid: 8325ce697c6a3c840b9084ade332aaf2, type: 3}
-  m_ShaderKeywords: 
+  m_Name: 673 - Triangle Explosion
+  m_Shader: {fileID: 4800000, guid: 27eac803e5b43154a9bd35cfeb450112, type: 3}
+  m_ShaderKeywords: DISTANCE_FOG
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2001
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -56,41 +56,50 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Alpha: 0
-    - _BlendDst: 1
     - _BlendOp: 0
-    - _BlendSrc: 1
-    - _Brightness: 1
     - _BumpScale: 1
-    - _Cull: 2
+    - _CloudAmount: 1.96
+    - _CloudPow: 0.55
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _Flutter: 0
+    - _DistanceFogEnabled: 1
+    - _DstBlend: 2
+    - _ExplosionFalloff: 1
+    - _ExplosionNoise: 0.97
+    - _ExplosionRange: 106.5
+    - _ExplosionSpin: 1.12
+    - _ExplosionTime: 2.77
+    - _FBM: 0.3
+    - _FadeDistanceEnd: 1679.1
+    - _FadeDistanceStart: 1000
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GraphicCutoff: 0.6
-    - _GraphicEnabled: 0
-    - _GraphicNoise1Scale: 8
-    - _GraphicNoise2Influence: 0.4
-    - _GraphicNoise2Scale: 15
-    - _GraphicNoiseInfluence: 0.3
-    - _GraphicSharpness: 2
+    - _HeightFogEnabled: 0
+    - _HeightFogEnd: 10
+    - _HeightFogStart: 0
+    - _HueSaturation: -0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Sharpness: 45.82
+    - _Simplex1Scale: 3
+    - _SkyboxCloudFog: 0
+    - _SkyboxCloudFogDistance: 100
+    - _SkyboxClouds: 0
+    - _SkyboxHorizon: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilComp: 8
-    - _StencilPass: 2
-    - _StencilRef: 0
+    - _StencilRef: 10
+    - _TimeScale: 0.3
     - _UVSec: 0
-    - _ZTest: 4
+    - _Voronoi1Scale: 20
+    - _Voronoi2Scale: 3
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.75428027, g: 0.5424528, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ExplosionPoint: {r: 0, g: 27.9, b: 0, a: 1}
+    - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
+    - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
