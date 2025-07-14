@@ -35042,6 +35042,62 @@ AnimationClip:
     path: 189/Spaces/D/Zooms/Zoom_71.2
     classID: 1
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 37.383335
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 38.883335
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 169-173/Parent/Large Extending Arrows
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 38.883335
+        value: 1.5062138
+        inSlope: 12.8706665
+        outSlope: 23.658222
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.053482056
+        outWeight: 0.05462809
+      - serializedVersion: 3
+        time: 39.683334
+        value: 3.0390384
+        inSlope: 3.39578
+        outSlope: -0.0036047709
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.2011158
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._StretchLength
+    path: 169-173/Parent/Large Extending Arrows
+    classID: 199
+    script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 12.433333
@@ -38758,6 +38814,20 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 1
       customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1805919395
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1805919395
+      attribute: 2395590330
+      script: {fileID: 0}
+      typeID: 199
+      customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 1075294383
@@ -111746,6 +111816,62 @@ AnimationClip:
     attribute: m_LocalScale.z
     path: 189/Spaces/D/Zooms/Zoom_71.2
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 37.383335
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 38.883335
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: 169-173/Parent/Large Extending Arrows
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 38.883335
+        value: 1.5062138
+        inSlope: 12.8706665
+        outSlope: 23.658222
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.053482056
+        outWeight: 0.05462809
+      - serializedVersion: 3
+        time: 39.683334
+        value: 3.0390384
+        inSlope: 3.39578
+        outSlope: -0.0036047709
+        tangentMode: 1
+        weightedMode: 3
+        inWeight: 0.2011158
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: material._StretchLength
+    path: 169-173/Parent/Large Extending Arrows
+    classID: 199
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
