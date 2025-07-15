@@ -1,32 +1,24 @@
-import { TIMES } from "../constants.ts";
-import { rm } from "../deps.ts";
-import { lightShow, prefabs } from "../main.ts";
-import { between, pointsBeatsToNormalized } from "../utilities.ts";
+import { TIMES } from "../constants.ts"
+import { rm } from "../deps.ts"
+import { lightShow, prefabs } from "../main.ts"
+import { between, pointsBeatsToNormalized } from "../utilities.ts"
 
-export function bridge(map: rm.V3Difficulty)
-{
+export function bridge(map: rm.V3Difficulty) {
     const bridgeScene = prefabs.bridge.instantiate(map, TIMES.BRIDGE)
-    
+
     doNotemods(map)
 
     bridgeScene.destroyObject(TIMES.BUILDUP)
 }
 
 function doNotemods(map: rm.V3Difficulty) {
+    doPauses(map)
+}
+
+function doPauses(map: rm.V3Difficulty) {
     const START = 362
     const END = 477
     const isInPauses = between(START, END)
-
-    // map.colorNotes = []
-    // for (let t = START; t <= END; t += 0.3) {
-    //     rm.colorNote(map, {
-    //         beat: t
-    //     })
-    // }
-
-    // rm.colorNote(map, {
-    //     beat: 383
-    // })
 
     const MAX_PAUSE_TRACKS = 99999
     let pauseTrack = 0
@@ -35,12 +27,12 @@ function doNotemods(map: rm.V3Difficulty) {
         return `pauseTrack_${pauseTrack}`
     }
 
-    const pauseEvents = lightShow.lightEvents.filter(x => isInPauses(x) && x.type == 0).reverse()
+    const pauseEvents = lightShow.lightEvents.filter((x) => isInPauses(x) && x.type == 0).reverse()
 
-    map.allNotes.filter(isInPauses).forEach(x => {
-        x.animation.scale = [[0,0,0,0],[1,1,1,0]]
-        x.animation.dissolve = [[0,0],[1,0]]
-        x.animation.offsetPosition = [[0,0,-70,0],[0,0,0,0.48,'easeInOutExpo'],[0,0,0,0.5]]
+    map.allNotes.filter(isInPauses).forEach((x) => {
+        x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
+        x.animation.dissolve = [[0, 0], [1, 0]]
+        x.animation.offsetPosition = [[0, 0, -70, 0], [0, 0, 0, 0.48, "easeInOutExpo"], [0, 0, 0, 0.5]]
         x.noteJumpMovementSpeed = 20
         x.life = 30
 
@@ -60,10 +52,12 @@ function doNotemods(map: rm.V3Difficulty) {
             const on = e.value != rm.EventAction.OFF
             const time = e.beat
 
-            if (e.beat > x.beat)
+            if (e.beat > x.beat) {
                 continue
-            if ((e.beat < lastOnBeat - lastOffTime * life) && on)
+            }
+            if ((e.beat < lastOnBeat - lastOffTime * life) && on) {
                 break
+            }
 
             if (on) { // ON
                 // compare last beat with current beat to find time
@@ -78,11 +72,10 @@ function doNotemods(map: rm.V3Difficulty) {
                 timePoints.push([lastOffTime, time])
                 lastOnBeat = time
             }
-
         }
 
         let startBeat = x.beat - halfLife
-        if (lastOffTime > 0) { // TODO: this breaks if there's a pause on event before this region, but outside of the note life.
+        if (lastOffTime > 0) {
             const remainingTime = lastOffTime
             const remainingBeats = remainingTime * life
             startBeat = lastOnBeat - remainingBeats
@@ -92,11 +85,10 @@ function doNotemods(map: rm.V3Difficulty) {
             [0, startBeat - 1],
             [0, startBeat],
             [0.5, x.beat],
-            [1, x.beat + halfLife]
+            [1, x.beat + halfLife],
         )
 
         timePoints = timePoints.sort((a, b) => rm.getPointTime(a) - rm.getPointTime(b))
-        // console.log(timePoints)
         const normalizedTimePoints = pointsBeatsToNormalized(timePoints)
 
         rm.animateTrack(map, {
@@ -104,8 +96,8 @@ function doNotemods(map: rm.V3Difficulty) {
             duration: normalizedTimePoints.duration,
             track: pauseTrack,
             animation: {
-                time: normalizedTimePoints.points
-            }
+                time: normalizedTimePoints.points,
+            },
         })
     })
 }
