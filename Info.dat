@@ -58,6 +58,23 @@
           }
         }
       ]
+    },
+    {
+      "_beatmapCharacteristicName" : "Lightshow",
+      "_difficultyBeatmaps" : [
+        {
+          "_difficulty" : "ExpertPlus",
+          "_difficultyRank" : 9,
+          "_beatmapFilename" : "ExpertPlusLightshow.dat",
+          "_noteJumpMovementSpeed" : 16,
+          "_noteJumpStartBeatOffset" : 0,
+          "_beatmapColorSchemeIdx" : 0,
+          "_environmentNameIdx" : 0,
+          "_customData" : {
+            "_difficultyLabel" : "timings"
+          }
+        }
+      ]
     }
   ],
   "_environmentNames" : [

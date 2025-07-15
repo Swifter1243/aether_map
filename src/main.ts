@@ -15,6 +15,10 @@ export const prefabs = bundle.prefabs
 
 // ----------- { SCRIPT } -----------
 
+// contains timing guides!
+export const lightshow = await rm.readDifficultyV3(pipeline, 'ExpertPlusLightshow')
+delete pipeline.info.difficultyBeatmaps['ExpertPlusLightshow.dat']
+
 async function doMap(file: rm.DIFFICULTY_NAME) {
     const map = await rm.readDifficultyV3(pipeline, file)
 
