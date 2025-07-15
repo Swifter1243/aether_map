@@ -20,16 +20,29 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Alpha: 0.5
+    - _Alpha: 0
     - _Bend: 0.5
+    - _BlendDst: 1
     - _BlendOp: 0
+    - _BlendSrc: 1
     - _Clamp: 0
     - _Flutter: 0
     - _Glow: 0.53
+    - _GraphicCutoff: 0.6
+    - _GraphicEnabled: 0
+    - _GraphicNoise1Scale: 8
+    - _GraphicNoise2Influence: 0.4
+    - _GraphicNoise2Scale: 15
+    - _GraphicNoiseInfluence: 0.3
+    - _GraphicSharpness: 2
     - _Invert: 0
     - _Opacity: 1
     - _Size: 1.28
     - _Softness: 7
     - _Spread: 0.13
+    - _StencilComp: 8
+    - _StencilPass: 2
+    - _StencilRef: 0
     - _Thickness: 0.1
+    - _ZTest: 4
     m_Colors: []

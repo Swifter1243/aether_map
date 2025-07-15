@@ -20,6 +20,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _Alpha: 0.2
+    - _BlendOp: 0
+    - _DstBlend: 6
     - _FogHeight: 0.66
     - _IsParticle: 1
     m_Colors:

@@ -20,6 +20,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _Alpha: 1
+    - _BlendOp: 0
+    - _DstBlend: 6
     - _FogHeight: 3
+    - _IsParticle: 0
     m_Colors:
     - _Offset: {r: 0, g: 0, b: 0, a: 1}

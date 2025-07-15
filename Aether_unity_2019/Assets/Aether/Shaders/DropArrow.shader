@@ -7,6 +7,7 @@ Shader "Swifter/DropArrow"
         [Toggle(IS_PARTICLE)] _IsParticle ("Is Particle", Int) = 0
         [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Destination Blend", Float) = 6
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+        _Alpha ("Alpha", Float) = 0
     }
     SubShader
     {
@@ -51,6 +52,7 @@ Shader "Swifter/DropArrow"
 
             float3 _Offset;
             float _FogHeight;
+            float _Alpha;
 
             v2f vert (appdata v)
             {
@@ -81,7 +83,7 @@ Shader "Swifter/DropArrow"
             fixed4 frag (v2f i) : SV_Target
             {
                 float v = saturate(i.fog);
-                return float4(v, v, v, v);
+                return float4(v, v, v, v * _Alpha);
             }
             ENDCG
         }
