@@ -7,7 +7,7 @@ import { bridge } from './sections/bridge.ts';
 import { buildup } from './sections/buildup.ts';
 import { outro } from './sections/outro.ts';
 
-const pipeline = await rm.createPipeline({ bundleInfo })
+export const pipeline = await rm.createPipeline({ bundleInfo })
 
 export const bundle = rm.loadBundle(bundleInfo)
 export const materials = bundle.materials

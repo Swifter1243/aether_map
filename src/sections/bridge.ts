@@ -1,7 +1,7 @@
 import { TIMES } from "../constants.ts"
 import { rm } from "../deps.ts"
-import { generateShake } from "../effects.ts"
-import { lightShow, prefabs } from "../main.ts"
+import { generateShake, randomVec3 } from "../effects.ts"
+import { lightShow, pipeline, prefabs } from "../main.ts"
 import { between, pointsBeatsToNormalized } from "../utilities.ts"
 
 export function bridge(map: rm.V3Difficulty) {
@@ -95,6 +95,16 @@ function doPauses(map: rm.V3Difficulty) {
         x.animation.offsetWorldRotation = [[0, rand(-1, 1) * 2, 0, 0], [0, 0, 0, 0.5]]
         x.noteJumpMovementSpeed = 12
         x.life = 30 * 2
+        
+        const reactionTime = rm.getReactionTime(x.implicitNoteJumpMovementSpeed, x.implicitNoteJumpStartBeatOffset, pipeline.info.audio.beatsPerMinute)
+        const reaction = (ms: number) => rm.inverseLerp(reactionTime, 0, ms) * 0.5
+        const jumpInBeat = 600
+        x.animation.offsetPosition = [[0,0,10,reaction(jumpInBeat + 1000)],[0,0,0,reaction(jumpInBeat),'easeInExpo']]
+        x.animation.localRotation = [
+            [0,0,0,reaction(jumpInBeat + 200)],
+            [...randomVec3(8, rand), reaction(jumpInBeat)], 
+            [0,0,0,reaction(jumpInBeat - 1000),'easeOutCirc']
+        ]
 
         const pauseTrack = getNextPauseTrack()
         x.track.add(pauseTrack)
