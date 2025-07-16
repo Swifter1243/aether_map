@@ -63,6 +63,7 @@ function doPauses(map: rm.V3Difficulty) {
 
     const DYNAMIC_GEMSTONE_TRACK = "dynamicGemstone"
     const STATIC_WIREFRAME_TRACK = "staticWireframe"
+    const pauseNotes = map.allNotes.filter(isInPauses)
 
     const rand = rm.seededRandom(37834728)
 
@@ -79,7 +80,7 @@ function doPauses(map: rm.V3Difficulty) {
         })
 
         if (!e.isPlaying) {
-            map.allNotes.forEach((x) => {
+            pauseNotes.forEach((x) => {
                 if (Math.abs(x.beat - e.beat) < 0.1) {
                     x.track.add(STATIC_WIREFRAME_TRACK)
                 } else {
@@ -89,7 +90,7 @@ function doPauses(map: rm.V3Difficulty) {
         }
     })
 
-    map.allNotes.filter(isInPauses).forEach((x) => {
+    pauseNotes.forEach((x) => {
         x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
         x.animation.offsetWorldRotation = [[0, rand(-1, 1) * 2, 0, 0], [0, 0, 0, 0.5]]
         x.noteJumpMovementSpeed = 12
