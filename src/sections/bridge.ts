@@ -47,11 +47,23 @@ function doPauses(map: rm.V3Difficulty) {
                 dissolve: [e.isPlaying ? 1 : 0.5]
             },
         })
+
+        if (!e.isPlaying) {
+            map.allNotes.forEach(x => {
+                if (Math.abs(x.beat - e.beat) < 0.1) {
+                    x.track.delete(PAUSE_NOTES_TRACK)
+                    x.animation.dissolve = [0.6]
+                }
+            })
+        }
     })
+
+    const rand = rm.seededRandom(37834728)
 
     map.allNotes.filter(isInPauses).forEach((x) => {
         x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
-        x.animation.dissolve = [[0, 0], [1, 0]]
+        // x.animation.dissolve = [[0, 0], [1, 0]]
+        x.animation.offsetWorldRotation = [[0,rand(-1, 1) * 2,0,0],[0,0,0,0.5]]
         x.noteJumpMovementSpeed = 12
         x.life = 30 * 2
 
