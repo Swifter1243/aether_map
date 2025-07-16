@@ -96,14 +96,13 @@ function doPauses(map: rm.V3Difficulty) {
         x.noteJumpMovementSpeed = 12
         x.life = 30 * 2
         
-        const reactionTime = rm.getReactionTime(x.implicitNoteJumpMovementSpeed, x.implicitNoteJumpStartBeatOffset, pipeline.info.audio.beatsPerMinute)
-        const reaction = (ms: number) => rm.inverseLerp(reactionTime, 0, ms) * 0.5
-        const jumpInBeat = 600
-        x.animation.offsetPosition = [[0,0,10,reaction(jumpInBeat + 1000)],[0,0,0,reaction(jumpInBeat),'easeInExpo']]
+        const beat = (ms: number) => rm.inverseLerp(x.life, 0, ms) * 0.5
+        const jumpInBeat = 4
+        x.animation.offsetPosition = [[0,0,10,beat(jumpInBeat + 4)],[0,0,0,beat(jumpInBeat),'easeInExpo']]
         x.animation.localRotation = [
-            [0,0,0,reaction(jumpInBeat + 200)],
-            [...randomVec3(8, rand), reaction(jumpInBeat)], 
-            [0,0,0,reaction(jumpInBeat - 1000),'easeOutCirc']
+            [0,0,0,beat(jumpInBeat + 2)],
+            [...randomVec3(8, rand), beat(jumpInBeat)], 
+            [0,0,0,beat(jumpInBeat - 2),'easeOutCirc']
         ]
 
         const pauseTrack = getNextPauseTrack()
