@@ -131,6 +131,7 @@ function doPauses(map: rm.V3Difficulty) {
         })
     })
 
+    assignWireframeToNotes(map, STATIC_WIREFRAME_TRACK)
     pauseEvents.forEach((e) => {
         rm.animateTrack(map, {
             track: DYNAMIC_GEMSTONE_TRACK,
@@ -149,7 +150,6 @@ function doPauses(map: rm.V3Difficulty) {
             })
         }
 
-        assignWireframeToNotes(map, STATIC_WIREFRAME_TRACK)
         if (e.isPlaying) {
             assignGemstoneToNotes(map, DYNAMIC_GEMSTONE_TRACK, e.beat)
         } else {
