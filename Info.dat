@@ -27,23 +27,6 @@
   },
   "_difficultyBeatmapSets" : [
     {
-      "_beatmapCharacteristicName" : "Lightshow",
-      "_difficultyBeatmaps" : [
-        {
-          "_difficulty" : "ExpertPlus",
-          "_difficultyRank" : 9,
-          "_beatmapFilename" : "ExpertPlusLightshow.dat",
-          "_noteJumpMovementSpeed" : 16,
-          "_noteJumpStartBeatOffset" : 0,
-          "_beatmapColorSchemeIdx" : 0,
-          "_environmentNameIdx" : 0,
-          "_customData" : {
-            "_difficultyLabel" : "timings"
-          }
-        }
-      ]
-    },
-    {
       "_beatmapCharacteristicName" : "Standard",
       "_difficultyBeatmaps" : [
         {
@@ -72,6 +55,23 @@
             "_difficultyLabel" : "\\___*",
             "_colorLeft" : {"r":0.936,"g":0.614,"b":1},
             "_colorRight" : {"r":0,"g":0.803,"b":1}
+          }
+        }
+      ]
+    },
+    {
+      "_beatmapCharacteristicName" : "Lightshow",
+      "_difficultyBeatmaps" : [
+        {
+          "_difficulty" : "ExpertPlus",
+          "_difficultyRank" : 9,
+          "_beatmapFilename" : "ExpertPlusLightshow.dat",
+          "_noteJumpMovementSpeed" : 16,
+          "_noteJumpStartBeatOffset" : 0,
+          "_beatmapColorSchemeIdx" : 0,
+          "_environmentNameIdx" : 0,
+          "_customData" : {
+            "_difficultyLabel" : "timings"
           }
         }
       ]
