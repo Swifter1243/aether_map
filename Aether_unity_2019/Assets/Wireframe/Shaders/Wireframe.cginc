@@ -30,6 +30,7 @@ struct v2g
     #if DEBRIS
     float3 localPos : TEXCOORD2;
     #endif
+    UNITY_VERTEX_INPUT_INSTANCE_ID
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
@@ -42,6 +43,7 @@ struct g2f
     #if DEBRIS
     float3 localPos : TEXCOORD3;
     #endif
+    UNITY_VERTEX_INPUT_INSTANCE_ID
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
@@ -50,6 +52,7 @@ v2g vert (appdata v)
     v2g o;
     UNITY_SETUP_INSTANCE_ID(v);
     UNITY_INITIALIZE_OUTPUT(v2g, o);
+    UNITY_TRANSFER_INSTANCE_ID(v, o);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
     o.projectionSpaceVertex = UnityObjectToClipPos(v.vertex);
     o.worldSpacePosition = mul(unity_ObjectToWorld, v.vertex);
@@ -101,6 +104,7 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
     o.localPos = i[0].localPos;
     #endif
     UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[0], o);
+    UNITY_TRANSFER_INSTANCE_ID(i[0], o);
     triangleStream.Append(o);
 
     o.worldSpacePosition = i[1].worldSpacePosition;
@@ -110,7 +114,8 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
     #if DEBRIS
     o.localPos = i[1].localPos;
     #endif
-    UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[2], o);
+    UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[1], o);
+    UNITY_TRANSFER_INSTANCE_ID(i[1], o);
     triangleStream.Append(o);
 
     o.worldSpacePosition = i[2].worldSpacePosition;
@@ -120,6 +125,7 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
     #if DEBRIS
     o.localPos = i[2].localPos;
     #endif
+    UNITY_TRANSFER_INSTANCE_ID(i[2], o);
     UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[2], o);
     triangleStream.Append(o);
 }
@@ -127,6 +133,7 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
 fixed4 frag(g2f i) : SV_Target
 {
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i); //Insert
+    UNITY_SETUP_INSTANCE_ID(i);
 
     #if NOTE
     float4 Color = UNITY_ACCESS_INSTANCED_PROP(Props, _Color);

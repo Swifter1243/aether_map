@@ -18,6 +18,11 @@ Shader "Mawntee/Beat Saber Wireframe 3D-Noise"
         [Space]
         //[Enum(Zero Zero, 0, SrcALpha OneMinusSrcAlpha, 1)] _BlendMode("Blend Mode", Int) = 0
 		[Enum(UnityEngine.Rendering.CullMode)] _CullMode("Cull Mode", Int) = 0
+		[KeywordEnum(Off, On)] _ZWrite ("ZWrite", Float) = 0
+
+    	[Header(Blend)][Space(10)]
+        [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend ("Source Blend", Float) = 3
+        [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Destination Blend", Float) = 6
 
         [Header(Note)][Space(10)]
         [Toggle(NOTE)] _IsNote ("Is Note", Int) = 0
@@ -32,11 +37,11 @@ Shader "Mawntee/Beat Saber Wireframe 3D-Noise"
         	"RenderType"="Transparent"
         	"Queue"="Transparent"
         }
-        Blend SrcColor OneMinusSrcColor
+        Blend [_SrcBlend] [_DstBlend]
         Cull [_CullMode]
+        ZWrite [_ZWrite]
 		Pass
 		{
-			ZWrite Off
 			// Wireframe shader based on the the following
 			// http://developer.download.nvidia.com/SDK/10/direct3d/Source/SolidWireframe/Doc/SolidWireframe.pdf
 
