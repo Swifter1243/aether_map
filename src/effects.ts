@@ -28,3 +28,19 @@ export function fadeWhite(map: rm.AbstractDifficulty, beat: number, duration: nu
         ]
     })
 }
+
+export function generateShake(amplitude: number, random: (min: number, max: number) => number, pointAmount = 5): rm.ComplexPointsVec3 {
+    const points: rm.ComplexPointsVec3 = []
+
+    for (let i = 0; i <= pointAmount; i++) {
+        const t = i / pointAmount
+        points.push([
+            random(-amplitude, amplitude) * (1 - t),
+            random(-amplitude, amplitude) * (1 - t),
+            random(-amplitude, amplitude) * (1 - t),
+            t
+        ])
+    }
+
+    return points
+}
