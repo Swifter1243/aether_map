@@ -1,11 +1,21 @@
 
 uniform float _WireThickness = 100;
 uniform float _WireSmoothness = 3;
-uniform float4 _WireColor = float4(0.0, 1.0, 0.0, 1.0);
+#if !NOTE
+uniform float4 _Color = float4(0.0, 1.0, 0.0, 1.0);
+#endif
 uniform float4 _BaseColor = float4(0.0, 0.0, 0.0, 0.0);
 uniform float _MaxTriSize = 25.0;
 uniform float _Glow = 0.0;
 uniform float _FadeDistance;
+
+#if NOTE
+UNITY_INSTANCING_BUFFER_START(Props)
+UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+UNITY_DEFINE_INSTANCED_PROP(float, _Cutout)
+UNITY_DEFINE_INSTANCED_PROP(float4, _CutPlane)
+UNITY_INSTANCING_BUFFER_END(Props)
+#endif
 
 struct appdata
 {
@@ -17,6 +27,9 @@ struct v2g
 {
     float4 projectionSpaceVertex : SV_POSITION;
     float4 worldSpacePosition : TEXCOORD1;
+    #if DEBRIS
+    float3 localPos : TEXCOORD2;
+    #endif
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
@@ -26,6 +39,9 @@ struct g2f
     float4 worldSpacePosition : TEXCOORD0;
     float4 dist : TEXCOORD1;
     float4 area : TEXCOORD2;
+    #if DEBRIS
+    float3 localPos : TEXCOORD3;
+    #endif
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
@@ -37,6 +53,9 @@ v2g vert (appdata v)
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
     o.projectionSpaceVertex = UnityObjectToClipPos(v.vertex);
     o.worldSpacePosition = mul(unity_ObjectToWorld, v.vertex);
+    #if DEBRIS
+    o.localPos = v.vertex;;
+    #endif
     return o;
 }
 
@@ -64,6 +83,11 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
     float area = abs(edge1.x * edge2.y - edge1.y * edge2.x);
     float wireThickness = 800 - _WireThickness;
 
+    #if NOTE && !DEBRIS
+    float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
+    wireThickness /= 1 - Cutout;
+    #endif
+
     g2f o;
 
     o.area = float4(0, 0, 0, 0);
@@ -73,6 +97,9 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
     o.projectionSpaceVertex = i[0].projectionSpaceVertex;
     o.dist.xyz = float3( (area / length(edge0)), 0.0, 0.0) * o.projectionSpaceVertex.w * wireThickness;
     o.dist.w = 1.0 / o.projectionSpaceVertex.w;
+    #if DEBRIS
+    o.localPos = i[0].localPos;
+    #endif
     UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[0], o);
     triangleStream.Append(o);
 
@@ -80,6 +107,9 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
     o.projectionSpaceVertex = i[1].projectionSpaceVertex;
     o.dist.xyz = float3(0.0, (area / length(edge1)), 0.0) * o.projectionSpaceVertex.w * wireThickness;
     o.dist.w = 1.0 / o.projectionSpaceVertex.w;
+    #if DEBRIS
+    o.localPos = i[1].localPos;
+    #endif
     UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[2], o);
     triangleStream.Append(o);
 
@@ -87,6 +117,9 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
     o.projectionSpaceVertex = i[2].projectionSpaceVertex;
     o.dist.xyz = float3(0.0, 0.0, (area / length(edge2))) * o.projectionSpaceVertex.w * wireThickness;
     o.dist.w = 1.0 / o.projectionSpaceVertex.w;
+    #if DEBRIS
+    o.localPos = i[2].localPos;
+    #endif
     UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[2], o);
     triangleStream.Append(o);
 }
@@ -94,9 +127,25 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
 fixed4 frag(g2f i) : SV_Target
 {
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i); //Insert
+
+    #if NOTE
+    float4 Color = UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
+    #else
+    float4 Color = _Color;
+    #endif
+
+    #if NOTE && DEBRIS
+    float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
+    float4 CutPlane = UNITY_ACCESS_INSTANCED_PROP(Props, _CutPlane);
+    float3 samplePoint = i.localPos + CutPlane.xyz * CutPlane.w;
+    float planeDistance = dot(samplePoint, CutPlane.xyz) / length(CutPlane.xyz);
+    float c = planeDistance - Cutout * 0.25;
+    clip(c);
+    #endif
+
     float minDistanceToEdge = min(i.dist[0], min(i.dist[1], i.dist[2])) * i.dist[3];
 
-    float alpha = Luminance(_WireColor.rgb) * _Glow;
+    float alpha = Luminance(Color.rgb) * _Glow;
 
     // Early out if we know we are not on a line segment.
     if(minDistanceToEdge > 0.9 || i.area.x > _MaxTriSize )
@@ -106,7 +155,7 @@ fixed4 frag(g2f i) : SV_Target
 
     // Smooth our line out
     float t = exp2(_WireSmoothness * -1.0 * minDistanceToEdge * minDistanceToEdge);
-    half4 finalColor = lerp(_BaseColor, _WireColor, t);
+    half4 finalColor = lerp(_BaseColor, Color, t);
 
     return float4(finalColor.rgb, alpha);
 }

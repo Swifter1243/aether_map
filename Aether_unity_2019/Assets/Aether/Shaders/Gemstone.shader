@@ -14,6 +14,7 @@ Shader "Swifter/Gemstone"
         _IOR ("Refractive Index", Float) = 1.45
         _Color ("Color", Color) = (1,1,1)
         _Brightness ("Brightness", Float) = 1
+        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
 
         [Header(Fog)][Space(10)]
         _FogColor ("Fog Color", Color) = (1,1,1)
@@ -29,6 +30,12 @@ Shader "Swifter/Gemstone"
     	[Header(Blend)][Space(10)]
         [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend ("Source Blend", Float) = 0
         [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Destination Blend", Float) = 6
+
+        [Header(Note)][Space(10)]
+        [Toggle(NOTE)] _IsNote ("Is Note", Int) = 0
+        _Cutout ("Cutout", Range(0,1)) = 0
+        [Toggle(DEBRIS)] _Debris ("Debris", Int) = 0
+        _CutPlane ("Cut Plane", Vector) = (0, 0, 1, 0)
     }
     SubShader
     {
@@ -36,6 +43,7 @@ Shader "Swifter/Gemstone"
             "RenderType"="Opaque"
         }
         Blend [_SrcBlend] [_DstBlend]
+        Cull [_Cull]
 
         Pass
         {
@@ -45,7 +53,8 @@ Shader "Swifter/Gemstone"
             #pragma multi_compile_instancing
             #pragma shader_feature DISTANCE_FOG
             #pragma shader_feature HEIGHT_FOG
-
+            #pragma shader_feature NOTE
+            #pragma shader_feature DEBRIS
 
             #include "UnityCG.cginc"
 
@@ -74,6 +83,7 @@ Shader "Swifter/Gemstone"
                 #if DISTANCE_FOG
                 float distanceFog : TEXCOORD4;
                 #endif
+                UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -87,7 +97,9 @@ Shader "Swifter/Gemstone"
             float _FBM;
             float _Darkness;
             float _IOR;
+            #if !NOTE
             float3 _Color;
+            #endif
             float _Brightness;
 
             float3 _FogColor;
@@ -96,11 +108,20 @@ Shader "Swifter/Gemstone"
             float _HeightFogStart;
             float _HeightFogEnd;
 
+            #if NOTE
+            UNITY_INSTANCING_BUFFER_START(Props)
+            UNITY_DEFINE_INSTANCED_PROP(float3, _Color)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Cutout)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _CutPlane)
+            UNITY_INSTANCING_BUFFER_END(Props)
+            #endif
+
             v2f vert (appdata v)
             {
                 v2f o;
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 float3 localCameraPos = mul(unity_WorldToObject, float4(_WorldSpaceCameraPos, 1));
@@ -131,6 +152,14 @@ Shader "Swifter/Gemstone"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                UNITY_SETUP_INSTANCE_ID(i);
+
+                #if NOTE
+                float3 Color = UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
+                #else
+                float3 Color = _Color;
+                #endif
+
                 float3 refraction = refract(i.viewDir, i.normal, 1 / _IOR);
                 float3 incoming = refraction;
 
@@ -142,6 +171,24 @@ Shader "Swifter/Gemstone"
                 float3 n1 = voronoi(intersectionPoint * _NoiseScale * _DetailScale + surfaceN.z * _SurfaceDistortion);
                 float3 n2 = voronoi(intersectionPoint * _NoiseScale + n1.x * _FBM + surfaceN.z * _SurfaceDistortion);
 
+                #if NOTE
+                float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
+                float c = 0;
+
+                #if DEBRIS
+                    float4 CutPlane = UNITY_ACCESS_INSTANCED_PROP(Props, _CutPlane);
+                    float3 samplePoint = i.localPos + CutPlane.xyz * CutPlane.w;
+                    float planeDistance = dot(samplePoint, CutPlane.xyz) / length(CutPlane.xyz);
+                    c = planeDistance - Cutout * 0.4;
+                #else
+                    c = surfaceN - Cutout;
+                #endif
+                c += (voronoi(i.localPos * 8 + 8) - 0.3) * 0.1;
+
+                clip(c);
+
+                #endif
+
                 float d = dot(i.normal, i.viewDir) * _AngleRainbowInfluence;
                 d += n2.x * _NoiseRainbowInfluence;
 
@@ -149,7 +196,7 @@ Shader "Swifter/Gemstone"
                 float saturation = pow(surfaceN.y, 2) * n2.x;
 
                 float3 blackCol = hue * pow(saturation, 3);
-                float3 whiteCol = lerp(_Color, hue, saturation);
+                float3 whiteCol = lerp(Color, hue, saturation);
                 float3 col = lerp(blackCol, whiteCol, pow(n2.y, _Darkness));
 
                 col *= _Brightness;
