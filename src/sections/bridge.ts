@@ -24,7 +24,7 @@ function doPauses(map: rm.V3Difficulty) {
     let pauseTrack = 0
     function getNextPauseTrack(): string {
         pauseTrack = (pauseTrack + 1) % MAX_PAUSE_TRACKS
-        return `pauseTrack_${pauseTrack}`
+        return `pauseNote_${pauseTrack}`
     }
 
     const pauseEvents = lightShow.lightEvents
@@ -33,9 +33,21 @@ function doPauses(map: rm.V3Difficulty) {
         .map((e) => {
             return {
                 beat: e.beat,
-                isPaused: e.value != rm.EventAction.OFF,
+                isPlaying: e.value != rm.EventAction.OFF,
             }
         })
+
+    const PAUSE_NOTES_TRACK = "pauseNote"
+    pauseEvents.forEach((e) => {
+        rm.animateTrack(map, {
+            track: PAUSE_NOTES_TRACK,
+            beat: e.beat,
+            animation: {
+                interactable: [e.isPlaying ? 1 : 0],
+                dissolve: [e.isPlaying ? 1 : 0.5]
+            },
+        })
+    })
 
     map.allNotes.filter(isInPauses).forEach((x) => {
         x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
@@ -45,6 +57,7 @@ function doPauses(map: rm.V3Difficulty) {
 
         const pauseTrack = getNextPauseTrack()
         x.track.add(pauseTrack)
+        x.track.add(PAUSE_NOTES_TRACK)
 
         const life = x.life
         const halfLife = life / 2
@@ -60,11 +73,11 @@ function doPauses(map: rm.V3Difficulty) {
             if (e.beat > x.beat) {
                 continue
             }
-            if ((e.beat < lastOnBeat - lastOffTime * life) && e.isPaused) {
+            if ((e.beat < lastOnBeat - lastOffTime * life) && e.isPlaying) {
                 break
             }
 
-            if (e.isPaused) {
+            if (e.isPlaying) {
                 const duration = lastOnBeat - e.beat
                 const normalizedDuration = duration / life
                 lastOffTime -= normalizedDuration
