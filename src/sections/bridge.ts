@@ -12,7 +12,7 @@ export function bridge(map: rm.V3Difficulty) {
     bridgeScene.destroyObject(TIMES.BUILDUP)
 }
 
-const START = 362
+const START = 362.3
 const END = 477
 
 function doNotemods(map: rm.V3Difficulty) {
@@ -63,7 +63,22 @@ function doPauses(map: rm.V3Difficulty) {
 
     const DYNAMIC_GEMSTONE_TRACK = "dynamicGemstone"
     const STATIC_WIREFRAME_TRACK = "staticWireframe"
+    const PAUSE_TRACK = "pauseTrack"
     const pauseNotes = map.allNotes.filter(isInPauses)
+
+    rm.animateTrack(map, {
+        track: PAUSE_TRACK,
+        animation: {
+            scale: [0,0,0]
+        }
+    })
+    rm.animateTrack(map, {
+        track: PAUSE_TRACK,
+        beat: START,
+        animation: {
+            scale: [1,1,1]
+        }
+    })
 
     const rand = rm.seededRandom(37834728)
 
@@ -95,6 +110,7 @@ function doPauses(map: rm.V3Difficulty) {
         x.animation.offsetWorldRotation = [[0, rand(-1, 1) * 2, 0, 0], [0, 0, 0, 0.5]]
         x.noteJumpMovementSpeed = 12
         x.life = 30 * 2
+        x.track.add(PAUSE_TRACK)
         
         if (!(x instanceof rm.Arc || x instanceof rm.Chain)) {
             x.spawnEffect = false
