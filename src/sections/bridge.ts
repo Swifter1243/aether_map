@@ -96,6 +96,10 @@ function doPauses(map: rm.V3Difficulty) {
         x.noteJumpMovementSpeed = 12
         x.life = 30 * 2
         
+        if (!(x instanceof rm.Arc || x instanceof rm.Chain)) {
+            x.spawnEffect = false
+        }
+        
         const beat = (ms: number) => rm.inverseLerp(x.life, 0, ms) * 0.5
         const jumpInBeat = 4
         const invY = -gridYToLocalOffset(x.y) / 0.6
@@ -137,6 +141,25 @@ function doPauses(map: rm.V3Difficulty) {
 
         const life = x.life
         const halfLife = life / 2
+
+        rm.animateTrack(map, {
+            track: pauseTrack,
+            animation: {
+                scale: [0,0,0]
+            }
+        })
+        rm.animateTrack(map, {
+            track: pauseTrack,
+            beat: x.beat - halfLife,
+            duration: 1,
+            animation: {
+                scale: [[0,0,0,0],[1,1,1,0.48,'easeStep'],[0,0,0,0.49,'easeStep'],[1,1,1,0.5,'easeStep']],
+                offsetPosition: generateShake(2, rand).map(x => {
+                    rm.setPointEasing(x, 'easeStep')
+                    return x
+                })
+            }
+        })
 
         let timePoints: rm.ComplexPointsLinear = []
 
