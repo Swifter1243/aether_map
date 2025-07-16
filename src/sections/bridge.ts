@@ -27,14 +27,21 @@ function doPauses(map: rm.V3Difficulty) {
         return `pauseTrack_${pauseTrack}`
     }
 
-    const pauseEvents = lightShow.lightEvents.filter((x) => isInPauses(x) && x.type == 0).reverse()
+    const pauseEvents = lightShow.lightEvents
+        .filter((x) => isInPauses(x) && x.type == 0)
+        .reverse()
+        .map((e) => {
+            return {
+                beat: e.beat,
+                isPaused: e.value != rm.EventAction.OFF,
+            }
+        })
 
     map.allNotes.filter(isInPauses).forEach((x) => {
         x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
         x.animation.dissolve = [[0, 0], [1, 0]]
-        x.animation.offsetPosition = [[0, 0, -70, 0], [0, 0, 0, 0.48, "easeInOutExpo"], [0, 0, 0, 0.5]]
-        x.noteJumpMovementSpeed = 20
-        x.life = 30
+        x.noteJumpMovementSpeed = 8
+        x.life = 30 * 2
 
         const pauseTrack = getNextPauseTrack()
         x.track.add(pauseTrack)
@@ -49,29 +56,23 @@ function doPauses(map: rm.V3Difficulty) {
 
         for (let i = 0; i < pauseEvents.length; i++) {
             const e = pauseEvents[i]
-            const on = e.value != rm.EventAction.OFF
-            const time = e.beat
 
             if (e.beat > x.beat) {
                 continue
             }
-            if ((e.beat < lastOnBeat - lastOffTime * life) && on) {
+            if ((e.beat < lastOnBeat - lastOffTime * life) && e.isPaused) {
                 break
             }
 
-            if (on) { // ON
-                // compare last beat with current beat to find time
-                // set last time
-                const duration = lastOnBeat - time
+            if (e.isPaused) {
+                const duration = lastOnBeat - e.beat
                 const normalizedDuration = duration / life
                 lastOffTime -= normalizedDuration
-                timePoints.push([lastOffTime, time])
-            } else { // OFF
-                // set from last time
-                // mark last beat
-                timePoints.push([lastOffTime, time])
-                lastOnBeat = time
+            } else {
+                lastOnBeat = e.beat
             }
+
+            timePoints.push([lastOffTime, e.beat])
         }
 
         let startBeat = x.beat - halfLife
