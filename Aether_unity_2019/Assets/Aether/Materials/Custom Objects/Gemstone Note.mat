@@ -57,13 +57,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AngleRainbowInfluence: 0.26
-    - _Brightness: 1
+    - _Brightness: 2.4
     - _BumpScale: 1
-    - _Cull: 0
+    - _Cull: 2
     - _Cutoff: 0.5
     - _Cutout: 0
     - _CutoutEdgeWidth: 0.0339
-    - _Darkness: 1.5
+    - _Darkness: 2.69
     - _Debris: 0
     - _Depth: 0.37
     - _DetailNormalMapScale: 1
@@ -79,8 +79,9 @@ Material:
     - _HeightFogEnabled: 0
     - _HeightFogEnd: 10
     - _HeightFogStart: 0
-    - _IOR: 1.45
+    - _IOR: 1.01
     - _IsNote: 1
+    - _LightingInfluence: 0.83
     - _Metallic: 0
     - _Mode: 0
     - _NoiseRainbowInfluence: 0.68

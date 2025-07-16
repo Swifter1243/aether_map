@@ -14,6 +14,7 @@ Shader "Swifter/Gemstone"
         _IOR ("Refractive Index", Float) = 1.45
         _Color ("Color", Color) = (1,1,1)
         _Brightness ("Brightness", Float) = 1
+        _LightingInfluence ("Lighting Influence", Range(0,1)) = 0.5
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
 
         [Header(Fog)][Space(10)]
@@ -76,12 +77,13 @@ Shader "Swifter/Gemstone"
                 float4 vertex : SV_POSITION;
                 float3 viewDir : TEXCOORD0;
                 float3 localPos : TEXCOORD1;
-                float3 normal : TEXCOORD2;
+                float3 localNormal : TEXCOORD2;
+                float3 worldNormal : TEXCOORD3;
                 #if DISTANCE_FOG || HEIGHT_FOG
-                float3 worldPos : TEXCOORD3;
+                float3 worldPos : TEXCOORD4;
                 #endif
                 #if DISTANCE_FOG
-                float distanceFog : TEXCOORD4;
+                float distanceFog : TEXCOORD5;
                 #endif
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
@@ -101,6 +103,7 @@ Shader "Swifter/Gemstone"
             float3 _Color;
             #endif
             float _Brightness;
+            float _LightingInfluence;
 
             float3 _FogColor;
             float _FadeDistanceStart;
@@ -128,7 +131,8 @@ Shader "Swifter/Gemstone"
                 float3 viewVector = v.vertex - localCameraPos;
                 float3 viewDir = normalize(viewVector);
 
-                o.normal = v.normal;
+                o.localNormal = v.normal;
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.viewDir = viewDir;
                 o.localPos = v.vertex;
 
@@ -160,10 +164,10 @@ Shader "Swifter/Gemstone"
                 float3 Color = _Color;
                 #endif
 
-                float3 refraction = refract(i.viewDir, i.normal, 1 / _IOR);
+                float3 refraction = refract(i.viewDir, i.localNormal, 1 / _IOR);
                 float3 incoming = refraction;
 
-                float incomingDepth = -dot(incoming, i.normal);
+                float incomingDepth = -dot(incoming, i.localNormal);
                 float3 scaledIncoming = incoming * (_Depth / incomingDepth);
                 float3 intersectionPoint = i.localPos + scaledIncoming;
 
@@ -189,7 +193,7 @@ Shader "Swifter/Gemstone"
 
                 #endif
 
-                float d = dot(i.normal, i.viewDir) * _AngleRainbowInfluence;
+                float d = dot(i.localNormal, i.viewDir) * _AngleRainbowInfluence;
                 d += n2.x * _NoiseRainbowInfluence;
 
                 float3 hue = rainbow(d);
@@ -200,6 +204,9 @@ Shader "Swifter/Gemstone"
                 float3 col = lerp(blackCol, whiteCol, pow(n2.y, _Darkness));
 
                 col *= _Brightness;
+
+                float lighting = dot(i.worldNormal, float3(0.2, 1, 0)) * 0.5 + 0.5;
+                col *= lerp(1, lighting, _LightingInfluence);
 
                 #if DISTANCE_FOG || HEIGHT_FOG
                 float fog = 1;

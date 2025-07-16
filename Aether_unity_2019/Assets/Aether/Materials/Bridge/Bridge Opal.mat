@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gemstone Debris
+  m_Name: Bridge Opal
   m_Shader: {fileID: 4800000, guid: 1aba8e9557ae37f41bae3bcc6ab45107, type: 3}
-  m_ShaderKeywords: DEBRIS DISTANCE_FOG NOTE
+  m_ShaderKeywords: DISTANCE_FOG HEIGHT_FOG
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -56,47 +56,49 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AngleRainbowInfluence: 0.26
-    - _Brightness: 2.4
+    - _AngleRainbowInfluence: 1.84
+    - _Brightness: 1.47
     - _BumpScale: 1
-    - _Cull: 0
+    - _CellRainbowInfluence: 0
+    - _Cull: 2
     - _Cutoff: 0.5
     - _Cutout: 0
-    - _CutoutEdgeWidth: 0.0339
-    - _Darkness: 2.69
-    - _Debris: 1
-    - _Depth: 0.37
+    - _Darkness: 1.97
+    - _Debris: 0
+    - _Depth: 7.51
     - _DetailNormalMapScale: 1
-    - _DetailScale: 1
+    - _DetailScale: -0.21
     - _DistanceFogEnabled: 1
     - _DstBlend: 0
-    - _FBM: 2
-    - _FadeDistanceEnd: 800
-    - _FadeDistanceStart: 500
+    - _FBM: 7.98
+    - _FadeDistanceEnd: 177
+    - _FadeDistanceStart: 11.15
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightFogEnabled: 0
-    - _HeightFogEnd: 10
-    - _HeightFogStart: 0
-    - _IOR: 1.01
-    - _IsNote: 1
-    - _LightingInfluence: 0.83
+    - _HeightFogEnabled: 1
+    - _HeightFogEnd: 0
+    - _HeightFogStart: -10.8
+    - _IOR: 1.42
+    - _IQR: 1.15
+    - _IsNote: 0
+    - _LightingInfluence: 0.907
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseRainbowInfluence: 0.68
-    - _NoiseScale: 2.48
+    - _NoiseRainbowInfluence: 2.19
+    - _NoiseScale: 0.36
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Scale: 0.83
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SurfaceDistortion: 0.1
-    - _SurfaceScale: 1.38
+    - _SurfaceScale: 3.47
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.8726415, g: 0.966211, b: 1, a: 1}
     - _CutPlane: {r: 0, g: 0, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FogColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FogColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
