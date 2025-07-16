@@ -1,8 +1,8 @@
 import { TIMES } from "../constants.ts"
 import { rm } from "../deps.ts"
-import { generateShake, randomVec3 } from "../effects.ts"
+import { generateShake } from "../effects.ts"
 import { lightShow, prefabs } from "../main.ts"
-import { between, gridYToLocalOffset, pointsBeatsToNormalized } from "../utilities.ts"
+import { between, cutDirectionAngle, gridYToLocalOffset, pointsBeatsToNormalized } from "../utilities.ts"
 
 export function bridge(map: rm.V3Difficulty) {
     const bridgeScene = prefabs.bridge.instantiate(map, TIMES.BRIDGE)
@@ -99,12 +99,38 @@ function doPauses(map: rm.V3Difficulty) {
         const beat = (ms: number) => rm.inverseLerp(x.life, 0, ms) * 0.5
         const jumpInBeat = 4
         const invY = -gridYToLocalOffset(x.y) / 0.6
+
+        const randomNoteSpawnRotations = [
+            [-0.9543871, -0.1183784, 0.2741019],
+            [0.7680854, -0.08805521, 0.6342642],
+            [-0.6780157, 0.306681, -0.6680131],
+            [0.1255014, 0.9398643, 0.3176546],
+            [0.365105, -0.3664974, -0.8557909],
+            [-0.8790653, -0.06244748, -0.4725934],
+            [0.01886305, -0.8065798, 0.5908241],
+            [-0.1455435, 0.8901445, 0.4318099],
+            [0.07651193, 0.9474725, -0.3105508],
+            [0.1306983, -0.2508438, -0.9591639]
+        ].map(x => rm.arrayMultiply(x, (180 / Math.PI) / 2)) as rm.Vec3[]
+
+        const impactRotation = randomNoteSpawnRotations[Math.floor(rand(0, randomNoteSpawnRotations.length))]
+
         x.animation.offsetPosition = [[0,invY,10,beat(jumpInBeat + 4)],[0,invY,0,beat(jumpInBeat),'easeInExpo'],[0,0,0,0.5,'easeOutQuad']]
-        x.animation.localRotation = [
-            [0,0,0,beat(jumpInBeat + 2)],
-            [...randomVec3(20, rand), beat(jumpInBeat)], 
-            [0,0,0,beat(jumpInBeat * 0.7),'easeOutCirc']
-        ]
+        if (x instanceof rm.ColorNote) {
+            const invRotation: rm.Vec3 = [0, 0, -(cutDirectionAngle(x.cutDirection) + 180) % 360]
+            x.animation.localRotation = [
+                [...invRotation, beat(jumpInBeat + 2)],
+                [...rm.combineRotations(impactRotation, invRotation), beat(jumpInBeat)], 
+                [0,0,0,beat(jumpInBeat * 0.3),'easeOutExpo']
+            ]
+        }
+        else {
+            x.animation.localRotation = [
+                [0,0,0,beat(jumpInBeat + 2)],
+                [...impactRotation, beat(jumpInBeat)], 
+                [0,0,0,beat(jumpInBeat * 0.3),'easeOutExpo']
+            ]
+        }
 
         const pauseTrack = getNextPauseTrack()
         x.track.add(pauseTrack)
