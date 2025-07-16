@@ -4,6 +4,16 @@ export function between(start: number, end: number) {
     return (o: rm.BeatmapObject) => o.beat >= start && o.beat <= end
 }
 
+export function gridYToLocalOffset(y: number): number {
+    switch (y)
+    {
+        case 0: return 0
+        case 1: return 0.55
+        case 2: return 1.05
+        default: return 0
+    }
+}
+
 export function pointsBeatsToNormalized<T extends number[]>(points: rm.ComplexPointsAbstract<T>): {
     points: rm.ComplexPointsAbstract<T>,
     minTime: number,

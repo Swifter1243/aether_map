@@ -1,8 +1,8 @@
 import { TIMES } from "../constants.ts"
 import { rm } from "../deps.ts"
 import { generateShake, randomVec3 } from "../effects.ts"
-import { lightShow, pipeline, prefabs } from "../main.ts"
-import { between, pointsBeatsToNormalized } from "../utilities.ts"
+import { lightShow, prefabs } from "../main.ts"
+import { between, gridYToLocalOffset, pointsBeatsToNormalized } from "../utilities.ts"
 
 export function bridge(map: rm.V3Difficulty) {
     const bridgeScene = prefabs.bridge.instantiate(map, TIMES.BRIDGE)
@@ -98,11 +98,12 @@ function doPauses(map: rm.V3Difficulty) {
         
         const beat = (ms: number) => rm.inverseLerp(x.life, 0, ms) * 0.5
         const jumpInBeat = 4
-        x.animation.offsetPosition = [[0,0,10,beat(jumpInBeat + 4)],[0,0,0,beat(jumpInBeat),'easeInExpo']]
+        const invY = -gridYToLocalOffset(x.y) / 0.6
+        x.animation.offsetPosition = [[0,invY,10,beat(jumpInBeat + 4)],[0,invY,0,beat(jumpInBeat),'easeInExpo'],[0,0,0,0.5,'easeOutQuad']]
         x.animation.localRotation = [
             [0,0,0,beat(jumpInBeat + 2)],
-            [...randomVec3(8, rand), beat(jumpInBeat)], 
-            [0,0,0,beat(jumpInBeat - 2),'easeOutCirc']
+            [...randomVec3(20, rand), beat(jumpInBeat)], 
+            [0,0,0,beat(jumpInBeat * 0.7),'easeOutCirc']
         ]
 
         const pauseTrack = getNextPauseTrack()
