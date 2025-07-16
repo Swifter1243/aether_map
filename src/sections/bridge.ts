@@ -11,13 +11,36 @@ export function bridge(map: rm.V3Difficulty) {
     bridgeScene.destroyObject(TIMES.BUILDUP)
 }
 
+const START = 362
+const END = 477
+
 function doNotemods(map: rm.V3Difficulty) {
     doPauses(map)
 }
 
+function assignGemstoneToNotes(map: rm.V3Difficulty, track: string, beat = 0) {
+    rm.assignObjectPrefab(map, {
+        beat,
+        colorNotes: {
+            track,
+            asset: prefabs["gemstone note"].path,
+            debrisAsset: prefabs["gemstone note debris"].path
+        }
+    })
+}
+
+function assignWireframeToNotes(map: rm.V3Difficulty, track: string, beat = 0) {
+    rm.assignObjectPrefab(map, {
+        beat,
+        colorNotes: {
+            track,
+            asset: prefabs["wireframe note"].path,
+            debrisAsset: prefabs["wireframe note debris"].path
+        }
+    })
+}
+
 function doPauses(map: rm.V3Difficulty) {
-    const START = 362
-    const END = 477
     const isInPauses = between(START, END)
 
     const MAX_PAUSE_TRACKS = 99999
@@ -37,24 +60,31 @@ function doPauses(map: rm.V3Difficulty) {
             }
         })
 
-    const PAUSE_NOTES_TRACK = "pauseNote"
+    const DYNAMIC_GEMSTONE_TRACK = "dynamicGemstone"
+    const STATIC_GEMSTONE_TRACK = "staticGemstone"
     pauseEvents.forEach((e) => {
         rm.animateTrack(map, {
-            track: PAUSE_NOTES_TRACK,
+            track: DYNAMIC_GEMSTONE_TRACK,
             beat: e.beat,
             animation: {
-                interactable: [e.isPlaying ? 1 : 0],
-                dissolve: [e.isPlaying ? 1 : 0.5]
+                interactable: [e.isPlaying ? 1 : 0]
             },
         })
 
         if (!e.isPlaying) {
             map.allNotes.forEach(x => {
                 if (Math.abs(x.beat - e.beat) < 0.1) {
-                    x.track.delete(PAUSE_NOTES_TRACK)
-                    x.animation.dissolve = [0.6]
+                    x.track.delete(DYNAMIC_GEMSTONE_TRACK)
+                    x.track.add(STATIC_GEMSTONE_TRACK)
                 }
             })
+        }
+
+        assignGemstoneToNotes(map, STATIC_GEMSTONE_TRACK)
+        if (e.isPlaying) {
+            assignGemstoneToNotes(map, DYNAMIC_GEMSTONE_TRACK, e.beat)
+        } else {
+            assignWireframeToNotes(map, DYNAMIC_GEMSTONE_TRACK, e.beat)
         }
     })
 
@@ -62,14 +92,13 @@ function doPauses(map: rm.V3Difficulty) {
 
     map.allNotes.filter(isInPauses).forEach((x) => {
         x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
-        // x.animation.dissolve = [[0, 0], [1, 0]]
         x.animation.offsetWorldRotation = [[0,rand(-1, 1) * 2,0,0],[0,0,0,0.5]]
         x.noteJumpMovementSpeed = 12
         x.life = 30 * 2
 
         const pauseTrack = getNextPauseTrack()
         x.track.add(pauseTrack)
-        x.track.add(PAUSE_NOTES_TRACK)
+        x.track.add(DYNAMIC_GEMSTONE_TRACK)
 
         const life = x.life
         const halfLife = life / 2
