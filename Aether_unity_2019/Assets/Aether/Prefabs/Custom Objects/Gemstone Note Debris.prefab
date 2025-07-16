@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2652685492885339079
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7236371543836310998, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7176b46f34378c24fbc3809c46bb9a78, type: 2}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277674686944644164, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767353891905099518, guid: b3a9f3ba95b6bdb4091d9105055c6cc3,
+        type: 3}
+      propertyPath: m_Name
+      value: Gemstone Note Debris
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b3a9f3ba95b6bdb4091d9105055c6cc3, type: 3}
