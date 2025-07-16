@@ -68,8 +68,6 @@ Shader "Swifter/GraphicText"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                UNITY_SETUP_INSTANCE_ID(i);
-
                 float2 uv = i.atlas;
                 float d = (floor(_Time.y / _DistortionInterval) * _DistortionInterval * 20) % 20;
                 float n = simplex(uv * _DistortionScale + d).x;
