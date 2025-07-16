@@ -52,7 +52,7 @@ function doPauses(map: rm.V3Difficulty) {
     map.allNotes.filter(isInPauses).forEach((x) => {
         x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
         x.animation.dissolve = [[0, 0], [1, 0]]
-        x.noteJumpMovementSpeed = 8
+        x.noteJumpMovementSpeed = 12
         x.life = 30 * 2
 
         const pauseTrack = getNextPauseTrack()
