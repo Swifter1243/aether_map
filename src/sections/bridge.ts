@@ -61,32 +61,7 @@ function doPauses(map: rm.V3Difficulty) {
         })
 
     const DYNAMIC_GEMSTONE_TRACK = "dynamicGemstone"
-    const STATIC_GEMSTONE_TRACK = "staticGemstone"
-    pauseEvents.forEach((e) => {
-        rm.animateTrack(map, {
-            track: DYNAMIC_GEMSTONE_TRACK,
-            beat: e.beat,
-            animation: {
-                interactable: [e.isPlaying ? 1 : 0]
-            },
-        })
-
-        if (!e.isPlaying) {
-            map.allNotes.forEach(x => {
-                if (Math.abs(x.beat - e.beat) < 0.1) {
-                    x.track.delete(DYNAMIC_GEMSTONE_TRACK)
-                    x.track.add(STATIC_GEMSTONE_TRACK)
-                }
-            })
-        }
-
-        assignGemstoneToNotes(map, STATIC_GEMSTONE_TRACK)
-        if (e.isPlaying) {
-            assignGemstoneToNotes(map, DYNAMIC_GEMSTONE_TRACK, e.beat)
-        } else {
-            assignWireframeToNotes(map, DYNAMIC_GEMSTONE_TRACK, e.beat)
-        }
-    })
+    const STATIC_WIREFRAME_TRACK = "staticWireframe"
 
     const rand = rm.seededRandom(37834728)
 
@@ -154,5 +129,31 @@ function doPauses(map: rm.V3Difficulty) {
                 time: normalizedTimePoints.points,
             },
         })
+    })
+
+    pauseEvents.forEach((e) => {
+        rm.animateTrack(map, {
+            track: DYNAMIC_GEMSTONE_TRACK,
+            beat: e.beat,
+            animation: {
+                interactable: [e.isPlaying ? 1 : 0]
+            },
+        })
+
+        if (!e.isPlaying) {
+            map.allNotes.forEach(x => {
+                if (Math.abs(x.beat - e.beat) < 0.1) {
+                    x.track.delete(DYNAMIC_GEMSTONE_TRACK)
+                    x.track.add(STATIC_WIREFRAME_TRACK)
+                }
+            })
+        }
+
+        assignWireframeToNotes(map, STATIC_WIREFRAME_TRACK)
+        if (e.isPlaying) {
+            assignGemstoneToNotes(map, DYNAMIC_GEMSTONE_TRACK, e.beat)
+        } else {
+            assignWireframeToNotes(map, DYNAMIC_GEMSTONE_TRACK, e.beat)
+        }
     })
 }
