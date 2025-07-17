@@ -16,32 +16,6 @@ const START = 362.3
 const END = 477
 
 function doNotemods(map: rm.V3Difficulty) {
-    doPauses(map)
-}
-
-function assignGemstoneToNotes(map: rm.V3Difficulty, track: string, beat = 0) {
-    rm.assignObjectPrefab(map, {
-        beat,
-        colorNotes: {
-            track,
-            asset: prefabs["gemstone note"].path,
-            debrisAsset: prefabs["gemstone note debris"].path,
-        },
-    })
-}
-
-function assignWireframeToNotes(map: rm.V3Difficulty, track: string, beat = 0) {
-    rm.assignObjectPrefab(map, {
-        beat,
-        colorNotes: {
-            track,
-            asset: prefabs["wireframe note"].path,
-            debrisAsset: prefabs["wireframe note debris"].path,
-        },
-    })
-}
-
-function doPauses(map: rm.V3Difficulty) {
     const isInPauses = between(START, END)
 
     const pauseEvents = lightShow.lightEvents
@@ -267,5 +241,27 @@ function doPauses(map: rm.V3Difficulty) {
                 ]
             }
         }
+    })
+}
+
+function assignGemstoneToNotes(map: rm.V3Difficulty, track: string, beat = 0) {
+    rm.assignObjectPrefab(map, {
+        beat,
+        colorNotes: {
+            track,
+            asset: prefabs["gemstone note"].path,
+            debrisAsset: prefabs["gemstone note debris"].path,
+        },
+    })
+}
+
+function assignWireframeToNotes(map: rm.V3Difficulty, track: string, beat = 0) {
+    rm.assignObjectPrefab(map, {
+        beat,
+        colorNotes: {
+            track,
+            asset: prefabs["wireframe note"].path,
+            debrisAsset: prefabs["wireframe note debris"].path,
+        },
     })
 }
