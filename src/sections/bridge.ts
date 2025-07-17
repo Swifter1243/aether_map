@@ -230,14 +230,14 @@ function doNotemods(map: rm.V3Difficulty) {
                 x.animation.localRotation = [
                     [...invRotation, beat(jumpInBeat + 2)],
                     [...rm.combineRotations(impactRotation, invRotation), beat(jumpInBeat)],
-                    [0, 0, 0, beat(jumpInBeat * 0.3), 'easeOutExpo']
+                    [0, 0, 0, beat(jumpInBeat * 0.5), 'easeOutExpo']
                 ]
             }
             else {
                 x.animation.localRotation = [
                     [0, 0, 0, beat(jumpInBeat + 2)],
                     [...impactRotation, beat(jumpInBeat)],
-                    [0, 0, 0, beat(jumpInBeat * 0.3), 'easeOutExpo']
+                    [0, 0, 0, beat(jumpInBeat * 0.5), 'easeOutExpo']
                 ]
             }
         }
