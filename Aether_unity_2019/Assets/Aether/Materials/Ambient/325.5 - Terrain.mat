@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: 1900
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -59,10 +59,12 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DiffuseAmount: 1
     - _DistanceFogEnabled: 1
     - _DstBlend: 0
     - _FadeDistanceEnd: 481.77
     - _FadeDistanceStart: 0
+    - _GlassAbsorption: 0.8
     - _GlassRefraction: 0.77
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -70,12 +72,19 @@ Material:
     - _HeightFogEnabled: 1
     - _HeightFogEnd: -0.1
     - _HeightFogStart: -7.05
+    - _Light1Enabled: 0
+    - _Light1Falloff: 1
+    - _Light1Flutter: 0
+    - _Light1Range: 1
+    - _Light1Strength: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
+    - _SpecularAmount: 1
     - _SpecularHighlights: 1
+    - _SpecularPower: 16
     - _SrcBlend: 1
     - _StencilComp: 8
     - _StencilPass: 2
@@ -85,3 +94,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Light1Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Light1Position: {r: 0, g: 0, b: 0, a: 1}

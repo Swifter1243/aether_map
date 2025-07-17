@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 1850
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -28,6 +28,13 @@ Material:
     - _Clamp: 1
     - _Flutter: 0.2
     - _Glow: 0.53
+    - _GraphicCutoff: 0.6
+    - _GraphicEnabled: 0
+    - _GraphicNoise1Scale: 8
+    - _GraphicNoise2Influence: 0.4
+    - _GraphicNoise2Scale: 15
+    - _GraphicNoiseInfluence: 0.3
+    - _GraphicSharpness: 2
     - _Opacity: 1
     - _Size: 2.9
     - _Softness: 7
