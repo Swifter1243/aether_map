@@ -185,13 +185,16 @@ Shader "Swifter/GlassTerrain"
             }
             #endif
 
+            inline float edgeSmooth(float x, float b)
+            {
+                return pow(abs(2*x - 1), b);
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
                 float2 screenUV = i.screenUV / i.screenUV.w;
-
-                float4 normalScreenUV = i.normalScreenUV / i.normalScreenUV.w;
-
+                float2 normalScreenUV = i.normalScreenUV.xy / i.normalScreenUV.w;
                 float4 col = sampleScreen(normalScreenUV) * _GlassAbsorption;
 
                 float fog = 1;
@@ -210,7 +213,11 @@ Shader "Swifter/GlassTerrain"
                 col.rgb += doPointLight(i, _Light1Position, _Light1Range, _Light1Falloff, _Light1Strength, _Light1Flutter) * _Light1Color;
                 #endif
 
-                col = lerp(sampleScreen(screenUV), col, fog);
+                const int SHARPNESS = 10;
+                float border = (1 - edgeSmooth(1 - normalScreenUV.x, SHARPNESS)) * (1 - edgeSmooth(1 - normalScreenUV.y, SHARPNESS));
+                border = saturate(border);
+
+                col = lerp(sampleScreen(screenUV), col, fog * border);
 
                 return col;
             }
