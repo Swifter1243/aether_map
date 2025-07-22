@@ -123,6 +123,7 @@ Shader "Swifter/GlassTerrain"
 
                 float3 normalOffsetLocalPos = v.vertex + v.normal * _GlassRefraction;
                 float4 normalOffsetClipPos = UnityObjectToClipPos(normalOffsetLocalPos);
+                normalOffsetClipPos.xy = clamp(normalOffsetClipPos.xy, -normalOffsetClipPos.w, normalOffsetClipPos.w);
                 o.normalScreenUV = ComputeScreenPos(normalOffsetClipPos);
 
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
