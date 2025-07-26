@@ -28,25 +28,99 @@ function noteHop(x: rm.AnyNote, duration = 2) {
     ]
 }
 
+function wheelEffect(map: rm.V3Difficulty, yIncrement: number, times: number[]) {
+    const start = times.reduce((a, b) => Math.min(a, b))
+    const end = times.reduce((a, b) => Math.max(a, b))
+    const notes = map.allNotes.filter(between(start, end))
+
+    const timeGroups: Record<number, rm.AnyNote[]> = rm.arraySplit2(notes, (x) => {
+        let time = 0
+
+        times.forEach((t) => {
+            if (x.beat >= t) {
+                time = t
+            }
+        })
+
+        return time
+    })
+
+    const accumulatedTracks: string[] = []
+
+    Object.entries(timeGroups)
+        .sort((a, b) => parseFloat(a[0]) - parseFloat(b[0]))
+        .forEach(([_, timeNotes], i) => {
+            if (i === 0) {
+                return
+            }
+
+            const beat = times[i - 1]
+            const track = `wheelNote${i}`
+            accumulatedTracks.push(track)
+            const tracks = rm.copy(accumulatedTracks)
+            
+            const shakeX = rm.random(-1, 1)
+
+            rm.assignPathAnimation(map, {
+                beat: start - timeNotes[0].life / 2 - 0.1,
+                track: track,
+                animation: {
+                    offsetWorldRotation: [[shakeX, yIncrement * 2, 0, 0], [shakeX, yIncrement, 0, 0.5]],
+                },
+            })
+
+            rm.assignPathAnimation(map, {
+                beat,
+                duration: 2,
+                easing: 'easeOutExpo',
+                track: track,
+                animation: {
+                    offsetWorldRotation: [0, 0, 0],
+                },
+            })
+
+            timeNotes.forEach((x) => {
+                x.track.add(tracks)
+            })
+        })
+}
+
 function doNotemods(map: rm.V3Difficulty) {
     const DROP_MOVEMENT_TRACK = 'dropMovement'
 
     map.allNotes.filter(between(TIMES.DROP, TIMES.DROP_END)).forEach((x) => {
         x.track.add(DROP_MOVEMENT_TRACK)
         x.disableNoteGravity = true
-        x.animation.dissolve = [[0,0],[1,0.1]]
+        x.animation.dissolve = [[0, 0], [1, 0.1]]
         x.animation.dissolveArrow = x.animation.dissolve
-        
+
         if (!(x instanceof rm.Arc || x instanceof rm.Chain)) {
             x.spawnEffect = false
         }
     })
 
     rm.assignPathAnimation(map, {
-        beat: 7,
+        beat: 80,
+        track: DROP_MOVEMENT_TRACK,
+        duration: 3,
+        easing: 'easeOutBack',
+        animation: {
+            offsetWorldRotation: [[0,-30,0,0],[0,0,0,0.5]]
+        }
+    })
+
+    wheelEffect(map, 5, [80, 81, 81.75, 82.25, 83, 84.25, 85])
+    map.allNotes.filter(between(81, 85)).forEach(x => {
+        x.life = 8
+    })
+    
+    rm.assignPathAnimation(map, {
+        beat: 85,
+        duration: 1,
+        easing: 'easeOutExpo',
         track: DROP_MOVEMENT_TRACK,
         animation: {
-            offsetWorldRotation: [[-10,-4,0,0], [2, -2, 0, 0.5,'easeOutSine']],
+            offsetWorldRotation: [[-10, -4, 0, 0], [2, -2, 0, 0.5, 'easeOutSine']],
         },
     })
 
@@ -86,7 +160,7 @@ function doNotemods(map: rm.V3Difficulty) {
         duration: 2,
         easing: 'easeOutExpo',
         animation: {
-            offsetWorldRotation: [[-2, 0, 20,0],[-2, 0, 0,0.5]]
+            offsetWorldRotation: [[-2, 0, 20, 0], [-2, 0, 0, 0.5]],
         },
     })
 
@@ -96,7 +170,7 @@ function doNotemods(map: rm.V3Difficulty) {
         duration: 4,
         easing: 'easeOutBack',
         animation: {
-            offsetWorldRotation: [0, 0, 0]
+            offsetWorldRotation: [0, 0, 0],
         },
     })
 
@@ -109,9 +183,9 @@ function doNotemods(map: rm.V3Difficulty) {
         animation: {
             offsetWorldRotation: [
                 [0, -5, 0, 0],
-                [0, 0, 0, 0.5, 'easeOutExpo']
-            ]
-        }
+                [0, 0, 0, 0.5, 'easeOutExpo'],
+            ],
+        },
     })
     rm.assignPathAnimation(map, {
         beat: 89,
@@ -119,12 +193,12 @@ function doNotemods(map: rm.V3Difficulty) {
         animation: {
             offsetWorldRotation: [
                 [0, 5, 0, 0],
-                [0, 0, 0, 0.5, 'easeOutExpo']
-            ]
-        }
+                [0, 0, 0, 0.5, 'easeOutExpo'],
+            ],
+        },
     })
 
-    const isHopNote = (x: rm.BeatmapObject) => 
+    const isHopNote = (x: rm.BeatmapObject) =>
         between(91, 93)(x) ||
         between(95, 97)(x) ||
         between(99, 101)(x) ||
@@ -144,11 +218,11 @@ function doNotemods(map: rm.V3Difficulty) {
     rm.assignPathAnimation(map, {
         track: DARK_NOTES_TRACK,
         animation: {
-            dissolve: [[0,0],[1,0.2]],
-            dissolveArrow: [[0,0],[1,0.2]],
-            offsetWorldRotation: [[0,0,90,0],[0,0,0,0.5]],
-            offsetPosition: [0,0,4]
-        }
+            dissolve: [[0, 0], [1, 0.2]],
+            dissolveArrow: [[0, 0], [1, 0.2]],
+            offsetWorldRotation: [[0, 0, 90, 0], [0, 0, 0, 0.5]],
+            offsetPosition: [0, 0, 4],
+        },
     })
 
     rm.assignPathAnimation(map, {
@@ -157,10 +231,10 @@ function doNotemods(map: rm.V3Difficulty) {
         easing: 'easeOutExpo',
         track: DARK_NOTES_TRACK,
         animation: {
-            dissolve: [[0,0],[1,0.5,'easeOutExpo']],
-            dissolveArrow: [[0,0],[1,0.5,'easeOutExpo']],
-            offsetPosition: [0,0,0]
-        }
+            dissolve: [[0, 0], [1, 0.5, 'easeOutExpo']],
+            dissolveArrow: [[0, 0], [1, 0.5, 'easeOutExpo']],
+            offsetPosition: [0, 0, 0],
+        },
     })
     rm.assignPathAnimation(map, {
         beat: 101,
@@ -168,8 +242,8 @@ function doNotemods(map: rm.V3Difficulty) {
         easing: 'easeOutBack',
         track: DARK_NOTES_TRACK,
         animation: {
-            offsetWorldRotation: [0,0,0],
-        }
+            offsetWorldRotation: [0, 0, 0],
+        },
     })
 
     rm.assignPathAnimation(map, {
@@ -178,9 +252,9 @@ function doNotemods(map: rm.V3Difficulty) {
         easing: 'easeInCirc',
         track: DARK_NOTES_TRACK,
         animation: {
-            offsetPosition: [[0,0,50,0],[0,0,0,0.5]],
-            offsetWorldRotation: [[0,0,30,0],[0,0,0,0.5]]
-        }
+            offsetPosition: [[0, 0, 50, 0], [0, 0, 0, 0.5]],
+            offsetWorldRotation: [[0, 0, 30, 0], [0, 0, 0, 0.5]],
+        },
     })
 
     map.allNotes.filter(between(102, 107)).forEach((x) => {
@@ -193,8 +267,8 @@ function doNotemods(map: rm.V3Difficulty) {
         beat: 107,
         track: DROP_MOVEMENT_TRACK,
         animation: {
-            offsetWorldRotation: [[0,0,-50,0],[0,0,0,0.5]]
-        }
+            offsetWorldRotation: [[0, 0, -50, 0], [0, 0, 0, 0.5]],
+        },
     })
 
     rm.assignPathAnimation(map, {
@@ -203,8 +277,8 @@ function doNotemods(map: rm.V3Difficulty) {
         easing: 'easeOutCirc',
         track: DROP_MOVEMENT_TRACK,
         animation: {
-            offsetWorldRotation: [0,0,0]
-        }
+            offsetWorldRotation: [0, 0, 0],
+        },
     })
 
     rm.assignPathAnimation(map, {
@@ -213,8 +287,8 @@ function doNotemods(map: rm.V3Difficulty) {
         easing: 'easeOutCirc',
         track: DROP_MOVEMENT_TRACK,
         animation: {
-            offsetWorldRotation: [10,0,0]
-        }
+            offsetWorldRotation: [10, 0, 0],
+        },
     })
 
     rm.assignPathAnimation(map, {
@@ -223,7 +297,7 @@ function doNotemods(map: rm.V3Difficulty) {
         easing: 'easeOutBack',
         track: DROP_MOVEMENT_TRACK,
         animation: {
-            offsetWorldRotation: [0,0,0]
-        }
+            offsetWorldRotation: [0, 0, 0],
+        },
     })
 }
