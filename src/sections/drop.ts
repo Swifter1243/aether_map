@@ -52,7 +52,7 @@ function doNotemods(map: rm.V3Difficulty) {
         beat: 89,
         track: DROP_MOVEMENT_TRACK,
         duration: 4,
-        easing: 'easeOutBack',
+        easing: 'easeOutExpo',
         animation: {
             offsetWorldRotation: [0, 0, 0],
         },
@@ -98,22 +98,41 @@ function doNotemods(map: rm.V3Difficulty) {
         },
     })
 
-    map.allNotes.filter(between(91, 93)).forEach((x) => {
-        noteHop(x)
+    const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
+    const ARROW_MOVEMENT_RIGHT_TRACK = 'arrowMovementRight'
 
-        const left = x.x < 2 ? -1 : 1
-        const up = approximately(93)(x)
-        // x.animation.offsetWorldRotation = [
-        //     [up ? -10 : 0, 10 * left, 0, 0],
-        //     [0, 0, 0, 0.5, 'easeOutExpo'],
-        // ]
+    rm.assignPathAnimation(map, {
+        beat: 89,
+        track: ARROW_MOVEMENT_LEFT_TRACK,
+        animation: {
+            offsetWorldRotation: [
+                [0, -5, 0, 0],
+                [0, 0, 0, 0.5, 'easeOutExpo']
+            ]
+        }
+    })
+    rm.assignPathAnimation(map, {
+        beat: 89,
+        track: ARROW_MOVEMENT_RIGHT_TRACK,
+        animation: {
+            offsetWorldRotation: [
+                [0, 5, 0, 0],
+                [0, 0, 0, 0.5, 'easeOutExpo']
+            ]
+        }
     })
 
-    map.allNotes.filter(between(95, 97)).forEach((x) => {
-        noteHop(x)
-    })
+    const isHopNote = (x: rm.BeatmapObject) => 
+        between(91, 93)(x) ||
+        between(95, 97)(x) ||
+        between(99, 101)(x)
 
-    map.allNotes.filter(between(99, 101)).forEach((x) => {
+    map.allNotes.filter(isHopNote).forEach((x) => {
         noteHop(x)
+
+        if (!(x instanceof rm.Bomb)) {
+            const left = x.color === rm.NoteColor.RED
+            x.track.add(left ? ARROW_MOVEMENT_LEFT_TRACK : ARROW_MOVEMENT_RIGHT_TRACK)
+        }
     })
 }
