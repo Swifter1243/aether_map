@@ -1,11 +1,17 @@
 import { rm } from "./deps.ts"
 
-export function between(start: number, end: number) {
+export type ObjectPredicate = (o: rm.BeatmapObject) => boolean
+
+export function between(start: number, end: number): ObjectPredicate {
     return (o: rm.BeatmapObject) => o.beat >= start && o.beat <= end
 }
 
-export function approximately(beat: number, lenience = 0.1) {
+export function approximately(beat: number, lenience = 0.1): ObjectPredicate {
     return (o: rm.BeatmapObject) => Math.abs(o.beat - beat) < lenience / 2
+}
+
+export function join(...predicates: ObjectPredicate[]): ObjectPredicate {
+    return (o: rm.BeatmapObject) => predicates.some(fn => fn(o))
 }
 
 export function gridYToLocalOffset(y: number): number {

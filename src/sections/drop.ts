@@ -2,7 +2,7 @@ import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
 import { fadeWhite } from '../effects.ts'
 import { prefabs } from '../main.ts'
-import { approximately, between } from '../utilities.ts'
+import { approximately, between, join } from '../utilities.ts'
 
 export function drop(map: rm.V3Difficulty) {
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
@@ -219,13 +219,14 @@ function doNotemods(map: rm.V3Difficulty) {
         },
     })
 
-    const isHopNote = (x: rm.BeatmapObject) =>
-        approximately(87)(x) ||
-        approximately(89)(x) ||
-        between(91, 93)(x) ||
-        between(95, 97)(x) ||
-        between(99, 101)(x) ||
-        approximately(109)(x)
+    const isHopNote = join(
+        approximately(87),
+        approximately(89),
+        between(91, 93),
+        between(95, 97),
+        between(99, 101),
+        approximately(109)
+    )
 
     map.allNotes.filter(isHopNote).forEach((x) => {
         noteHop(x)
