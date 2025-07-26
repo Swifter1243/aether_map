@@ -4,6 +4,10 @@ export function between(start: number, end: number) {
     return (o: rm.BeatmapObject) => o.beat >= start && o.beat <= end
 }
 
+export function approximately(beat: number, lenience = 0.1) {
+    return (o: rm.BeatmapObject) => Math.abs(o.beat - beat) < lenience / 2
+}
+
 export function gridYToLocalOffset(y: number): number {
     switch (y) {
         case 0:
