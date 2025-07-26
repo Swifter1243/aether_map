@@ -135,4 +135,54 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(left ? ARROW_MOVEMENT_LEFT_TRACK : ARROW_MOVEMENT_RIGHT_TRACK)
         }
     })
+
+    const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
+
+    rm.assignPathAnimation(map, {
+        track: DARK_NOTES_TRACK,
+        animation: {
+            dissolve: [[0,0],[1,0.2]],
+            dissolveArrow: [[0,0],[1,0.2]],
+            offsetWorldRotation: [[0,0,90,0],[0,0,0,0.5]],
+            offsetPosition: [0,0,4]
+        }
+    })
+
+    rm.assignPathAnimation(map, {
+        beat: 101,
+        duration: 1,
+        easing: 'easeOutExpo',
+        track: DARK_NOTES_TRACK,
+        animation: {
+            dissolve: [[0,0],[1,0.5,'easeOutExpo']],
+            dissolveArrow: [[0,0],[1,0.5,'easeOutExpo']],
+            offsetPosition: [0,0,0]
+        }
+    })
+    rm.assignPathAnimation(map, {
+        beat: 101,
+        duration: 3,
+        easing: 'easeOutBack',
+        track: DARK_NOTES_TRACK,
+        animation: {
+            offsetWorldRotation: [0,0,0],
+        }
+    })
+
+    rm.assignPathAnimation(map, {
+        beat: 105,
+        duration: 2,
+        easing: 'easeInCirc',
+        track: DARK_NOTES_TRACK,
+        animation: {
+            offsetPosition: [[0,0,50,0],[0,0,0,0.5]],
+            offsetWorldRotation: [[0,0,30,0],[0,0,0,0.5]]
+        }
+    })
+
+    map.allNotes.filter(between(102, 107)).forEach((x) => {
+        x.track.add(DARK_NOTES_TRACK)
+        x.noteJumpMovementSpeed = 10
+        x.life = 5
+    })
 }
