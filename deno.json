@@ -2,7 +2,7 @@
     "fmt": {
         "options": {
             "indentWidth": 4,
-            "singleQuote": false,
+            "singleQuote": true,
             "proseWrap": "preserve",
             "semiColons": false,
             "lineWidth": 120
