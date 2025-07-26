@@ -99,19 +99,40 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
+    const WHEEL_EFFECT_TRACK = 'wheelEffect'
+
+    rm.animateTrack(map, {
+        beat: 70,
+        track: WHEEL_EFFECT_TRACK,
+        animation: {
+            dissolve: [0],
+            dissolveArrow: [0]
+        }
+    })
+
     rm.assignPathAnimation(map, {
         beat: 80,
         track: DROP_MOVEMENT_TRACK,
         duration: 3,
         easing: 'easeOutBack',
         animation: {
-            offsetWorldRotation: [[0,-30,0,0],[0,0,0,0.5]]
+            offsetWorldRotation: [[0,-30,0,0],[0,0,0,0.5]],
+        }
+    })
+
+    rm.animateTrack(map, {
+        beat: 79,
+        track: WHEEL_EFFECT_TRACK,
+        animation: {
+            dissolve: [1],
+            dissolveArrow: [1]
         }
     })
 
     wheelEffect(map, 5, [80, 81, 81.75, 82.25, 83, 84.25, 85])
     map.allNotes.filter(between(81, 85)).forEach(x => {
         x.life = 8
+        x.track.add(WHEEL_EFFECT_TRACK)
     })
     
     rm.assignPathAnimation(map, {
