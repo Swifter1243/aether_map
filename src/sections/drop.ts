@@ -137,11 +137,11 @@ function doNotemods(map: rm.V3Difficulty) {
     
     rm.assignPathAnimation(map, {
         beat: 85,
-        duration: 1,
+        duration: 3,
         easing: 'easeOutExpo',
         track: DROP_MOVEMENT_TRACK,
         animation: {
-            offsetWorldRotation: [[-10, -4, 0, 0], [2, -2, 0, 0.5, 'easeOutSine']],
+            offsetWorldRotation: [2, -3, 0],
         },
     })
 
@@ -220,6 +220,8 @@ function doNotemods(map: rm.V3Difficulty) {
     })
 
     const isHopNote = (x: rm.BeatmapObject) =>
+        approximately(87)(x) ||
+        approximately(89)(x) ||
         between(91, 93)(x) ||
         between(95, 97)(x) ||
         between(99, 101)(x) ||
