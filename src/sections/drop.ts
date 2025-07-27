@@ -347,5 +347,5 @@ function doNotemods(map: rm.V3Difficulty) {
             offsetWorldRotation: [[0,10,0,0],[0,0,0,0.5]],
         }
     })
-    wheelEffect(map, -5, [112.25, 113, 113.75, 114.25, 115, 116.25, 117])
+    wheelEffect(map, -5, [113, 113.75, 114.25, 115, 116.25, 117])
 }
