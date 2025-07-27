@@ -88,7 +88,7 @@ function wheelEffect(map: rm.V3Difficulty, yIncrement: number, times: number[]) 
 function doNotemods(map: rm.V3Difficulty) {
     const DROP_MOVEMENT_TRACK = 'dropMovement'
 
-    map.allNotes.filter(between(TIMES.DROP, TIMES.DROP_END)).forEach((x) => {
+    map.allNotes.filter(between(TIMES.DROP + 1, TIMES.DROP_END)).forEach((x) => {
         x.track.add(DROP_MOVEMENT_TRACK)
         x.disableNoteGravity = true
         x.animation.dissolve = [[0, 0], [1, 0.1]]
@@ -100,6 +100,23 @@ function doNotemods(map: rm.V3Difficulty) {
     })
 
     const WHEEL_EFFECT_TRACK = 'wheelEffect'
+
+    rm.assignPathAnimation(map, {
+        beat: 77,
+        track: DROP_MOVEMENT_TRACK,
+        animation: {
+            offsetWorldRotation: [-4,10,-10],
+        }
+    })
+    rm.assignPathAnimation(map, {
+        beat: 77,
+        track: DROP_MOVEMENT_TRACK,
+        duration: 3,
+        easing: 'easeOutBack',
+        animation: {
+            offsetWorldRotation: [0,0,0],
+        }
+    })
 
     rm.animateTrack(map, {
         beat: 70,
