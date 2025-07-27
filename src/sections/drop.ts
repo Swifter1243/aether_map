@@ -320,11 +320,22 @@ function doNotemods(map: rm.V3Difficulty) {
 
     rm.assignPathAnimation(map, {
         beat: 111,
-        duration: 4,
-        easing: 'easeOutBack',
+        duration: 1,
+        easing: 'easeOutExpo',
         track: DROP_MOVEMENT_TRACK,
         animation: {
             offsetWorldRotation: [0, 0, 0],
         },
     })
+
+    rm.assignPathAnimation(map, {
+        beat: 112.25,
+        track: DROP_MOVEMENT_TRACK,
+        duration: 3,
+        easing: 'easeOutExpo',
+        animation: {
+            offsetWorldRotation: [[0,10,0,0],[0,0,0,0.5]],
+        }
+    })
+    wheelEffect(map, -5, [112.25, 113, 113.75, 114.25, 115, 116.25, 117])
 }
