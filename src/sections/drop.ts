@@ -99,6 +99,8 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
+    //! BLACK SECTION
+
     const WHEEL_EFFECT_TRACK = 'wheelEffect'
 
     rm.assignPathAnimation(map, {
@@ -172,6 +174,13 @@ function doNotemods(map: rm.V3Difficulty) {
         },
     })
 
+    map.allNotes.filter(join(
+        approximately(87),
+        approximately(89),
+    )).forEach(x => {
+        noteHop(x, 8)
+    })
+
     rm.assignPathAnimation(map, {
         beat: 89,
         track: DROP_MOVEMENT_TRACK,
@@ -185,8 +194,6 @@ function doNotemods(map: rm.V3Difficulty) {
     rm.assignPathAnimation(map, {
         beat: 91,
         track: DROP_MOVEMENT_TRACK,
-        duration: 4,
-        easing: 'easeOutBack',
         animation: {
             offsetWorldRotation: [-5, 0, 0],
         },
@@ -220,13 +227,6 @@ function doNotemods(map: rm.V3Difficulty) {
         animation: {
             offsetWorldRotation: [0, 0, 0],
         },
-    })
-
-    map.allNotes.filter(join(
-        approximately(87),
-        approximately(89),
-    )).forEach(x => {
-        noteHop(x, 8)
     })
 
     const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
@@ -345,6 +345,8 @@ function doNotemods(map: rm.V3Difficulty) {
         },
     })
 
+    //! WHITE SECTION
+
     rm.assignPathAnimation(map, {
         beat: 111,
         duration: 1,
@@ -365,4 +367,93 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
     wheelEffect(map, -5, [113, 113.75, 114.25, 115, 116.25, 117])
+
+    rm.assignPathAnimation(map, {
+        beat: 117,
+        duration: 1,
+        easing: 'easeOutExpo',
+        track: DROP_MOVEMENT_TRACK,
+        animation: {
+            offsetWorldRotation: [[0,10,0,0],[0,0,0,0.5]],
+        },
+    })
+    
+    rm.assignPathAnimation(map, {
+        beat: 119 - 1,
+        duration: 2,
+        easing: 'easeInOutExpo',
+        track: DROP_MOVEMENT_TRACK,
+        animation: {
+            offsetWorldRotation: [[0,-10,0,0],[0,0,0,0.5]],
+        },
+    })
+
+    map.allNotes.filter(join(
+        approximately(119),
+        approximately(121),
+    )).forEach(x => {
+        noteHop(x, 8)
+    })
+
+    rm.assignPathAnimation(map, {
+        beat: 89 + 32,
+        track: DROP_MOVEMENT_TRACK,
+        duration: 4,
+        easing: 'easeOutExpo',
+        animation: {
+            offsetWorldRotation: [0, 3, 0],
+        },
+    })
+
+    rm.assignPathAnimation(map, {
+        beat: 91 + 32,
+        track: DROP_MOVEMENT_TRACK,
+        animation: {
+            offsetWorldRotation: [-5, -3, 0],
+        },
+    })
+
+    rm.assignPathAnimation(map, {
+        beat: 91 + 32,
+        track: DROP_MOVEMENT_TRACK,
+        duration: 4,
+        easing: 'easeInOutBack',
+        animation: {
+            offsetWorldRotation: [5, -3, 0],
+        },
+    })
+
+    rm.assignPathAnimation(map, {
+        beat: 95 + 32,
+        track: DROP_MOVEMENT_TRACK,
+        duration: 2,
+        easing: 'easeOutExpo',
+        animation: {
+            offsetWorldRotation: [[-2, 4, 20, 0], [-2, 4, 0, 0.5]],
+        },
+    })
+
+    rm.assignPathAnimation(map, {
+        beat: 97 + 32,
+        track: DROP_MOVEMENT_TRACK,
+        duration: 4,
+        easing: 'easeOutBack',
+        animation: {
+            offsetWorldRotation: [0, -5, 0],
+        },
+    })
+
+    map.allNotes.filter(join(
+        between(123, 125),
+        approximately(127),
+        approximately(129),
+        between(131, 133)
+    )).forEach((x) => {
+        noteHop(x)
+
+        if (!(x instanceof rm.Bomb)) {
+            const left = x.color === rm.NoteColor.RED
+            x.track.add(left ? ARROW_MOVEMENT_LEFT_TRACK : ARROW_MOVEMENT_RIGHT_TRACK)
+        }
+    })
 }
