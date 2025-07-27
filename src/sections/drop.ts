@@ -102,6 +102,18 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
+    const visibility = (track: string, beat: number, visible: boolean) =>
+        rm.animateTrack(map, {
+            beat,
+            track,
+            animation: {
+                dissolve: [visible ? 1 : 0],
+                dissolveArrow: [visible ? 1 : 0]
+            },
+        })
+
+    const wheelVisibility = (beat: number, visible: boolean) => visibility(WHEEL_EFFECT_TRACK, beat, visible)
+
     blackSection()
     whiteSection()
 
@@ -125,47 +137,39 @@ function doNotemods(map: rm.V3Difficulty) {
             },
         })
 
-        rm.animateTrack(map, {
-            beat: 70,
-            track: WHEEL_EFFECT_TRACK,
-            animation: {
-                dissolve: [0],
-                dissolveArrow: [0],
-            },
-        })
+        wheelVisibility(70, false)
 
         rm.assignPathAnimation(map, {
-            beat: 80,
-            track: DROP_MOVEMENT_TRACK,
-            duration: 3,
-            easing: 'easeOutBack',
-            animation: {
-                offsetWorldRotation: [[0, -30, 0, 0], [0, 0, 0, 0.5]],
-            },
-        })
-
-        rm.animateTrack(map, {
             beat: 79,
             track: WHEEL_EFFECT_TRACK,
             animation: {
-                dissolve: [1],
-                dissolveArrow: [1],
+                offsetWorldRotation: [[20,-20,0,0],[0,0,0,0.5]],
+            },
+        })
+        rm.assignPathAnimation(map, {
+            beat: 80,
+            track: WHEEL_EFFECT_TRACK,
+            duration: 2,
+            easing: 'easeOutBack',
+            animation: {
+                offsetWorldRotation: [0,0,0],
             },
         })
 
+        wheelVisibility(80, true)
         wheelEffect(map, 5, [80, 81, 81.75, 82.25, 83, 84.25, 85])
-        map.allNotes.filter(between(81, 85)).forEach((x) => {
+        map.allNotes.filter(between(82, 85)).forEach((x) => {
             x.life = 8
             x.track.add(WHEEL_EFFECT_TRACK)
         })
 
         rm.assignPathAnimation(map, {
-            beat: 85,
-            duration: 1,
-            easing: 'easeOutExpo',
+            beat: 85 - 1,
+            duration: 2,
+            easing: 'easeInOutExpo',
             track: DROP_MOVEMENT_TRACK,
             animation: {
-                offsetWorldRotation: [[0, -10, 0, 0], [0, 0, 0, 0.5]],
+                offsetWorldRotation: [[0, -6, 0, 0], [0, 0, 0, 0.5]],
             },
         })
 
@@ -175,7 +179,7 @@ function doNotemods(map: rm.V3Difficulty) {
             easing: 'easeInOutExpo',
             track: DROP_MOVEMENT_TRACK,
             animation: {
-                offsetWorldRotation: [[0, 10, 0, 0], [0, 0, 0, 0.5]],
+                offsetWorldRotation: [[0, 6, 0, 0], [0, 0, 0, 0.5]],
             },
         })
 
@@ -342,7 +346,7 @@ function doNotemods(map: rm.V3Difficulty) {
             easing: 'easeOutCirc',
             track: DROP_MOVEMENT_TRACK,
             animation: {
-                offsetWorldRotation: [10, 0, 0],
+                offsetWorldRotation: [3, 0, 0],
             },
         })
     }
@@ -360,24 +364,48 @@ function doNotemods(map: rm.V3Difficulty) {
             },
         })
 
-        rm.assignPathAnimation(map, {
-            beat: 112.25,
-            track: DROP_MOVEMENT_TRACK,
-            duration: 3,
-            easing: 'easeOutExpo',
-            animation: {
-                offsetWorldRotation: [[0, 10, 0, 0], [0, 0, 0, 0.5]],
-            },
-        })
-        wheelEffect(map, -5, [113, 113.75, 114.25, 115, 116.25, 117])
+        wheelVisibility(100, false)
 
         rm.assignPathAnimation(map, {
-            beat: 117,
-            duration: 1,
+            beat: 100,
+            track: WHEEL_EFFECT_TRACK,
+            animation: {
+                offsetWorldRotation: [[20,-20,0,0],[0,0,0,0.5]],
+            },
+        })
+        rm.assignPathAnimation(map, {
+            beat: 111,
+            track: WHEEL_EFFECT_TRACK,
+            easing: 'easeOutBack',
+            duration: 1.25,
+            animation: {
+                offsetWorldRotation: [[10,-10,0,0],[0,0,0,0.5]],
+            },
+        })
+        rm.assignPathAnimation(map, {
+            beat: 112.25,
+            track: WHEEL_EFFECT_TRACK,
+            duration: 2,
+            easing: 'easeOutBack',
+            animation: {
+                offsetWorldRotation: [0,0,0],
+            },
+        })
+
+        wheelVisibility(111, true)
+        wheelEffect(map, -5, [112.25, 113, 113.75, 114.25, 115, 116.25, 117])
+        map.allNotes.filter(between(113, 117)).forEach((x) => {
+            x.life = 8
+            x.track.add(WHEEL_EFFECT_TRACK)
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 117 - 1,
+            duration: 2,
             easing: 'easeOutExpo',
             track: DROP_MOVEMENT_TRACK,
             animation: {
-                offsetWorldRotation: [[0, 10, 0, 0], [0, 0, 0, 0.5]],
+                offsetWorldRotation: [[0, 3, 0, 0], [0, 0, 0, 0.5]],
             },
         })
 
@@ -387,7 +415,7 @@ function doNotemods(map: rm.V3Difficulty) {
             easing: 'easeInOutExpo',
             track: DROP_MOVEMENT_TRACK,
             animation: {
-                offsetWorldRotation: [[0, -10, 0, 0], [0, 0, 0, 0.5]],
+                offsetWorldRotation: [[0, -7, 0, 0], [0, 0, 0, 0.5]],
             },
         })
 
@@ -460,35 +488,29 @@ function doNotemods(map: rm.V3Difficulty) {
             }
         })
 
-        map.allNotes.filter(between(117, 133)).forEach(x => {
+        map.allNotes.filter(between(117, 133)).forEach((x) => {
             x.track.add(DROP_DISAPPEARING_TRACK)
         })
 
-        const changeVisibility = (beat: number, visible: boolean) => rm.animateTrack(map, {
-            beat,
-            track: DROP_DISAPPEARING_TRACK,
-            animation: {
-                dissolve: [visible ? 1 : 0]
-            }
-        })
+        const whiteVisibility = (beat: number, visible: boolean) => visibility(DROP_DISAPPEARING_TRACK, beat, visible)
 
-        changeVisibility(117, true)
-        changeVisibility(118 + 1/6, false)
-        changeVisibility(119, true)
-        changeVisibility(120 + 1/4, false)
+        whiteVisibility(117, true)
+        whiteVisibility(118 + 1 / 6, false)
+        whiteVisibility(119, true)
+        whiteVisibility(120 + 1 / 4, false)
 
-        changeVisibility(121, true)
-        changeVisibility(122.5, false)
-        changeVisibility(123, true)
-        changeVisibility(124.5, false)
+        whiteVisibility(121, true)
+        whiteVisibility(122.5, false)
+        whiteVisibility(123, true)
+        whiteVisibility(124.5, false)
 
-        changeVisibility(125, true)
-        changeVisibility(126.5, false)
-        changeVisibility(127, true)
-        changeVisibility(128.1, false)
-        changeVisibility(128.25, true)
+        whiteVisibility(125, true)
+        whiteVisibility(126.5, false)
+        whiteVisibility(127, true)
+        whiteVisibility(128.1, false)
+        whiteVisibility(128.25, true)
 
-        changeVisibility(130.75, false)
-        changeVisibility(131, true)
+        whiteVisibility(130.75, false)
+        whiteVisibility(131, true)
     }
 }
