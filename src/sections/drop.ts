@@ -87,6 +87,9 @@ function wheelEffect(map: rm.V3Difficulty, yIncrement: number, times: number[]) 
 
 function doNotemods(map: rm.V3Difficulty) {
     const DROP_MOVEMENT_TRACK = 'dropMovement'
+    const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
+    const ARROW_MOVEMENT_RIGHT_TRACK = 'arrowMovementRight'
+    const WHEEL_EFFECT_TRACK = 'wheelEffect'
 
     map.allNotes.filter(between(TIMES.DROP + 1, TIMES.DROP_END)).forEach((x) => {
         x.track.add(DROP_MOVEMENT_TRACK)
@@ -99,15 +102,12 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
-    const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
-    const ARROW_MOVEMENT_RIGHT_TRACK = 'arrowMovementRight'
-    const WHEEL_EFFECT_TRACK = 'wheelEffect'
-    const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
-
     blackSection()
     whiteSection()
 
     function blackSection() {
+        const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
+
         rm.assignPathAnimation(map, {
             beat: 77,
             track: DROP_MOVEMENT_TRACK,
@@ -290,7 +290,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 offsetPosition: [0, 0, 0],
             },
         })
-        
+
         rm.assignPathAnimation(map, {
             beat: 101,
             duration: 3,
@@ -348,6 +348,8 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function whiteSection() {
+        const DROP_DISAPPEARING_TRACK = 'dropDisappearing'
+
         rm.assignPathAnimation(map, {
             beat: 111,
             duration: 1,
@@ -430,7 +432,7 @@ function doNotemods(map: rm.V3Difficulty) {
             duration: 2,
             easing: 'easeOutExpo',
             animation: {
-                offsetWorldRotation: [[-2, 4, 20, 0], [-2, 4, 0, 0.5]],
+                offsetWorldRotation: [[-2, 0, 20, 0], [-2, 0, 0, 0.5]],
             },
         })
 
@@ -440,7 +442,7 @@ function doNotemods(map: rm.V3Difficulty) {
             duration: 4,
             easing: 'easeOutBack',
             animation: {
-                offsetWorldRotation: [0, -5, 0],
+                offsetWorldRotation: [0, 0, 0],
             },
         })
 
@@ -457,5 +459,36 @@ function doNotemods(map: rm.V3Difficulty) {
                 x.track.add(left ? ARROW_MOVEMENT_LEFT_TRACK : ARROW_MOVEMENT_RIGHT_TRACK)
             }
         })
+
+        map.allNotes.filter(between(117, 133)).forEach(x => {
+            x.track.add(DROP_DISAPPEARING_TRACK)
+        })
+
+        const changeVisibility = (beat: number, visible: boolean) => rm.animateTrack(map, {
+            beat,
+            track: DROP_DISAPPEARING_TRACK,
+            animation: {
+                dissolve: [visible ? 1 : 0]
+            }
+        })
+
+        changeVisibility(117, true)
+        changeVisibility(118 + 1/6, false)
+        changeVisibility(119, true)
+        changeVisibility(120 + 1/4, false)
+
+        changeVisibility(121, true)
+        changeVisibility(122.5, false)
+        changeVisibility(123, true)
+        changeVisibility(124.5, false)
+
+        changeVisibility(125, true)
+        changeVisibility(126.5, false)
+        changeVisibility(127, true)
+        changeVisibility(128.1, false)
+        changeVisibility(128.25, true)
+
+        changeVisibility(130.75, false)
+        changeVisibility(131, true)
     }
 }
