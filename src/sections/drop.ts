@@ -14,17 +14,17 @@ export function drop(map: rm.V3Difficulty) {
     dropScene.destroyObject(TIMES.DROP_END)
 }
 
-function noteHop(x: rm.AnyNote, duration = 2) {
+function noteHop(x: rm.AnyNote, distance = 12, duration = 2) {
     x.noteJumpMovementSpeed = 0.002
     x.life = duration * 2
     x.disableNoteGravity = true
     x.animation.dissolve = [[0, 0], [1, 0]]
     x.animation.dissolveArrow = x.animation.dissolve
     x.animation.offsetPosition = [
-        [0, 0, 5, 0],
-        [0, 0, 12, 0.25, 'easeOutCirc'],
+        [0, 0, distance / 2, 0],
+        [0, 0, distance, 0.25, 'easeOutCirc'],
         [0, 0, 0, 0.5, 'easeInSine'],
-        [0, 0, -30, 1, 'easeLinear'],
+        [0, 0, -distance * 2.5, 1, 'easeLinear'],
     ]
 }
 
@@ -195,6 +195,13 @@ function doNotemods(map: rm.V3Difficulty) {
         },
     })
 
+    map.allNotes.filter(join(
+        approximately(87),
+        approximately(89),
+    )).forEach(x => {
+        noteHop(x, 8)
+    })
+
     const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
     const ARROW_MOVEMENT_RIGHT_TRACK = 'arrowMovementRight'
 
@@ -219,16 +226,12 @@ function doNotemods(map: rm.V3Difficulty) {
         },
     })
 
-    const isHopNote = join(
-        approximately(87),
-        approximately(89),
+    map.allNotes.filter(join(
         between(91, 93),
         between(95, 97),
         between(99, 101),
         approximately(109)
-    )
-
-    map.allNotes.filter(isHopNote).forEach((x) => {
+    )).forEach((x) => {
         noteHop(x)
 
         if (!(x instanceof rm.Bomb)) {
