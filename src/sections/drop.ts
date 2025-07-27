@@ -58,7 +58,7 @@ function wheelEffect(map: rm.V3Difficulty, yIncrement: number, times: number[]) 
             const track = `wheelNote${i}`
             accumulatedTracks.push(track)
             const tracks = rm.copy(accumulatedTracks)
-            
+
             const shakeX = rm.random(-1, 1)
 
             rm.assignPathAnimation(map, {
@@ -99,361 +99,363 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
-    //! BLACK SECTION
-
-    const WHEEL_EFFECT_TRACK = 'wheelEffect'
-
-    rm.assignPathAnimation(map, {
-        beat: 77,
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [-4,10,-10],
-        }
-    })
-    rm.assignPathAnimation(map, {
-        beat: 77,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 3,
-        easing: 'easeOutBack',
-        animation: {
-            offsetWorldRotation: [0,0,0],
-        }
-    })
-
-    rm.animateTrack(map, {
-        beat: 70,
-        track: WHEEL_EFFECT_TRACK,
-        animation: {
-            dissolve: [0],
-            dissolveArrow: [0]
-        }
-    })
-
-    rm.assignPathAnimation(map, {
-        beat: 80,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 3,
-        easing: 'easeOutBack',
-        animation: {
-            offsetWorldRotation: [[0,-30,0,0],[0,0,0,0.5]],
-        }
-    })
-
-    rm.animateTrack(map, {
-        beat: 79,
-        track: WHEEL_EFFECT_TRACK,
-        animation: {
-            dissolve: [1],
-            dissolveArrow: [1]
-        }
-    })
-
-    wheelEffect(map, 5, [80, 81, 81.75, 82.25, 83, 84.25, 85])
-    map.allNotes.filter(between(81, 85)).forEach(x => {
-        x.life = 8
-        x.track.add(WHEEL_EFFECT_TRACK)
-    })
-
-    rm.assignPathAnimation(map, {
-        beat: 85,
-        duration: 1,
-        easing: 'easeOutExpo',
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [[0,-10,0,0],[0,0,0,0.5]],
-        },
-    })
-    
-    rm.assignPathAnimation(map, {
-        beat: 87 - 1,
-        duration: 2,
-        easing: 'easeInOutExpo',
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [[0,10,0,0],[0,0,0,0.5]],
-        },
-    })
-
-    map.allNotes.filter(join(
-        approximately(87),
-        approximately(89),
-    )).forEach(x => {
-        noteHop(x, 8)
-    })
-
-    rm.assignPathAnimation(map, {
-        beat: 89,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 4,
-        easing: 'easeOutExpo',
-        animation: {
-            offsetWorldRotation: [0, 0, 0],
-        },
-    })
-
-    rm.assignPathAnimation(map, {
-        beat: 91,
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [-5, 0, 0],
-        },
-    })
-
-    rm.assignPathAnimation(map, {
-        beat: 91,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 4,
-        easing: 'easeInOutBack',
-        animation: {
-            offsetWorldRotation: [5, 0, 0],
-        },
-    })
-
-    rm.assignPathAnimation(map, {
-        beat: 95,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 2,
-        easing: 'easeOutExpo',
-        animation: {
-            offsetWorldRotation: [[-2, 0, 20, 0], [-2, 0, 0, 0.5]],
-        },
-    })
-
-    rm.assignPathAnimation(map, {
-        beat: 97,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 4,
-        easing: 'easeOutBack',
-        animation: {
-            offsetWorldRotation: [0, 0, 0],
-        },
-    })
-
     const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
     const ARROW_MOVEMENT_RIGHT_TRACK = 'arrowMovementRight'
-
-    rm.assignPathAnimation(map, {
-        beat: 89,
-        track: ARROW_MOVEMENT_LEFT_TRACK,
-        animation: {
-            offsetWorldRotation: [
-                [0, -5, 0, 0],
-                [0, 0, 0, 0.5, 'easeOutExpo'],
-            ],
-        },
-    })
-    rm.assignPathAnimation(map, {
-        beat: 89,
-        track: ARROW_MOVEMENT_RIGHT_TRACK,
-        animation: {
-            offsetWorldRotation: [
-                [0, 5, 0, 0],
-                [0, 0, 0, 0.5, 'easeOutExpo'],
-            ],
-        },
-    })
-
-    map.allNotes.filter(join(
-        between(91, 93),
-        between(95, 97),
-        between(99, 101),
-        approximately(109)
-    )).forEach((x) => {
-        noteHop(x)
-
-        if (!(x instanceof rm.Bomb)) {
-            const left = x.color === rm.NoteColor.RED
-            x.track.add(left ? ARROW_MOVEMENT_LEFT_TRACK : ARROW_MOVEMENT_RIGHT_TRACK)
-        }
-    })
-
+    const WHEEL_EFFECT_TRACK = 'wheelEffect'
     const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
 
-    rm.assignPathAnimation(map, {
-        track: DARK_NOTES_TRACK,
-        animation: {
-            dissolve: [[0, 0], [1, 0.2]],
-            dissolveArrow: [[0, 0], [1, 0.2]],
-            offsetWorldRotation: [[0, 0, 90, 0], [0, 0, 0, 0.5]],
-            offsetPosition: [0, 0, 4],
-        },
-    })
+    blackSection()
+    whiteSection()
 
-    rm.assignPathAnimation(map, {
-        beat: 101,
-        duration: 1,
-        easing: 'easeOutExpo',
-        track: DARK_NOTES_TRACK,
-        animation: {
-            dissolve: [[0, 0], [1, 0.5, 'easeOutExpo']],
-            dissolveArrow: [[0, 0], [1, 0.5, 'easeOutExpo']],
-            offsetPosition: [0, 0, 0],
-        },
-    })
-    rm.assignPathAnimation(map, {
-        beat: 101,
-        duration: 3,
-        easing: 'easeOutBack',
-        track: DARK_NOTES_TRACK,
-        animation: {
-            offsetWorldRotation: [0, 0, 0],
-        },
-    })
+    function blackSection() {
+        rm.assignPathAnimation(map, {
+            beat: 77,
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [-4, 10, -10],
+            },
+        })
+        rm.assignPathAnimation(map, {
+            beat: 77,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 3,
+            easing: 'easeOutBack',
+            animation: {
+                offsetWorldRotation: [0, 0, 0],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 105,
-        duration: 2,
-        easing: 'easeInCirc',
-        track: DARK_NOTES_TRACK,
-        animation: {
-            offsetPosition: [[0, 0, 50, 0], [0, 0, 0, 0.5]],
-            offsetWorldRotation: [[0, 0, 30, 0], [0, 0, 0, 0.5]],
-        },
-    })
+        rm.animateTrack(map, {
+            beat: 70,
+            track: WHEEL_EFFECT_TRACK,
+            animation: {
+                dissolve: [0],
+                dissolveArrow: [0],
+            },
+        })
 
-    map.allNotes.filter(between(102, 107)).forEach((x) => {
-        x.track.add(DARK_NOTES_TRACK)
-        x.noteJumpMovementSpeed = 10
-        x.life = 5
-    })
+        rm.assignPathAnimation(map, {
+            beat: 80,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 3,
+            easing: 'easeOutBack',
+            animation: {
+                offsetWorldRotation: [[0, -30, 0, 0], [0, 0, 0, 0.5]],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 107,
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [[0, 0, -50, 0], [0, 0, 0, 0.5]],
-        },
-    })
+        rm.animateTrack(map, {
+            beat: 79,
+            track: WHEEL_EFFECT_TRACK,
+            animation: {
+                dissolve: [1],
+                dissolveArrow: [1],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 107,
-        duration: 4,
-        easing: 'easeOutCirc',
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [0, 0, 0],
-        },
-    })
+        wheelEffect(map, 5, [80, 81, 81.75, 82.25, 83, 84.25, 85])
+        map.allNotes.filter(between(81, 85)).forEach((x) => {
+            x.life = 8
+            x.track.add(WHEEL_EFFECT_TRACK)
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 109,
-        duration: 4,
-        easing: 'easeOutCirc',
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [10, 0, 0],
-        },
-    })
+        rm.assignPathAnimation(map, {
+            beat: 85,
+            duration: 1,
+            easing: 'easeOutExpo',
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [[0, -10, 0, 0], [0, 0, 0, 0.5]],
+            },
+        })
 
-    //! WHITE SECTION
+        rm.assignPathAnimation(map, {
+            beat: 87 - 1,
+            duration: 2,
+            easing: 'easeInOutExpo',
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [[0, 10, 0, 0], [0, 0, 0, 0.5]],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 111,
-        duration: 1,
-        easing: 'easeOutExpo',
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [0, 0, 0],
-        },
-    })
+        map.allNotes.filter(join(
+            approximately(87),
+            approximately(89),
+        )).forEach((x) => {
+            noteHop(x, 8)
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 112.25,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 3,
-        easing: 'easeOutExpo',
-        animation: {
-            offsetWorldRotation: [[0,10,0,0],[0,0,0,0.5]],
-        }
-    })
-    wheelEffect(map, -5, [113, 113.75, 114.25, 115, 116.25, 117])
+        rm.assignPathAnimation(map, {
+            beat: 89,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 4,
+            easing: 'easeOutExpo',
+            animation: {
+                offsetWorldRotation: [0, 0, 0],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 117,
-        duration: 1,
-        easing: 'easeOutExpo',
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [[0,10,0,0],[0,0,0,0.5]],
-        },
-    })
-    
-    rm.assignPathAnimation(map, {
-        beat: 119 - 1,
-        duration: 2,
-        easing: 'easeInOutExpo',
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [[0,-10,0,0],[0,0,0,0.5]],
-        },
-    })
+        rm.assignPathAnimation(map, {
+            beat: 91,
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [-5, 0, 0],
+            },
+        })
 
-    map.allNotes.filter(join(
-        approximately(119),
-        approximately(121),
-    )).forEach(x => {
-        noteHop(x, 8)
-    })
+        rm.assignPathAnimation(map, {
+            beat: 91,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 4,
+            easing: 'easeInOutBack',
+            animation: {
+                offsetWorldRotation: [5, 0, 0],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 89 + 32,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 4,
-        easing: 'easeOutExpo',
-        animation: {
-            offsetWorldRotation: [0, 3, 0],
-        },
-    })
+        rm.assignPathAnimation(map, {
+            beat: 95,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 2,
+            easing: 'easeOutExpo',
+            animation: {
+                offsetWorldRotation: [[-2, 0, 20, 0], [-2, 0, 0, 0.5]],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 91 + 32,
-        track: DROP_MOVEMENT_TRACK,
-        animation: {
-            offsetWorldRotation: [-5, -3, 0],
-        },
-    })
+        rm.assignPathAnimation(map, {
+            beat: 97,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 4,
+            easing: 'easeOutBack',
+            animation: {
+                offsetWorldRotation: [0, 0, 0],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 91 + 32,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 4,
-        easing: 'easeInOutBack',
-        animation: {
-            offsetWorldRotation: [5, -3, 0],
-        },
-    })
+        rm.assignPathAnimation(map, {
+            beat: 89,
+            track: ARROW_MOVEMENT_LEFT_TRACK,
+            animation: {
+                offsetWorldRotation: [
+                    [0, -5, 0, 0],
+                    [0, 0, 0, 0.5, 'easeOutExpo'],
+                ],
+            },
+        })
+        rm.assignPathAnimation(map, {
+            beat: 89,
+            track: ARROW_MOVEMENT_RIGHT_TRACK,
+            animation: {
+                offsetWorldRotation: [
+                    [0, 5, 0, 0],
+                    [0, 0, 0, 0.5, 'easeOutExpo'],
+                ],
+            },
+        })
 
-    rm.assignPathAnimation(map, {
-        beat: 95 + 32,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 2,
-        easing: 'easeOutExpo',
-        animation: {
-            offsetWorldRotation: [[-2, 4, 20, 0], [-2, 4, 0, 0.5]],
-        },
-    })
+        map.allNotes.filter(join(
+            between(91, 93),
+            between(95, 97),
+            between(99, 101),
+            approximately(109),
+        )).forEach((x) => {
+            noteHop(x)
 
-    rm.assignPathAnimation(map, {
-        beat: 97 + 32,
-        track: DROP_MOVEMENT_TRACK,
-        duration: 4,
-        easing: 'easeOutBack',
-        animation: {
-            offsetWorldRotation: [0, -5, 0],
-        },
-    })
+            if (!(x instanceof rm.Bomb)) {
+                const left = x.color === rm.NoteColor.RED
+                x.track.add(left ? ARROW_MOVEMENT_LEFT_TRACK : ARROW_MOVEMENT_RIGHT_TRACK)
+            }
+        })
 
-    map.allNotes.filter(join(
-        between(123, 125),
-        approximately(127),
-        approximately(129),
-        between(131, 133)
-    )).forEach((x) => {
-        noteHop(x)
+        rm.assignPathAnimation(map, {
+            track: DARK_NOTES_TRACK,
+            animation: {
+                dissolve: [[0, 0], [1, 0.2]],
+                dissolveArrow: [[0, 0], [1, 0.2]],
+                offsetWorldRotation: [[0, 0, 90, 0], [0, 0, 0, 0.5]],
+                offsetPosition: [0, 0, 4],
+            },
+        })
 
-        if (!(x instanceof rm.Bomb)) {
-            const left = x.color === rm.NoteColor.RED
-            x.track.add(left ? ARROW_MOVEMENT_LEFT_TRACK : ARROW_MOVEMENT_RIGHT_TRACK)
-        }
-    })
+        rm.assignPathAnimation(map, {
+            beat: 101,
+            duration: 1,
+            easing: 'easeOutExpo',
+            track: DARK_NOTES_TRACK,
+            animation: {
+                dissolve: [[0, 0], [1, 0.5, 'easeOutExpo']],
+                dissolveArrow: [[0, 0], [1, 0.5, 'easeOutExpo']],
+                offsetPosition: [0, 0, 0],
+            },
+        })
+        
+        rm.assignPathAnimation(map, {
+            beat: 101,
+            duration: 3,
+            easing: 'easeOutBack',
+            track: DARK_NOTES_TRACK,
+            animation: {
+                offsetWorldRotation: [0, 0, 0],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 105,
+            duration: 2,
+            easing: 'easeInCirc',
+            track: DARK_NOTES_TRACK,
+            animation: {
+                offsetPosition: [[0, 0, 50, 0], [0, 0, 0, 0.5]],
+                offsetWorldRotation: [[0, 0, 30, 0], [0, 0, 0, 0.5]],
+            },
+        })
+
+        map.allNotes.filter(between(102, 107)).forEach((x) => {
+            x.track.add(DARK_NOTES_TRACK)
+            x.noteJumpMovementSpeed = 10
+            x.life = 5
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 107,
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [[0, 0, -50, 0], [0, 0, 0, 0.5]],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 107,
+            duration: 4,
+            easing: 'easeOutCirc',
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [0, 0, 0],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 109,
+            duration: 4,
+            easing: 'easeOutCirc',
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [10, 0, 0],
+            },
+        })
+    }
+
+    function whiteSection() {
+        rm.assignPathAnimation(map, {
+            beat: 111,
+            duration: 1,
+            easing: 'easeOutExpo',
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [0, 0, 0],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 112.25,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 3,
+            easing: 'easeOutExpo',
+            animation: {
+                offsetWorldRotation: [[0, 10, 0, 0], [0, 0, 0, 0.5]],
+            },
+        })
+        wheelEffect(map, -5, [113, 113.75, 114.25, 115, 116.25, 117])
+
+        rm.assignPathAnimation(map, {
+            beat: 117,
+            duration: 1,
+            easing: 'easeOutExpo',
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [[0, 10, 0, 0], [0, 0, 0, 0.5]],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 119 - 1,
+            duration: 2,
+            easing: 'easeInOutExpo',
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [[0, -10, 0, 0], [0, 0, 0, 0.5]],
+            },
+        })
+
+        map.allNotes.filter(join(
+            approximately(119),
+            approximately(121),
+        )).forEach((x) => {
+            noteHop(x, 8)
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 89 + 32,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 4,
+            easing: 'easeOutExpo',
+            animation: {
+                offsetWorldRotation: [0, 3, 0],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 91 + 32,
+            track: DROP_MOVEMENT_TRACK,
+            animation: {
+                offsetWorldRotation: [-5, -3, 0],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 91 + 32,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 4,
+            easing: 'easeInOutBack',
+            animation: {
+                offsetWorldRotation: [5, -3, 0],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 95 + 32,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 2,
+            easing: 'easeOutExpo',
+            animation: {
+                offsetWorldRotation: [[-2, 4, 20, 0], [-2, 4, 0, 0.5]],
+            },
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: 97 + 32,
+            track: DROP_MOVEMENT_TRACK,
+            duration: 4,
+            easing: 'easeOutBack',
+            animation: {
+                offsetWorldRotation: [0, -5, 0],
+            },
+        })
+
+        map.allNotes.filter(join(
+            between(123, 125),
+            approximately(127),
+            approximately(129),
+            between(131, 133),
+        )).forEach((x) => {
+            noteHop(x)
+
+            if (!(x instanceof rm.Bomb)) {
+                const left = x.color === rm.NoteColor.RED
+                x.track.add(left ? ARROW_MOVEMENT_LEFT_TRACK : ARROW_MOVEMENT_RIGHT_TRACK)
+            }
+        })
+    }
 }
