@@ -119,6 +119,19 @@ function doNotemods(map: rm.V3Difficulty) {
 
     function blackSection() {
         const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
+        const BLACK_OUTLINE_TRACK = 'dropBlackOutline'
+
+        map.allNotes.filter(between(79, 107)).forEach(x => {
+            x.track.add(BLACK_OUTLINE_TRACK)
+        })
+
+        rm.assignObjectPrefab(map, {
+            colorNotes: {
+                track: BLACK_OUTLINE_TRACK,
+                asset: prefabs['black outline note'].path,
+                debrisAsset: prefabs['black outline note debris'].path
+            }
+        })
 
         rm.assignPathAnimation(map, {
             beat: 77,
@@ -353,6 +366,19 @@ function doNotemods(map: rm.V3Difficulty) {
 
     function whiteSection() {
         const DROP_DISAPPEARING_TRACK = 'dropDisappearing'
+        const WHITE_OUTLINE_TRACK = 'dropWhiteOutline'
+
+        map.allNotes.filter(between(109, 133)).forEach(x => {
+            x.track.add(WHITE_OUTLINE_TRACK)
+        })
+
+        rm.assignObjectPrefab(map, {
+            colorNotes: {
+                track: WHITE_OUTLINE_TRACK,
+                asset: prefabs['white outline note'].path,
+                debrisAsset: prefabs['white outline note debris'].path
+            }
+        })
 
         rm.assignPathAnimation(map, {
             beat: 111,
