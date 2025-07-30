@@ -50,6 +50,29 @@ export function cutDirectionAngle(cut: rm.NoteCut) {
     }
 }
 
+export function cutDirectionVector(cut: rm.NoteCut): rm.Vec2 {
+    switch (cut) {
+        case rm.NoteCut.UP:
+            return [0, 1]
+        case rm.NoteCut.DOWN:
+            return [0, -1]
+        case rm.NoteCut.LEFT:
+            return [-1, 0]
+        case rm.NoteCut.RIGHT:
+            return [1, 0]
+        case rm.NoteCut.UP_LEFT:
+            return rm.normalize([-1, 1])
+        case rm.NoteCut.UP_RIGHT:
+            return rm.normalize([1, 1])
+        case rm.NoteCut.DOWN_LEFT:
+            return rm.normalize([-1, -1])
+        case rm.NoteCut.DOWN_RIGHT:
+            return rm.normalize([1, -1])
+        case rm.NoteCut.DOT:
+            return [0, 0]
+    }
+}
+
 export function pointsBeatsToNormalized<T extends number[]>(points: rm.ComplexPointsAbstract<T>): {
     points: rm.ComplexPointsAbstract<T>
     minTime: number
