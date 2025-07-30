@@ -89,7 +89,25 @@ function doNotemods(map: rm.V3Difficulty) {
     const DROP_MOVEMENT_TRACK = 'dropMovement'
     const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
     const ARROW_MOVEMENT_RIGHT_TRACK = 'arrowMovementRight'
+    const BLACK_OUTLINE_TRACK = 'dropBlackOutline'
+    const WHITE_OUTLINE_TRACK = 'dropWhiteOutline'
     const WHEEL_EFFECT_TRACK = 'wheelEffect'
+
+    rm.assignObjectPrefab(map, {
+        colorNotes: {
+            track: BLACK_OUTLINE_TRACK,
+            asset: prefabs['black outline note'].path,
+            debrisAsset: prefabs['black outline note debris'].path
+        }
+    })
+
+    rm.assignObjectPrefab(map, {
+        colorNotes: {
+            track: WHITE_OUTLINE_TRACK,
+            asset: prefabs['white outline note'].path,
+            debrisAsset: prefabs['white outline note debris'].path
+        }
+    })
 
     map.allNotes.filter(between(TIMES.DROP + 1, TIMES.DROP_END)).forEach((x) => {
         x.track.add(DROP_MOVEMENT_TRACK)
@@ -116,21 +134,13 @@ function doNotemods(map: rm.V3Difficulty) {
 
     blackSection()
     whiteSection()
+    blackSection2()
 
     function blackSection() {
         const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
-        const BLACK_OUTLINE_TRACK = 'dropBlackOutline'
 
         map.allNotes.filter(between(79, 107)).forEach(x => {
             x.track.add(BLACK_OUTLINE_TRACK)
-        })
-
-        rm.assignObjectPrefab(map, {
-            colorNotes: {
-                track: BLACK_OUTLINE_TRACK,
-                asset: prefabs['black outline note'].path,
-                debrisAsset: prefabs['black outline note debris'].path
-            }
         })
 
         rm.assignPathAnimation(map, {
@@ -366,18 +376,9 @@ function doNotemods(map: rm.V3Difficulty) {
 
     function whiteSection() {
         const DROP_DISAPPEARING_TRACK = 'dropDisappearing'
-        const WHITE_OUTLINE_TRACK = 'dropWhiteOutline'
 
         map.allNotes.filter(between(109, 133)).forEach(x => {
             x.track.add(WHITE_OUTLINE_TRACK)
-        })
-
-        rm.assignObjectPrefab(map, {
-            colorNotes: {
-                track: WHITE_OUTLINE_TRACK,
-                asset: prefabs['white outline note'].path,
-                debrisAsset: prefabs['white outline note debris'].path
-            }
         })
 
         rm.assignPathAnimation(map, {
@@ -538,5 +539,11 @@ function doNotemods(map: rm.V3Difficulty) {
 
         whiteVisibility(130.75, false)
         whiteVisibility(131, true)
+    }
+
+    function blackSection2() {
+        map.allNotes.filter(between(134, 171)).forEach(x => {
+            x.track.add(BLACK_OUTLINE_TRACK)
+        })
     }
 }
