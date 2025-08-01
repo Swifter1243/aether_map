@@ -24,6 +24,7 @@ function doNotemods(map: rm.V3Difficulty) {
     const isInAmbient = between(START, END)
     map.allNotes.filter(isInAmbient).forEach(x => {
         x.life = 10
+        x.noteJumpMovementSpeed = 13
         x.track.add(AMBIENT_TRACK)
     })
 
