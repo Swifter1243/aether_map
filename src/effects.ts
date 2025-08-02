@@ -76,7 +76,9 @@ export function setDirectionalMagnitude(map: rm.V3Difficulty, magnitude: number,
     }
 }
 
-export function assignDirectionalRotation(object: rm.ColorNote | rm.Chain) {
-    const track = getCutDirectionTrack(object.cutDirection)
-    object.track.add(track)
+export function assignDirectionalRotation(object: rm.BeatmapGameplayObject) {
+    if (object instanceof rm.ColorNote || object instanceof rm.Chain) {
+        const track = getCutDirectionTrack(object.cutDirection)
+        object.track.add(track)
+    }
 }

@@ -374,11 +374,8 @@ function doNotemods(map: rm.V3Difficulty) {
 
         map.allNotes.filter(between(134, 149)).forEach(x => {
             noteHop(x, 9)
+            assignDirectionalRotation(x)
             x.track.add(START_SECTION_TRACK)
-
-            if (x instanceof rm.ColorNote || x instanceof rm.Chain) {
-                assignDirectionalRotation(x)
-            }
         })
 
         setDirectionalMagnitude(map, 30, 1)
@@ -393,10 +390,11 @@ function doNotemods(map: rm.V3Difficulty) {
 
         dropRotationMovement(161 - 4 / 2, [[-3,0,-10,0],[-6,0,0,0.5,'easeOutCirc']], 4, 'easeInOutBack')
 
-        dropRotationMovement(165 - 2, [[-3,-14,0,0],[-6,-10,0,0.5,'easeOutCirc']], 2, 'easeInCirc')
+        dropRotationMovement(165 - 2, [-3, 0, 0], 2, 'easeInCirc')
 
-        dropRotationMovement(167, [[0, 6, 0,0], [0,0,0,0.5]], 2, 'easeInCirc')
-
-        dropRotationMovement(169, [[-3, 0, 0,0], [0,0,0,0.5]], 2, 'easeOutBack')
+        map.allNotes.filter(between(167, 175)).forEach(x => {
+            noteHop(x, 9)
+            assignDirectionalRotation(x)
+        })
     }
 }
