@@ -1,5 +1,6 @@
 import { materials } from "./main.ts";
 import { rm } from "./deps.ts";
+import { cutDirectionVector } from './utilities.ts'
 
 export function bokeh(material: rm.Material, map: rm.AbstractDifficulty, beat: number, duration = 10, radius = 25)
 {
@@ -47,4 +48,35 @@ export function generateShake(amplitude: number, random: (min: number, max: numb
     }
 
     return points
+}
+
+function getCutDirectionTrack(cut: rm.NoteCut) {
+    return `directionRotation_${cut}`
+}
+
+export function setDirectionalMagnitude(map: rm.V3Difficulty, magnitude: number, beat: number, duration = 0, eventEasing?: rm.EASE) {
+    for (const cutKey in rm.NoteCut) {
+        const cutStr = rm.NoteCut[cutKey]
+
+        if (typeof cutStr !== 'number')
+            continue
+
+        const cut = parseInt(cutStr) as rm.NoteCut
+        const dir = cutDirectionVector(cut)
+        const track = getCutDirectionTrack(cut)
+        rm.assignPathAnimation(map, {
+            beat,
+            duration,
+            easing: eventEasing,
+            track,
+            animation: {
+                offsetWorldRotation: [[dir[1] * magnitude, dir[0] * magnitude, 0, 0], [0,0,0,0.5, 'easeOutCirc']]
+            } 
+        })
+    }
+}
+
+export function assignDirectionalRotation(object: rm.ColorNote | rm.Chain) {
+    const track = getCutDirectionTrack(object.cutDirection)
+    object.track.add(track)
 }
