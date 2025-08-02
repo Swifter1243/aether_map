@@ -147,6 +147,7 @@ function doNotemods(map: rm.V3Difficulty) {
     blackSection()
     whiteSection()
     blackSection2()
+    whiteSection2()
 
     function blackSection() {
         const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
@@ -431,6 +432,12 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(between(167, 177)).forEach(x => {
             noteHop(x, 9)
             assignDirectionalRotation(x)
+        })
+    }
+
+    function whiteSection2() {
+        map.allNotes.filter(between(173, 195)).forEach(x => {
+            x.track.add(WHITE_OUTLINE_TRACK)
         })
     }
 }
