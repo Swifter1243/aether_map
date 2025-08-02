@@ -455,5 +455,11 @@ function doNotemods(map: rm.V3Difficulty) {
             const t = rm.inverseLerp(177, 181, x.beat)
             x.worldRotation = [rm.lerp(5, -3, t), 0, 0]
         })
+
+        setDirectionalMagnitude(map, 4, 181 - 4, 4, 'easeInOutExpo')
+
+        map.allNotes.filter(between(181, 189)).forEach(x => {
+            assignDirectionalRotation(x)
+        })
     }
 }
