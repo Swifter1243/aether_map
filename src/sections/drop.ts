@@ -160,8 +160,22 @@ function doNotemods(map: rm.V3Difficulty) {
 
         wheelVisibility(70, false)
 
-        dropRotationMovement(79, [[20,-20,0,0],[0,0,0,0.5]])
-        dropRotationMovement(80, [0, 0, 0], 2, 'easeOutBack')
+        rm.assignPathAnimation(map, {
+            beat: 79,
+            track: WHEEL_EFFECT_TRACK,
+            animation: {
+                offsetWorldRotation: [[20,-20,0,0],[0,0,0,0.5]],
+            },
+        })
+        rm.assignPathAnimation(map, {
+            beat: 80,
+            track: WHEEL_EFFECT_TRACK,
+            duration: 2,
+            easing: 'easeOutBack',
+            animation: {
+                offsetWorldRotation: [0,0,0],
+            },
+        })
 
         wheelVisibility(80, true)
         wheelEffect(map, 5, [80, 81, 81.75, 82.25, 83, 84.25, 85])
@@ -291,9 +305,31 @@ function doNotemods(map: rm.V3Difficulty) {
 
         wheelVisibility(100, false)
 
-        dropRotationMovement(100, [[20,-20,0,0],[0,0,0,0.5]])
-        dropRotationMovement(111, [[10,-10,0,0],[0,0,0,0.5]], 1.25, 'easeOutBack')
-        dropRotationMovement(112.25, [0, 0, 0], 2, 'easeOutBack')
+        rm.assignPathAnimation(map, {
+            beat: 100,
+            track: WHEEL_EFFECT_TRACK,
+            animation: {
+                offsetWorldRotation: [[20,-20,0,0],[0,0,0,0.5]],
+            },
+        })
+        rm.assignPathAnimation(map, {
+            beat: 111,
+            track: WHEEL_EFFECT_TRACK,
+            easing: 'easeOutBack',
+            duration: 1.25,
+            animation: {
+                offsetWorldRotation: [[10,-10,0,0],[0,0,0,0.5]],
+            },
+        })
+        rm.assignPathAnimation(map, {
+            beat: 112.25,
+            track: WHEEL_EFFECT_TRACK,
+            duration: 2,
+            easing: 'easeOutBack',
+            animation: {
+                offsetWorldRotation: [0,0,0],
+            },
+        })
 
         wheelVisibility(111, true)
         wheelEffect(map, -5, [112.25, 113, 113.75, 114.25, 115, 116.25, 117])
