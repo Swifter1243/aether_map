@@ -428,7 +428,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
         dropRotationMovement(165 - 2, [-3, 0, 0], 2, 'easeInCirc')
 
-        map.allNotes.filter(between(167, 175)).forEach(x => {
+        map.allNotes.filter(between(167, 177)).forEach(x => {
             noteHop(x, 9)
             assignDirectionalRotation(x)
         })
