@@ -468,7 +468,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
     function transitionNotes() {
         const ZOOM_MIDPOINT: rm.Vec3 = [0, 1, 10]
-        const INV_MIDPOINT = rm.arrayMultiply(ZOOM_MIDPOINT, -1)
+        const INV_ZOOM_MIDPOINT = rm.arrayMultiply(ZOOM_MIDPOINT, -1)
 
         const PARENT_TO_ORIGIN_TRACK = 'dropTransitionNotesToOrigin'
         const PARENT_SCALE_TRACK = 'dropTransitionNotesScale'
@@ -481,7 +481,7 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(approximately(TRANSITION_TIME)).forEach(x => {
             x.noteJumpMovementSpeed = 0.002
             x.life = ZOOM_TIME * 2
-            x.animation.offsetPosition = [[...ZOOM_MIDPOINT, 0], [...INV_MIDPOINT,1]]
+            x.animation.offsetPosition = [[...ZOOM_MIDPOINT, 0], [...INV_ZOOM_MIDPOINT,1]]
             x.track.add(TRANSITION_NOTES_TRACK)
         })
 
@@ -504,7 +504,7 @@ function doNotemods(map: rm.V3Difficulty) {
             beat: 1,
             track: PARENT_TO_ORIGIN_TRACK,
             animation: {
-                localPosition: INV_MIDPOINT
+                localPosition: INV_ZOOM_MIDPOINT
             }
         })
 
@@ -524,7 +524,7 @@ function doNotemods(map: rm.V3Difficulty) {
             track: PARENT_SCALE_TRACK,
             animation: {
                 scale: [[0,0,0,0],[1,1,1,1,'easeInQuad']],
-                rotation: [[...randomVec3(80, orbitRandom),0],[0,0,0,1,'easeOutSine']]
+                localRotation: [[...randomVec3(80, orbitRandom),0],[0,0,0,1,'easeOutSine']]
             }
         })
     }
