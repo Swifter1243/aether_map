@@ -50,7 +50,7 @@
           "_difficulty" : "ExpertPlus",
           "_difficultyRank" : 9,
           "_beatmapFilename" : "ExpertPlusStandard.dat",
-          "_noteJumpMovementSpeed" : 20,
+          "_noteJumpMovementSpeed" : 16,
           "_noteJumpStartBeatOffset" : -0.5,
           "_beatmapColorSchemeIdx" : 0,
           "_environmentNameIdx" : 0,
