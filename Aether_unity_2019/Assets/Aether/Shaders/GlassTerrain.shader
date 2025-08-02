@@ -194,6 +194,7 @@ Shader "Swifter/GlassTerrain"
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
                 float2 screenUV = i.screenUV / i.screenUV.w;
+                float4 screenCol = sampleScreen(screenUV);
 
                 float4 normalClipPos = i.normalClipPos;
                 normalClipPos.xy = clamp(normalClipPos.xy, -normalClipPos.w, normalClipPos.w);
@@ -201,6 +202,12 @@ Shader "Swifter/GlassTerrain"
 
                 float2 normalScreenUV = normalClipPos.xy / normalClipPos.w;
                 float4 col = sampleScreen(normalScreenUV) * _GlassAbsorption;
+
+                const int SHARPNESS = 10;
+                float border = (1 - edgeSmooth(1 - normalScreenUV.x, SHARPNESS)) * (1 - edgeSmooth(1 - normalScreenUV.y, SHARPNESS));
+                border = saturate(border);
+
+                col = lerp(screenCol, col, border);
 
                 float fog = 1;
 
@@ -218,11 +225,7 @@ Shader "Swifter/GlassTerrain"
                 col.rgb += doPointLight(i, _Light1Position, _Light1Range, _Light1Falloff, _Light1Strength, _Light1Flutter) * _Light1Color;
                 #endif
 
-                const int SHARPNESS = 10;
-                float border = (1 - edgeSmooth(1 - normalScreenUV.x, SHARPNESS)) * (1 - edgeSmooth(1 - normalScreenUV.y, SHARPNESS));
-                border = saturate(border);
-
-                col = lerp(sampleScreen(screenUV), col, fog * border);
+                col = lerp(screenCol, col, fog);
 
                 return col;
             }
