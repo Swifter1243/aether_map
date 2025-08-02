@@ -73,6 +73,16 @@ export function cutDirectionVector(cut: rm.NoteCut): rm.Vec2 {
     }
 }
 
+export type RandFunc = (min: number, max: number) => number
+
+export function randomVec3(amplitude: number, random: RandFunc): rm.Vec3 {
+    return [
+        random(-amplitude, amplitude),
+        random(-amplitude, amplitude),
+        random(-amplitude, amplitude)
+    ]
+}
+
 export function pointsBeatsToNormalized<T extends number[]>(points: rm.ComplexPointsAbstract<T>): {
     points: rm.ComplexPointsAbstract<T>
     minTime: number
@@ -100,5 +110,53 @@ export function pointsBeatsToNormalized<T extends number[]>(points: rm.ComplexPo
         maxTime,
         minTime,
         duration: maxTime - minTime,
+    }
+}
+
+export function sequencedRotation(map: rm.V3Difficulty, track: string, start: number, end: number, times: number[], sequenceFn: (beat: number) => rm.Vec3) {
+    const totalTimes = [start, ...times, end].sort()
+    const sequence: rm.Vec3[] = [[0,0,0], ...times.map(sequenceFn)]
+    sequence.pop()
+    sequence.push([0,0,0])
+
+    rm.assignPathAnimation(map, {
+        beat: start,
+        track,
+        animation: {
+            offsetWorldRotation: [0, 0, 0]
+        }
+    })
+
+    for (let i = 1; i < totalTimes.length - 1; i++) {
+        const lastTime = totalTimes[i - 1]
+        const currTime = totalTimes[i]
+        const nextTime = totalTimes[i + 1]
+
+        const inDuration = (currTime - lastTime) * 0.25
+        const outDuration = (nextTime - currTime) * 0.75
+
+        const lastVec = sequence[i - 1]
+        const currVec = sequence[i]
+        const midVec = rm.arrayLerp(lastVec, currVec, 0.25)
+
+        rm.assignPathAnimation(map, {
+            beat: currTime - inDuration,
+            duration: inDuration,
+            track,
+            easing: 'easeInExpo',
+            animation: {
+                offsetWorldRotation: [[...midVec, 0], [0,0,0,0.5]]
+            }
+        })
+
+        rm.assignPathAnimation(map, {
+            beat: currTime,
+            duration: outDuration,
+            track,
+            easing: 'easeOutSine',
+            animation: {
+                offsetWorldRotation: [[...currVec, 0], [0,0,0,0.5]]
+            }
+        })
     }
 }

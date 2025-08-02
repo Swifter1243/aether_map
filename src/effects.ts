@@ -1,6 +1,6 @@
 import { materials } from "./main.ts";
 import { rm } from "./deps.ts";
-import { cutDirectionVector } from './utilities.ts'
+import { cutDirectionVector, RandFunc, randomVec3, sequencedRotation } from './utilities.ts'
 
 export function bokeh(material: rm.Material, map: rm.AbstractDifficulty, beat: number, duration = 10, radius = 25)
 {
@@ -28,14 +28,6 @@ export function fadeWhite(map: rm.AbstractDifficulty, beat: number, duration: nu
             }
         ]
     })
-}
-
-export function randomVec3(amplitude: number, random: (min: number, max: number) => number): rm.Vec3 {
-    return [
-        random(-amplitude, amplitude),
-        random(-amplitude, amplitude),
-        random(-amplitude, amplitude)
-    ]
 }
 
 export function generateShake(amplitude: number, random: (min: number, max: number) => number, pointAmount = 5): rm.ComplexPointsVec3 {
@@ -81,4 +73,15 @@ export function assignDirectionalRotation(object: rm.BeatmapGameplayObject) {
         const track = getCutDirectionTrack(object.cutDirection)
         object.track.add(track)
     }
+}
+
+export function sequencedShakeRotation(map: rm.V3Difficulty, track: string, start: number, end: number, times: number[], amplitude: number, random: RandFunc) {
+    let angle = 0
+    sequencedRotation(map, track, start, end, times, (_) => {
+        angle += 180 + random(-30, 30)
+        const rad = rm.toRadians(angle)
+        const x = Math.sin(rad)
+        const y = Math.cos(rad)
+        return [x * amplitude, y * amplitude, 0]
+    })
 }

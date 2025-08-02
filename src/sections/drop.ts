@@ -1,6 +1,6 @@
 import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
-import { assignDirectionalRotation, fadeWhite, setDirectionalMagnitude } from '../effects.ts'
+import { assignDirectionalRotation, fadeWhite, sequencedShakeRotation, setDirectionalMagnitude } from '../effects.ts'
 import { prefabs } from '../main.ts'
 import { approximately, between, join } from '../utilities.ts'
 
@@ -436,8 +436,19 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function whiteSection2() {
+        const ROTATION_SEQUENCE_1_TRACK = "dropRotationSequence1"
+
         map.allNotes.filter(between(173, 195)).forEach(x => {
             x.track.add(WHITE_OUTLINE_TRACK)
         })
+
+        const SHAKE_SEQUENCE_1_START = 176
+        const SHAKE_SEQUENCE_1_END = 184
+        map.allNotes.filter(between(SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END + 10)).forEach(x => {
+            x.track.add(ROTATION_SEQUENCE_1_TRACK)
+        })
+
+        const shakeRandom = rm.seededRandom(8)
+        sequencedShakeRotation(map, ROTATION_SEQUENCE_1_TRACK, SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END, [177, 177.5, 177.75, 178.5, 179, 179.75, 180.25, 181], 14, shakeRandom)
     }
 }
