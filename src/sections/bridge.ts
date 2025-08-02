@@ -177,10 +177,6 @@ function doNotemods(map: rm.V3Difficulty) {
             x.noteJumpMovementSpeed = 12
             x.life = 30 * 2
             x.track.add(PAUSE_TRACK)
-
-            if (!(x instanceof rm.Arc || x instanceof rm.Chain)) {
-                x.spawnEffect = false
-            }
         }
 
         function doSpawnAnimation() {

@@ -64,6 +64,12 @@ function visualsSetup(map: rm.V3Difficulty) {
     rm.environmentRemoval(map, [
         'Environment'
     ])
+
+    map.allNotes.forEach(x => {
+        if (!(x instanceof rm.Arc || x instanceof rm.Chain)) {
+            x.spawnEffect = false
+        }
+    })
 }
 
 await Promise.all([

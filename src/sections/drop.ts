@@ -114,10 +114,6 @@ function doNotemods(map: rm.V3Difficulty) {
         x.disableNoteGravity = true
         x.animation.dissolve = [[0, 0], [1, 0.1]]
         x.animation.dissolveArrow = x.animation.dissolve
-
-        if (!(x instanceof rm.Arc || x instanceof rm.Chain)) {
-            x.spawnEffect = false
-        }
     })
 
     const visibility = (track: string, beat: number, visible: boolean) =>
