@@ -80,7 +80,7 @@ Shader "Swifter/GlassTerrain"
             {
                 float4 vertex : SV_POSITION;
                 float4 screenUV : TEXCOORD0;
-                float4 normalScreenUV : TEXCOORD1;
+                float4 normalClipPos : TEXCOORD1;
                 float3 worldPos : TEXCOORD2;
                 #if DISTANCE_FOG
                 float distanceFog : TEXCOORD3;
@@ -123,8 +123,7 @@ Shader "Swifter/GlassTerrain"
 
                 float3 normalOffsetLocalPos = v.vertex + v.normal * _GlassRefraction;
                 float4 normalOffsetClipPos = UnityObjectToClipPos(normalOffsetLocalPos);
-                normalOffsetClipPos.xy = clamp(normalOffsetClipPos.xy, -normalOffsetClipPos.w, normalOffsetClipPos.w);
-                o.normalScreenUV = ComputeScreenPos(normalOffsetClipPos);
+                o.normalClipPos = normalOffsetClipPos;
 
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
                 o.worldPos = worldPos;
@@ -195,7 +194,12 @@ Shader "Swifter/GlassTerrain"
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
                 float2 screenUV = i.screenUV / i.screenUV.w;
-                float2 normalScreenUV = i.normalScreenUV.xy / i.normalScreenUV.w;
+
+                float4 normalClipPos = i.normalClipPos;
+                normalClipPos.xy = clamp(normalClipPos.xy, -normalClipPos.w, normalClipPos.w);
+                normalClipPos = ComputeScreenPos(normalClipPos);
+
+                float2 normalScreenUV = normalClipPos.xy / normalClipPos.w;
                 float4 col = sampleScreen(normalScreenUV) * _GlassAbsorption;
 
                 float fog = 1;
