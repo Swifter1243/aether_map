@@ -438,6 +438,8 @@ function doNotemods(map: rm.V3Difficulty) {
     function whiteSection2() {
         const ROTATION_SEQUENCE_1_TRACK = "dropRotationSequence1"
 
+        dropRotationMovement(173, [0, 0, 0], 4, 'easeOutExpo')
+
         map.allNotes.filter(between(173, 195)).forEach(x => {
             x.track.add(WHITE_OUTLINE_TRACK)
         })
@@ -449,17 +451,21 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         const shakeRandom = rm.seededRandom(8)
-        sequencedShakeRotation(map, ROTATION_SEQUENCE_1_TRACK, SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END, [177, 177.5, 177.75, 178.5, 179, 179.75, 180.25, 181], 14, shakeRandom)
+        sequencedShakeRotation(map, ROTATION_SEQUENCE_1_TRACK, SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END, [177, 177.5, 177.75, 178.5, 179, 179.75, 180.25, 181], 7, shakeRandom)
 
         map.allNotes.filter(between(177, 181)).forEach(x => {
             const t = rm.inverseLerp(177, 181, x.beat)
-            x.worldRotation = [rm.lerp(5, -3, t), 0, 0]
+            x.worldRotation = [rm.lerp(5, -7, t), 0, 0]
         })
 
-        setDirectionalMagnitude(map, 4, 181 - 4, 4, 'easeInOutExpo')
+        dropRotationMovement(181 - 8/2, [-7, 0, 0], 8, 'easeInOutExpo')
 
-        map.allNotes.filter(between(181, 189)).forEach(x => {
+        map.allNotes.filter(between(181, 195)).forEach(x => {
             assignDirectionalRotation(x)
         })
+        setDirectionalMagnitude(map, 4, 173)
+        setDirectionalMagnitude(map, 10, 189 - 4/2, 4, 'easeInOutExpo')
+
+        dropRotationMovement(189 - 4/2, [0, 0, 0], 4, 'easeInOutExpo')
     }
 }
