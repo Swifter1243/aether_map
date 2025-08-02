@@ -1,8 +1,8 @@
 import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
-import { fadeWhite } from '../effects.ts'
+import { assignDirectionalRotation, fadeWhite, setDirectionalMagnitude } from '../effects.ts'
 import { prefabs } from '../main.ts'
-import { approximately, between, cutDirectionVector, join } from '../utilities.ts'
+import { approximately, between, join } from '../utilities.ts'
 
 export function drop(map: rm.V3Difficulty) {
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
@@ -372,17 +372,17 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(BLACK_OUTLINE_TRACK)
         })
 
-        map.allNotes.filter(between(134, 141)).forEach(x => {
+        map.allNotes.filter(between(134, 149)).forEach(x => {
             noteHop(x, 9)
             x.track.add(START_SECTION_TRACK)
 
-            if (!(x instanceof rm.Arc || x instanceof rm.Bomb)) {
-                const dir = cutDirectionVector(x.cutDirection)
-                x.animation.offsetWorldRotation = [[dir[1] * 30, dir[0] * 30, 0, 0], [0,0,0,0.5, 'easeOutCirc']]
-                x.worldRotation = [-6,0,0]
+
+            if (x instanceof rm.ColorNote || x instanceof rm.Chain) {
+                assignDirectionalRotation(x)
             }
         })
 
+        setDirectionalMagnitude(map, 30, 1)
         dropRotationMovement(133, [[0,0,0,0],[-6,0,0,0.5]], 3, 'easeOutCirc')
     }
 }
