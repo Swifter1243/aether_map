@@ -383,5 +383,20 @@ function doNotemods(map: rm.V3Difficulty) {
 
         setDirectionalMagnitude(map, 30, 1)
         dropRotationMovement(133, [[0,0,0,0],[-6,0,0,0.5]], 3, 'easeOutCirc')
+
+        dropRotationMovement(149 - 2 / 2, [[-3,-3,40,0],[-6,-4,0,0.5,'easeOutCirc']], 2, 'easeInOutBack')
+
+        dropRotationMovement(151 - 2 / 2, [[-3,0,0,0],[-6,0,0,0.5,'easeOutCirc']], 1, 'easeInExpo')
+        dropRotationMovement(151, [[-3,14,-20,0],[-6,10,0,0.5,'easeOutCirc']], 3, 'easeOutBack')
+
+        dropRotationMovement(157 - 5 / 2, [[-3,-14,30,0],[-6,-10,0,0.5,'easeOutCirc']], 5, 'easeInOutBack')
+
+        dropRotationMovement(161 - 4 / 2, [[-3,0,-10,0],[-6,0,0,0.5,'easeOutCirc']], 4, 'easeInOutBack')
+
+        dropRotationMovement(165 - 2, [[-3,-14,0,0],[-6,-10,0,0.5,'easeOutCirc']], 2, 'easeInCirc')
+
+        dropRotationMovement(167, [[0, 6, 0,0], [0,0,0,0.5]], 2, 'easeInCirc')
+
+        dropRotationMovement(169, [[-3, 0, 0,0], [0,0,0,0.5]], 2, 'easeOutBack')
     }
 }
