@@ -2,7 +2,7 @@ import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
 import { assignDirectionalRotation, fadeWhite, sequencedShakeRotation, setDirectionalMagnitude } from '../effects.ts'
 import { prefabs } from '../main.ts'
-import { approximately, between, join } from '../utilities.ts'
+import { approximately, between, join, randomVec3 } from '../utilities.ts'
 
 export function drop(map: rm.V3Difficulty) {
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
@@ -144,6 +144,7 @@ function doNotemods(map: rm.V3Difficulty) {
     whiteSection()
     blackSection2()
     whiteSection2()
+    transitionNotes()
 
     function blackSection() {
         const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
@@ -463,5 +464,68 @@ function doNotemods(map: rm.V3Difficulty) {
         setDirectionalMagnitude(map, 10, 189 - 4/2, 4, 'easeInOutExpo')
 
         dropRotationMovement(189 - 4/2, [0, 0, 0], 4, 'easeInOutExpo')
+    }
+
+    function transitionNotes() {
+        const ZOOM_MIDPOINT: rm.Vec3 = [0, 1, 10]
+        const INV_MIDPOINT = rm.arrayMultiply(ZOOM_MIDPOINT, -1)
+
+        const PARENT_TO_ORIGIN_TRACK = 'dropTransitionNotesToOrigin'
+        const PARENT_SCALE_TRACK = 'dropTransitionNotesScale'
+        const PARENT_TO_ZOOM_TRACK = 'dropTransitionNotesToZoom'
+        const TRANSITION_NOTES_TRACK = 'dropTransitionNote'
+
+        const ZOOM_TIME = 8
+        const TRANSITION_TIME = TIMES.DROP_END
+
+        map.allNotes.filter(approximately(TRANSITION_TIME)).forEach(x => {
+            x.noteJumpMovementSpeed = 0.002
+            x.life = ZOOM_TIME * 2
+            x.animation.offsetPosition = [[...ZOOM_MIDPOINT, 0], [...INV_MIDPOINT,1]]
+            x.track.add(TRANSITION_NOTES_TRACK)
+        })
+
+        rm.assignTrackParent(map, {
+            childrenTracks: [PARENT_SCALE_TRACK],
+            parentTrack: PARENT_TO_ZOOM_TRACK
+        })
+
+        rm.assignTrackParent(map, {
+            childrenTracks: [PARENT_TO_ORIGIN_TRACK],
+            parentTrack: PARENT_SCALE_TRACK
+        })
+
+        rm.assignTrackParent(map, {
+            childrenTracks: [TRANSITION_NOTES_TRACK],
+            parentTrack: PARENT_TO_ORIGIN_TRACK
+        })
+
+        rm.animateTrack(map, {
+            beat: 1,
+            track: PARENT_TO_ORIGIN_TRACK,
+            animation: {
+                localPosition: INV_MIDPOINT
+            }
+        })
+
+        rm.animateTrack(map, {
+            beat: 2,
+            track: PARENT_TO_ZOOM_TRACK,
+            animation: {
+                localPosition: ZOOM_MIDPOINT
+            }
+        })
+
+        const orbitRandom = rm.seededRandom(57)
+
+        rm.animateTrack(map, {
+            beat: TRANSITION_TIME - ZOOM_TIME,
+            duration: ZOOM_TIME,
+            track: PARENT_SCALE_TRACK,
+            animation: {
+                scale: [[0,0,0,0],[1,1,1,1,'easeInQuad']],
+                rotation: [[...randomVec3(80, orbitRandom),0],[0,0,0,1,'easeOutSine']]
+            }
+        })
     }
 }
