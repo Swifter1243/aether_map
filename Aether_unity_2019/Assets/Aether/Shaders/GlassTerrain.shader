@@ -198,9 +198,9 @@ Shader "Swifter/GlassTerrain"
 
                 float4 normalClipPos = i.normalClipPos;
                 normalClipPos.xy = clamp(normalClipPos.xy, -normalClipPos.w, normalClipPos.w);
-                normalClipPos = ComputeScreenPos(normalClipPos);
+                float4 normalScreenPos = ComputeScreenPos(normalClipPos);
+                float2 normalScreenUV = normalScreenPos.xy / normalScreenPos.w;
 
-                float2 normalScreenUV = normalClipPos.xy / normalClipPos.w;
                 float4 col = sampleScreen(normalScreenUV) * _GlassAbsorption;
 
                 const int SHARPNESS = 10;
