@@ -8,6 +8,12 @@ Shader "Swifter/GlassTerrain"
         _SpecularPower ("Specular Power", Float) = 16
         _DiffuseAmount ("Diffuse Amount", Float) = 1
 
+        [Header(Colorizing)][Space(10)]
+        [Toggle(COLORIZE)] _IsColorized ("Colorized", Int) = 0
+        _Color ("Color", Color) = (1,1,1)
+        _TintAmount ("Tint Amount", Range(0,1)) = 0.8
+
+        [Header(Fog)][Space(10)]
         [Toggle(DISTANCE_FOG)] _DistanceFogEnabled ("Distance Fog Enabled", Int) = 1
         _FadeDistanceStart ("Fade Distance Start", Float) = 500
         _FadeDistanceEnd ("Fade Distance End", Float) = 800
@@ -52,6 +58,7 @@ Shader "Swifter/GlassTerrain"
             #pragma fragment frag
             #pragma multi_compile_instancing
             #pragma instancing_options procedural:vertInstancingSetup
+            #pragma shader_feature COLORIZE
             #pragma shader_feature DISTANCE_FOG
             #pragma shader_feature HEIGHT_FOG
             #pragma shader_feature LIGHT_1_ENABLED
@@ -97,6 +104,8 @@ Shader "Swifter/GlassTerrain"
             float _SpecularAmount;
             float _SpecularPower;
             float _DiffuseAmount;
+            float4 _Color;
+            float _TintAmount;
 
             float _FadeDistanceStart;
             float _FadeDistanceEnd;
@@ -226,6 +235,11 @@ Shader "Swifter/GlassTerrain"
                 #endif
 
                 col = lerp(screenCol, col, fog);
+
+                #if COLORIZE
+                float4 tintedCol = col * _Color;
+                col = lerp(col, tintedCol, _TintAmount);
+                #endif
 
                 return col;
             }
