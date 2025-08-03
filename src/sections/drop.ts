@@ -478,6 +478,14 @@ function doNotemods(map: rm.V3Difficulty) {
         const ZOOM_TIME = 8
         const TRANSITION_TIME = TIMES.DROP_END
 
+        rm.assignObjectPrefab(map, {
+            colorNotes: {
+                track: TRANSITION_NOTES_TRACK,
+                asset: prefabs['glass note'].path,
+                debrisAsset: prefabs['glass note debris'].path
+            }
+        })
+
         map.allNotes.filter(approximately(TRANSITION_TIME)).forEach(x => {
             x.noteJumpMovementSpeed = 0.002
             x.life = ZOOM_TIME * 2

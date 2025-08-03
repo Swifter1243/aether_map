@@ -23,9 +23,18 @@ function doNotemods(map: rm.V3Difficulty) {
 
     const isInAmbient = between(START, END)
     map.allNotes.filter(isInAmbient).forEach(x => {
-        x.life = 10
-        x.noteJumpMovementSpeed = 13
+        x.noteJumpMovementSpeed = 10
+        x.life = 15
+        x.animation.dissolve = [[0,0],[1,0.4]]
         x.track.add(AMBIENT_TRACK)
+    })
+
+    rm.assignObjectPrefab(map, {
+        colorNotes: {
+            track: AMBIENT_TRACK,
+            asset: prefabs['glass note'].path,
+            debrisAsset: prefabs['glass note debris'].path
+        }
     })
 
     doPaths()
