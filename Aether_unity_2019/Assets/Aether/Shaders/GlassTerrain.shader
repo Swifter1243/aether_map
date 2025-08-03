@@ -13,6 +13,10 @@ Shader "Swifter/GlassTerrain"
         [Toggle(COLORIZE)] _IsColorized ("Colorized", Int) = 0
         _Color ("Color", Color) = (1,1,1)
         _TintAmount ("Tint Amount", Range(0,1)) = 0.8
+        [Toggle(FRESNEL)] _FresnelEnabled ("Fresnel Enabled", Int) = 0
+        _FresnelAmount ("Fresnel Amount", Float) = 1
+        _FresnelPower ("Fresnel Power", Float) = 4
+        _FresnelGlow ("Fresnel Glow", Float) = 0.2
 
         [Header(Fog)][Space(10)]
         [Toggle(DISTANCE_FOG)] _DistanceFogEnabled ("Distance Fog Enabled", Int) = 1
@@ -67,6 +71,7 @@ Shader "Swifter/GlassTerrain"
             #pragma multi_compile_instancing
             #pragma instancing_options procedural:vertInstancingSetup
             #pragma shader_feature COLORIZE
+            #pragma shader_feature FRESNEL
             #pragma shader_feature DISTANCE_FOG
             #pragma shader_feature HEIGHT_FOG
             #pragma shader_feature LIGHT_1_ENABLED
@@ -102,7 +107,7 @@ Shader "Swifter/GlassTerrain"
                 #if DISTANCE_FOG
                 float distanceFog : TEXCOORD3;
                 #endif
-                #if LIGHT_ENABLED
+                #if LIGHT_ENABLED | FRESNEL
                 float3 viewDir : TEXCOORD4;
                 float3 worldNormal : TEXCOORD5;
                 #endif
@@ -136,6 +141,10 @@ Shader "Swifter/GlassTerrain"
             float _Light1Flutter;
             float _Light1Falloff;
 
+            float _FresnelAmount;
+            float _FresnelPower;
+            float _FresnelGlow;
+
             // Register GPU instanced properties (apply per-note)
             #if NOTE
             UNITY_INSTANCING_BUFFER_START(Props)
@@ -163,13 +172,16 @@ Shader "Swifter/GlassTerrain"
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
                 o.worldPos = worldPos;
 
-                #if DISTANCE_FOG
+                #if DISTANCE_FOG | LIGHT_ENABLED | FRESNEL
                 float3 viewVector = worldPos - _WorldSpaceCameraPos;
+                #endif
+
+                #if DISTANCE_FOG
                 float viewDistance = length(viewVector);
                 o.distanceFog = smoothstep(_FadeDistanceEnd, _FadeDistanceStart, viewDistance);
                 #endif
 
-                #if LIGHT_ENABLED
+                #if LIGHT_ENABLED | FRESNEL
                 float3 viewDir = normalize(viewVector);
                 o.viewDir = viewDir;
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
@@ -297,6 +309,11 @@ Shader "Swifter/GlassTerrain"
                 #if COLORIZE
                 float4 tintedCol = col * Color;
                 col = lerp(col, tintedCol, _TintAmount);
+                #if FRESNEL
+                float fresnel = abs(dot(i.viewDir, i.worldNormal));
+                float fresnelAmt = pow(1 - fresnel, _FresnelPower);
+                col += fresnelAmt * float4(_Color.rgb, _FresnelGlow) * _FresnelAmount;
+                #endif
                 #endif
 
                 #if NOTE
