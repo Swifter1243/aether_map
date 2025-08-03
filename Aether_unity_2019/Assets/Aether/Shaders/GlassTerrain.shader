@@ -7,6 +7,7 @@ Shader "Swifter/GlassTerrain"
         _SpecularAmount ("Specular Amount", Float) = 1
         _SpecularPower ("Specular Power", Float) = 16
         _DiffuseAmount ("Diffuse Amount", Float) = 1
+        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
 
         [Header(Colorizing)][Space(10)]
         [Toggle(COLORIZE)] _IsColorized ("Colorized", Int) = 0
@@ -35,6 +36,12 @@ Shader "Swifter/GlassTerrain"
         _StencilRef ("Stencil Ref", Int) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
         [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 2
+
+        [Header(Note)][Space(10)]
+        [Toggle(NOTE)] _IsNote ("Is Note", Int) = 0
+        _Cutout ("Cutout", Range(0,1)) = 0
+        [Toggle(DEBRIS)] _Debris ("Debris", Int) = 0
+        _CutPlane ("Cut Plane", Vector) = (0, 0, 1, 0)
     }
     SubShader
     {
@@ -43,6 +50,7 @@ Shader "Swifter/GlassTerrain"
             "Queue" = "Transparent"
         }
         GrabPass { "_GrabTexture1" }
+        Cull [_Cull]
 
         Stencil
         {
@@ -62,6 +70,8 @@ Shader "Swifter/GlassTerrain"
             #pragma shader_feature DISTANCE_FOG
             #pragma shader_feature HEIGHT_FOG
             #pragma shader_feature LIGHT_1_ENABLED
+            #pragma shader_feature NOTE
+            #pragma shader_feature DEBRIS
 
             #define LIGHT_ENABLED LIGHT_1_ENABLED
 
@@ -96,7 +106,11 @@ Shader "Swifter/GlassTerrain"
                 float3 viewDir : TEXCOORD4;
                 float3 worldNormal : TEXCOORD5;
                 #endif
+                #if NOTE
+                float3 localPos : TEXCOORD6;
+                #endif
                 UNITY_VERTEX_OUTPUT_STEREO
+                UNITY_VERTEX_INPUT_INSTANCE_ID // Insert for GPU instancing
             };
 
             float _GlassRefraction;
@@ -104,7 +118,9 @@ Shader "Swifter/GlassTerrain"
             float _SpecularAmount;
             float _SpecularPower;
             float _DiffuseAmount;
+            #if !NOTE
             float4 _Color;
+            #endif
             float _TintAmount;
 
             float _FadeDistanceStart;
@@ -120,11 +136,21 @@ Shader "Swifter/GlassTerrain"
             float _Light1Flutter;
             float _Light1Falloff;
 
+            // Register GPU instanced properties (apply per-note)
+            #if NOTE
+            UNITY_INSTANCING_BUFFER_START(Props)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Cutout)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _CutPlane)
+            UNITY_INSTANCING_BUFFER_END(Props)
+            #endif
+
             v2f vert (appdata v)
             {
                 v2f o;
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -147,6 +173,10 @@ Shader "Swifter/GlassTerrain"
                 float3 viewDir = normalize(viewVector);
                 o.viewDir = viewDir;
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                #endif
+
+                #if NOTE
+                o.localPos = v.vertex.xyz;
                 #endif
 
                 return o;
@@ -202,6 +232,30 @@ Shader "Swifter/GlassTerrain"
             fixed4 frag (v2f i) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+                UNITY_SETUP_INSTANCE_ID(i);
+
+                #if NOTE
+                float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
+                float4 Color = UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
+
+                #if DEBRIS
+                float4 CutPlane = UNITY_ACCESS_INSTANCED_PROP(Props, _CutPlane);
+                float3 samplePoint = i.localPos + CutPlane.xyz * CutPlane.w;
+                float planeDistance = dot(samplePoint, CutPlane.xyz) / length(CutPlane.xyz);
+                const float CRACK_DISTORTION_DIST = 0.2;
+                float crackDistortion = smoothstep(CRACK_DISTORTION_DIST, 0, planeDistance - Cutout * CRACK_DISTORTION_DIST);
+                float crackNoise = (1 - voronoi(i.localPos * crackDistortion * 5).x);
+                float c = planeDistance - Cutout * 0.3 + (crackNoise - 0.5) * 0.1;
+                clip(c);
+                #else
+                float debrisNoise = 1 - voronoi(i.localPos * 2).x * 0.9;
+                float c = 1 - Cutout - debrisNoise;
+                clip(c);
+                #endif
+                #else
+                float4 Color = _Color;
+                #endif
+
                 float2 screenUV = i.screenUV / i.screenUV.w;
                 float4 screenCol = sampleScreen(screenUV);
 
@@ -209,6 +263,10 @@ Shader "Swifter/GlassTerrain"
                 normalClipPos.xy = clamp(normalClipPos.xy, -normalClipPos.w, normalClipPos.w);
                 float4 normalScreenPos = ComputeScreenPos(normalClipPos);
                 float2 normalScreenUV = normalScreenPos.xy / normalScreenPos.w;
+
+                #if DEBRIS
+                normalScreenUV += crackDistortion * crackNoise * 0.5;
+                #endif
 
                 float4 col = sampleScreen(normalScreenUV) * _GlassAbsorption;
 
@@ -237,8 +295,15 @@ Shader "Swifter/GlassTerrain"
                 col = lerp(screenCol, col, fog);
 
                 #if COLORIZE
-                float4 tintedCol = col * _Color;
+                float4 tintedCol = col * Color;
                 col = lerp(col, tintedCol, _TintAmount);
+                #endif
+
+                #if NOTE
+                if (c < 0.02)
+                {
+                    col *= 4;
+                }
                 #endif
 
                 return col;
