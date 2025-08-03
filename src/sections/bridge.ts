@@ -249,6 +249,10 @@ function doNotemods(map: rm.V3Difficulty) {
 
         map.allNotes.filter(approximately(509)).forEach(x => {
             x.track.add(TRANSITION_NOTES_TRACK)
+            x.life = 5 * 2
+            x.animation.dissolve = [[0,0],[1,0.3]]
+            x.animation.scale = [[0,0,0,0],[1,1,1,0.3,'easeOutExpo']]
+            x.animation.offsetWorldRotation = [[-3,0,0,0],[0,0,0,0.3,'easeOutSine']]
         })
 
         rm.assignObjectPrefab(map, {
