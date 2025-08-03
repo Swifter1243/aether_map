@@ -2,7 +2,7 @@ import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
 import { bokeh } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
-import { between } from "../utilities.ts"
+import { between, randomVec3 } from "../utilities.ts"
 
 export function ambient(map: rm.V3Difficulty)
 {
@@ -21,11 +21,15 @@ function doNotemods(map: rm.V3Difficulty) {
 
     const AMBIENT_TRACK = "ambientNote"
 
+    const pathRandom = rm.seededRandom(73)
+
     const isInAmbient = between(START, END)
     map.allNotes.filter(isInAmbient).forEach(x => {
         x.noteJumpMovementSpeed = 10
         x.life = 15
         x.animation.dissolve = [[0,0],[1,0.4]]
+        x.animation.localRotation = [[...randomVec3(30, pathRandom), 0], [0,0,0,0.5]]
+        x.animation.offsetPosition = [[...randomVec3(5, pathRandom), 0], [0,0,0,0.5,'easeOutSine']]
         x.track.add(AMBIENT_TRACK)
     })
 
