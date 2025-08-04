@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
-import { fadeWhite, fakeJump, simpleRotationPath } from "../effects.ts";
+import { fadeWhite, fakeJump, simpleRotationPath, visibility } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
 import { between } from '../utilities.ts'
 
@@ -25,6 +25,9 @@ function doNotemods(map: rm.V3Difficulty) {
     const BUILDUP_MOVEMENT_TRACK = 'buildupMovement'
 
     const buildupRotationMovement = simpleRotationPath(map, BUILDUP_MOVEMENT_TRACK)
+
+    visibility(map, BUILDUP_MOVEMENT_TRACK, 0, false)
+    visibility(map, BUILDUP_MOVEMENT_TRACK, 509, true)
 
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(STRETCHED_NOTE_TRACK)
