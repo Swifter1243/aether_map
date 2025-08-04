@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
-import { fadeWhite } from "../effects.ts";
+import { fadeWhite, fakeJump } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
 import { between } from '../utilities.ts'
 
@@ -26,6 +26,7 @@ function doNotemods(map: rm.V3Difficulty) {
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(STRETCHED_NOTE_TRACK)
         x.life = 8 * 2
+        fakeJump(x, rm.random)
     })
 
     rm.assignTrackParent(map, {
