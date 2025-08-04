@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
-import { fadeWhite, fakeJump } from "../effects.ts";
+import { fadeWhite, fakeJump, simpleRotationPath } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
 import { between } from '../utilities.ts'
 
@@ -22,11 +22,19 @@ export function buildup(map: rm.V3Difficulty)
 function doNotemods(map: rm.V3Difficulty) {
     const STRETCHED_NOTE_TRACK = 'stretchedNote'
     const NOTE_STRETCHER_TRACK = 'noteStretcher'
+    const BUILDUP_MOVEMENT_TRACK = 'buildupMovement'
+
+    const buildupRotationMovement = simpleRotationPath(map, BUILDUP_MOVEMENT_TRACK)
 
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(STRETCHED_NOTE_TRACK)
         x.life = 8 * 2
         fakeJump(x, rm.random)
+        ;(x.animation.offsetPosition as rm.ComplexPointsVec3)[0][1] += 2
+    })
+
+    map.allNotes.filter(between(510, 573)).forEach(x => {
+        x.track.add(BUILDUP_MOVEMENT_TRACK)
     })
 
     rm.assignTrackParent(map, {
@@ -46,13 +54,13 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function speedUpNotes(beat: number) {
-        const duration = 5
+        const duration = 6
         rm.animateTrack(map, {
             track: NOTE_STRETCHER_TRACK,
             beat: beat - duration / 2,
             duration,
             animation: {
-                scale: [[1,1,1,0],[1,1,2,1,'easeInOutExpo']]
+                scale: [[1,1,1,0],[1,1,2,1,'easeInOutCirc']]
             }
         })
     }
@@ -62,7 +70,11 @@ function doNotemods(map: rm.V3Difficulty) {
 
     function section1() {
         stretchNotes(509)
+        buildupRotationMovement(509, [[0,0,360,0],[0,0,180,0.25],[0,0,0,0.5]])
+        buildupRotationMovement(509, [[0,0,180,0],[0,0,0,0.5]], 3, 'easeOutSine')
+
         speedUpNotes(516.75)
+        buildupRotationMovement(516.75 -2, [[20,0,0,0],[-4,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 5, 'easeInOutBack')
 
         map.allNotes.filter(between(510, 525))
     }
