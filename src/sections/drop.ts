@@ -1,6 +1,6 @@
 import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
-import { assignDirectionalRotation, fadeWhite, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath } from '../effects.ts'
+import { assignDirectionalRotation, fadeWhite, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath, visibility } from '../effects.ts'
 import { prefabs } from '../main.ts'
 import { approximately, between, join, randomVec3 } from '../utilities.ts'
 
@@ -116,17 +116,7 @@ function doNotemods(map: rm.V3Difficulty) {
         x.animation.dissolveArrow = x.animation.dissolve
     })
 
-    const visibility = (track: string, beat: number, visible: boolean) =>
-        rm.animateTrack(map, {
-            beat,
-            track,
-            animation: {
-                dissolve: [visible ? 1 : 0],
-                dissolveArrow: [visible ? 1 : 0]
-            },
-        })
-
-    const wheelVisibility = (beat: number, visible: boolean) => visibility(WHEEL_EFFECT_TRACK, beat, visible)
+    const wheelVisibility = (beat: number, visible: boolean) => visibility(map, WHEEL_EFFECT_TRACK, beat, visible)
 
     const dropRotationMovement = simpleRotationPath(map, DROP_MOVEMENT_TRACK)
 
@@ -364,7 +354,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(DROP_DISAPPEARING_TRACK)
         })
 
-        const whiteVisibility = (beat: number, visible: boolean) => visibility(DROP_DISAPPEARING_TRACK, beat, visible)
+        const whiteVisibility = (beat: number, visible: boolean) => visibility(map, DROP_DISAPPEARING_TRACK, beat, visible)
 
         whiteVisibility(117, true)
         whiteVisibility(118 + 1 / 6, false)
@@ -389,8 +379,8 @@ function doNotemods(map: rm.V3Difficulty) {
     function blackSection2() {
         const START_SECTION_TRACK = 'dropStartSection'
 
-        visibility(START_SECTION_TRACK, 0, false)
-        visibility(START_SECTION_TRACK, 133, true)
+        visibility(map, START_SECTION_TRACK, 0, false)
+        visibility(map, START_SECTION_TRACK, 133, true)
 
         map.allNotes.filter(between(134, 171)).forEach(x => {
             x.track.add(BLACK_OUTLINE_TRACK)

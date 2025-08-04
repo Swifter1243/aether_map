@@ -136,3 +136,14 @@ export function simpleRotationPath(map: rm.V3Difficulty, track: string) {
         })
     }
 }
+
+export function visibility(map: rm.V3Difficulty, track: string, beat: number, visible: boolean) {
+    return rm.animateTrack(map, {
+        beat,
+        track,
+        animation: {
+            dissolve: [visible ? 1 : 0],
+            dissolveArrow: [visible ? 1 : 0]
+        },
+    })
+}
