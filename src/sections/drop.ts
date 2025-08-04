@@ -1,6 +1,6 @@
 import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
-import { assignDirectionalRotation, fadeWhite, sequencedShakeRotation, setDirectionalMagnitude } from '../effects.ts'
+import { assignDirectionalRotation, fadeWhite, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath } from '../effects.ts'
 import { prefabs } from '../main.ts'
 import { approximately, between, join, randomVec3 } from '../utilities.ts'
 
@@ -128,17 +128,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
     const wheelVisibility = (beat: number, visible: boolean) => visibility(WHEEL_EFFECT_TRACK, beat, visible)
 
-    function dropRotationMovement(beat: number, rotation: rm.DifficultyPointsVec3, duration = 0, easing: rm.EASE | undefined = undefined) {
-        rm.assignPathAnimation(map, {
-            beat,
-            duration,
-            easing,
-            track: DROP_MOVEMENT_TRACK,
-            animation: {
-                offsetWorldRotation: rotation
-            }
-        })
-    }
+    const dropRotationMovement = simpleRotationPath(map, DROP_MOVEMENT_TRACK)
 
     blackSection()
     whiteSection()

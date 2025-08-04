@@ -122,3 +122,17 @@ export function fakeJump(o: rm.BeatmapGameplayObject, random: RandFunc, jumpInBe
         ]
     }
 }
+
+export function simpleRotationPath(map: rm.V3Difficulty, track: string) {
+    return (beat: number, rotation: rm.DifficultyPointsVec3, duration = 0, easing?: rm.EASE) => {
+        return rm.assignPathAnimation(map, {
+            beat,
+            duration,
+            easing,
+            track,
+            animation: {
+                offsetWorldRotation: rotation
+            }
+        })
+    }
+}
