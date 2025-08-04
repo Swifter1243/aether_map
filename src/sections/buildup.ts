@@ -97,10 +97,36 @@ function doNotemods(map: rm.V3Difficulty) {
         buildupRotationMovement(525, [[0,0,-180,0],[0,0,0,0.5]], 3, 'easeOutSine')
 
         speedUpNotes(533)
-        buildupRotationMovement(533 - 2, [[20,0,0,0],[-4,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 5, 'easeInOutBack')
 
         map.allNotes.filter(between(526, 541)).forEach(x => {
             x.track.add(SECTION_2_TRACK)
         })
+
+        const ROT_START_BEAT = 533
+        const ROT_END_BEAT = 541
+        const ROT_DURATION = ROT_END_BEAT - ROT_START_BEAT
+        const TARGET_ROT_Y = 40
+        const ROT_ITER = TARGET_ROT_Y / Math.floor(ROT_DURATION / 2)
+        let rotZ = 0
+
+        for (let t = ROT_START_BEAT; t < ROT_END_BEAT; t += 2) {
+            const oldRotZ = rotZ
+            rotZ += ROT_ITER
+
+            rm.animateTrack(map, {
+                track: NOTE_STRETCHER_TRACK,
+                beat: t - 1,
+                duration: 2,
+                easing: 'easeInOutExpo',
+                animation: {
+                    rotation: [[-oldRotZ,0,0,0],[-rotZ,0,0,1]]
+                }
+            })
+
+            const LEAD_IN_TIME = 0.5
+
+            buildupRotationMovement(t - LEAD_IN_TIME, [[30,0,0,0],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+            buildupRotationMovement(t, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
+        }
     }
 }
