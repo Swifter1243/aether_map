@@ -26,9 +26,6 @@ function doNotemods(map: rm.V3Difficulty) {
 
     const buildupRotationMovement = simpleRotationPath(map, BUILDUP_MOVEMENT_TRACK)
 
-    visibility(map, BUILDUP_MOVEMENT_TRACK, 0, false)
-    visibility(map, BUILDUP_MOVEMENT_TRACK, 509, true)
-
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(STRETCHED_NOTE_TRACK)
         x.life = 8 * 2
@@ -72,6 +69,11 @@ function doNotemods(map: rm.V3Difficulty) {
     section2()
 
     function section1() {
+        const SECTION_1_TRACK = 'buildupSection1'
+
+        visibility(map, SECTION_1_TRACK, 0, false)
+        visibility(map, SECTION_1_TRACK, 509, true)
+
         stretchNotes(509)
         buildupRotationMovement(509, [[0,0,360,0],[0,0,180,0.25],[0,0,0,0.5]])
         buildupRotationMovement(509, [[0,0,180,0],[0,0,0,0.5]], 3, 'easeOutSine')
@@ -79,10 +81,26 @@ function doNotemods(map: rm.V3Difficulty) {
         speedUpNotes(516.75)
         buildupRotationMovement(516.75 -2, [[20,0,0,0],[-4,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 5, 'easeInOutBack')
 
-        map.allNotes.filter(between(510, 525))
+        map.allNotes.filter(between(510, 525)).forEach(x => {
+            x.track.add(SECTION_1_TRACK)
+        })
     }
 
     function section2() {
-        map.allNotes.filter(between(526, 541))
+        const SECTION_2_TRACK = 'buildupSection2'
+
+        visibility(map, SECTION_2_TRACK, 0, false)
+        visibility(map, SECTION_2_TRACK, 525, true)
+
+        stretchNotes(525)
+        buildupRotationMovement(525, [[0,0,-360,0],[0,0,-180,0.25],[0,0,0,0.5]])
+        buildupRotationMovement(525, [[0,0,-180,0],[0,0,0,0.5]], 3, 'easeOutSine')
+
+        speedUpNotes(533)
+        buildupRotationMovement(533 - 2, [[20,0,0,0],[-4,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 5, 'easeInOutBack')
+
+        map.allNotes.filter(between(526, 541)).forEach(x => {
+            x.track.add(SECTION_2_TRACK)
+        })
     }
 }
