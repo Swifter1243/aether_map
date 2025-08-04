@@ -20,11 +20,11 @@ export function buildup(map: rm.V3Difficulty)
 }
 
 function doNotemods(map: rm.V3Difficulty) {
-    const STRETCHED_NOTE_TRACK = 'stretchedNote'
-    const NOTE_STRETCHER_TRACK = 'noteStretcher'
-    const BUILDUP_MOVEMENT_TRACK = 'buildupMovement'
+    const STRETCHED_NOTE_TRACK = 'buildupStretchedNote'
+    const NOTE_STRETCHER_TRACK = 'buildupNoteStretcher'
+    const BUILDUP_NOTE = 'buildupNote'
 
-    const buildupRotationMovement = simpleRotationPath(map, BUILDUP_MOVEMENT_TRACK)
+    const buildupRotationMovement = simpleRotationPath(map, BUILDUP_NOTE)
 
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(STRETCHED_NOTE_TRACK)
@@ -34,7 +34,15 @@ function doNotemods(map: rm.V3Difficulty) {
     })
 
     map.allNotes.filter(between(510, 573)).forEach(x => {
-        x.track.add(BUILDUP_MOVEMENT_TRACK)
+        x.track.add(BUILDUP_NOTE)
+    })
+
+    rm.assignObjectPrefab(map, {
+        colorNotes: {
+            track: BUILDUP_NOTE,
+            asset: prefabs['black outline note'].path,
+            debrisAsset: prefabs['black outline note debris'].path
+        }
     })
 
     rm.assignTrackParent(map, {
