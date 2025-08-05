@@ -38,7 +38,8 @@ function doNotemods(map: rm.V3Difficulty) {
             colorNotes: {
                 track: OUTRO_NOTE_TRACK,
                 asset: prefabs['white outline note'].path,
-                debrisAsset: prefabs['white outline note debris'].path
+                debrisAsset: prefabs['white outline note debris'].path,
+                anyDirectionAsset: prefabs['white outline note dot'].path
             }
         })
     }
@@ -49,7 +50,8 @@ function doNotemods(map: rm.V3Difficulty) {
             colorNotes: {
                 track: OUTRO_NOTE_TRACK,
                 asset: prefabs['black outline note'].path,
-                debrisAsset: prefabs['black outline note debris'].path
+                debrisAsset: prefabs['black outline note debris'].path,
+                anyDirectionAsset: prefabs['black outline note dot'].path
             }
         })
     }

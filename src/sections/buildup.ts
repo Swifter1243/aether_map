@@ -49,7 +49,8 @@ function doNotemods(map: rm.V3Difficulty) {
         colorNotes: {
             track: BUILDUP_NOTE,
             asset: prefabs['black outline note'].path,
-            debrisAsset: prefabs['black outline note debris'].path
+            debrisAsset: prefabs['black outline note debris'].path,
+            anyDirectionAsset: prefabs['black outline note dot'].path
         }
     })
 
