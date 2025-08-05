@@ -312,7 +312,7 @@ Shader "Swifter/GlassTerrain"
                 #if FRESNEL
                 float fresnel = abs(dot(i.viewDir, i.worldNormal));
                 float fresnelAmt = pow(1 - fresnel, _FresnelPower);
-                col += fresnelAmt * float4(_Color.rgb, _FresnelGlow) * _FresnelAmount;
+                col += fresnelAmt * float4(Color.rgb, _FresnelGlow) * _FresnelAmount;
                 #endif
                 #endif
 
