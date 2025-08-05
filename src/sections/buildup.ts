@@ -138,11 +138,11 @@ function doNotemods(map: rm.V3Difficulty) {
 
         const ROT_START_BEAT = 533
         const ROT_END_BEAT = 541
-        const TARGET_ROT_Y = -40
+        const TARGET_ROT_Y = -30
 
         for (let beat = ROT_START_BEAT; beat < ROT_END_BEAT; beat += 2) {
             const t = rm.inverseLerp(ROT_START_BEAT, ROT_END_BEAT, beat)
-            const remap = (x: number) => rm.easing.easeInSine(x)
+            const remap = (x: number) => x
             const slope = dx(remap)
             const t2 = remap(t)
             const rot = t2 * TARGET_ROT_Y
