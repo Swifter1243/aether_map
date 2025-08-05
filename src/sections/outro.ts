@@ -24,7 +24,7 @@ function doNotemods(map: rm.V3Difficulty) {
     const wheelFromBeat = beatsToObjectSpawnLife(WHEEL_LIFE)
 
     const FLOAT_EFFECT_TRACK = 'outroFloat'
-    const FLOAT_LIFE = 16
+    const FLOAT_LIFE = 30
     const floatFromBeat = beatsToObjectSpawnLife(FLOAT_LIFE)
 
     applyWhiteNotes(0)
