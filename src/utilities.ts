@@ -170,3 +170,12 @@ export function beatsToObjectSpawnLife(param0: rm.BeatmapGameplayObject | number
         return (beat: number) => rm.inverseLerp(param0.life, 0, beat) * 0.5
     }
 }
+
+export function dx(fn: (x: number) => number) {
+    return (x: number) => {
+        const EPSILON = 1e-3
+        const y1 = fn(x)
+        const y2 = fn(x + EPSILON)
+        return (y2 - y1) / (EPSILON)
+    }
+}

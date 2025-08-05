@@ -2,7 +2,7 @@ import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
 import { fadeWhite, applyFakeJumps, simpleRotationPath, visibility, setFakeJumps } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
-import { between } from '../utilities.ts'
+import { beatsToObjectSpawnLife, between, dx } from '../utilities.ts'
 
 export function buildup(map: rm.V3Difficulty)
 {
@@ -21,7 +21,7 @@ export function buildup(map: rm.V3Difficulty)
 
 function doNotemods(map: rm.V3Difficulty) {
     const STRETCHED_NOTE_TRACK = 'buildupStretchedNote'
-    const NOTE_STRETCHER_TRACK = 'buildupNoteStretcher'
+    const NOTE_LIFT_TRACK = 'buildupNoteLift'
     const BUILDUP_NOTE = 'buildupNote'
     const JUMPS_CONTEXT = setFakeJumps(map, 509, {
         objectLife: 8 * 2,
@@ -49,30 +49,37 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
-    rm.assignTrackParent(map, {
-        childrenTracks: [STRETCHED_NOTE_TRACK],
-        parentTrack: NOTE_STRETCHER_TRACK
+    const toBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
+    const SPEED_UP_ANIMATION: rm.RuntimeDifficultyPointsVec3 = [[0,0,400,0],[0,0,0,toBeat(JUMPS_CONTEXT.jumpInBeat)]]
+
+    rm.assignPathAnimation(map, {
+        track: STRETCHED_NOTE_TRACK,
+        animation: {
+            offsetPosition: SPEED_UP_ANIMATION
+        }
     })
 
-    function stretchNotes(beat: number) {
-        rm.animateTrack(map, {
-            track: NOTE_STRETCHER_TRACK,
+    function slowDownNotes(beat: number) {
+        rm.assignPathAnimation(map, {
+            track: STRETCHED_NOTE_TRACK,
             beat,
             duration: 3,
+            easing: 'easeOutCirc',
             animation: {
-                scale: [[1,1,3,0],[1,1,1,1,'easeOutCirc']]
+                offsetPosition: [0,0,0]
             }
         })
     }
 
     function speedUpNotes(beat: number) {
         const duration = 6
-        rm.animateTrack(map, {
-            track: NOTE_STRETCHER_TRACK,
+        rm.assignPathAnimation(map, {
+            track: STRETCHED_NOTE_TRACK,
             beat: beat - duration / 2,
             duration,
+            easing: 'easeInOutSine',
             animation: {
-                scale: [[1,1,1,0],[1,1,2,1,'easeInOutCirc']]
+                offsetPosition: SPEED_UP_ANIMATION
             }
         })
     }
@@ -86,7 +93,7 @@ function doNotemods(map: rm.V3Difficulty) {
         visibility(map, SECTION_1_TRACK, 0, false)
         visibility(map, SECTION_1_TRACK, 509, true)
 
-        stretchNotes(509)
+        slowDownNotes(509)
         buildupRotationMovement(509, [[0,0,360,0],[0,0,180,0.25],[0,0,0,0.5]])
         buildupRotationMovement(509, [[0,0,180,0],[0,0,0,0.5]], 3, 'easeOutSine')
 
@@ -104,7 +111,7 @@ function doNotemods(map: rm.V3Difficulty) {
         visibility(map, SECTION_2_TRACK, 0, false)
         visibility(map, SECTION_2_TRACK, 525, true)
 
-        stretchNotes(525)
+        slowDownNotes(525)
         buildupRotationMovement(525, [[0,0,-360,0],[0,0,-180,0.25],[0,0,0,0.5]])
         buildupRotationMovement(525, [[0,0,-180,0],[0,0,0,0.5]], 3, 'easeOutSine')
 
@@ -112,33 +119,34 @@ function doNotemods(map: rm.V3Difficulty) {
 
         map.allNotes.filter(between(526, 541)).forEach(x => {
             x.track.add(SECTION_2_TRACK)
+            x.track.add(NOTE_LIFT_TRACK)
         })
 
         const ROT_START_BEAT = 533
         const ROT_END_BEAT = 541
-        const ROT_DURATION = ROT_END_BEAT - ROT_START_BEAT
-        const TARGET_ROT_Y = 40
-        const ROT_ITER = TARGET_ROT_Y / Math.floor(ROT_DURATION / 2)
-        let rotZ = 0
+        const TARGET_ROT_Y = -40
 
-        for (let t = ROT_START_BEAT; t < ROT_END_BEAT; t += 2) {
-            const oldRotZ = rotZ
-            rotZ += ROT_ITER
+        for (let beat = ROT_START_BEAT; beat < ROT_END_BEAT; beat += 2) {
+            const t = rm.inverseLerp(ROT_START_BEAT, ROT_END_BEAT, beat)
+            const remap = (x: number) => rm.easing.easeInSine(x)
+            const slope = dx(remap)
+            const t2 = remap(t)
+            const rot = t2 * TARGET_ROT_Y
 
-            rm.animateTrack(map, {
-                track: NOTE_STRETCHER_TRACK,
-                beat: t - 1,
+            rm.assignPathAnimation(map, {
+                track: STRETCHED_NOTE_TRACK,
+                beat: beat - 1,
                 duration: 2,
                 easing: 'easeInOutExpo',
                 animation: {
-                    rotation: [[-oldRotZ,0,0,0],[-rotZ,0,0,1]]
+                    offsetWorldRotation: [rot, 0, 0]
                 }
             })
 
-            const LEAD_IN_TIME = 0.5
+            const LEAD_IN_TIME = 0.75
 
-            buildupRotationMovement(t - LEAD_IN_TIME, [[30,0,0,0],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
-            buildupRotationMovement(t, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
+            buildupRotationMovement(beat - LEAD_IN_TIME, [[30 * slope(t),0,0,0],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+            buildupRotationMovement(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
         }
     }
 }
