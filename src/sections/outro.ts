@@ -58,7 +58,7 @@ function doNotemods(map: rm.V3Difficulty) {
         track: WHEEL_EFFECT_TRACK,
         beat: 575 - 10,
         animation: {
-            dissolve: [[0,wheelFromBeat(4)],[1,0.5]]
+            dissolve: [[0,wheelFromBeat(4)],[1,wheelFromBeat(2)]]
         }
     })
 
@@ -87,7 +87,7 @@ function doNotemods(map: rm.V3Difficulty) {
     applyWhiteNotes(581)
 
     map.allNotes.filter(between(583, 589)).forEach(x => {
-        noteHop(x)
+        noteHop(x, 10)
         assignDirectionalRotation(x)
     })
 }
