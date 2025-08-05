@@ -2,6 +2,7 @@ import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
 import { fadeWhite, applyFakeJumps, simpleRotationPath, visibility, setFakeJumps, assignDirectionalRotation } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
+import { randomVec3 } from '../utilities.ts'
 import { beatsToObjectSpawnLife, between, derivativeFunction } from '../utilities.ts'
 
 export function buildup(map: rm.V3Difficulty)
@@ -22,6 +23,7 @@ export function buildup(map: rm.V3Difficulty)
 function doNotemods(map: rm.V3Difficulty) {
     const SPEED_TRACK = 'buildupSpeed'
     const BUILDUP_NOTE = 'buildupNote'
+    const TARGET_ROT_Y = -30
     const JUMPS_CONTEXT = setFakeJumps(map, 509, {
         objectLife: 8 * 2,
         jumpInBeat: 3,
@@ -35,12 +37,12 @@ function doNotemods(map: rm.V3Difficulty) {
         x.track.add(SPEED_TRACK)
         x.life = JUMPS_CONTEXT.objectLife
         applyFakeJumps(x, rm.random, JUMPS_CONTEXT)
+        x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - fromBeat(1)]]
+        assignDirectionalRotation(x)
     })
 
     map.allNotes.filter(between(510, 573)).forEach(x => {
         x.track.add(BUILDUP_NOTE)
-        assignDirectionalRotation(x)
-        x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - fromBeat(1)]]
     })
 
     rm.assignObjectPrefab(map, {
@@ -97,6 +99,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
     section1()
     section2()
+    section3()
 
     function section1() {
         const SECTION_1_TRACK = 'buildupSection1'
@@ -142,7 +145,6 @@ function doNotemods(map: rm.V3Difficulty) {
 
         const ROT_START_BEAT = 533
         const ROT_END_BEAT = 541
-        const TARGET_ROT_Y = -30
 
         for (let beat = ROT_START_BEAT; beat < ROT_END_BEAT; beat += 2) {
             const t = rm.inverseLerp(ROT_START_BEAT, ROT_END_BEAT, beat)
@@ -160,5 +162,37 @@ function doNotemods(map: rm.V3Difficulty) {
             }
             recoil(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
         }
+
+        rm.assignPathAnimation(map, {
+            track: BUILDUP_NOTE,
+            beat: ROT_END_BEAT,
+            animation: {
+                offsetPosition: [0,0,0],
+                offsetWorldRotation: [0,0,0]
+            }
+        })
+    }
+
+    function section3() {
+        const SECTION_3_TRACK = 'buildupSection3'
+
+        visibility(map, SECTION_3_TRACK, 0, false)
+        visibility(map, SECTION_3_TRACK, 541, true)
+
+        const rand = rm.seededRandom(30)
+
+        map.allNotes.filter(between(542, 574)).forEach(x => {
+            x.track.add(SECTION_3_TRACK)
+
+            const t = rm.inverseLerp(542, 574, x.beat)
+            const rot = TARGET_ROT_Y * (1 - t)
+
+            x.noteJumpMovementSpeed = 10
+            x.life = 20 * 2
+            x.worldRotation = [rot, 0, 0]
+            x.animation.offsetWorldRotation = [[-rot,rand(-2, 2),0,0],[0,0,0,0.5]]
+            x.animation.localRotation = [[...randomVec3(180,rand),0],[0,0,0,0.5]]
+            x.animation.scale = [[0,0,0,0.1],[1,1,1,0.5,'easeOutSine']]
+        })
     }
 }
