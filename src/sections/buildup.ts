@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
-import { fadeWhite, fakeJump, simpleRotationPath, visibility } from "../effects.ts";
+import { fadeWhite, applyFakeJumps, simpleRotationPath, visibility, setFakeJumps } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
 import { between } from '../utilities.ts'
 
@@ -23,14 +23,18 @@ function doNotemods(map: rm.V3Difficulty) {
     const STRETCHED_NOTE_TRACK = 'buildupStretchedNote'
     const NOTE_STRETCHER_TRACK = 'buildupNoteStretcher'
     const BUILDUP_NOTE = 'buildupNote'
+    const JUMPS_CONTEXT = setFakeJumps(map, 509, {
+        objectLife: 8 * 2,
+        jumpInBeat: 4,
+        jumpInDuration: 4
+    })
 
     const buildupRotationMovement = simpleRotationPath(map, BUILDUP_NOTE)
 
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(STRETCHED_NOTE_TRACK)
-        x.life = 8 * 2
-        fakeJump(x, rm.random)
-        ;(x.animation.offsetPosition as rm.ComplexPointsVec3)[0][1] += 2
+        x.life = JUMPS_CONTEXT.objectLife
+        applyFakeJumps(x, rm.random, JUMPS_CONTEXT)
     })
 
     map.allNotes.filter(between(510, 573)).forEach(x => {

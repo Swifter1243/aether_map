@@ -160,3 +160,13 @@ export function sequencedRotation(map: rm.V3Difficulty, track: string, start: nu
         })
     }
 }
+
+export function beatsToObjectSpawnLife(object: rm.BeatmapGameplayObject): (b: number) => number
+export function beatsToObjectSpawnLife(life: number): (b: number) => number
+export function beatsToObjectSpawnLife(param0: rm.BeatmapGameplayObject | number): (b: number) => number {
+    if (typeof param0 === 'number') {
+        return (beat: number) => rm.inverseLerp(param0, 0, beat) * 0.5
+    } else {
+        return (beat: number) => rm.inverseLerp(param0.life, 0, beat) * 0.5
+    }
+}

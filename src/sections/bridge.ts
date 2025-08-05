@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts"
 import { rm } from "../deps.ts"
-import { fakeJump, generateShake } from "../effects.ts"
+import { applyFakeJumps, generateShake, setFakeJumps } from "../effects.ts"
 import { lightShow, prefabs } from "../main.ts"
 import { approximately, between, pointsBeatsToNormalized } from "../utilities.ts"
 
@@ -34,6 +34,11 @@ function doNotemods(map: rm.V3Difficulty) {
         const DYNAMIC_GEMSTONE_TRACK = "dynamicGemstone"
         const STATIC_WIREFRAME_TRACK = "staticWireframe"
         const PAUSE_TRACK = "pauseTrack"
+        const JUMPS_CONTEXT = setFakeJumps(map, TIMES.DROP_END, {
+            objectLife: 30 * 2,
+            jumpInBeat: 4,
+            jumpInDuration: 4
+        })
         const pauseNotes = map.allNotes.filter(isInPauses)
 
         rm.animateTrack(map, {
@@ -84,7 +89,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
         pauseNotes.forEach((x) => {
             setupAttributes()
-            fakeJump(x, rand)
+            applyFakeJumps(x, rand, JUMPS_CONTEXT)
 
             const pauseTrack = getNextPauseTrack()
             x.track.add(pauseTrack)
@@ -179,7 +184,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
                 x.animation.offsetWorldRotation = [[0, rand(-1, 1) * 2, 0, 0], [0, 0, 0, 0.5]]
                 x.noteJumpMovementSpeed = 12
-                x.life = 30 * 2
+                x.life = JUMPS_CONTEXT.objectLife
                 x.track.add(PAUSE_TRACK)
             }
 
