@@ -8,5 +8,6 @@ export const TIMES = {
     DROP_END: 261,
     BRIDGE: 373,
     BUILDUP: 509,
-    OUTRO: 573
+    OUTRO: 573,
+    MAP_END: 657
 } as const

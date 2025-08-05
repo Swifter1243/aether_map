@@ -5,4 +5,6 @@ import { prefabs } from "../main.ts";
 export function outro(map: rm.V3Difficulty)
 {
     const outroScene = prefabs.outro.instantiate(map, TIMES.OUTRO)
+
+    outroScene.destroyObject(TIMES.MAP_END)
 }
