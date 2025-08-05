@@ -5,7 +5,7 @@ import { simpleRotationPath } from '../effects.ts'
 import { assignDirectionalRotation } from '../effects.ts'
 import { noteHop, wheelEffect } from '../effects.ts'
 import { prefabs } from "../main.ts";
-import { approximately, beatsToObjectSpawnLife, between } from '../utilities.ts'
+import { approximately, beatsToObjectSpawnLife, between, randomVec3 } from '../utilities.ts'
 
 export function outro(map: rm.V3Difficulty)
 {
@@ -88,8 +88,23 @@ function doNotemods(map: rm.V3Difficulty) {
 
     applyWhiteNotes(581)
 
+    outroRotationMovement(581, [[-4,-3,0,0],[0,0,0,0.5]])
+    outroRotationMovement(581, [[-4,-3,30,0],[0,0,0,0.5]], 2, 'easeOutCirc')
+    map.allNotes.filter(approximately(583)).forEach(x => {
+        x.animation.offsetWorldRotation = [[...randomVec3(3, rm.random), 0], [0,0,0,0.5,'easeOutCirc']]
+    })
+
+    outroRotationMovement(585, [[-4,-3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
+
     map.allNotes.filter(between(583, 589)).forEach(x => {
-        noteHop(x, 10)
+        if (between(585, 587)(x)) {
+            const dist = x.beat - 583
+            noteHop(x, 5 * dist, dist)
+        }
+        else {
+            noteHop(x, 10)
+        }
+
         assignDirectionalRotation(x)
     })
 }
