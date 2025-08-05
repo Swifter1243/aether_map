@@ -170,11 +170,8 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(approximately(575 + 32)).forEach(x => {
             noteHop(x)
         })
-
-        outroRotationMovement(573 + 32, [[4,-4,0,0],[0,0,0,0.5]])
-        outroRotationMovement(573 + 32, [0,0,0], 2, 'easeOutBack')
         
-        wheelEffect(map, 10, [575 + 32, 576 + 32, 578 + 32, 579 + 32, 581 + 32])
+        wheelEffect(map, -10, [575 + 32, 576 + 32, 578 + 32, 579 + 32, 581 + 32])
         map.allNotes.filter(between(576 + 32, 581 + 32)).forEach(x => {
             x.life = WHEEL_LIFE
             x.track.add(WHEEL_EFFECT_TRACK)
@@ -227,10 +224,10 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(FLOAT_EFFECT_TRACK)
         })
 
-        outroRotationMovement(591 + 32, [[-30,-3,0,0],[0,0,0,0.5]])
-        outroRotationMovement(591 + 32, [[14,-3,30,0],[0,0,0,0.5]], 4, 'easeOutCirc')
+        outroRotationMovement(591 + 32, [[-30,3,0,0],[0,0,0,0.5]])
+        outroRotationMovement(591 + 32, [[14,3,30,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 
-        outroRotationMovement(597 + 32, [[10,-3,20,0],[0,0,0,0.5]], 4, 'easeOutBack')
+        outroRotationMovement(597 + 32, [[10,3,20,0],[0,0,0,0.5]], 4, 'easeOutBack')
 
         outroRotationMovement(605 + 32, [0,0,0], 2, 'easeOutCirc')
     }
