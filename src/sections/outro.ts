@@ -146,10 +146,92 @@ function doNotemods(map: rm.V3Difficulty) {
 
         outroRotationMovement(597, [[10,-3,20,0],[0,0,0,0.5]], 4, 'easeOutBack')
 
-        outroRotationMovement(605, [0,0,0], 4, 'easeOutBack')
+        outroRotationMovement(605, [0,0,0], 2, 'easeOutCirc')
     }
 
     function section2() {
+        rm.assignPathAnimation(map, {
+            track: WHEEL_EFFECT_TRACK,
+            beat: 575 - 10 + 32,
+            animation: {
+                dissolve: [[0,wheelFromBeat(4)],[1,wheelFromBeat(2)]]
+            }
+        })
 
+        rm.assignPathAnimation(map, {
+            track: WHEEL_EFFECT_TRACK,
+            beat: 575 + 32,
+            animation: {
+                dissolve: [1]
+            }
+        })
+
+        applyBlackNotes(575 + 32)
+        map.allNotes.filter(approximately(575 + 32)).forEach(x => {
+            noteHop(x)
+        })
+
+        outroRotationMovement(573 + 32, [[4,-4,0,0],[0,0,0,0.5]])
+        outroRotationMovement(573 + 32, [0,0,0], 2, 'easeOutBack')
+        
+        wheelEffect(map, 10, [575 + 32, 576 + 32, 578 + 32, 579 + 32, 581 + 32])
+        map.allNotes.filter(between(576 + 32, 581 + 32)).forEach(x => {
+            x.life = WHEEL_LIFE
+            x.track.add(WHEEL_EFFECT_TRACK)
+        })
+
+        applyWhiteNotes(581 + 32)
+
+        outroRotationMovement(581 + 32, [[-4,-3,0,0],[0,0,0,0.5]])
+        outroRotationMovement(581 + 32, [[-4,-3,30,0],[0,0,0,0.5]], 2, 'easeOutCirc')
+        map.allNotes.filter(approximately(583 + 32)).forEach(x => {
+            x.animation.offsetWorldRotation = [[...randomVec3(3, rm.random), 0], [0,0,0,0.5,'easeOutCirc']]
+        })
+
+        outroRotationMovement(585 + 32, [[-4,-3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
+
+        map.allNotes.filter(between(583 + 32, 589 + 32)).forEach(x => {
+            if (between(585 + 32, 587 + 32)(x)) {
+                const dist = x.beat - (583 + 32)
+                noteHop(x, 5 * dist, dist)
+            }
+            else {
+                noteHop(x, 10)
+            }
+
+            assignDirectionalRotation(x)
+        })
+
+        rm.assignPathAnimation(map, {
+            track: FLOAT_EFFECT_TRACK,
+            beat: 591 - 10 + 32,
+            animation: {
+                dissolve: [[0,floatFromBeat(4)],[1,floatFromBeat(2)]]
+            }
+        })
+
+        rm.assignPathAnimation(map, {
+            track: FLOAT_EFFECT_TRACK,
+            beat: 591 + 32,
+            animation: {
+                dissolve: [[0,0],[1,0.5-floatFromBeat(1)]]
+            }
+        })
+
+        map.allNotes.filter(approximately(591 + 32)).forEach(x => {
+            noteHop(x)
+        })
+
+        map.allNotes.filter(between(592 + 32, 605 + 32)).forEach(x => {
+            x.life = FLOAT_LIFE
+            x.track.add(FLOAT_EFFECT_TRACK)
+        })
+
+        outroRotationMovement(591 + 32, [[-30,-3,0,0],[0,0,0,0.5]])
+        outroRotationMovement(591 + 32, [[14,-3,30,0],[0,0,0,0.5]], 4, 'easeOutCirc')
+
+        outroRotationMovement(597 + 32, [[10,-3,20,0],[0,0,0,0.5]], 4, 'easeOutBack')
+
+        outroRotationMovement(605 + 32, [0,0,0], 2, 'easeOutCirc')
     }
 }
