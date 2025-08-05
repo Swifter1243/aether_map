@@ -62,7 +62,11 @@ function doNotemods(map: rm.V3Difficulty) {
     rm.assignPathAnimation(map, {
         track: BUILDUP_NOTE,
         animation: {
-            offsetPosition: [[0,5,0,0],[0,0,0,0.5]]
+            offsetPosition: [
+                [0,-10,0,0],
+                [0,-4,0,fromBeat(JUMPS_CONTEXT.jumpInBeat + JUMPS_CONTEXT.jumpInDuration)],
+                [0,0,0,fromBeat(JUMPS_CONTEXT.jumpInBeat),'easeInQuad']
+            ]
         }
     })
 
@@ -102,7 +106,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
         slowDownNotes(509)
         buildupRotationMovement(509, [[0,0,360,0],[0,0,180,0.25],[0,0,0,0.5]])
-        buildupRotationMovement(509, [[0,0,180,0],[0,0,0,0.5]], 3, 'easeOutSine')
+        buildupRotationMovement(509, [[0,0,180,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 
         speedUpNotes(516.75)
         buildupRotationMovement(516.75 -2, [[20,0,0,0],[-4,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 5, 'easeInOutBack')
@@ -125,7 +129,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
         slowDownNotes(525)
         buildupRotationMovement(525, [[0,0,-360,0],[0,0,-180,0.25],[0,0,0,0.5]])
-        buildupRotationMovement(525, [[0,0,-180,0],[0,0,0,0.5]], 3, 'easeOutSine')
+        buildupRotationMovement(525, [[0,0,-180,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 
         speedUpNotes(533)
         buildupRotationMovement(533 -2, [0,0,0], 5, 'easeInOutBack')
