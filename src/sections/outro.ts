@@ -60,6 +60,18 @@ function doNotemods(map: rm.V3Difficulty) {
         })
     }
 
+    function applyTerrainNotes(beat: number) {
+        rm.assignObjectPrefab(map, {
+            beat,
+            colorNotes: {
+                track: OUTRO_NOTE_TRACK,
+                asset: prefabs['terrain note'].path,
+                debrisAsset: prefabs['terrain note debris'].path,
+                anyDirectionAsset: prefabs['terrain note dot'].path
+            }
+        })
+    }
+
     section1()
     section2()
 
@@ -141,6 +153,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(FLOAT_EFFECT_TRACK)
         })
 
+        applyTerrainNotes(591)
         outroRotationMovement(591, [[-30,-3,0,0],[0,0,0,0.5]])
         outroRotationMovement(591, [[14,-3,30,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 
@@ -224,6 +237,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(FLOAT_EFFECT_TRACK)
         })
 
+        applyTerrainNotes(591 + 32)
         outroRotationMovement(591 + 32, [[-30,3,0,0],[0,0,0,0.5]])
         outroRotationMovement(591 + 32, [[14,3,30,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 

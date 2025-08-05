@@ -64,7 +64,7 @@ Material:
     - _Cutout: 0
     - _Debris: 1
     - _DetailNormalMapScale: 1
-    - _DiffuseAmount: 1
+    - _DiffuseAmount: 0.35
     - _DstBlend: 0
     - _FogEnabled: 0
     - _FogFar: 400
@@ -85,9 +85,9 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PastelAmount: 0.153
+    - _PastelAmount: 0.184
     - _SmoothnessTextureChannel: 0
-    - _SpecularAmount: 1
+    - _SpecularAmount: 0
     - _SpecularHighlights: 1
     - _SpecularPower: 16
     - _SrcBlend: 1
