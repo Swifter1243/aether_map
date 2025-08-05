@@ -71,6 +71,8 @@ Shader "Swifter/OutlineNote"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                UNITY_SETUP_INSTANCE_ID(i);
+
                 float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
 
                 #if DEBRIS
