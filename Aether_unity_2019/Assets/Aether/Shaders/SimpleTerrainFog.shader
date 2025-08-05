@@ -6,6 +6,13 @@ Shader "Swifter/SimpleTerrainFog"
         _SpecularPower ("Specular Power", Float) = 16
         _DiffuseAmount ("Diffuse Amount", Float) = 1
         _Color ("Base Color", Color) = (1,1,1)
+        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
+
+        [Header(Note)][Space(10)]
+        [Toggle(NOTE)] _IsNote ("Is Note", Int) = 0
+        _Cutout ("Cutout", Range(0,1)) = 0
+        [Toggle(DEBRIS)] _Debris ("Debris", Int) = 0
+        _CutPlane ("Cut Plane", Vector) = (0, 0, 1, 0)
 
         [Header(Ambient)][Space(10)]
         [Toggle(AMBIENT_ENABLED)] _AmbientEnabled ("Enabled", Int) = 0
@@ -46,6 +53,7 @@ Shader "Swifter/SimpleTerrainFog"
         {
             "RenderType"="Opaque"
         }
+        Cull [_Cull]
 
         Stencil
         {
@@ -66,6 +74,8 @@ Shader "Swifter/SimpleTerrainFog"
             #pragma shader_feature LIGHT_1_ENABLED
             #pragma shader_feature FOG_ENABLED
             #pragma shader_feature FOG_HEIGHT_FALLOFF
+            #pragma shader_feature NOTE
+            #pragma shader_feature DEBRIS
 
             #include "UnityCG.cginc"
             #include "UnityStandardParticleInstancing.cginc"
@@ -90,13 +100,19 @@ Shader "Swifter/SimpleTerrainFog"
                 float3 viewDir : TEXCOORD1;
                 float3 worldNormal : TEXCOORD2;
                 float3 worldPos : TEXCOORD3;
+                #if NOTE
+                float3 localPos : TEXCOORD4;
+                #endif
+                UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
             float _SpecularAmount;
             float _SpecularPower;
             float _DiffuseAmount;
+            #if !NOTE
             float4 _Color;
+            #endif
 
             float3 _AmbientColor;
             float _AmbientStrength;
@@ -117,11 +133,20 @@ Shader "Swifter/SimpleTerrainFog"
             float _FogZEnd;
             float _FogHeightFalloffSlope;
 
+            #if NOTE
+            UNITY_INSTANCING_BUFFER_START(Props)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Cutout)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _CutPlane)
+            UNITY_INSTANCING_BUFFER_END(Props)
+            #endif
+
             v2f vert(appdata v)
             {
                 v2f o;
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -142,6 +167,10 @@ Shader "Swifter/SimpleTerrainFog"
                 o.viewDir = viewDir;
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.worldPos = worldPos;
+
+                #if NOTE
+                o.localPos = v.vertex.xyz;
+                #endif
 
                 return o;
             }
@@ -193,6 +222,29 @@ Shader "Swifter/SimpleTerrainFog"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                UNITY_SETUP_INSTANCE_ID(i);
+
+                #if NOTE
+                float4 Color = UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
+
+                float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
+                float c = 0;
+
+                #if DEBRIS
+                    float4 CutPlane = UNITY_ACCESS_INSTANCED_PROP(Props, _CutPlane);
+                    float3 samplePoint = i.localPos + CutPlane.xyz * CutPlane.w;
+                    float planeDistance = dot(samplePoint, CutPlane.xyz) / length(CutPlane.xyz);
+                    c = planeDistance - Cutout * 0.4;
+                #else
+                    float debrisNoise = 1 - voronoi(i.localPos * 2).x / 0.8;
+                    c = 1 - Cutout - debrisNoise;
+                #endif
+
+                clip(c);
+                #else
+                float4 Color = _Color;
+                #endif
+
                 float3 col = 0;
 
                 #if AMBIENT_ENABLED
@@ -215,7 +267,7 @@ Shader "Swifter/SimpleTerrainFog"
                 col = lerp(col, _FogColor, fog);
                 #endif
 
-                col *= _Color.rgb;
+                col *= Color.rgb;
 
                 return float4(col, 0);
             }
