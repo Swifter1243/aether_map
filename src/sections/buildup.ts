@@ -151,7 +151,9 @@ function doNotemods(map: rm.V3Difficulty) {
 
             const LEAD_IN_TIME = 0.5
 
-            recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(3),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+            if (beat > ROT_START_BEAT) {
+                recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(3),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+            }
             recoil(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
         }
     }
