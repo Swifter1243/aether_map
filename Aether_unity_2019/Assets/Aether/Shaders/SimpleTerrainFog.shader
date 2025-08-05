@@ -5,6 +5,7 @@ Shader "Swifter/SimpleTerrainFog"
         _SpecularAmount ("Specular Amount", Float) = 1
         _SpecularPower ("Specular Power", Float) = 16
         _DiffuseAmount ("Diffuse Amount", Float) = 1
+        _Color ("Base Color", Color) = (1,1,1)
 
         [Header(Ambient)][Space(10)]
         [Toggle(AMBIENT_ENABLED)] _AmbientEnabled ("Enabled", Int) = 0
@@ -95,6 +96,7 @@ Shader "Swifter/SimpleTerrainFog"
             float _SpecularAmount;
             float _SpecularPower;
             float _DiffuseAmount;
+            float4 _Color;
 
             float3 _AmbientColor;
             float _AmbientStrength;
@@ -212,6 +214,8 @@ Shader "Swifter/SimpleTerrainFog"
                 float fog = 1 - ((1 - heightFog) * (1 - i.distanceFog));
                 col = lerp(col, _FogColor, fog);
                 #endif
+
+                col *= _Color.rgb;
 
                 return float4(col, 0);
             }
