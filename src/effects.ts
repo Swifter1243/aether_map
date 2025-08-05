@@ -220,7 +220,7 @@ export function wheelEffect(map: rm.V3Difficulty, yIncrement: number, times: num
             const shakeX = rm.random(-1, 1)
 
             rm.assignPathAnimation(map, {
-                beat: start - timeNotes[0].life / 2 - 0.1,
+                beat: start - timeNotes[0].life / 2 - 6,
                 track: track,
                 animation: {
                     offsetWorldRotation: [[shakeX, yIncrement * 2, 0, 0], [shakeX, yIncrement, 0, 0.5]],
