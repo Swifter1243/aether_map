@@ -23,6 +23,10 @@ function doNotemods(map: rm.V3Difficulty) {
     const WHEEL_LIFE = 8
     const wheelFromBeat = beatsToObjectSpawnLife(WHEEL_LIFE)
 
+    const FLOAT_EFFECT_TRACK = 'outroFloat'
+    const FLOAT_LIFE = 16
+    const floatFromBeat = beatsToObjectSpawnLife(FLOAT_LIFE)
+
     applyWhiteNotes(0)
     setDirectionalMagnitude(map, 20, 575)
 
@@ -111,6 +115,38 @@ function doNotemods(map: rm.V3Difficulty) {
 
             assignDirectionalRotation(x)
         })
+
+        rm.assignPathAnimation(map, {
+            track: FLOAT_EFFECT_TRACK,
+            beat: 591 - 10,
+            animation: {
+                dissolve: [[0,floatFromBeat(4)],[1,floatFromBeat(2)]]
+            }
+        })
+
+        rm.assignPathAnimation(map, {
+            track: FLOAT_EFFECT_TRACK,
+            beat: 591,
+            animation: {
+                dissolve: [[0,0],[1,0.5-floatFromBeat(1)]]
+            }
+        })
+
+        map.allNotes.filter(approximately(591)).forEach(x => {
+            noteHop(x)
+        })
+
+        map.allNotes.filter(between(592, 605)).forEach(x => {
+            x.life = FLOAT_LIFE
+            x.track.add(FLOAT_EFFECT_TRACK)
+        })
+
+        outroRotationMovement(591, [[-30,-3,0,0],[0,0,0,0.5]])
+        outroRotationMovement(591, [[14,-3,30,0],[0,0,0,0.5]], 4, 'easeOutCirc')
+
+        outroRotationMovement(597, [[10,-3,20,0],[0,0,0,0.5]], 4, 'easeOutBack')
+
+        outroRotationMovement(605, [0,0,0], 4, 'easeOutBack')
     }
 
     function section2() {
