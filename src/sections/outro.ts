@@ -1,5 +1,7 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
+import { setDirectionalMagnitude } from '../effects.ts'
+import { assignDirectionalRotation } from '../effects.ts'
 import { noteHop, wheelEffect } from '../effects.ts'
 import { prefabs } from "../main.ts";
 import { approximately, between } from '../utilities.ts'
@@ -16,6 +18,7 @@ export function outro(map: rm.V3Difficulty)
 function doNotemods(map: rm.V3Difficulty) {
     const OUTRO_NOTE_TRACK = 'outroNote'
     applyWhiteNotes(0)
+    setDirectionalMagnitude(map, 20, 575)
 
     map.allNotes.filter(between(575, TIMES.MAP_END)).forEach(x => {
         x.track.add(OUTRO_NOTE_TRACK)
@@ -51,4 +54,9 @@ function doNotemods(map: rm.V3Difficulty) {
     wheelEffect(map, 10, [575, 576, 578, 579, 581])
 
     applyWhiteNotes(581)
+
+    map.allNotes.filter(between(583, 589)).forEach(x => {
+        noteHop(x)
+        assignDirectionalRotation(x)
+    })
 }

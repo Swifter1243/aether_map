@@ -62,7 +62,7 @@ export function setDirectionalMagnitude(map: rm.V3Difficulty, magnitude: number,
             easing: eventEasing,
             track,
             animation: {
-                offsetWorldRotation: [[dir[1] * magnitude, dir[0] * magnitude, 0, 0], [0,0,0,0.5, 'easeOutCirc']]
+                offsetWorldRotation: [[-dir[1] * magnitude, dir[0] * magnitude, 0, 0], [0,0,0,0.5, 'easeOutCirc']]
             } 
         })
     }
