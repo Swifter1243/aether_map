@@ -41,9 +41,7 @@ Shader "Swifter/OutlineNote"
             struct v2f
             {
                 float4 vertex : SV_POSITION;
-                #if DEBRIS
                 float3 localPos : TEXCOORD0;
-                #endif
                 UNITY_VERTEX_INPUT_INSTANCE_ID // Insert for GPU instancing
                 UNITY_VERTEX_OUTPUT_STEREO
             };
@@ -65,9 +63,7 @@ Shader "Swifter/OutlineNote"
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                #if DEBRIS
                 o.localPos = v.vertex.xyz;
-                #endif
 
                 return o;
             }
@@ -83,7 +79,9 @@ Shader "Swifter/OutlineNote"
                 float c = planeDistance - Cutout * 0.25;
                 clip(c);
                 #else
-                clip(1 - Cutout - 0.01);
+                float dist = length(i.localPos.xy) / 0.25;
+                dist /= 1.41421356237;
+                clip(dist - Cutout);
                 #endif
 
                 return float4(_CoreColor, 0);
@@ -116,9 +114,7 @@ Shader "Swifter/OutlineNote"
             struct v2f
             {
                 float4 vertex : SV_POSITION;
-                #if DEBRIS
                 float3 localPos : TEXCOORD0;
-                #endif
                 UNITY_VERTEX_INPUT_INSTANCE_ID // Insert for GPU instancing
                 UNITY_VERTEX_OUTPUT_STEREO
             };
@@ -147,9 +143,7 @@ Shader "Swifter/OutlineNote"
                 v.vertex.xyz *= 1 + borderWidth;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                #if DEBRIS
                 o.localPos = v.vertex.xyz;
-                #endif
 
                 return o;
             }
@@ -168,7 +162,9 @@ Shader "Swifter/OutlineNote"
                 float c = planeDistance - Cutout * 0.25;
                 clip(c);
                 #else
-                clip(1 - Cutout - 0.01);
+                float dist = length(i.localPos.xy) / 0.25;
+                dist /= 1.41421356237;
+                clip(dist - Cutout);
                 #endif
 
                 return float4(Color, 0);
