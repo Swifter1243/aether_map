@@ -23,6 +23,7 @@ Shader "Swifter/OutlineNote"
             #pragma vertex vert
             #pragma fragment frag
             #pragma shader_feature DEBRIS
+            #pragma multi_compile_instancing
 
             #include "UnityCG.cginc"
 
