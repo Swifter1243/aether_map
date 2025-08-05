@@ -6,6 +6,7 @@ Shader "Swifter/SimpleTerrainFog"
         _SpecularPower ("Specular Power", Float) = 16
         _DiffuseAmount ("Diffuse Amount", Float) = 1
         _Color ("Base Color", Color) = (1,1,1)
+        _PastelAmount ("Pastel Amount", Range(0,1)) = 0
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
 
         [Header(Note)][Space(10)]
@@ -110,6 +111,7 @@ Shader "Swifter/SimpleTerrainFog"
             float _SpecularAmount;
             float _SpecularPower;
             float _DiffuseAmount;
+            float _PastelAmount;
             #if !NOTE
             float4 _Color;
             #endif
@@ -267,7 +269,8 @@ Shader "Swifter/SimpleTerrainFog"
                 col = lerp(col, _FogColor, fog);
                 #endif
 
-                col *= Color.rgb;
+                float4 baseCol = lerp(Color, 1, _PastelAmount);
+                col *= baseCol.rgb;
 
                 return float4(col, 0);
             }
