@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
-import { fadeWhite, applyFakeJumps, simpleRotationPath, visibility, setFakeJumps } from "../effects.ts";
+import { fadeWhite, applyFakeJumps, simpleRotationPath, visibility, setFakeJumps, assignDirectionalRotation } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
 import { beatsToObjectSpawnLife, between, dx } from '../utilities.ts'
 
@@ -27,6 +27,7 @@ function doNotemods(map: rm.V3Difficulty) {
         jumpInBeat: 3,
         jumpInDuration: 4
     })
+    const toBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
 
     const buildupRotationMovement = simpleRotationPath(map, BUILDUP_NOTE)
 
@@ -38,6 +39,8 @@ function doNotemods(map: rm.V3Difficulty) {
 
     map.allNotes.filter(between(510, 573)).forEach(x => {
         x.track.add(BUILDUP_NOTE)
+        assignDirectionalRotation(x)
+        x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - toBeat(1)]]
     })
 
     rm.assignObjectPrefab(map, {
@@ -48,7 +51,6 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
-    const toBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
     const SPEED_UP_ANIMATION: rm.RuntimeDifficultyPointsVec3 = [[0,0,400,0],[0,0,0,toBeat(JUMPS_CONTEXT.jumpInBeat)]]
 
     rm.assignPathAnimation(map, {
