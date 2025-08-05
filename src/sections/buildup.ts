@@ -57,13 +57,19 @@ function doNotemods(map: rm.V3Difficulty) {
             offsetPosition: SPEED_UP_ANIMATION
         }
     })
+    rm.assignPathAnimation(map, {
+        track: BUILDUP_NOTE,
+        animation: {
+            offsetPosition: [[0,5,0,0],[0,0,0,0.5]]
+        }
+    })
 
     function slowDownNotes(beat: number) {
         rm.assignPathAnimation(map, {
             track: SPEED_TRACK,
             beat,
-            duration: 3,
-            easing: 'easeOutCirc',
+            duration: 4,
+            easing: 'easeOutExpo',
             animation: {
                 offsetPosition: [0,0,0]
             }
@@ -71,12 +77,12 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function speedUpNotes(beat: number) {
-        const duration = 6
+        const duration = 4
         rm.assignPathAnimation(map, {
             track: SPEED_TRACK,
             beat: beat - duration / 2,
             duration,
-            easing: 'easeInOutSine',
+            easing: 'easeInOutCirc',
             animation: {
                 offsetPosition: SPEED_UP_ANIMATION
             }
