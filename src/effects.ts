@@ -97,7 +97,7 @@ export type FakeJumpsContext = {
 }
 
 export function setFakeJumps(map: rm.V3Difficulty, beat: number, context: FakeJumpsContext): FakeJumpsContext {
-    const toBeat = beatsToObjectSpawnLife(context.objectLife)
+    const fromBeat = beatsToObjectSpawnLife(context.objectLife)
 
     for (let y = 0; y <= 2; y++) {
         const invY = -gridYToLocalOffset(y) / 0.6
@@ -108,8 +108,8 @@ export function setFakeJumps(map: rm.V3Difficulty, beat: number, context: FakeJu
             track,
             animation: {
                 offsetPosition: [
-                    [0, invY, 10, toBeat(context.jumpInBeat + context.jumpInDuration)], 
-                    [0, invY, 0, toBeat(context.jumpInBeat), 'easeInExpo'], 
+                    [0, invY, 10, fromBeat(context.jumpInBeat + context.jumpInDuration)], 
+                    [0, invY, 0, fromBeat(context.jumpInBeat), 'easeInExpo'], 
                     [0, 0, 0, 0.5, 'easeOutQuad']
                 ]
             }
@@ -138,7 +138,7 @@ function getRandomNoteSpawnRotation(random: RandFunc): rm.Vec3 {
 }
 
 export function applyFakeJumps(o: rm.BeatmapGameplayObject, random: RandFunc, context: FakeJumpsContext) {
-    const toBeat = beatsToObjectSpawnLife(context.objectLife)
+    const fromBeat = beatsToObjectSpawnLife(context.objectLife)
 
     const track = getFakeJumpTrack(o.y)
     o.track.add(track)
@@ -147,16 +147,16 @@ export function applyFakeJumps(o: rm.BeatmapGameplayObject, random: RandFunc, co
     if (o instanceof rm.ColorNote) {
         const invRotation: rm.Vec3 = [0, 0, -(cutDirectionAngle(o.cutDirection) + 180) % 360]
         o.animation.localRotation = [
-            [...invRotation, toBeat(context.jumpInBeat + 2)],
-            [...rm.combineRotations(impactRotation, invRotation), toBeat(context.jumpInBeat)],
-            [0, 0, 0, toBeat(context.jumpInBeat * 0.5), 'easeOutExpo']
+            [...invRotation, fromBeat(context.jumpInBeat + 2)],
+            [...rm.combineRotations(impactRotation, invRotation), fromBeat(context.jumpInBeat)],
+            [0, 0, 0, fromBeat(context.jumpInBeat * 0.5), 'easeOutExpo']
         ]
     }
     else {
         o.animation.localRotation = [
-            [0, 0, 0, toBeat(context.jumpInBeat + 2)],
-            [...impactRotation, toBeat(context.jumpInBeat)],
-            [0, 0, 0, toBeat(context.jumpInBeat * 0.75), 'easeOutExpo']
+            [0, 0, 0, fromBeat(context.jumpInBeat + 2)],
+            [...impactRotation, fromBeat(context.jumpInBeat)],
+            [0, 0, 0, fromBeat(context.jumpInBeat * 0.75), 'easeOutExpo']
         ]
     }
 }

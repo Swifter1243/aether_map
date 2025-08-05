@@ -171,7 +171,7 @@ export function beatsToObjectSpawnLife(param0: rm.BeatmapGameplayObject | number
     }
 }
 
-export function dx(fn: (x: number) => number) {
+export function derivativeFunction(fn: (x: number) => number) {
     return (x: number) => {
         const EPSILON = 1e-3
         const y1 = fn(x)

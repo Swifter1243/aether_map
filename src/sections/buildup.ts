@@ -2,7 +2,7 @@ import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
 import { fadeWhite, applyFakeJumps, simpleRotationPath, visibility, setFakeJumps, assignDirectionalRotation } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
-import { beatsToObjectSpawnLife, between, dx } from '../utilities.ts'
+import { beatsToObjectSpawnLife, between, derivativeFunction } from '../utilities.ts'
 
 export function buildup(map: rm.V3Difficulty)
 {
@@ -27,7 +27,7 @@ function doNotemods(map: rm.V3Difficulty) {
         jumpInBeat: 3,
         jumpInDuration: 4
     })
-    const toBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
+    const fromBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
 
     const buildupRotationMovement = simpleRotationPath(map, BUILDUP_NOTE)
 
@@ -40,7 +40,7 @@ function doNotemods(map: rm.V3Difficulty) {
     map.allNotes.filter(between(510, 573)).forEach(x => {
         x.track.add(BUILDUP_NOTE)
         assignDirectionalRotation(x)
-        x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - toBeat(1)]]
+        x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - fromBeat(1)]]
     })
 
     rm.assignObjectPrefab(map, {
@@ -51,7 +51,7 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
-    const SPEED_UP_ANIMATION: rm.RuntimeDifficultyPointsVec3 = [[0,0,400,0],[0,0,0,toBeat(JUMPS_CONTEXT.jumpInBeat)]]
+    const SPEED_UP_ANIMATION: rm.RuntimeDifficultyPointsVec3 = [[0,0,400,0],[0,0,0,fromBeat(JUMPS_CONTEXT.jumpInBeat)]]
 
     rm.assignPathAnimation(map, {
         track: SPEED_TRACK,
@@ -143,15 +143,15 @@ function doNotemods(map: rm.V3Difficulty) {
         for (let beat = ROT_START_BEAT; beat < ROT_END_BEAT; beat += 2) {
             const t = rm.inverseLerp(ROT_START_BEAT, ROT_END_BEAT, beat)
             const remap = (x: number) => x
-            const slope = dx(remap)
+            const slope = derivativeFunction(remap)
             const t2 = remap(t)
             const rot = t2 * TARGET_ROT_Y
 
-            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,toBeat(3),'easeInExpo']], 2, 'easeInOutExpo')
+            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,fromBeat(3),'easeInExpo']], 2, 'easeInOutExpo')
 
             const LEAD_IN_TIME = 0.5
 
-            recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,toBeat(3),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+            recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(3),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
             recoil(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
         }
     }
