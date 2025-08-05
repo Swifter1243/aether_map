@@ -1,6 +1,6 @@
 import { materials } from "./main.ts";
 import { rm } from "./deps.ts";
-import { beatsToObjectSpawnLife, cutDirectionAngle, cutDirectionVector, gridYToLocalOffset, RandFunc, randomVec3, sequencedRotation } from './utilities.ts'
+import { beatsToObjectSpawnLife, between, cutDirectionAngle, cutDirectionVector, gridYToLocalOffset, RandFunc, randomVec3, sequencedRotation } from './utilities.ts'
 
 export function bokeh(material: rm.Material, map: rm.AbstractDifficulty, beat: number, duration = 10, radius = 25)
 {
@@ -184,4 +184,75 @@ export function visibility(map: rm.V3Difficulty, track: string, beat: number, vi
             dissolveArrow: [visible ? 1 : 0]
         },
     })
+}
+
+export function wheelEffect(map: rm.V3Difficulty, yIncrement: number, times: number[]) {
+    const start = times.reduce((a, b) => Math.min(a, b))
+    const end = times.reduce((a, b) => Math.max(a, b))
+    const notes = map.allNotes.filter(between(start, end))
+
+    const timeGroups: Record<number, rm.AnyNote[]> = rm.arraySplit2(notes, (x) => {
+        let time = 0
+
+        times.forEach((t) => {
+            if (x.beat >= t) {
+                time = t
+            }
+        })
+
+        return time
+    })
+
+    const accumulatedTracks: string[] = []
+
+    Object.entries(timeGroups)
+        .sort((a, b) => parseFloat(a[0]) - parseFloat(b[0]))
+        .forEach(([_, timeNotes], i) => {
+            if (i === 0) {
+                return
+            }
+
+            const beat = times[i - 1]
+            const track = `wheelNote${i}`
+            accumulatedTracks.push(track)
+            const tracks = rm.copy(accumulatedTracks)
+
+            const shakeX = rm.random(-1, 1)
+
+            rm.assignPathAnimation(map, {
+                beat: start - timeNotes[0].life / 2 - 0.1,
+                track: track,
+                animation: {
+                    offsetWorldRotation: [[shakeX, yIncrement * 2, 0, 0], [shakeX, yIncrement, 0, 0.5]],
+                },
+            })
+
+            rm.assignPathAnimation(map, {
+                beat,
+                duration: 2,
+                easing: 'easeOutExpo',
+                track: track,
+                animation: {
+                    offsetWorldRotation: [0, 0, 0],
+                },
+            })
+
+            timeNotes.forEach((x) => {
+                x.track.add(tracks)
+            })
+        })
+}
+
+export function noteHop(x: rm.AnyNote, distance = 12, duration = 2) {
+    x.noteJumpMovementSpeed = 0.002
+    x.life = duration * 2
+    x.disableNoteGravity = true
+    x.animation.dissolve = [[0, 0], [1, 0]]
+    x.animation.dissolveArrow = x.animation.dissolve
+    x.animation.offsetPosition = [
+        [0, 0, distance / 2, 0],
+        [0, 0, distance, 0.25, 'easeOutCirc'],
+        [0, 0, 0, 0.5, 'easeInSine'],
+        [0, 0, -distance * 2.5, 1, 'easeLinear'],
+    ]
 }
