@@ -20,19 +20,18 @@ export function buildup(map: rm.V3Difficulty)
 }
 
 function doNotemods(map: rm.V3Difficulty) {
-    const STRETCHED_NOTE_TRACK = 'buildupStretchedNote'
-    const NOTE_LIFT_TRACK = 'buildupNoteLift'
+    const SPEED_TRACK = 'buildupSpeed'
     const BUILDUP_NOTE = 'buildupNote'
     const JUMPS_CONTEXT = setFakeJumps(map, 509, {
         objectLife: 8 * 2,
-        jumpInBeat: 4,
+        jumpInBeat: 3,
         jumpInDuration: 4
     })
 
     const buildupRotationMovement = simpleRotationPath(map, BUILDUP_NOTE)
 
     map.allNotes.filter(between(510, 541)).forEach(x => {
-        x.track.add(STRETCHED_NOTE_TRACK)
+        x.track.add(SPEED_TRACK)
         x.life = JUMPS_CONTEXT.objectLife
         applyFakeJumps(x, rm.random, JUMPS_CONTEXT)
     })
@@ -53,7 +52,7 @@ function doNotemods(map: rm.V3Difficulty) {
     const SPEED_UP_ANIMATION: rm.RuntimeDifficultyPointsVec3 = [[0,0,400,0],[0,0,0,toBeat(JUMPS_CONTEXT.jumpInBeat)]]
 
     rm.assignPathAnimation(map, {
-        track: STRETCHED_NOTE_TRACK,
+        track: SPEED_TRACK,
         animation: {
             offsetPosition: SPEED_UP_ANIMATION
         }
@@ -61,7 +60,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
     function slowDownNotes(beat: number) {
         rm.assignPathAnimation(map, {
-            track: STRETCHED_NOTE_TRACK,
+            track: SPEED_TRACK,
             beat,
             duration: 3,
             easing: 'easeOutCirc',
@@ -74,7 +73,7 @@ function doNotemods(map: rm.V3Difficulty) {
     function speedUpNotes(beat: number) {
         const duration = 6
         rm.assignPathAnimation(map, {
-            track: STRETCHED_NOTE_TRACK,
+            track: SPEED_TRACK,
             beat: beat - duration / 2,
             duration,
             easing: 'easeInOutSine',
@@ -107,6 +106,11 @@ function doNotemods(map: rm.V3Difficulty) {
 
     function section2() {
         const SECTION_2_TRACK = 'buildupSection2'
+        const LIFT_TRACK = 'buildupNoteLift'
+        const RECOIL_TRACK = 'buildupRecoilTrack'
+
+        const lift = simpleRotationPath(map, LIFT_TRACK)
+        const recoil = simpleRotationPath(map, RECOIL_TRACK)
 
         visibility(map, SECTION_2_TRACK, 0, false)
         visibility(map, SECTION_2_TRACK, 525, true)
@@ -116,10 +120,12 @@ function doNotemods(map: rm.V3Difficulty) {
         buildupRotationMovement(525, [[0,0,-180,0],[0,0,0,0.5]], 3, 'easeOutSine')
 
         speedUpNotes(533)
+        buildupRotationMovement(533 -2, [0,0,0], 5, 'easeInOutBack')
 
         map.allNotes.filter(between(526, 541)).forEach(x => {
             x.track.add(SECTION_2_TRACK)
-            x.track.add(NOTE_LIFT_TRACK)
+            x.track.add(LIFT_TRACK)
+            x.track.add(RECOIL_TRACK)
         })
 
         const ROT_START_BEAT = 533
@@ -133,20 +139,12 @@ function doNotemods(map: rm.V3Difficulty) {
             const t2 = remap(t)
             const rot = t2 * TARGET_ROT_Y
 
-            rm.assignPathAnimation(map, {
-                track: STRETCHED_NOTE_TRACK,
-                beat: beat - 1,
-                duration: 2,
-                easing: 'easeInOutExpo',
-                animation: {
-                    offsetWorldRotation: [rot, 0, 0]
-                }
-            })
+            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,toBeat(3),'easeInExpo']], 2, 'easeInOutExpo')
 
-            const LEAD_IN_TIME = 0.75
+            const LEAD_IN_TIME = 0.5
 
-            buildupRotationMovement(beat - LEAD_IN_TIME, [[30 * slope(t),0,0,0],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
-            buildupRotationMovement(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
+            recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,toBeat(3),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+            recoil(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
         }
     }
 }
