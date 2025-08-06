@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: StarFlare
   m_Shader: {fileID: 4800000, guid: 8325ce697c6a3c840b9084ade332aaf2, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: CENTER_OCCLUSION
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -63,6 +63,7 @@ Material:
     - _BlendSrc: 1
     - _Brightness: 1.47
     - _BumpScale: 1
+    - _CenterOcclusionEnabled: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

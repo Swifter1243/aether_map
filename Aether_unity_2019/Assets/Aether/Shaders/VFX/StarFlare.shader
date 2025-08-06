@@ -9,6 +9,7 @@ Properties
         _Flutter ("Flutter", Float) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
+        [Toggle(CENTER_OCCLUSION)] _CenterOcclusionEnabled ("Center Depth Occlusion", Int) = 0
 
         [Header(Graphic)][Space(10)]
         [Toggle(GRAPHIC)] _GraphicEnabled ("Enable Graphic", Int) = 0
@@ -54,6 +55,7 @@ Properties
             #pragma vertex vert
             #pragma fragment frag
             #pragma shader_feature GRAPHIC
+            #pragma shader_feature CENTER_OCCLUSION
 
             #include "UnityCG.cginc"
 
@@ -77,8 +79,16 @@ Properties
             {
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
+                #if CENTER_OCCLUSION
+                float4 middleUV : TEXCOORD1;
+                float cameraDist : TEXCOORD2;
+                #endif
                 UNITY_VERTEX_OUTPUT_STEREO
             };
+
+            #if CENTER_OCCLUSION
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
+            #endif
 
             float _Sharpness;
             float _Brightness;
@@ -95,11 +105,25 @@ Properties
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
+
+                #if CENTER_OCCLUSION
+                float4 midClipPos = UnityObjectToClipPos(float4(0,0,0,1));
+                o.middleUV = ComputeScreenPos(midClipPos);
+                o.cameraDist = midClipPos.w;
+                #endif
+
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
+                #if CENTER_OCCLUSION
+                float2 middleUV = i.middleUV.xy / i.middleUV.w;
+                float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, middleUV);
+                float eyeDepth = LinearEyeDepth(depth);
+                clip(eyeDepth - i.cameraDist);
+                #endif
+
                 float2 p = abs(i.uv * 2 - 1);
 
                 float l = length(p);

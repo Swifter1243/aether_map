@@ -9,6 +9,7 @@ Shader "Swifter/VFX/RingArtifact"
         _Scale ("Scale", Float) = 4
         _Flutter ("Flutter", Float) = 0
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Int) = 4
+        [Toggle(CENTER_OCCLUSION)] _CenterOcclusionEnabled ("Center Depth Occlusion", Int) = 0
 
         [Header(Blend)][Space(10)]
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
@@ -44,6 +45,7 @@ Shader "Swifter/VFX/RingArtifact"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature CENTER_OCCLUSION
 
             #include "UnityCG.cginc"
 
@@ -65,6 +67,10 @@ Shader "Swifter/VFX/RingArtifact"
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
                 float4 color : TEXCOORD1;
+                #if CENTER_OCCLUSION
+                float4 middleUV : TEXCOORD2;
+                float cameraDist : TEXCOORD3;
+                #endif
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -78,8 +84,19 @@ Shader "Swifter/VFX/RingArtifact"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 o.color = v.color;
+
+                #if CENTER_OCCLUSION
+                float4 midClipPos = UnityObjectToClipPos(float4(0,0,0,1));
+                o.middleUV = ComputeScreenPos(midClipPos);
+                o.cameraDist = midClipPos.w;
+                #endif
+
                 return o;
             }
+
+            #if CENTER_OCCLUSION
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
+            #endif
 
             float _Saturation;
             float _Intensity;
@@ -91,6 +108,13 @@ Shader "Swifter/VFX/RingArtifact"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                #if CENTER_OCCLUSION
+                float2 middleUV = i.middleUV.xy / i.middleUV.w;
+                float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, middleUV);
+                float eyeDepth = LinearEyeDepth(depth);
+                clip(eyeDepth - i.cameraDist);
+                #endif
+
                 float2 p = i.uv.xy * 2 - 1;
 
                 float len = length(p);

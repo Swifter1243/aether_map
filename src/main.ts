@@ -70,6 +70,12 @@ function visualsSetup(map: rm.V3Difficulty) {
             x.spawnEffect = false
         }
     })
+
+    rm.setCameraProperty(map, {
+        properties: {
+            depthTextureMode: ['Depth']
+        }
+    })
 }
 
 await Promise.all([
