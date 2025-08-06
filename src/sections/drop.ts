@@ -1,7 +1,7 @@
 import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
 import { assignDirectionalRotation, fadeWhite, noteHop, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath, visibility, wheelEffect } from '../effects.ts'
-import { prefabs } from '../main.ts'
+import { materials, prefabs } from '../main.ts'
 import { approximately, between, join, randomVec3 } from '../utilities.ts'
 
 export function drop(map: rm.V3Difficulty) {
@@ -285,26 +285,50 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(DROP_DISAPPEARING_TRACK)
         })
 
-        const whiteVisibility = (beat: number, visible: boolean) => visibility(map, DROP_DISAPPEARING_TRACK, beat, visible)
+        enum VISIBILITY {
+            VISIBLE,
+            PARTIAL,
+            INVISIBLE
+        }
 
-        whiteVisibility(117, true)
-        whiteVisibility(118 + 1 / 6, false)
-        whiteVisibility(119, true)
-        whiteVisibility(120 + 1 / 4, false)
+        const whiteVisibility = (beat: number, visible: VISIBILITY) => {
+            if (visible == VISIBILITY.INVISIBLE) {
+                visibility(map, DROP_DISAPPEARING_TRACK, beat, false)
+            }
+            else {
+                visibility(map, DROP_DISAPPEARING_TRACK, beat, true)
 
-        whiteVisibility(121, true)
-        whiteVisibility(122.5, false)
-        whiteVisibility(123, true)
-        whiteVisibility(124.5, false)
+                const whiteOutlineMats = [
+                    materials['white outline note'],
+                    materials['white outline note debris']
+                ]
 
-        whiteVisibility(125, true)
-        whiteVisibility(126.5, false)
-        whiteVisibility(127, true)
-        whiteVisibility(128.1, false)
-        whiteVisibility(128.25, true)
+                whiteOutlineMats.forEach(m => {
+                    m.set(map, {
+                        _BorderWidth: visible == VISIBILITY.VISIBLE ? m.defaults._BorderWidth : 0
+                    }, beat)
+                })
+            }
+        }
 
-        whiteVisibility(130.75, false)
-        whiteVisibility(131, true)
+        whiteVisibility(117, VISIBILITY.VISIBLE)
+        whiteVisibility(118 + 1 / 6, VISIBILITY.PARTIAL)
+        whiteVisibility(119, VISIBILITY.VISIBLE)
+        whiteVisibility(120 + 1 / 4, VISIBILITY.PARTIAL)
+
+        whiteVisibility(121, VISIBILITY.VISIBLE)
+        whiteVisibility(122.5, VISIBILITY.PARTIAL)
+        whiteVisibility(123, VISIBILITY.VISIBLE)
+        whiteVisibility(124.5, VISIBILITY.PARTIAL)
+
+        whiteVisibility(125, VISIBILITY.VISIBLE)
+        whiteVisibility(126.5, VISIBILITY.PARTIAL)
+        whiteVisibility(127, VISIBILITY.VISIBLE)
+        whiteVisibility(128, VISIBILITY.INVISIBLE)
+        whiteVisibility(128.25, VISIBILITY.VISIBLE)
+
+        whiteVisibility(130.75, VISIBILITY.INVISIBLE)
+        whiteVisibility(131, VISIBILITY.VISIBLE)
     }
 
     function blackSection2() {
