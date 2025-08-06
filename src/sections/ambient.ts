@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
-import { bokeh } from "../effects.ts";
+import { bokeh, passiveFloatingPath, simpleRotationPath } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
 import { between, randomVec3 } from "../utilities.ts"
 
@@ -19,8 +19,10 @@ function doNotemods(map: rm.V3Difficulty) {
     const START = 261.1
     const END = 362
 
+    const AMBIENT_FLOAT_TRACK = 'ambientFloat'
     const AMBIENT_TRACK = "ambientNote"
-
+    
+    const floatRandom = rm.seededRandom(29)
     const pathRandom = rm.seededRandom(73)
 
     const isInAmbient = between(START, END)
@@ -31,6 +33,7 @@ function doNotemods(map: rm.V3Difficulty) {
         x.animation.localRotation = [[...randomVec3(30, pathRandom), 0], [0,0,0,0.5]]
         x.animation.offsetPosition = [[...randomVec3(5, pathRandom), 0], [0,0,0,0.5,'easeOutSine']]
         x.track.add(AMBIENT_TRACK)
+        x.track.add(AMBIENT_FLOAT_TRACK)
     })
 
     rm.assignObjectPrefab(map, {
@@ -61,6 +64,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 ]
             })
         }
+        const floatRotation = simpleRotationPath(map, AMBIENT_FLOAT_TRACK)
 
         setSimpleRotationPath(261, [-20, 0, 0])
         setSimpleRotationPath(285, [20, 10, 0])
@@ -68,6 +72,12 @@ function doNotemods(map: rm.V3Difficulty) {
         setSimpleRotationPath(325.5, [-3, 20, 0])
         setSimpleRotationPath(341, [2, -8, 0])
         setSimpleRotationPath(353, [0, 0, 0])
+
+        passiveFloatingPath(floatRotation, floatRandom, START, END, {
+            increment: 10,
+            rangeX: 5,
+            rangeY: 4
+        })
     }
 
     function doDisappearing() {
