@@ -161,7 +161,9 @@ export function applyFakeJumps(o: rm.BeatmapGameplayObject, random: RandFunc, co
     }
 }
 
-export function simpleRotationPath(map: rm.V3Difficulty, track: string) {
+export type SimpleRotationPathFunction = (beat: number, rotation: rm.DifficultyPointsVec3, duration?: number, easing?: rm.EASE) => rm.AssignPathAnimation
+
+export function simpleRotationPath(map: rm.V3Difficulty, track: string): SimpleRotationPathFunction {
     return (beat: number, rotation: rm.DifficultyPointsVec3, duration = 0, easing?: rm.EASE) => {
         return rm.assignPathAnimation(map, {
             beat,
@@ -255,4 +257,22 @@ export function noteHop(x: rm.AnyNote, distance = 12, duration = 2) {
         [0, 0, 0, 0.5, 'easeInSine'],
         [0, 0, -distance * 2.5, 1, 'easeLinear'],
     ]
+}
+
+export function passiveFloatingPath(rotationFn: SimpleRotationPathFunction, random: RandFunc, start: number, end: number, settings: {
+    increment: number,
+    rangeX: number,
+    rangeY: number
+} = {
+    increment: 10,
+    rangeX: 10,
+    rangeY: 3
+}) {
+    for (let b = start; b <= end; b += settings.increment) {
+        rotationFn(b, [
+            [random(-settings.rangeX, settings.rangeX),random(-settings.rangeY, settings.rangeY),0,0,'easeInOutSine'],
+            [random(-settings.rangeX / 2, settings.rangeX / 2),random(-settings.rangeY / 2, settings.rangeY / 2),0,0.25,'easeInOutSine'],
+            [0,0,0,0.5,'easeInOutSine']
+        ], settings.increment, 'easeInOutSine')
+    }
 }

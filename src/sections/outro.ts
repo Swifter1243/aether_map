@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
-import { setDirectionalMagnitude } from '../effects.ts'
+import { passiveFloatingPath, setDirectionalMagnitude } from '../effects.ts'
 import { simpleRotationPath } from '../effects.ts'
 import { assignDirectionalRotation } from '../effects.ts'
 import { noteHop, wheelEffect } from '../effects.ts'
@@ -26,6 +26,9 @@ function doNotemods(map: rm.V3Difficulty) {
     const FLOAT_EFFECT_TRACK = 'outroFloat'
     const FLOAT_LIFE = 30
     const floatFromBeat = beatsToObjectSpawnLife(FLOAT_LIFE)
+
+    const PASSIVE_FLOAT_TRACK = 'outroPassiveFloat'
+    const floatRotation = simpleRotationPath(map, PASSIVE_FLOAT_TRACK)
 
     applyWhiteNotes(0)
     setDirectionalMagnitude(map, 20, 575)
@@ -151,7 +154,11 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(between(592, 605)).forEach(x => {
             x.life = FLOAT_LIFE
             x.track.add(FLOAT_EFFECT_TRACK)
+            x.track.add(PASSIVE_FLOAT_TRACK)
         })
+
+        const floatRandom = rm.seededRandom(472)
+        passiveFloatingPath(floatRotation, floatRandom, 591, 605)
 
         applyTerrainNotes(591)
         outroRotationMovement(591, [[-30,-3,0,0],[0,0,0,0.5]])
@@ -235,7 +242,11 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(between(592 + 32, 605 + 32)).forEach(x => {
             x.life = FLOAT_LIFE
             x.track.add(FLOAT_EFFECT_TRACK)
+            x.track.add(PASSIVE_FLOAT_TRACK)
         })
+
+        const floatRandom = rm.seededRandom(472)
+        passiveFloatingPath(floatRotation, floatRandom, 591 + 32, 605 + 32)
 
         applyTerrainNotes(591 + 32)
         outroRotationMovement(591 + 32, [[-30,3,0,0],[0,0,0,0.5]])

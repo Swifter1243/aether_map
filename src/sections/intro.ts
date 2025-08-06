@@ -1,6 +1,6 @@
 import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
-import { setFakeJumps } from '../effects.ts'
+import { passiveFloatingPath, setFakeJumps } from '../effects.ts'
 import { applyFakeJumps } from '../effects.ts'
 import { simpleRotationPath } from '../effects.ts'
 import { bokeh } from "../effects.ts";
@@ -81,13 +81,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
     const rotationRandom = rm.seededRandom(38)
 
-    for (let b = 0; b <= 64 - 10; b += 10) {
-        introRotationMovement(b, [
-            [rotationRandom(-10, 10),rotationRandom(-3, 3),0,0,'easeInOutSine'],
-            [rotationRandom(-5, 5),rotationRandom(-1, 1),0,0.25,'easeInOutSine'],
-            [0,0,0,0.5,'easeInOutSine']
-        ], 10, 'easeInOutSine')
-    }
+    passiveFloatingPath(introRotationMovement, rotationRandom, 0, 64 - 10)
 
     rm.assignPathAnimation(map, {
         track: INTRO_TRACK,
