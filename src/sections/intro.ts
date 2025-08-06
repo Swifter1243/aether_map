@@ -30,4 +30,21 @@ function doNotemods(map: rm.V3Difficulty) {
             anyDirectionAsset: prefabs['terrain note dot'].path
         }
     })
+
+    const terrainMats = [
+        materials['terrain note'],
+        materials['terrain note debris']
+    ]
+
+    terrainMats.forEach(m => {
+        m.set(map, {
+            _AmbientStrength: 0,
+            _SunStrength: 0
+        }, 0)
+
+        m.set(map, {
+            _AmbientStrength: m.defaults._AmbientStrength,
+            _SunStrength: m.defaults._SunStrength
+        }, 5)
+    })
 }
