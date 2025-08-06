@@ -36,8 +36,8 @@ function doNotemods(map: rm.V3Difficulty) {
         const PAUSE_TRACK = "pauseTrack"
         const JUMPS_CONTEXT = setFakeJumps(map, TIMES.DROP_END, {
             objectLife: 30 * 2,
-            jumpInBeat: 4,
-            jumpInDuration: 4
+            jumpInBeat: 2,
+            jumpInDuration: 2
         })
         const pauseNotes = map.allNotes.filter(isInPauses)
 

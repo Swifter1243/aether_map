@@ -27,7 +27,7 @@ function doNotemods(map: rm.V3Difficulty) {
     const JUMPS_CONTEXT = setFakeJumps(map, 509, {
         objectLife: 8 * 2,
         jumpInBeat: 3,
-        jumpInDuration: 4
+        jumpInDuration: 2
     })
     const fromBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
 
@@ -37,7 +37,7 @@ function doNotemods(map: rm.V3Difficulty) {
         x.track.add(SPEED_TRACK)
         x.life = JUMPS_CONTEXT.objectLife
         applyFakeJumps(x, rm.random, JUMPS_CONTEXT)
-        x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - fromBeat(1)]]
+        x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - fromBeat(0.5)]]
         assignDirectionalRotation(x)
     })
 
@@ -154,12 +154,12 @@ function doNotemods(map: rm.V3Difficulty) {
             const t2 = remap(t)
             const rot = t2 * TARGET_ROT_Y
 
-            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,fromBeat(3),'easeInExpo']], 2, 'easeInOutExpo')
+            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,fromBeat(1.5),'easeInExpo']], 2, 'easeInOutExpo')
 
             const LEAD_IN_TIME = 0.5
 
             if (beat > ROT_START_BEAT) {
-                recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(3),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+                recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(1.5),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
             }
             recoil(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
         }

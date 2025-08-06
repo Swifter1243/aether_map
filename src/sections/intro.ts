@@ -21,8 +21,8 @@ export function intro(map: rm.V3Difficulty) {
 function doNotemods(map: rm.V3Difficulty) {
     const INTRO_TRACK = 'intro'
     const JUMPS_CONTEXT = setFakeJumps(map, 0, {
-        jumpInBeat: 4,
-        jumpInDuration: 4,
+        jumpInBeat: 2,
+        jumpInDuration: 2,
         objectLife: 8 * 2
     })
 
@@ -33,7 +33,7 @@ function doNotemods(map: rm.V3Difficulty) {
         track: INTRO_TRACK,
         beat: 0,
         animation: {
-            dissolve: [[0, jumpsToBeat(8)], [1, jumpsToBeat(4)]]
+            dissolve: [[0, jumpsToBeat(4)], [1, jumpsToBeat(2)]]
         }
     })
 

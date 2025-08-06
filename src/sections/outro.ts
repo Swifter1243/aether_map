@@ -80,7 +80,7 @@ function doNotemods(map: rm.V3Difficulty) {
             track: WHEEL_EFFECT_TRACK,
             beat: 575 - 10,
             animation: {
-                dissolve: [[0,wheelFromBeat(4)],[1,wheelFromBeat(2)]]
+                dissolve: [[0,wheelFromBeat(2)],[1,wheelFromBeat(1)]]
             }
         })
 
@@ -132,7 +132,7 @@ function doNotemods(map: rm.V3Difficulty) {
             track: FLOAT_EFFECT_TRACK,
             beat: 591 - 10,
             animation: {
-                dissolve: [[0,floatFromBeat(4)],[1,floatFromBeat(2)]]
+                dissolve: [[0,floatFromBeat(2)],[1,floatFromBeat(1)]]
             }
         })
 
@@ -140,7 +140,7 @@ function doNotemods(map: rm.V3Difficulty) {
             track: FLOAT_EFFECT_TRACK,
             beat: 591,
             animation: {
-                dissolve: [[0,0],[1,0.5-floatFromBeat(1)]]
+                dissolve: [[0,0],[1,0.5-floatFromBeat(0.5)]]
             }
         })
 
@@ -167,7 +167,7 @@ function doNotemods(map: rm.V3Difficulty) {
             track: WHEEL_EFFECT_TRACK,
             beat: 575 - 10 + 32,
             animation: {
-                dissolve: [[0,wheelFromBeat(4)],[1,wheelFromBeat(2)]]
+                dissolve: [[0,wheelFromBeat(2)],[1,wheelFromBeat(1)]]
             }
         })
 
@@ -216,7 +216,7 @@ function doNotemods(map: rm.V3Difficulty) {
             track: FLOAT_EFFECT_TRACK,
             beat: 591 - 10 + 32,
             animation: {
-                dissolve: [[0,floatFromBeat(4)],[1,floatFromBeat(2)]]
+                dissolve: [[0,floatFromBeat(2)],[1,floatFromBeat(1)]]
             }
         })
 
@@ -224,7 +224,7 @@ function doNotemods(map: rm.V3Difficulty) {
             track: FLOAT_EFFECT_TRACK,
             beat: 591 + 32,
             animation: {
-                dissolve: [[0,0],[1,0.5-floatFromBeat(1)]]
+                dissolve: [[0,0],[1,0.5-floatFromBeat(0.5)]]
             }
         })
 
