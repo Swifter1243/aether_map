@@ -332,11 +332,6 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function blackSection2() {
-        const START_SECTION_TRACK = 'dropStartSection'
-
-        visibility(map, START_SECTION_TRACK, 0, false)
-        visibility(map, START_SECTION_TRACK, 133, true)
-
         map.allNotes.filter(between(134, 171)).forEach(x => {
             x.track.add(BLACK_OUTLINE_TRACK)
         })
@@ -344,7 +339,6 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(between(134, 149)).forEach(x => {
             noteHop(x, 9)
             assignDirectionalRotation(x)
-            x.track.add(START_SECTION_TRACK)
         })
 
         setDirectionalMagnitude(map, 30, 1)
