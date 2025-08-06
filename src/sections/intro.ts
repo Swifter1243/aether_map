@@ -29,6 +29,22 @@ function doNotemods(map: rm.V3Difficulty) {
     const introRotationMovement = simpleRotationPath(map, INTRO_TRACK)
     const jumpsToBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
 
+    rm.assignPathAnimation(map, {
+        track: INTRO_TRACK,
+        beat: 0,
+        animation: {
+            dissolve: [[0, jumpsToBeat(8)], [1, jumpsToBeat(4)]]
+        }
+    })
+
+    rm.assignPathAnimation(map, {
+        track: INTRO_TRACK,
+        beat: 5,
+        animation: {
+            dissolve: [1]
+        }
+    })
+
     map.allNotes.filter(between(0, 77)).forEach(x => {
         x.track.add(INTRO_TRACK)
         x.life = JUMPS_CONTEXT.objectLife
