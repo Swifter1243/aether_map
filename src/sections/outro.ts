@@ -39,6 +39,9 @@ function doNotemods(map: rm.V3Difficulty) {
         x.track.add(OUTRO_NOTE_TRACK)
     })
 
+    const floatRandom = rm.seededRandom(472)
+    passiveFloatingPath(floatRotation, floatRandom, 575, TIMES.MAP_END)
+
     function applyWhiteNotes(beat: number) {
         rm.assignObjectPrefab(map, {
             beat,
@@ -107,6 +110,7 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(between(576, 581)).forEach(x => {
             x.life = WHEEL_LIFE
             x.track.add(WHEEL_EFFECT_TRACK)
+            x.track.add(PASSIVE_FLOAT_TRACK)
         })
 
         applyWhiteNotes(581)
@@ -157,9 +161,6 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(PASSIVE_FLOAT_TRACK)
         })
 
-        const floatRandom = rm.seededRandom(472)
-        passiveFloatingPath(floatRotation, floatRandom, 591, 605)
-
         applyTerrainNotes(591)
         outroRotationMovement(591, [[-30,-3,0,0],[0,0,0,0.5]])
         outroRotationMovement(591, [[14,-3,30,0],[0,0,0,0.5]], 4, 'easeOutCirc')
@@ -195,6 +196,7 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(between(576 + 32, 581 + 32)).forEach(x => {
             x.life = WHEEL_LIFE
             x.track.add(WHEEL_EFFECT_TRACK)
+            x.track.add(PASSIVE_FLOAT_TRACK)
         })
 
         applyWhiteNotes(581 + 32)
@@ -244,9 +246,6 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(FLOAT_EFFECT_TRACK)
             x.track.add(PASSIVE_FLOAT_TRACK)
         })
-
-        const floatRandom = rm.seededRandom(472)
-        passiveFloatingPath(floatRotation, floatRandom, 591 + 32, 605 + 32)
 
         applyTerrainNotes(591 + 32)
         outroRotationMovement(591 + 32, [[-30,3,0,0],[0,0,0,0.5]])
