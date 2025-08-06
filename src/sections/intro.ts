@@ -106,5 +106,5 @@ function doNotemods(map: rm.V3Difficulty) {
         }
     })
 
-    introRotationMovement(64 - 2, [[5,3,0,0,'easeInOutSine'],[-3,-1,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 4, 'easeInOutBack')
+    introRotationMovement(64 - 2, [[3,3,0,0,'easeInOutSine'],[-1,-1,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 4, 'easeInOutBack')
 }
