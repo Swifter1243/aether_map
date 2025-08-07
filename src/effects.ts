@@ -75,13 +75,13 @@ export function assignDirectionalRotation(object: rm.BeatmapGameplayObject) {
     }
 }
 
-export function sequencedShakeRotation(map: rm.V3Difficulty, track: string, start: number, end: number, times: number[], amplitude: number, random: RandFunc) {
-    let angle = 0
+export function sequencedShakeRotation(map: rm.V3Difficulty, track: string, start: number, end: number, times: number[], amplitude: number, random: RandFunc, randomSpread = 30, initialAngle = 0) {
+    let angle = initialAngle
     sequencedRotation(map, track, start, end, times, (_) => {
-        angle += 180 + random(-30, 30)
         const rad = rm.toRadians(angle)
         const x = Math.sin(rad)
         const y = Math.cos(rad)
+        angle += 180 + random(-randomSpread, randomSpread)
         return [x * amplitude, y * amplitude, 0]
     })
 }

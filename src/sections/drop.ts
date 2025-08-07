@@ -374,10 +374,11 @@ function doNotemods(map: rm.V3Difficulty) {
         const SHAKE_SEQUENCE_1_END = 184
         map.allNotes.filter(between(SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END + 10)).forEach(x => {
             x.track.add(ROTATION_SEQUENCE_1_TRACK)
+            x.life = 2 * 2
         })
 
         const shakeRandom = rm.seededRandom(8)
-        sequencedShakeRotation(map, ROTATION_SEQUENCE_1_TRACK, SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END, [177, 177.5, 177.75, 178.5, 179, 179.75, 180.25, 181], 7, shakeRandom)
+        sequencedShakeRotation(map, ROTATION_SEQUENCE_1_TRACK, SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END, [177, 177.5, 177.75, 178.5, 179, 179.75, 180.25, 181], 7, shakeRandom, 80, 90)
 
         map.allNotes.filter(between(177, 181)).forEach(x => {
             const t = rm.inverseLerp(177, 181, x.beat)
