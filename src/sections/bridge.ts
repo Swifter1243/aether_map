@@ -1,7 +1,7 @@
 import { TIMES } from "../constants.ts"
 import { rm } from "../deps.ts"
 import { applyFakeJumps, generateShake, setFakeJumps } from "../effects.ts"
-import { lightShow, prefabs } from "../main.ts"
+import { lightShow, materials, prefabs } from "../main.ts"
 import { approximately, between, pointsBeatsToNormalized } from "../utilities.ts"
 
 export function bridge(map: rm.V3Difficulty) {
@@ -28,6 +28,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 return {
                     beat: e.beat,
                     isPlaying: e.value != rm.EventAction.OFF,
+                    isGameplaySwitch: e.beat > TIMES.BRIDGE + 3
                 }
             })
 
@@ -60,7 +61,7 @@ function doNotemods(map: rm.V3Difficulty) {
         assignWireframeToNotes(map, STATIC_WIREFRAME_TRACK)
         assignGemstoneToNotes(map, DYNAMIC_GEMSTONE_TRACK)
 
-        pauseEvents.forEach((e) => {
+        pauseEvents.forEach((e, i) => {
             rm.animateTrack(map, {
                 track: DYNAMIC_GEMSTONE_TRACK,
                 beat: e.beat,
@@ -77,6 +78,28 @@ function doNotemods(map: rm.V3Difficulty) {
                         x.track.add(DYNAMIC_GEMSTONE_TRACK)
                     }
                 })
+            }
+
+            if (e.isGameplaySwitch) {
+                const gridMat = materials['propagating grid']
+
+                if (!e.isPlaying) {
+                    const unpauseBeat = pauseEvents[i + 1].beat
+                    const pauseDuration = unpauseBeat - e.beat
+                    const pauseDistance = pauseDuration * 20
+                    
+                    gridMat.set(map, {
+                        _ShockwaveDistance: [[pauseDistance, 0], [0,1]]
+                    }, e.beat, pauseDuration)
+
+                    gridMat.set(map, {
+                        _Opacity: [[0,0],[1,0.25,'easeStep'],[0,0.5,'easeStep'],[1,0.75,'easeStep']],
+                    }, e.beat, 0.25)
+
+                    gridMat.set(map, {
+                        _Opacity: [[1,0],[0,1]]
+                    }, unpauseBeat - 0.5, 0.5)
+                }
             }
         })
 
@@ -131,7 +154,6 @@ function doNotemods(map: rm.V3Difficulty) {
 
                     timePoints.push([lastOffTime, e.beat])
 
-                    const isGameplaySwitch = e.beat > TIMES.BRIDGE + 3
                     let switchVariation = e.beat
                     if (e.isPlaying && i > 0) {
                         const nextSwitchBeat = pauseEvents[i - 1].beat
@@ -140,14 +162,14 @@ function doNotemods(map: rm.V3Difficulty) {
                         t = rm.lerp(0.01, 0.99, t)
                         switchVariation = rm.lerp(e.beat, nextSwitchBeat, t)
                     }
-                    const switchBeat = isGameplaySwitch ? switchVariation : e.beat
+                    const switchBeat = e.isGameplaySwitch ? switchVariation : e.beat
                     if (e.isPlaying) {
                         assignGemstoneToNotes(map, pauseTrack, switchBeat)
                     } else {
                         assignWireframeToNotes(map, pauseTrack, switchBeat)
                     }
 
-                    if (isGameplaySwitch) {
+                    if (e.isGameplaySwitch) {
                         rm.animateTrack(map, {
                             track: pauseTrack,
                             beat: switchBeat,
