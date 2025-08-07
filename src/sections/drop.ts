@@ -209,7 +209,7 @@ function doNotemods(map: rm.V3Difficulty) {
     function whiteSection() {
         const DROP_DISAPPEARING_TRACK = 'dropDisappearing'
 
-        setBlackNotes(109)
+        setBlackNotes(107)
 
         dropRotationMovement(111, [0, 0, 0], 1, 'easeOutExpo')
 
