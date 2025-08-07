@@ -2,7 +2,7 @@ import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
 import { assignDirectionalRotation, fadeWhite, noteHop, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath, visibility, wheelEffect } from '../effects.ts'
 import { materials, prefabs } from '../main.ts'
-import { approximately, between, join, randomVec3 } from '../utilities.ts'
+import { approximately, between, cutDirectionVector, join, randomVec3 } from '../utilities.ts'
 
 export function drop(map: rm.V3Difficulty) {
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
@@ -386,6 +386,28 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         dropRotationMovement(181 - 8/2, [-7, 0, 0], 8, 'easeInOutExpo')
+
+        const getVectorAt = (beat: number, magnitude: number): rm.Vec3 => {
+            const note = map.colorNotes.filter(approximately(beat))[0]
+            const vector = cutDirectionVector(note.cutDirection)
+            return [vector[1] * magnitude, -vector[0] * magnitude, 0]
+        }
+
+        const DROP_IN_1_TRACK = 'dropIn1Movement'
+        const dropIn1Rotation = simpleRotationPath(map, DROP_IN_1_TRACK)
+        map.allNotes.filter(between(185, 187)).forEach(x => {
+            x.track.add(DROP_IN_1_TRACK)
+        })
+        dropIn1Rotation(0, getVectorAt(183, 8))
+        dropIn1Rotation(183, [0,0,0], 2, 'easeOutBack')
+
+        const DROP_IN_2_TRACK = 'dropIn2Movement'
+        const dropIn2Rotation = simpleRotationPath(map, DROP_IN_2_TRACK)
+        map.allNotes.filter(between(188.5, 189)).forEach(x => {
+            x.track.add(DROP_IN_2_TRACK)
+        })
+        dropIn2Rotation(0, getVectorAt(187, 8))
+        dropIn2Rotation(187, [0,0,0], 2, 'easeOutBack')
 
         map.allNotes.filter(between(181, 195)).forEach(x => {
             assignDirectionalRotation(x)
