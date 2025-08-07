@@ -103,7 +103,7 @@ function doNotemods(map: rm.V3Difficulty) {
             noteHop(x)
         })
 
-        outroRotationMovement(573, [[4,-4,0,0],[0,0,0,0.5]])
+        outroRotationMovement(573, [[4,0,0,0],[0,0,0,0.5]])
         outroRotationMovement(573, [0,0,0], 2, 'easeOutBack')
         
         wheelEffect(map, 10, [575, 576, 578, 579, 581])
