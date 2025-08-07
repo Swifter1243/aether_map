@@ -106,10 +106,18 @@ Shader "Swifter/VFX/RingArtifact"
             float _Flutter;
             bool _Invert;
 
+            #define IN_VR defined(UNITY_SINGLE_PASS_STEREO) | MULTIPASS_ENABLED | defined(USING_STEREO_MATRICES)
+
             fixed4 frag(v2f i) : SV_Target
             {
                 #if CENTER_OCCLUSION
                 float2 middleUV = i.middleUV.xy / i.middleUV.w;
+
+                #if IN_VR
+                const float EYE_OFFSET = 0.001;
+                middleUV.x -= (unity_StereoEyeIndex - 0.5) * EYE_OFFSET;
+                #endif
+
                 float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, middleUV);
                 float eyeDepth = LinearEyeDepth(depth);
                 clip(eyeDepth - i.cameraDist);
