@@ -150,7 +150,7 @@ function doNotemods(map: rm.V3Difficulty) {
                         lastOffTime -= normalizedDuration
                         timePoints.push([lastOffTime, e.beat])
                     } else {
-                        if (e.beat < x.beat) {
+                        if (e.beat < x.beat && e.isGameplaySwitch) {
                             const unpausePoint = timePoints[timePoints.length - 1]
                             unpausePoint[2] = 'easeInSine'
                             const resumeTime = unpausePoint[1]
