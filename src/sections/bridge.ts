@@ -132,8 +132,15 @@ function doNotemods(map: rm.V3Difficulty) {
                     timePoints.push([lastOffTime, e.beat])
 
                     const isGameplaySwitch = e.beat > TIMES.BRIDGE + 3
-                    const variation = rand(-1, 1) * 0.1 + (0.5 - lastOffTime) * 3
-                    const switchBeat = isGameplaySwitch ? (e.beat + variation) : e.beat
+                    let switchVariation = e.beat
+                    if (e.isPlaying && i > 0) {
+                        const nextSwitchBeat = pauseEvents[i - 1].beat
+                        let t = (0.5 - lastOffTime) * 15
+                        t = rm.clamp(t, 0, 1)
+                        t = rm.lerp(0.01, 0.99, t)
+                        switchVariation = rm.lerp(e.beat, nextSwitchBeat, t)
+                    }
+                    const switchBeat = isGameplaySwitch ? switchVariation : e.beat
                     if (e.isPlaying) {
                         assignGemstoneToNotes(map, pauseTrack, switchBeat)
                     } else {
