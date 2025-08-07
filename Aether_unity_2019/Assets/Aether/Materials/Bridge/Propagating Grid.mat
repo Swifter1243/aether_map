@@ -60,7 +60,7 @@ Material:
     - _BlendDst: 6
     - _BlendOp: 0
     - _BlendSrc: 1
-    - _BorderWidth: 0.1
+    - _BorderWidth: 0.072
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

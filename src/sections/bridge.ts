@@ -86,7 +86,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 if (!e.isPlaying) {
                     const unpauseBeat = pauseEvents[i + 1].beat
                     const pauseDuration = unpauseBeat - e.beat
-                    const pauseDistance = pauseDuration * 20
+                    const pauseDistance = pauseDuration * 30
                     
                     gridMat.set(map, {
                         _ShockwaveDistance: [[pauseDistance, 0], [0,1]]
@@ -148,11 +148,20 @@ function doNotemods(map: rm.V3Difficulty) {
                         const duration = lastOnBeat - e.beat
                         const normalizedDuration = duration / life
                         lastOffTime -= normalizedDuration
+                        timePoints.push([lastOffTime, e.beat])
                     } else {
+                        if (e.beat < x.beat) {
+                            const unpausePoint = timePoints[timePoints.length - 1]
+                            unpausePoint[2] = 'easeInSine'
+                            const resumeTime = unpausePoint[1]
+                            const duration = resumeTime - e.beat
+                            lastOffTime -= duration * 0.01
+                            const resumeBeat = Math.max(e.beat + 0.1, resumeTime - 1)
+                            timePoints.push([lastOffTime, resumeBeat])
+                        }
                         lastOnBeat = e.beat
+                        timePoints.push([lastOffTime, e.beat])
                     }
-
-                    timePoints.push([lastOffTime, e.beat])
 
                     let switchVariation = e.beat
                     if (e.isPlaying && i > 0) {
