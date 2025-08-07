@@ -45,6 +45,7 @@ function doNotemods(map: rm.V3Difficulty) {
         x.disableNoteGravity = true
         x.animation.dissolve = [[0, 0], [1, 0.1]]
         x.animation.dissolveArrow = x.animation.dissolve
+        x.life = 2 * 2
     })
 
     const wheelVisibility = (beat: number, visible: boolean) => visibility(map, WHEEL_EFFECT_TRACK, beat, visible)
@@ -64,7 +65,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(BLACK_OUTLINE_TRACK)
         })
 
-        dropRotationMovement(77, [-4, 10, -10])
+        dropRotationMovement(77, [-4, 3, -3])
         dropRotationMovement(77, [0, 0, 0], 3, 'easeOutBack')
 
         wheelVisibility(70, false)
@@ -337,7 +338,18 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         map.allNotes.filter(between(134, 149)).forEach(x => {
-            noteHop(x, 9)
+            if (between(134, 136)(x)) {
+                const dist = x.beat - 133
+                noteHop(x, dist * 5, dist)
+            }
+            else if (between(136, 138)(x)) {
+                const dist = x.beat - 135
+                noteHop(x, dist * 5, dist)
+            }
+            else {
+                noteHop(x, 9)
+            }
+
             assignDirectionalRotation(x)
         })
 
