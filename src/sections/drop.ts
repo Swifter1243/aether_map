@@ -15,33 +15,37 @@ export function drop(map: rm.V3Difficulty) {
 }
 
 function doNotemods(map: rm.V3Difficulty) {
-    const DROP_MOVEMENT_TRACK = 'dropMovement'
+    const DROP_TRACK = 'drop'
     const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
     const ARROW_MOVEMENT_RIGHT_TRACK = 'arrowMovementRight'
-    const BLACK_OUTLINE_TRACK = 'dropBlackOutline'
-    const WHITE_OUTLINE_TRACK = 'dropWhiteOutline'
     const WHEEL_EFFECT_TRACK = 'dropWheelEffect'
 
-    rm.assignObjectPrefab(map, {
-        colorNotes: {
-            track: BLACK_OUTLINE_TRACK,
-            asset: prefabs['black outline note'].path,
-            debrisAsset: prefabs['black outline note debris'].path,
-            anyDirectionAsset: prefabs['black outline note dot'].path
-        }
-    })
+    function setBlackNotes(beat: number) {
+        rm.assignObjectPrefab(map, {
+            beat,
+            colorNotes: {
+                track: DROP_TRACK,
+                asset: prefabs['black outline note'].path,
+                debrisAsset: prefabs['black outline note debris'].path,
+                anyDirectionAsset: prefabs['black outline note dot'].path
+            }
+        })
+    }
 
-    rm.assignObjectPrefab(map, {
-        colorNotes: {
-            track: WHITE_OUTLINE_TRACK,
-            asset: prefabs['white outline note'].path,
-            debrisAsset: prefabs['white outline note debris'].path,
-            anyDirectionAsset: prefabs['white outline note dot'].path
-        }
-    })
+    function setWhiteNotes(beat: number) {
+        rm.assignObjectPrefab(map, {
+            beat,
+            colorNotes: {
+                track: DROP_TRACK,
+                asset: prefabs['white outline note'].path,
+                debrisAsset: prefabs['white outline note debris'].path,
+                anyDirectionAsset: prefabs['white outline note dot'].path
+            }
+        })
+    }
 
     map.allNotes.filter(between(TIMES.DROP + 1, TIMES.DROP_END)).forEach((x) => {
-        x.track.add(DROP_MOVEMENT_TRACK)
+        x.track.add(DROP_TRACK)
         x.disableNoteGravity = true
         x.animation.dissolve = [[0, 0], [1, 0.1]]
         x.animation.dissolveArrow = x.animation.dissolve
@@ -50,7 +54,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
     const wheelVisibility = (beat: number, visible: boolean) => visibility(map, WHEEL_EFFECT_TRACK, beat, visible)
 
-    const dropRotationMovement = simpleRotationPath(map, DROP_MOVEMENT_TRACK)
+    const dropRotationMovement = simpleRotationPath(map, DROP_TRACK)
 
     blackSection()
     whiteSection()
@@ -61,9 +65,7 @@ function doNotemods(map: rm.V3Difficulty) {
     function blackSection() {
         const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
 
-        map.allNotes.filter(between(79, 107)).forEach(x => {
-            x.track.add(BLACK_OUTLINE_TRACK)
-        })
+        setWhiteNotes(77)
 
         dropRotationMovement(77, [-4, 3, -3])
         dropRotationMovement(77, [0, 0, 0], 3, 'easeOutBack')
@@ -207,9 +209,7 @@ function doNotemods(map: rm.V3Difficulty) {
     function whiteSection() {
         const DROP_DISAPPEARING_TRACK = 'dropDisappearing'
 
-        map.allNotes.filter(between(109, 133)).forEach(x => {
-            x.track.add(WHITE_OUTLINE_TRACK)
-        })
+        setBlackNotes(109)
 
         dropRotationMovement(111, [0, 0, 0], 1, 'easeOutExpo')
 
@@ -293,20 +293,24 @@ function doNotemods(map: rm.V3Difficulty) {
         }
 
         const whiteVisibility = (beat: number, visible: VISIBILITY) => {
-            if (visible == VISIBILITY.INVISIBLE) {
+            const outlineMats = [
+                materials['black outline note'],
+                materials['black outline note debris']
+            ]
+
+            if (visible === VISIBILITY.INVISIBLE) {
                 visibility(map, DROP_DISAPPEARING_TRACK, beat, false)
             }
             else {
                 visibility(map, DROP_DISAPPEARING_TRACK, beat, true)
 
-                const whiteOutlineMats = [
-                    materials['white outline note'],
-                    materials['white outline note debris']
-                ]
+                outlineMats.forEach(m => {
+                    const WHITE: rm.Vec4 = [1,1,1,1]
+                    const BLACK = rm.copy<rm.ColorVec>(m.defaults._CoreColor)
 
-                whiteOutlineMats.forEach(m => {
                     m.set(map, {
-                        _BorderWidth: visible == VISIBILITY.VISIBLE ? m.defaults._BorderWidth : 0
+                        _BorderWidth: visible == VISIBILITY.VISIBLE ? m.defaults._BorderWidth : 0,
+                        _CoreColor: visible === VISIBILITY.VISIBLE ? BLACK : WHITE,
                     }, beat)
                 })
             }
@@ -333,9 +337,7 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function blackSection2() {
-        map.allNotes.filter(between(134, 171)).forEach(x => {
-            x.track.add(BLACK_OUTLINE_TRACK)
-        })
+        setWhiteNotes(133)
 
         map.allNotes.filter(between(134, 149)).forEach(x => {
             if (between(134, 136)(x)) {
@@ -378,9 +380,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
         dropRotationMovement(173, [0, 0, 0], 4, 'easeOutExpo')
 
-        map.allNotes.filter(between(173, 195)).forEach(x => {
-            x.track.add(WHITE_OUTLINE_TRACK)
-        })
+        setBlackNotes(171)
 
         const SHAKE_SEQUENCE_1_START = 176
         const SHAKE_SEQUENCE_1_END = 184
