@@ -23,7 +23,7 @@ export function buildup(map: rm.V3Difficulty)
 function doNotemods(map: rm.V3Difficulty) {
     const SPEED_TRACK = 'buildupSpeed'
     const BUILDUP_NOTE = 'buildupNote'
-    const TARGET_ROT_Y = -30
+    const TARGET_ROT_X = -45
     const JUMPS_CONTEXT = setFakeJumps(map, 509, {
         objectLife: 8 * 2,
         jumpInBeat: 3,
@@ -144,15 +144,15 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(RECOIL_TRACK)
         })
 
-        const ROT_START_BEAT = 533
+        const ROT_START_BEAT = 531
         const ROT_END_BEAT = 541
 
         for (let beat = ROT_START_BEAT; beat < ROT_END_BEAT; beat += 2) {
             const t = rm.inverseLerp(ROT_START_BEAT, ROT_END_BEAT, beat)
-            const remap = (x: number) => x
+            const remap = (x: number) => Math.pow(x, 1.2)
             const slope = derivativeFunction(remap)
             const t2 = remap(t)
-            const rot = t2 * TARGET_ROT_Y
+            const rot = t2 * TARGET_ROT_X
 
             lift(beat - 1, [[0,0,0,0], [rot, 0, 0,fromBeat(1.5),'easeInExpo']], 2, 'easeInOutExpo')
 
@@ -186,7 +186,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(SECTION_3_TRACK)
 
             const t = rm.inverseLerp(542, 574, x.beat)
-            const rot = TARGET_ROT_Y * (1 - t)
+            const rot = TARGET_ROT_X * (1 - t)
 
             x.noteJumpMovementSpeed = 10
             x.life = 20 * 2
