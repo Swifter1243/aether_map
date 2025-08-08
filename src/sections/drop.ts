@@ -2,7 +2,7 @@ import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
 import { assignDirectionalRotation, fadeWhite, noteHop, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath, visibility, wheelEffect } from '../effects.ts'
 import { materials, prefabs } from '../main.ts'
-import { approximately, between, cutDirectionVector, join, randomVec3 } from '../utilities.ts'
+import { approximately, between, cutDirectionVector, join } from '../utilities.ts'
 
 export function drop(map: rm.V3Difficulty) {
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
@@ -435,7 +435,7 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function transitionNotes() {
-        const ZOOM_MIDPOINT: rm.Vec3 = [0, 1, 10]
+        const ZOOM_MIDPOINT: rm.Vec3 = [0, -4, 100]
         const INV_ZOOM_MIDPOINT = rm.arrayMultiply(ZOOM_MIDPOINT, -1)
 
         const PARENT_TO_ORIGIN_TRACK = 'dropTransitionNotesToOrigin'
@@ -458,6 +458,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.noteJumpMovementSpeed = 0.002
             x.life = ZOOM_TIME * 2
             x.animation.offsetPosition = [[...ZOOM_MIDPOINT, 0], [...INV_ZOOM_MIDPOINT,1]]
+            x.animation.offsetWorldRotation = [[8,8,50,0],[0,0,0,0.5]]
             x.track.add(TRANSITION_NOTES_TRACK)
         })
 
@@ -492,15 +493,12 @@ function doNotemods(map: rm.V3Difficulty) {
             }
         })
 
-        const orbitRandom = rm.seededRandom(57)
-
         rm.animateTrack(map, {
             beat: TRANSITION_TIME - ZOOM_TIME,
             duration: ZOOM_TIME,
             track: PARENT_SCALE_TRACK,
             animation: {
-                scale: [[0,0,0,0],[1,1,1,1,'easeInQuad']],
-                localRotation: [[...randomVec3(80, orbitRandom),0],[0,0,0,1,'easeOutSine']]
+                scale: [[0,0,0,0],[1,1,1,1,'easeOutSine']],
             }
         })
     }
