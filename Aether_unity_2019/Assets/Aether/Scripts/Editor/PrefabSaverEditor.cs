@@ -51,6 +51,12 @@ namespace Aether.Scripts.Editor
 				}
 			}
 
+			// Enable animator (bc the animation window likes to turn it off in preview)
+			if (temp.TryGetComponent(out Animator animator))
+			{
+				animator.enabled = true;
+			}
+
 			PrefabUtility.SaveAsPrefabAsset(temp, prefabPath);
 			AssetDatabase.Refresh();
 
