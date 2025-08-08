@@ -20,13 +20,15 @@ export function intro(map: rm.V3Difficulty) {
 
 function doNotemods(map: rm.V3Difficulty) {
     const INTRO_TRACK = 'intro'
+    const INTRO_FLOAT_TRACK = 'introFloat'
     const JUMPS_CONTEXT = setFakeJumps(map, 0, {
-        jumpInBeat: 2,
+        jumpInBeat: 1.5,
         jumpInDuration: 2,
         objectLife: 8 * 2
     })
 
     const introRotationMovement = simpleRotationPath(map, INTRO_TRACK)
+    const introFloatMovement = simpleRotationPath(map, INTRO_FLOAT_TRACK)
     const jumpsToBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
 
     rm.assignPathAnimation(map, {
@@ -47,6 +49,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
     map.allNotes.filter(between(0, 77)).forEach(x => {
         x.track.add(INTRO_TRACK)
+        x.track.add(INTRO_FLOAT_TRACK)
         x.life = JUMPS_CONTEXT.objectLife
         applyFakeJumps(x, rm.random, JUMPS_CONTEXT)
     })
@@ -78,10 +81,23 @@ function doNotemods(map: rm.V3Difficulty) {
     })
 
     introRotationMovement(0, [[7,3,0,0,'easeInOutSine'],[-3,-1,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']])
+    introRotationMovement(5, [[2,0,0,0,'easeInOutSine'],[-1,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 3, 'easeOutCirc')
+
+    introRotationMovement(8, [[6,3,0,0,'easeInOutSine'],[-10,13,0,0.5,'easeInOutSine']], 13, 'easeInOutSine')
+
+    introRotationMovement(37 - 5, [[1,3,0,0,'easeInOutSine'],[-6,-2,0,0.5,'easeInOutSine']], 10, 'easeInOutSine')
+
+    introRotationMovement(58 - 10, [[7,3,0,0,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 10, 'easeInOutSine')
+
+    introRotationMovement(64 - 6 / 2, [[-5,0,0,0,'easeInOutSine'],[-1,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 6, 'easeInOutBack')
 
     const rotationRandom = rm.seededRandom(38)
 
-    passiveFloatingPath(introRotationMovement, rotationRandom, 0, 64 - 10)
+    passiveFloatingPath(introFloatMovement, rotationRandom, 0, 64, {
+        increment: 8,
+        rangeX: 10,
+        rangeY: 4
+    })
 
     rm.assignPathAnimation(map, {
         track: INTRO_TRACK,
@@ -99,6 +115,4 @@ function doNotemods(map: rm.V3Difficulty) {
             offsetPosition: [[0,0,50,0],[0,0,0,jumpsToBeat(JUMPS_CONTEXT.jumpInBeat)]]
         }
     })
-
-    introRotationMovement(64 - 2, [[3,3,0,0,'easeInOutSine'],[-1,-1,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 4, 'easeInOutBack')
 }
