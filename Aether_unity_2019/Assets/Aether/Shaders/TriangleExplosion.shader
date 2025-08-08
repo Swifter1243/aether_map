@@ -99,8 +99,10 @@ Shader "Swifter/TriangleExplosion"
             v2g vert (appdata v)
             {
             	v2g o;
-                UNITY_SETUP_INSTANCE_ID(v);
-            	UNITY_TRANSFER_INSTANCE_ID(v, o);
+			    UNITY_SETUP_INSTANCE_ID(v);
+			    UNITY_INITIALIZE_OUTPUT(v2g, o);
+			    UNITY_TRANSFER_INSTANCE_ID(v, o);
+			    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.proj = UnityObjectToClipPos(v.vertex);
             	o.localPos = v.vertex;
@@ -231,8 +233,10 @@ Shader "Swifter/TriangleExplosion"
             v2g vert (appdata v)
             {
             	v2g o;
-                UNITY_SETUP_INSTANCE_ID(v);
-            	UNITY_TRANSFER_INSTANCE_ID(v, o);
+			    UNITY_SETUP_INSTANCE_ID(v);
+			    UNITY_INITIALIZE_OUTPUT(v2g, o);
+			    UNITY_TRANSFER_INSTANCE_ID(v, o);
+			    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.proj = UnityObjectToClipPos(v.vertex);
             	o.localPos = v.vertex;
@@ -366,7 +370,6 @@ Shader "Swifter/TriangleExplosion"
 				#if HEIGHT_FOG
 				float3 worldPos : TEXCOORD2;
 				#endif
-				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
@@ -377,9 +380,10 @@ Shader "Swifter/TriangleExplosion"
 
             v2f vert (appdata v)
             {
-            	v2f o;
+                v2f o;
                 UNITY_SETUP_INSTANCE_ID(v);
-            	UNITY_TRANSFER_INSTANCE_ID(v, o);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
             	float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
