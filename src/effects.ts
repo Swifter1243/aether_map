@@ -54,6 +54,10 @@ export function setDirectionalMagnitude(map: rm.V3Difficulty, magnitude: number,
             continue
 
         const cut = parseInt(cutStr) as rm.NoteCut
+
+        if (cut == rm.NoteCut.DOT)
+            continue
+
         const dir = cutDirectionVector(cut)
         const track = getCutDirectionTrack(cut)
         rm.assignPathAnimation(map, {
