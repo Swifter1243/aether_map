@@ -13,7 +13,6 @@ export function intro(map: rm.V3Difficulty) {
     doNotemods(map)
     
     bokeh(materials.introbokeh, map, TIMES.INTRO1, 10, 15)
-    bokeh(materials.introbokeh, map, TIMES.INTRO2, 10, 15)
 
     introScene.destroyObject(TIMES.DROP)
 }
