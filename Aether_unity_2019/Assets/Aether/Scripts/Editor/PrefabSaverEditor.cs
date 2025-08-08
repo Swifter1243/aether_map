@@ -40,7 +40,7 @@ namespace Aether.Scripts.Editor
 
 			// Remove C# scripts
 			GameObject temp = Instantiate(saver.gameObject);
-			var components = temp.GetComponentsInChildren<Component>(true).ToList();
+			var components = temp.GetComponents<Component>().ToList();
 			foreach (var comp in components)
 			{
 				if (comp == null) continue; // Missing script
