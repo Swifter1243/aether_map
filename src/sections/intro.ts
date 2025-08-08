@@ -21,7 +21,7 @@ function doNotemods(map: rm.V3Difficulty) {
     const INTRO_TRACK = 'intro'
     const INTRO_FLOAT_TRACK = 'introFloat'
     const JUMPS_CONTEXT = setFakeJumps(map, 0, {
-        jumpInBeat: 1.5,
+        jumpInBeat: 2,
         jumpInDuration: 2,
         objectLife: 8 * 2
     })
