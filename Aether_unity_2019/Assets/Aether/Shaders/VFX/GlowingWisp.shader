@@ -15,6 +15,8 @@
         _TimeScale ("Time Scale", float) = 1
         _Flutter ("Flutter", float) = 0
         _FocalAmount ("Focal Amount", float) = 2
+        [Toggle(PARTICLE_TIME_VARIATION)] _ParticleTimeVariationEnabled ("Particle Time Variation", Int) = 0
+        _ParticleTimeVariationAmount ("Variation Amount", Float) = 1
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
 
@@ -49,6 +51,7 @@
             #pragma vertex vert
             #pragma fragment frag
             #pragma shader_feature RAINBOW
+            #pragma shader_feature PARTICLE_TIME_VARIATION
             #pragma multi_compile_instancing
             #pragma instancing_options procedural:vertInstancingSetup
 
@@ -61,13 +64,22 @@
             struct appdata
             {
                 float4 vertex : POSITION;
+                #if PARTICLE_TIME_VARIATION
+                float4 texcoord0 : TEXCOORD0;
+                #else
                 float2 uv : TEXCOORD0;
+                #endif
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+                float2 uv : TEXCOORD0;
+                #if PARTICLE_TIME_VARIATION
+                float random : TEXCOORD1;
+                #endif
+                UNITY_VERTEX_OUTPUT_STEREO
             };
 
 
@@ -75,7 +87,12 @@
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                #if PARTICLE_TIME_VARIATION
+                o.uv = v.texcoord0.xy;
+                o.random = v.texcoord0.z;
+                #else
                 o.uv = v.uv;
+                #endif
                 return o;
             }
 
@@ -91,20 +108,27 @@
             float _RainbowScale;
             float _RainbowSpeed;
             float _Contrast;
+            float _ParticleTimeVariationAmount;
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float t = _Time.y;
+                #if PARTICLE_TIME_VARIATION
+                t += i.random * _ParticleTimeVariationAmount;
+                #endif
+                t *= _TimeScale;
+
                 //Scaled pixel coordinates
                 float2 p = i.uv;
                 p.y = pow(p.y, _YCompression);
                 p *= _TextureScale;
-                p.y += _Time.y * _TimeScale * _ScrollSpeed;
+                p.y += t * _ScrollSpeed;
 
                 //8 wave passes
                 for(float j=0.0; j<8.0;j++)
                 {
                     //Add a simple sine wave with an offset and animation
-                    p.x += sin(p.y+j+_Time.y*.10*_TimeScale);
+                    p.x += sin(p.y+j+t*.10);
                     //Rotate and scale down
 
                     p = mul(p, float2x2(6,-8,8,6)/8.);
@@ -126,7 +150,7 @@
                 v = max(v, 0);
 
                 #if RAINBOW
-                float3 col = rainbow(n * _RainbowScale + _Time.y * _TimeScale * _RainbowScale * _RainbowSpeed + n * _RainbowScale * 0.5);
+                float3 col = rainbow(n * _RainbowScale + t * _RainbowScale * _RainbowSpeed + n * _RainbowScale * 0.5);
                 col = lerp(_Color, col, _MixRainbow);
                 #else
                 float3 col = _Color;

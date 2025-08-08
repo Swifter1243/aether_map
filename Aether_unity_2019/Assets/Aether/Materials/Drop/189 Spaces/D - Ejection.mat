@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: D - Ejection
   m_Shader: {fileID: 4800000, guid: d0b3e8b6d67c43b4b5bfe738696a1509, type: 3}
-  m_ShaderKeywords: RAINBOW
+  m_ShaderKeywords: PARTICLE_TIME_VARIATION RAINBOW
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -85,6 +85,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ParticleTimeVariationAmount: 1
+    - _ParticleTimeVariationEnabled: 1
     - _Rainbow: 1
     - _RainbowScale: 2.91
     - _RainbowSpeed: 18.85
