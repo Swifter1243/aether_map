@@ -101,9 +101,10 @@ function doNotemods(map: rm.V3Difficulty) {
         applyBlackNotes(575)
         map.allNotes.filter(approximately(575)).forEach(x => {
             noteHop(x)
+            x.worldRotation = [-10, 0, 0]
         })
 
-        outroRotationMovement(573, [[4,0,0,0],[0,0,0,0.5]])
+        outroRotationMovement(573, [[-8,0,0,0],[-4,0,0,0.5]])
         outroRotationMovement(573, [0,0,0], 2, 'easeOutBack')
         
         wheelEffect(map, 10, [575, 576, 578, 579, 581])
