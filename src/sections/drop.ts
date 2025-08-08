@@ -341,15 +341,15 @@ function doNotemods(map: rm.V3Difficulty) {
 
         map.allNotes.filter(between(134, 149)).forEach(x => {
             if (between(134, 136)(x)) {
-                const dist = x.beat - 133
-                noteHop(x, dist * 5, dist)
+                const beatDistance = x.beat - 133
+                noteHop(x, beatDistance * 5, beatDistance + 0.5)
             }
             else if (between(136, 138)(x)) {
-                const dist = x.beat - 135
-                noteHop(x, dist * 5, dist)
+                const beatDistance = x.beat - 135
+                noteHop(x, beatDistance * 5, beatDistance + 0.5)
             }
             else {
-                noteHop(x, 9)
+                noteHop(x, 9, 2.25)
             }
 
             assignDirectionalRotation(x)
