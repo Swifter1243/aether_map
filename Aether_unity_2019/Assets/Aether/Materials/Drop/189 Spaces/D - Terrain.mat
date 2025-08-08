@@ -61,13 +61,16 @@ Material:
     - _BumpScale: 1
     - _CloudAmount: 0.35
     - _CloudPow: 1.44
+    - _Cull: 2
     - _Cutoff: 0.5
+    - _Cutout: 0
+    - _Debris: 0
     - _DetailNormalMapScale: 1
     - _DiffuseAmount: 1
     - _DistanceFogEnabled: 1
     - _DstBlend: 0
     - _FBM: 0.3
-    - _FadeDistanceEnd: 100
+    - _FadeDistanceEnd: 498
     - _FadeDistanceStart: 0
     - _FogEnabled: 1
     - _FogFar: 222.4
@@ -75,6 +78,10 @@ Material:
     - _FogHeightFalloffSlope: 200
     - _FogZEnd: 30
     - _FogZStart: -131
+    - _FresnelAmount: 1
+    - _FresnelEnabled: 0
+    - _FresnelGlow: 0.2
+    - _FresnelPower: 4
     - _GlassAbsorption: 0.8
     - _GlassRefraction: -0.46
     - _GlossMapScale: 1
@@ -84,6 +91,8 @@ Material:
     - _HeightFogEnd: 10
     - _HeightFogStart: 0
     - _HueSaturation: 0.79
+    - _IsColorized: 0
+    - _IsNote: 0
     - _Light1Enabled: 1
     - _Light1Falloff: 25.1
     - _Light1Flutter: 0
@@ -111,6 +120,7 @@ Material:
     - _SunEnabled: 0
     - _SunStrength: 1
     - _TimeScale: 1
+    - _TintAmount: 0.8
     - _UVSec: 0
     - _Voronoi1Scale: 20
     - _Voronoi2Scale: 3
@@ -118,6 +128,7 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CutPlane: {r: 0, g: 0, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FogColor: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
