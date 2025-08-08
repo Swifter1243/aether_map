@@ -3,10 +3,12 @@
     Properties
     {
         _TextureScale ("Texture Scale", Vector) = (5,5,0,0)
+        _ScrollSpeed ("Scroll Speed", Float) = 0.1
         _Color ("Color", Color) = (1,1,1)
         [Toggle(RAINBOW)] _Rainbow ("Use Rainbow", Int) = 0
         _MixRainbow ("Mix Rainbow", Float) = 0.8
         _RainbowScale ("Rainbow Scale", Float) = 4
+        _RainbowSpeed ("Rainbow Speed", Float) = 0.25
         _Brightness ("Brightness", Float) = 2
         _Contrast ("Contrast", Float) = 2.2
         _TimeScale ("Time Scale", float) = 1
@@ -14,6 +16,11 @@
         _FocalAmount ("Focal Amount", float) = 2
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
         [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("BlendOp", Int) = 0
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 0
     }
     SubShader
     {
@@ -27,6 +34,13 @@
         BlendOp [_BlendOp]
         ZWrite Off
         ZTest [_ZTest]
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
+        }
 
         Pass
         {
@@ -65,6 +79,7 @@
             }
 
             float2 _TextureScale;
+            float _ScrollSpeed;
             float3 _Color;
             float _Brightness;
             float _TimeScale;
@@ -72,13 +87,14 @@
             float _FocalAmount;
             float _MixRainbow;
             float _RainbowScale;
+            float _RainbowSpeed;
             float _Contrast;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 //Scaled pixel coordinates
                 float2 p = i.uv * _TextureScale;
-                p.y += _Time.y * _TimeScale * 0.1;
+                p.y += _Time.y * _TimeScale * _ScrollSpeed;
 
                 //8 wave passes
                 for(float j=0.0; j<8.0;j++)
@@ -106,7 +122,7 @@
                 v = max(v, 0);
 
                 #if RAINBOW
-                float3 col = rainbow(n * _RainbowScale + _Time.y * _TimeScale * _RainbowScale * 0.25 + n * _RainbowScale * 0.5);
+                float3 col = rainbow(n * _RainbowScale + _Time.y * _TimeScale * _RainbowScale * _RainbowSpeed + n * _RainbowScale * 0.5);
                 col = lerp(_Color, col, _MixRainbow);
                 #else
                 float3 col = _Color;
