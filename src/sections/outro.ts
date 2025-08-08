@@ -173,6 +173,14 @@ function doNotemods(map: rm.V3Difficulty) {
 
     function section2() {
         rm.assignPathAnimation(map, {
+            track: FLOAT_EFFECT_TRACK,
+            beat: 575 + 32,
+            animation: {
+                dissolve: [0]
+            }
+        })
+
+        rm.assignPathAnimation(map, {
             track: WHEEL_EFFECT_TRACK,
             beat: 575 - 10 + 32,
             animation: {
