@@ -228,7 +228,7 @@ Shader "Swifter/GlassTerrain"
                 col += diffuse;
 
                 // Add specular
-                col += doSpecular(i, normLightDir, lightStrength * lightDistanceNormalized);
+                col += doSpecular(i, normLightDir, lightStrength * lightAmount);
 
                 col *= flutter(flutterAmount);
 
