@@ -59,7 +59,16 @@ function doNotemods(map: rm.V3Difficulty) {
         const rand = rm.seededRandom(37834728)
 
         assignWireframeToNotes(map, STATIC_WIREFRAME_TRACK)
-        assignGemstoneToNotes(map, DYNAMIC_GEMSTONE_TRACK)
+
+        pauseNotes.forEach(x => {
+            const pauseEventOnSelf = pauseEvents.find(e => !e.isPlaying && Math.abs(x.beat - e.beat) < 0.1)
+
+            if (pauseEventOnSelf !== undefined) {
+                x.track.add(STATIC_WIREFRAME_TRACK)
+            } else {
+                x.track.add(DYNAMIC_GEMSTONE_TRACK)
+            }
+        })
 
         pauseEvents.forEach((e, i) => {
             rm.animateTrack(map, {
@@ -69,16 +78,6 @@ function doNotemods(map: rm.V3Difficulty) {
                     interactable: [e.isPlaying ? 1 : 0],
                 },
             })
-
-            if (!e.isPlaying) {
-                pauseNotes.forEach((x) => {
-                    if (Math.abs(x.beat - e.beat) < 0.1) {
-                        x.track.add(STATIC_WIREFRAME_TRACK)
-                    } else {
-                        x.track.add(DYNAMIC_GEMSTONE_TRACK)
-                    }
-                })
-            }
 
             if (e.isGameplaySwitch) {
                 const gridMat = materials['propagating grid']
@@ -116,6 +115,10 @@ function doNotemods(map: rm.V3Difficulty) {
 
             const pauseTrack = getNextPauseTrack()
             x.track.add(pauseTrack)
+
+            if (x.track.has(DYNAMIC_GEMSTONE_TRACK)) {
+                assignGemstoneToNotes(map, pauseTrack)
+            }
 
             const life = x.life
             const halfLife = life / 2
@@ -172,10 +175,13 @@ function doNotemods(map: rm.V3Difficulty) {
                         switchVariation = rm.lerp(e.beat, nextSwitchBeat, t)
                     }
                     const switchBeat = e.isGameplaySwitch ? switchVariation : e.beat
-                    if (e.isPlaying) {
-                        assignGemstoneToNotes(map, pauseTrack, switchBeat)
-                    } else {
-                        assignWireframeToNotes(map, pauseTrack, switchBeat)
+
+                    if (x.track.has(DYNAMIC_GEMSTONE_TRACK)) {
+                        if (e.isPlaying) {
+                            assignGemstoneToNotes(map, pauseTrack, switchBeat)
+                        } else {
+                            assignWireframeToNotes(map, pauseTrack, switchBeat)
+                        }
                     }
 
                     if (e.isGameplaySwitch) {
