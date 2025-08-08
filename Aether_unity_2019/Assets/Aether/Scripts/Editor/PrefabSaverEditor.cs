@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
@@ -37,8 +38,23 @@ namespace Aether.Scripts.Editor
 				return;
 			}
 
-			PrefabUtility.SaveAsPrefabAsset(saver.gameObject, prefabPath);
+			// Remove C# scripts
+			GameObject temp = Instantiate(saver.gameObject);
+			var components = temp.GetComponentsInChildren<Component>(true).ToList();
+			foreach (var comp in components)
+			{
+				if (comp == null) continue; // Missing script
+				var type = comp.GetType();
+				if (comp is MonoBehaviour && !type.Namespace?.StartsWith("UnityEngine") == true)
+				{
+					DestroyImmediate(comp);
+				}
+			}
+
+			PrefabUtility.SaveAsPrefabAsset(temp, prefabPath);
 			AssetDatabase.Refresh();
+
+			DestroyImmediate(temp);
 
 			Debug.Log($"Prefab '{prefab.name}' overwritten successfully.");
 		}
