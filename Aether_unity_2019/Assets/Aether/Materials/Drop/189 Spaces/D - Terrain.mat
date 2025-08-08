@@ -70,7 +70,7 @@ Material:
     - _DistanceFogEnabled: 1
     - _DstBlend: 0
     - _FBM: 0.3
-    - _FadeDistanceEnd: 498
+    - _FadeDistanceEnd: 900
     - _FadeDistanceStart: 0
     - _FogEnabled: 1
     - _FogFar: 222.4
@@ -94,9 +94,9 @@ Material:
     - _IsColorized: 0
     - _IsNote: 0
     - _Light1Enabled: 1
-    - _Light1Falloff: 25.1
+    - _Light1Falloff: 15.4
     - _Light1Flutter: 0
-    - _Light1Range: 47.8
+    - _Light1Range: 341.4
     - _Light1Strength: 1.39
     - _Metallic: 0
     - _Mode: 0
@@ -133,6 +133,6 @@ Material:
     - _FogColor: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
     - _Light1Color: {r: 0.9990929, g: 0.9292453, b: 1, a: 1}
-    - _Light1Position: {r: 0, g: 1.5, b: 10, a: 1}
+    - _Light1Position: {r: 0, g: 1.5, b: 100, a: 1}
     - _SkyCol: {r: 1, g: 1, b: 1, a: 1}
     - _SunColor: {r: 1, g: 1, b: 1, a: 1}
