@@ -11,13 +11,7 @@ namespace Aether.Scripts
 {
     public class ZoomGenerator : MonoBehaviour
     {
-        [Serializable]
-        public struct ZoomStructure
-        {
-            [SerializeField] public GameObject prefab;
-        }
-
-        public ZoomStructure[] structures;
+        public List<GameObject> structures;
         public GameObject parent;
         public AnimationClip clip;
         public float startTime;
@@ -66,10 +60,10 @@ namespace Aether.Scripts
 
             while (currentTime < endTime)
             {
-                ZoomStructure zoom = structures[(int)(Random.value * structures.Length)];
-                if (zoom.prefab == null) continue;
+                GameObject zoom = structures[(int)(Random.value * structures.Count)];
+                if (zoom == null) continue;
 
-                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(zoom.prefab, parentObj);
+                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(zoom, parentObj);
                 instance.transform.localPosition = Vector3.zero;
                 instance.name = $"Zoom_{currentTime}";
 
