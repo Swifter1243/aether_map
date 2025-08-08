@@ -16,6 +16,11 @@ Shader "Swifter/ExtendingArrows"
         _Opacity ("Opacity", Float) = 1
         _TipBrightness ("Tip Brightness", Float) = 0
 
+        [Header(Rotation)][Space(10)]
+        [Toggle(ROTATION)] _RotationEnabled ("Rotation Enabled", Int) = 0
+        _RotationEuler ("Rotation Euler", Vector) = (0,0,0)
+
+        [Header(Blend)][Space(10)]
         [Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc ("Blend Source", Float) = 1
         [Enum(UnityEngine.Rendering.BlendMode)] _BlendDst ("Blend Destination", Float) = 0
     }
@@ -31,13 +36,14 @@ Shader "Swifter/ExtendingArrows"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature ROTATION
 
             #include "UnityCG.cginc"
 
             // VivifyTemplate Libraries
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
             struct appdata
@@ -67,6 +73,10 @@ Shader "Swifter/ExtendingArrows"
             float _WaveAmplitude;
             float _Opacity;
             float _TipBrightness;
+
+            #if ROTATION
+            float3 _RotationEuler;
+            #endif
 
             float3 path(in float t, in float2 phases, in float radius, in float amount, in float speed)
             {
@@ -136,6 +146,10 @@ Shader "Swifter/ExtendingArrows"
 
                 float3x3 m = transpose(float3x3(right, normal, forward));
                 p.xyz = mul(m, p.xyz) + pathNow;
+
+                #if ROTATION
+                p = rotatePoint(_RotationEuler, p);
+                #endif
 
                 localPos.xyz = p.x * localX + p.y * localY + p.z * localZ;
                 localPos.xyz = localPos.xyz * size * _TipBase + center;
