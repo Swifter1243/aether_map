@@ -114,8 +114,8 @@ Shader "Swifter/GlassTerrain"
                 #if NOTE
                 float3 localPos : TEXCOORD6;
                 #endif
-                UNITY_VERTEX_OUTPUT_STEREO
                 UNITY_VERTEX_INPUT_INSTANCE_ID // Insert for GPU instancing
+                UNITY_VERTEX_OUTPUT_STEREO
             };
 
             float _GlassRefraction;
