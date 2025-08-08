@@ -273,14 +273,14 @@ Shader "Swifter/GlassTerrain"
 
                 float4 normalClipPos = i.normalClipPos;
                 normalClipPos.xy = clamp(normalClipPos.xy, -normalClipPos.w, normalClipPos.w);
-                float4 normalScreenPos = ComputeScreenPos(normalClipPos);
+                float4 normalScreenPos = ComputeNonStereoScreenPos(normalClipPos);
                 float2 normalScreenUV = normalScreenPos.xy / normalScreenPos.w;
 
                 #if DEBRIS
                 normalScreenUV += crackDistortion * crackNoise * 0.5;
                 #endif
 
-                float4 col = sampleScreen(normalScreenUV) * _GlassAbsorption;
+                float4 col = sampleScreen(UnityStereoTransformScreenSpaceTex(normalScreenUV)) * _GlassAbsorption;
 
                 const int SHARPNESS = 10;
                 float border = (1 - edgeSmooth(1 - normalScreenUV.x, SHARPNESS)) * (1 - edgeSmooth(1 - normalScreenUV.y, SHARPNESS));
