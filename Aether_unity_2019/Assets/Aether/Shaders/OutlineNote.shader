@@ -188,6 +188,7 @@ Shader "Swifter/OutlineNote"
             struct v2f {
                 V2F_SHADOW_CASTER;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
+                UNITY_VERTEX_OUTPUT_STEREO
             };
 
             v2f vert(appdata_base v)
