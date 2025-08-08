@@ -4,6 +4,7 @@
     {
         _TextureScale ("Texture Scale", Vector) = (5,5,0,0)
         _ScrollSpeed ("Scroll Speed", Float) = 0.1
+        _YCompression ("Y Compression", Float) = 1
         _Color ("Color", Color) = (1,1,1)
         [Toggle(RAINBOW)] _Rainbow ("Use Rainbow", Int) = 0
         _MixRainbow ("Mix Rainbow", Float) = 0.8
@@ -79,6 +80,7 @@
             }
 
             float2 _TextureScale;
+            float _YCompression;
             float _ScrollSpeed;
             float3 _Color;
             float _Brightness;
@@ -93,7 +95,9 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 //Scaled pixel coordinates
-                float2 p = i.uv * _TextureScale;
+                float2 p = i.uv;
+                p.y = pow(p.y, _YCompression);
+                p *= _TextureScale;
                 p.y += _Time.y * _TimeScale * _ScrollSpeed;
 
                 //8 wave passes

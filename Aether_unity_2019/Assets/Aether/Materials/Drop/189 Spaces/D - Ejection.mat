@@ -98,6 +98,7 @@ Material:
     - _StencilRef: 4
     - _TimeScale: 0.07
     - _UVSec: 0
+    - _YCompression: 2.42
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
