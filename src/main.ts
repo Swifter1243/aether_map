@@ -76,6 +76,12 @@ function visualsSetup(map: rm.V3Difficulty) {
             depthTextureMode: ['Depth']
         }
     })
+
+    rm.setRenderingSettings(map, {
+        qualitySettings: {
+            antiAliasing: rm.ANTI_ALIASING.None
+        }
+    })
 }
 
 await Promise.all([
