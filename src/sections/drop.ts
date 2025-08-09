@@ -435,7 +435,7 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function transitionNotes() {
-        const ZOOM_MIDPOINT: rm.Vec3 = [0, -4, 100]
+        const ZOOM_MIDPOINT: rm.Vec3 = [0, -4, 50]
         const INV_ZOOM_MIDPOINT = rm.arrayMultiply(ZOOM_MIDPOINT, -1)
 
         const PARENT_TO_ORIGIN_TRACK = 'dropTransitionNotesToOrigin'
