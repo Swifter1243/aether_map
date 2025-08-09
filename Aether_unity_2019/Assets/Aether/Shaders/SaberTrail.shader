@@ -13,6 +13,7 @@ Shader "Swifter/SaberTrail"
         }
         Cull Off
         Blend OneMinusDstColor OneMinusSrcColor
+        ZWrite Off
 
         Pass
         {
