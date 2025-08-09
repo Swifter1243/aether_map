@@ -37,6 +37,11 @@ Shader "Swifter/Gemstone"
         _Cutout ("Cutout", Range(0,1)) = 0
         [Toggle(DEBRIS)] _Debris ("Debris", Int) = 0
         _CutPlane ("Cut Plane", Vector) = (0, 0, 1, 0)
+
+        [Header(Stencil)][Space(10)]
+        _StencilRef ("Stencil Ref", Int) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Int) = 8
+        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPass ("Stencil Pass", int) = 0
     }
     SubShader
     {
@@ -46,18 +51,27 @@ Shader "Swifter/Gemstone"
         Blend [_SrcBlend] [_DstBlend]
         Cull [_Cull]
 
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
+        }
+
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_instancing
+            #pragma instancing_options procedural:vertInstancingSetup
             #pragma shader_feature DISTANCE_FOG
             #pragma shader_feature HEIGHT_FOG
             #pragma shader_feature NOTE
             #pragma shader_feature DEBRIS
 
             #include "UnityCG.cginc"
+            #include "UnityStandardParticleInstancing.cginc"
 
             // VivifyTemplate Libraries
             #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
