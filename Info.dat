@@ -5,26 +5,20 @@
   "_songAuthorName" : "Jaron",
   "_levelAuthorName" : "Swifter",
   "_beatsPerMinute" : 145,
-  "_previewStartTime" : 28.5,
-  "_previewDuration" : 10,
   "_songTimeOffset" : 0,
   "_shuffle" : 0,
   "_shufflePeriod" : 0.5,
-  "_coverImageFilename" : "cover.jpg",
+  "_previewStartTime" : 28.5,
+  "_previewDuration" : 10,
   "_songFilename" : "song.ogg",
+  "_coverImageFilename" : "cover.jpg",
   "_environmentName" : "BillieEnvironment",
   "_allDirectionsEnvironmentName" : "GlassDesertEnvironment",
-  "_customData" : {
-    "_editors" : {
-      "_lastEditedBy" : "ChroMapper",
-      "ChroMapper" : {
-        "version" : "0.11.793"
-      }
-    },
-    "_assetBundle" : {
-      "_2019" : 290074703
-    }
-  },
+  "_environmentNames" : [
+    "BillieEnvironment"
+  ],
+  "_colorSchemes" : [
+  ],
   "_difficultyBeatmapSets" : [
     {
       "_beatmapCharacteristicName" : "Lightshow",
@@ -46,6 +40,34 @@
     {
       "_beatmapCharacteristicName" : "Standard",
       "_difficultyBeatmaps" : [
+        {
+          "_difficulty" : "Hard",
+          "_difficultyRank" : 5,
+          "_beatmapFilename" : "HardStandard.dat",
+          "_noteJumpMovementSpeed" : 12,
+          "_noteJumpStartBeatOffset" : -0.5,
+          "_beatmapColorSchemeIdx" : 0,
+          "_environmentNameIdx" : 0,
+          "_customData" : {
+            "_settings" : {
+              "_playerOptions" : {
+                "_environmentEffectsFilterExpertPlusPreset" : "AllEffects",
+                "_environmentEffectsFilterDefaultPreset" : "AllEffects"
+              },
+              "_graphics" : {
+                "_mainEffectGraphicsSettings" : true,
+                "_smokeGraphicsSettings" : 1
+              },
+              "_chroma" : {
+                "_disableEnvironmentEnhancements" : false,
+                "_disableChromaEvents" : false
+              }
+            },
+            "_difficultyLabel" : "✧",
+            "_colorLeft" : {"r":0.936,"g":0.614,"b":1},
+            "_colorRight" : {"r":0,"g":0.803,"b":1}
+          }
+        },
         {
           "_difficulty" : "ExpertPlus",
           "_difficultyRank" : 9,
@@ -77,8 +99,15 @@
       ]
     }
   ],
-  "_environmentNames" : [
-  ],
-  "_colorSchemes" : [
-  ]
+  "_customData" : {
+    "_assetBundle" : {
+      "_2019" : 290074703
+    },
+    "_editors" : {
+      "_lastEditedBy" : "ChroMapper",
+      "ChroMapper" : {
+        "version" : "0.12.874"
+      }
+    }
+  }
 }

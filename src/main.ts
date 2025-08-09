@@ -85,7 +85,8 @@ function visualsSetup(map: rm.V3Difficulty) {
 }
 
 await Promise.all([
-    doMap('ExpertPlusStandard')
+    doMap('ExpertPlusStandard'),
+    doMap('HardStandard')
 ])
 
 // ----------- { OUTPUT } -----------
