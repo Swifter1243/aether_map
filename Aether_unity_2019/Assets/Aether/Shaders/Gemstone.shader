@@ -32,6 +32,9 @@ Shader "Swifter/Gemstone"
         [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend ("Source Blend", Float) = 0
         [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Destination Blend", Float) = 6
 
+        [Header(Saber)][Space(10)]
+        [Toggle(SABER)] _IsSaber ("Is Saber", Int) = 0
+
         [Header(Note)][Space(10)]
         [Toggle(NOTE)] _IsNote ("Is Note", Int) = 0
         _Cutout ("Cutout", Range(0,1)) = 0
@@ -56,6 +59,7 @@ Shader "Swifter/Gemstone"
             #pragma shader_feature HEIGHT_FOG
             #pragma shader_feature NOTE
             #pragma shader_feature DEBRIS
+            #pragma shader_feature SABER
 
             #include "UnityCG.cginc"
 
@@ -99,7 +103,7 @@ Shader "Swifter/Gemstone"
             float _FBM;
             float _Darkness;
             float _IOR;
-            #if !NOTE
+            #if !(NOTE | SABER)
             float3 _Color;
             #endif
             float _Brightness;
@@ -116,6 +120,12 @@ Shader "Swifter/Gemstone"
             UNITY_DEFINE_INSTANCED_PROP(float3, _Color)
             UNITY_DEFINE_INSTANCED_PROP(float, _Cutout)
             UNITY_DEFINE_INSTANCED_PROP(float4, _CutPlane)
+            UNITY_INSTANCING_BUFFER_END(Props)
+            #endif
+
+            #if SABER
+            UNITY_INSTANCING_BUFFER_START(Props)
+            UNITY_DEFINE_INSTANCED_PROP(float3, _Color)
             UNITY_INSTANCING_BUFFER_END(Props)
             #endif
 
@@ -158,7 +168,7 @@ Shader "Swifter/Gemstone"
             {
                 UNITY_SETUP_INSTANCE_ID(i);
 
-                #if NOTE
+                #if NOTE | SABER
                 float3 Color = UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
                 #else
                 float3 Color = _Color;

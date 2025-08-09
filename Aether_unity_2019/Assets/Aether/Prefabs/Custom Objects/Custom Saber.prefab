@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2964165699105355543}
   - component: {fileID: 8867824576863594201}
   m_Layer: 12
-  m_Name: Shaft
+  m_Name: Shaft Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114760210957610768}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 2846900326492941342}
   - component: {fileID: 6691252650752737521}
   m_Layer: 12
-  m_Name: Shaft (1)
+  m_Name: Shaft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,13 +151,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9034503105915742717}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.01}
-  m_LocalScale: {x: 0.01, y: 1, z: 0.01}
+  m_LocalRotation: {x: 0.718542, y: 0.0071081496, z: 0.00997165, w: 0.6953758}
+  m_LocalPosition: {x: -0.022257213, y: -0.0075257868, z: 0.24037293}
+  m_LocalScale: {x: 0.030762408, y: 0.3229519, z: 0.03}
   m_Children: []
   m_Father: {fileID: 4712561005529332839}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 92.332, y: -36.51599, z: -36.283997}
 --- !u!33 &2428102520500765994
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 325c6a9fbbe02b041bfaf200cc0a6d47, type: 2}
+  - {fileID: 2100000, guid: a30eeca66951f7848abef1492586612c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

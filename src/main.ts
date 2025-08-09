@@ -77,14 +77,14 @@ function visualsSetup(map: rm.V3Difficulty) {
         }
     })
 
-    // rm.assignObjectPrefab(map, {
-    //     saber: {
-    //         type: 'Both',
-    //         asset: prefabs['custom saber'].path,
-    //         trailAsset: materials['saber trail'].path,
-    //         trailDuration: 0.15
-    //     }
-    // })
+    rm.assignObjectPrefab(map, {
+        saber: {
+            type: 'Both',
+            asset: prefabs['custom saber'].path,
+            trailAsset: materials['saber trail'].path,
+            trailDuration: 0.15
+        }
+    })
 }
 
 await Promise.all([
