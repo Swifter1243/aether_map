@@ -76,6 +76,15 @@ function visualsSetup(map: rm.V3Difficulty) {
             depthTextureMode: ['Depth']
         }
     })
+
+    // rm.assignObjectPrefab(map, {
+    //     saber: {
+    //         type: 'Both',
+    //         asset: prefabs['custom saber'].path,
+    //         trailAsset: materials['saber trail'].path,
+    //         trailDuration: 0.15
+    //     }
+    // })
 }
 
 await Promise.all([
