@@ -101,7 +101,7 @@ Material:
     - _StencilPass: 0
     - _StencilRef: 1
     - _SurfaceDistortion: 0.1
-    - _SurfaceScale: 3
+    - _SurfaceScale: 9.09
     - _TimeScale: 0.2
     - _UVSec: 0
     - _Voronoi1Scale: 19.94
