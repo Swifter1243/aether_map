@@ -172,8 +172,7 @@ Shader "Swifter/Gemstone"
                 float3 intersectionPoint = i.localPos + scaledIncoming;
 
                 float3 surfaceN = voronoi(i.localPos * _NoiseScale * _SurfaceScale);
-                float3 n1 = voronoi(intersectionPoint * _NoiseScale * _DetailScale + surfaceN.z * _SurfaceDistortion);
-                float3 n2 = voronoi(intersectionPoint * _NoiseScale + n1.x * _FBM + surfaceN.z * _SurfaceDistortion);
+                float3 n1 = voronoi(intersectionPoint * _NoiseScale * 2 + surfaceN.z * _SurfaceDistortion);
 
                 #if NOTE
                 float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
@@ -194,14 +193,14 @@ Shader "Swifter/Gemstone"
                 #endif
 
                 float d = dot(i.localNormal, i.viewDir) * _AngleRainbowInfluence;
-                d += n2.x * _NoiseRainbowInfluence;
+                d += n1.x * _NoiseRainbowInfluence;
 
                 float3 hue = rainbow(d);
-                float saturation = pow(surfaceN.y, 2) * n2.x;
+                float saturation = pow(surfaceN.y, 2) * n1.x;
 
                 float3 blackCol = hue * pow(saturation, 3);
                 float3 whiteCol = lerp(Color, hue, saturation);
-                float3 col = lerp(blackCol, whiteCol, pow(n2.y, _Darkness));
+                float3 col = lerp(blackCol, whiteCol, pow(n1.y, _Darkness));
 
                 col *= _Brightness;
 
