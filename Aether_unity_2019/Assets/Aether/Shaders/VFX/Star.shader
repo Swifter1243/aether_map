@@ -148,7 +148,7 @@ Shader "Swifter/VFX/Star"
 
                 float4 CutPlane = UNITY_ACCESS_INSTANCED_PROP(Props, _CutPlane);
                 float3 cutForward = CutPlane.xyz;
-                float3 cutOffset = CutPlane.xyz * CutPlane.w;
+                float3 cutOffset = CutPlane.xyz * -CutPlane.w;
 
                 float3 forward = normalize(cutForward);
                 float3 up = float3(0,1,0);
