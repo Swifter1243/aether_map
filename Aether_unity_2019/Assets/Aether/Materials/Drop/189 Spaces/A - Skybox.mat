@@ -81,6 +81,7 @@ Material:
     - _StencilPass: 0
     - _StencilRef: 1
     - _TimeScale: 1
+    - _TotalScale: 1
     - _UVSec: 0
     - _Voronoi1Scale: 1
     - _Voronoi2Scale: 3.21
@@ -89,4 +90,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _SkyCol: {r: 0.2588235, g: 0.90298873, b: 1, a: 1}
+    - _SkyCol: {r: 0, g: 0.5263972, b: 1, a: 1}

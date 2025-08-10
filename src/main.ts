@@ -24,7 +24,7 @@ async function doMap(file: rm.DIFFICULTY_NAME) {
 
     infoSetup(map)
     visualsSetup(map)
-    
+
     intro(map)
     drop(map)
     ambient(map)
@@ -85,10 +85,17 @@ function visualsSetup(map: rm.V3Difficulty) {
             trailDuration: 0.15
         }
     })
+
+    rm.setRenderingSettings(map, {
+        qualitySettings: {
+            antiAliasing: rm.ANTI_ALIASING.None
+        }
+    })
 }
 
 await Promise.all([
-    doMap('ExpertPlusStandard')
+    doMap('ExpertPlusStandard'),
+    doMap('HardStandard')
 ])
 
 // ----------- { OUTPUT } -----------

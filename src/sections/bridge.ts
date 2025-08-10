@@ -155,11 +155,12 @@ function doNotemods(map: rm.V3Difficulty) {
                     } else {
                         if (e.beat < x.beat && e.isGameplaySwitch) {
                             const unpausePoint = timePoints[timePoints.length - 1]
-                            unpausePoint[2] = 'easeInSine'
+                            unpausePoint[2] = 'easeInQuint'
                             const resumeTime = unpausePoint[1]
                             const duration = resumeTime - e.beat
-                            lastOffTime -= duration * 0.01
-                            const resumeBeat = Math.max(e.beat + 0.1, resumeTime - 1)
+                            lastOffTime -= duration * 0.005
+                            const resumeDuration = 2
+                            const resumeBeat = Math.max(e.beat + 0.01, resumeTime - resumeDuration)
                             timePoints.push([lastOffTime, resumeBeat])
                         }
                         lastOnBeat = e.beat
