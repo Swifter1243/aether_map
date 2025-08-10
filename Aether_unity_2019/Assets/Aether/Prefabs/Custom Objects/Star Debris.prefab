@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1040,33 +1040,69 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0
           inSlope: Infinity
-          outSlope: Infinity
-          tangentMode: 103
-          weightedMode: 0
+          outSlope: 32.642822
+          tangentMode: 5
+          weightedMode: 2
           inWeight: 0
+          outWeight: 0.07323545
+        - serializedVersion: 3
+          time: 0.03590495
+          value: 0.34735656
+          inSlope: 6.618536
+          outSlope: 6.618536
+          tangentMode: 1
+          weightedMode: 3
+          inWeight: 0.5668801
+          outWeight: 0.30206844
+        - serializedVersion: 3
+          time: 0.07218561
+          value: 0
+          inSlope: 5.5749493
+          outSlope: 5.5749493
+          tangentMode: 1
+          weightedMode: 3
+          inWeight: 0.36337167
+          outWeight: 0.3141705
+        - serializedVersion: 3
+          time: 0.0740333
+          value: 0.5629363
+          inSlope: 4.8805423
+          outSlope: 3.4401147
+          tangentMode: 1
+          weightedMode: 3
+          inWeight: 0.35182196
+          outWeight: 0.23951322
+        - serializedVersion: 3
+          time: 0.49999326
+          value: 1
+          inSlope: -0.06088965
+          outSlope: Infinity
+          tangentMode: 97
+          weightedMode: 1
+          inWeight: 0.3764421
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.04466982
+          time: 0.5657277
           value: 0
           inSlope: Infinity
           outSlope: Infinity
-          tangentMode: 1
+          tangentMode: 7
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.2653947
+          time: 0.6432035
           value: 1
           inSlope: Infinity
           outSlope: Infinity
-          tangentMode: 103
+          tangentMode: 1
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.6608038
+          time: 0.7582159
           value: 0
           inSlope: Infinity
           outSlope: Infinity
@@ -1075,8 +1111,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.7641895
-          value: 0.97999954
+          time: 0.8779343
+          value: 1
           inSlope: Infinity
           outSlope: Infinity
           tangentMode: 1
@@ -1084,7 +1120,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.90150505
+          time: 0.99073845
           value: 0
           inSlope: Infinity
           outSlope: Infinity
