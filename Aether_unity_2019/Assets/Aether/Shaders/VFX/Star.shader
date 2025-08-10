@@ -150,6 +150,8 @@ Shader "Swifter/VFX/Star"
                 float3 cutForward = CutPlane.xyz;
                 float3 cutOffset = CutPlane.xyz * -CutPlane.w;
 
+                p.xy = rotate2D(_Time.y * 5, p.xy);
+
                 float3 forward = normalize(cutForward);
                 float3 up = float3(0,1,0);
                 float3 right = normalize(cross(up, forward));
