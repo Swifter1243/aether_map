@@ -44,7 +44,7 @@ function doNotemods(map: rm.V3Difficulty) {
         })
     }
 
-    map.allNotes.filter(between(TIMES.DROP + 1, TIMES.DROP_END)).forEach((x) => {
+    map.allNotes.filter(between(TIMES.DROP + 1, TIMES.DROP_END - 1)).forEach((x) => {
         x.track.add(DROP_TRACK)
         x.disableNoteGravity = true
         x.animation.dissolve = [[0, 0], [1, 0.1]]
