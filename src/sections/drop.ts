@@ -195,7 +195,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
         map.allNotes.filter(between(102, 107)).forEach((x) => {
             x.track.add(DARK_NOTES_TRACK)
-            x.noteJumpMovementSpeed = 10
+            x.noteJumpMovementSpeed = 12
             x.life = 5
         })
 
