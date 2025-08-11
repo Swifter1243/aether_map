@@ -186,7 +186,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(SECTION_3_TRACK)
 
             const t = rm.inverseLerp(542, 574, x.beat)
-            const rot = TARGET_ROT_X * (1 - t)
+            const rot = TARGET_ROT_X * (1 - t) * 0.75
 
             x.noteJumpMovementSpeed = 10
             x.life = 20 * 2
