@@ -105,7 +105,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.noteJumpMovementSpeed = 0.002
             x.life = dur * 2
             x.disableNoteGravity = true
-            x.animation.dissolve = [[0, 0], [1, 0]]
+            x.animation.dissolve = [[0, 0], [1, 0.05]]
             x.animation.dissolveArrow = x.animation.dissolve
             x.animation.offsetPosition = [
                 [0, 0, dist / 2, 0],
