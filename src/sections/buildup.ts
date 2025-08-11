@@ -154,12 +154,12 @@ function doNotemods(map: rm.V3Difficulty) {
             const t2 = remap(t)
             const rot = t2 * TARGET_ROT_X
 
-            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,fromBeat(1.5),'easeInExpo']], 2, 'easeInOutExpo')
+            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,fromBeat(1.5)]], 2, 'easeInOutExpo')
 
-            const LEAD_IN_TIME = 0.5
+            const LEAD_IN_TIME = 0.25
 
             if (beat > ROT_START_BEAT) {
-                recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(1.5),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+                recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(1.5)],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
             }
             recoil(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
         }
