@@ -67,11 +67,16 @@
             "_colorLeft" : {"r":0.936,"g":0.614,"b":1},
             "_colorRight" : {"r":0,"g":0.803,"b":1}
           }
-        },
+        }
+      ]
+    },
+    {
+      "_beatmapCharacteristicName" : "Lawless",
+      "_difficultyBeatmaps" : [
         {
           "_difficulty" : "ExpertPlus",
           "_difficultyRank" : 9,
-          "_beatmapFilename" : "ExpertPlusStandard.dat",
+          "_beatmapFilename" : "ExpertPlusLawless.dat",
           "_noteJumpMovementSpeed" : 16,
           "_noteJumpStartBeatOffset" : -0.5,
           "_beatmapColorSchemeIdx" : 0,
