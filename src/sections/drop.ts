@@ -235,7 +235,7 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         map.allNotes.filter(approximately(111)).forEach(x => {
-            noteHop(x)
+            noteHop(x, 10, 2)
         })
 
         wheelVisibility(111, true)
