@@ -115,6 +115,8 @@ function doNotemods(map: rm.V3Difficulty) {
 
         dropRotationMovement(97, [0, 0, 0], 4, 'easeOutBack')
 
+        dropRotationMovement(101, [[0, 0, -30, 0], [0, 0, 0, 0.5]], 4, 'easeOutBack')
+
         rm.assignPathAnimation(map, {
             beat: 89,
             track: ARROW_MOVEMENT_LEFT_TRACK,
@@ -199,9 +201,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.life = 5
         })
 
-        dropRotationMovement(107, [[0, 0, -50, 0], [0, 0, 0, 0.5]])
-
-        dropRotationMovement(107, [0, 0, 0], 4, 'easeOutCirc')
+        dropRotationMovement(107, [0, 0, 0], 2, 'easeOutBack')
 
         dropRotationMovement(109, [3, 0, 0], 4, 'easeOutCirc')
     }
