@@ -210,13 +210,13 @@ function doNotemods(map: rm.V3Difficulty) {
 
         applyWhiteNotes(581 + 32)
 
-        outroRotationMovement(581 + 32, [[-4,-3,0,0],[0,0,0,0.5]])
-        outroRotationMovement(581 + 32, [[-4,-3,30,0],[0,0,0,0.5]], 2, 'easeOutCirc')
+        outroRotationMovement(581 + 32, [[-4,3,0,0],[0,0,0,0.5]])
+        outroRotationMovement(581 + 32, [[-4,3,30,0],[0,0,0,0.5]], 2, 'easeOutCirc')
         map.allNotes.filter(approximately(583 + 32)).forEach(x => {
             x.animation.offsetWorldRotation = [[...randomVec3(3, rm.random), 0], [0,0,0,0.5,'easeOutCirc']]
         })
 
-        outroRotationMovement(585 + 32, [[-4,-3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
+        outroRotationMovement(585 + 32, [[-4,3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
 
         map.allNotes.filter(between(583 + 32, 589 + 32)).forEach(x => {
             if (between(585 + 32, 587 + 32)(x)) {
