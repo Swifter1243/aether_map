@@ -435,7 +435,7 @@ function doNotemods(map: rm.V3Difficulty) {
     }
 
     function transitionNotes() {
-        const ZOOM_MIDPOINT: rm.Vec3 = [0, -4, 50]
+        const ZOOM_MIDPOINT: rm.Vec3 = [0, 0, 50]
         const INV_ZOOM_MIDPOINT = rm.arrayMultiply(ZOOM_MIDPOINT, -1)
 
         const PARENT_TO_ORIGIN_TRACK = 'dropTransitionNotesToOrigin'
@@ -458,7 +458,8 @@ function doNotemods(map: rm.V3Difficulty) {
             x.noteJumpMovementSpeed = 0.002
             x.life = ZOOM_TIME * 2
             x.animation.offsetPosition = [[...ZOOM_MIDPOINT, 0], [...INV_ZOOM_MIDPOINT,1]]
-            x.animation.offsetWorldRotation = [[8,8,50,0],[0,0,0,0.5]]
+            x.animation.offsetWorldRotation = [[8,8,50,0],[0,0,0,0.5, 'easeOutSine']]
+            x.animation.dissolve = [[0,0],[1,0]]
             x.track.add(TRANSITION_NOTES_TRACK)
         })
 
