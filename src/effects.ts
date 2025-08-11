@@ -151,7 +151,7 @@ export function applyFakeJumps(o: rm.BeatmapGameplayObject, random: RandFunc, co
     o.animation.localRotation = [
         [0, 0, 0, fromBeat(context.jumpInBeat + 1)],
         [...impactRotation, fromBeat(context.jumpInBeat)],
-        [0, 0, 0, fromBeat(context.jumpInBeat * 0.75), 'easeOutExpo']
+        [0, 0, 0, fromBeat(context.jumpInBeat * 0.5), 'easeOutExpo']
     ]
 }
 
