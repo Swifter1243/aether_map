@@ -36,6 +36,7 @@ Shader "Swifter/OutlineNote"
             struct appdata
             {
                 float4 vertex : POSITION;
+                float3 normal : NORMAL;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
@@ -47,6 +48,7 @@ Shader "Swifter/OutlineNote"
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
+            float _BorderWidth;
             float3 _CoreColor;
 
             // Register GPU instanced properties (apply per-note)
@@ -63,8 +65,17 @@ Shader "Swifter/OutlineNote"
                 UNITY_TRANSFER_INSTANCE_ID(v, o); // Insert for GPU instancing
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.localPos = v.vertex.xyz;
+                float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
+
+                float4 localPos = v.vertex;
+
+                float borderWidth = _BorderWidth;
+                borderWidth *= 1 - Cutout;
+                const float WIDTH = 0.3;
+                localPos.xyz *= (1 - (borderWidth * 2 / WIDTH));
+
+                o.vertex = UnityObjectToClipPos(localPos);
+                o.localPos = localPos.xyz;
 
                 return o;
             }
@@ -111,6 +122,7 @@ Shader "Swifter/OutlineNote"
             struct appdata
             {
                 float4 vertex : POSITION;
+                float3 normal : NORMAL;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
@@ -141,12 +153,16 @@ Shader "Swifter/OutlineNote"
 
                 float Cutout = UNITY_ACCESS_INSTANCED_PROP(Props, _Cutout);
 
+                float4 localPos = v.vertex;
+
                 float borderWidth = _BorderWidth;
                 borderWidth *= 1 - Cutout;
-                v.vertex.xyz *= 1 + borderWidth;
+                const float WIDTH = 0.3;
+                localPos.xyz *= (1 - (borderWidth * 2 / WIDTH));
+                localPos.xyz += (borderWidth * 2) * v.normal;
 
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.localPos = v.vertex.xyz;
+                o.vertex = UnityObjectToClipPos(localPos);
+                o.localPos = localPos.xyz;
 
                 return o;
             }
