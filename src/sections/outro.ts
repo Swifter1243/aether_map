@@ -119,12 +119,15 @@ function doNotemods(map: rm.V3Difficulty) {
             ]
         })
         
-        wheelEffect(map, 10, [575, 576, 578, 579, 581])
+        wheelEffect(map, 10, [576, 578, 579, 581])
         map.allNotes.filter(between(576, 581)).forEach(x => {
             x.life = WHEEL_LIFE
             x.track.add(WHEEL_EFFECT_TRACK)
             x.track.add(PASSIVE_FLOAT_TRACK)
         })
+
+        outroRotationMovement(575, [4,0,0])
+        outroRotationMovement(575, [0,0,0], 4, 'easeOutBack')
 
         applyWhiteNotes(581)
 
@@ -213,12 +216,15 @@ function doNotemods(map: rm.V3Difficulty) {
             noteHop(x)
         })
         
-        wheelEffect(map, -10, [575 + 32, 576 + 32, 578 + 32, 579 + 32, 581 + 32])
+        wheelEffect(map, -10, [576 + 32, 578 + 32, 579 + 32, 581 + 32])
         map.allNotes.filter(between(576 + 32, 581 + 32)).forEach(x => {
             x.life = WHEEL_LIFE
             x.track.add(WHEEL_EFFECT_TRACK)
             x.track.add(PASSIVE_FLOAT_TRACK)
         })
+
+        outroRotationMovement(575 + 32, [-4,0,0])
+        outroRotationMovement(575 + 32, [0,0,0], 4, 'easeOutBack')
 
         applyWhiteNotes(581 + 32)
 
