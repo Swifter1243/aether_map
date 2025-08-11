@@ -366,7 +366,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 38.033333
-        value: {x: 0, y: 0, z: -2.651465}
+        value: {x: 0, y: 0, z: -1.8703902}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 7.9333262}
         tangentMode: 0
@@ -375,25 +375,25 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.11195906}
       - serializedVersion: 3
         time: 38.183334
-        value: {x: 0, y: 0, z: -2.2605443}
-        inSlope: {x: 0, y: 0, z: 1.5579073}
-        outSlope: {x: 0, y: 0, z: 1.5579073}
+        value: {x: 0, y: 0, z: -1.4804844}
+        inSlope: {x: 0, y: 0, z: 1.5500122}
+        outSlope: {x: 0, y: 0, z: 1.5500122}
         tangentMode: 0
         weightedMode: 3
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.54271364}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.19836187}
       - serializedVersion: 3
         time: 39.066666
-        value: {x: 0, y: 0, z: -1.5143607}
-        inSlope: {x: 0, y: 0, z: 0.5532515}
-        outSlope: {x: 0, y: 0, z: 0.5532515}
+        value: {x: 0, y: 0, z: -0.7411919}
+        inSlope: {x: 0, y: 0, z: 0.54599446}
+        outSlope: {x: 0, y: 0, z: 0.54599446}
         tangentMode: 0
         weightedMode: 3
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.44799486}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.26934925}
       - serializedVersion: 3
         time: 41.9
-        value: {x: 0, y: 0, z: -0.7612152}
+        value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0.04023904}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -5714,7 +5714,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 38.033333
-        value: -2.651465
+        value: -1.8703902
         inSlope: 0
         outSlope: 7.9333262
         tangentMode: 1
@@ -5723,7 +5723,7 @@ AnimationClip:
         outWeight: 0.03171985
       - serializedVersion: 3
         time: 41.9
-        value: -0.7612152
+        value: 0
         inSlope: 0.04023904
         outSlope: 0
         tangentMode: 1
