@@ -145,7 +145,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 noteHop(x, 5 * dist, dist)
             }
             else {
-                noteHop(x, 10)
+                noteHop(x, 10, 2)
             }
 
             assignDirectionalRotation(x)
@@ -242,7 +242,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 noteHop(x, 5 * dist, dist)
             }
             else {
-                noteHop(x, 10)
+                noteHop(x, 10, 2)
             }
 
             assignDirectionalRotation(x)

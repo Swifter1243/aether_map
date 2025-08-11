@@ -144,7 +144,7 @@ function doNotemods(map: rm.V3Difficulty) {
             between(99, 101),
             approximately(109),
         )).forEach((x) => {
-            noteHop(x)
+            noteHop(x, 10, 2)
 
             if (!(x instanceof rm.Bomb)) {
                 const left = x.color === rm.NoteColor.RED
@@ -374,7 +374,7 @@ function doNotemods(map: rm.V3Difficulty) {
         dropRotationMovement(165 - 2, [-3, 0, 0], 2, 'easeInCirc')
 
         map.allNotes.filter(between(167, 177)).forEach(x => {
-            noteHop(x, 9)
+            noteHop(x, 9, 2)
             assignDirectionalRotation(x)
         })
     }
