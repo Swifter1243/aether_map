@@ -115,7 +115,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
         dropRotationMovement(97, [0, 0, 0], 4, 'easeOutBack')
 
-        dropRotationMovement(101, [[0, 0, -30, 0], [0, 0, 0, 0.5]], 4, 'easeOutBack')
+        // dropRotationMovement(101, [[0, 0, 0, 0], [0, 0, 0, 0.5]], 4, 'easeOutBack')
 
         rm.assignPathAnimation(map, {
             beat: 89,
@@ -157,7 +157,7 @@ function doNotemods(map: rm.V3Difficulty) {
             animation: {
                 dissolve: [[0, 0], [1, 0.2]],
                 dissolveArrow: [[0, 0], [1, 0.2]],
-                offsetWorldRotation: [[0, 0, 90, 0], [0, 0, 0, 0.5]],
+                offsetWorldRotation: [0,0,20],
                 offsetPosition: [0, 0, 4],
             },
         })
@@ -184,21 +184,14 @@ function doNotemods(map: rm.V3Difficulty) {
             },
         })
 
-        rm.assignPathAnimation(map, {
-            beat: 105,
-            duration: 2,
-            easing: 'easeInCirc',
-            track: DARK_NOTES_TRACK,
-            animation: {
-                offsetPosition: [[0, 0, 50, 0], [0, 0, 0, 0.5]],
-                offsetWorldRotation: [[0, 0, 30, 0], [0, 0, 0, 0.5]],
-            },
-        })
-
         map.allNotes.filter(between(102, 107)).forEach((x) => {
             x.track.add(DARK_NOTES_TRACK)
             x.noteJumpMovementSpeed = 12
             x.life = 5
+        })
+
+        map.allNotes.filter(approximately(107)).forEach(x => {
+            noteHop(x, 30, x.beat - 101)
         })
 
         dropRotationMovement(107, [0, 0, 0], 2, 'easeOutBack')
