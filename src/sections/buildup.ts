@@ -35,6 +35,7 @@ function doNotemods(map: rm.V3Difficulty) {
 
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(SPEED_TRACK)
+        x.noteJumpMovementSpeed = x.implicitNoteJumpMovementSpeed + 2
         x.life = JUMPS_CONTEXT.objectLife
         applyFakeJumps(x, rm.random, JUMPS_CONTEXT)
         x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - fromBeat(0.5)]]
