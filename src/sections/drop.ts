@@ -306,7 +306,7 @@ function doNotemods(map: rm.V3Difficulty) {
                     const BLACK = rm.copy<rm.ColorVec>(m.defaults._CoreColor)
 
                     m.set(map, {
-                        _BorderWidth: visible == VISIBILITY.VISIBLE ? m.defaults._BorderWidth : 0,
+                        _BorderWidth: visible == VISIBILITY.VISIBLE ? m.defaults._BorderWidth : m.defaults._BorderWidth * 0.5,
                         _CoreColor: visible === VISIBILITY.VISIBLE ? BLACK : WHITE,
                     }, beat)
                 })
