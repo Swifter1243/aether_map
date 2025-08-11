@@ -100,12 +100,24 @@ function doNotemods(map: rm.V3Difficulty) {
 
         applyBlackNotes(575)
         map.allNotes.filter(approximately(575)).forEach(x => {
-            noteHop(x)
-            x.worldRotation = [-10, 0, 0]
+            const dur = x.beat - 565
+            const dist = 40
+            x.noteJumpMovementSpeed = 0.002
+            x.life = dur * 2
+            x.disableNoteGravity = true
+            x.animation.dissolve = [[0, 0], [1, 0]]
+            x.animation.dissolveArrow = x.animation.dissolve
+            x.animation.offsetPosition = [
+                [0, 0, dist / 2, 0],
+                [0, 0, dist, 0.25, 'easeOutCirc'],
+                [0, 0, 0, 0.5, 'easeInQuad'],
+                [0, 0, -dist * 2.5, 1, 'easeLinear'],
+            ]
+            x.animation.offsetWorldRotation = [
+                [-10,0,0,0],
+                [0,0,0,0.5, 'easeInOutSine']
+            ]
         })
-
-        outroRotationMovement(573, [[-8,0,0,0],[-4,0,0,0.5]])
-        outroRotationMovement(573, [0,0,0], 2, 'easeOutBack')
         
         wheelEffect(map, 10, [575, 576, 578, 579, 581])
         map.allNotes.filter(between(576, 581)).forEach(x => {
