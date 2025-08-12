@@ -133,17 +133,15 @@ Shader "Swifter/Gemstone"
             float _HeightFogStart;
             float _HeightFogEnd;
 
-            #if NOTE
+            #if NOTE | SABER
             UNITY_INSTANCING_BUFFER_START(Props)
             UNITY_DEFINE_INSTANCED_PROP(float3, _Color)
+
+            #if NOTE
             UNITY_DEFINE_INSTANCED_PROP(float, _Cutout)
             UNITY_DEFINE_INSTANCED_PROP(float4, _CutPlane)
-            UNITY_INSTANCING_BUFFER_END(Props)
             #endif
 
-            #if SABER
-            UNITY_INSTANCING_BUFFER_START(Props)
-            UNITY_DEFINE_INSTANCED_PROP(float3, _Color)
             UNITY_INSTANCING_BUFFER_END(Props)
             #endif
 

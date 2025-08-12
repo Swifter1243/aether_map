@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Saber Shaft
   m_Shader: {fileID: 4800000, guid: 1aba8e9557ae37f41bae3bcc6ab45107, type: 3}
-  m_ShaderKeywords: DISTANCE_FOG SABER _ZWRITE_OFF
+  m_ShaderKeywords: DISTANCE_FOG NOTE SABER _ZWRITE_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 4000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AngleRainbowInfluence: 1.23
+    - _AngleRainbowInfluence: 1.05
     - _Brightness: 2.65
     - _BumpScale: 1
     - _Cull: 2
@@ -68,7 +68,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DetailScale: 0.98
     - _DistanceFogEnabled: 1
-    - _DstBlend: 6
+    - _DstBlend: 0
     - _FBM: 2
     - _FadeDistanceEnd: 800
     - _FadeDistanceStart: 500
@@ -79,16 +79,16 @@ Material:
     - _HeightFogEnd: 10
     - _HeightFogStart: 0
     - _IOR: 1.45
-    - _IsNote: 0
+    - _IsNote: 1
     - _IsSaber: 1
     - _LightingInfluence: 0.584
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseRainbowInfluence: 1.07
+    - _NoiseRainbowInfluence: 0.3
     - _NoiseScale: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RainbowInfluence: 0.111
+    - _RainbowInfluence: 0.236
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -96,7 +96,7 @@ Material:
     - _StencilPass: 0
     - _StencilRef: 0
     - _SurfaceDistortion: 0.1
-    - _SurfaceScale: 2.64
+    - _SurfaceScale: 1.59
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
