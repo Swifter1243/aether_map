@@ -16,6 +16,7 @@ Shader "Swifter/Gemstone"
         _Brightness ("Brightness", Float) = 1
         _LightingInfluence ("Lighting Influence", Range(0,1)) = 0.5
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
+        [KeywordEnum(Off, On)] _ZWrite ("ZWrite", Float) = 1
 
         [Header(Fog)][Space(10)]
         _FogColor ("Fog Color", Color) = (1,1,1)
@@ -53,6 +54,7 @@ Shader "Swifter/Gemstone"
         }
         Blend [_SrcBlend] [_DstBlend]
         Cull [_Cull]
+        ZWrite [_ZWrite]
 
         Stencil
         {

@@ -9,9 +9,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Saber Shaft
   m_Shader: {fileID: 4800000, guid: 1aba8e9557ae37f41bae3bcc6ab45107, type: 3}
-  m_ShaderKeywords: DISTANCE_FOG SABER
+  m_ShaderKeywords: DISTANCE_FOG SABER _ZWRITE_OFF
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -68,7 +68,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DetailScale: 0.98
     - _DistanceFogEnabled: 1
-    - _DstBlend: 0
+    - _DstBlend: 6
     - _FBM: 2
     - _FadeDistanceEnd: 800
     - _FadeDistanceStart: 500
@@ -90,14 +90,14 @@ Material:
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 3
     - _StencilComp: 8
     - _StencilPass: 0
     - _StencilRef: 0
     - _SurfaceDistortion: 0.1
     - _SurfaceScale: 2.64
     - _UVSec: 0
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _CutPlane: {r: 0, g: 0, b: 1, a: 0}
