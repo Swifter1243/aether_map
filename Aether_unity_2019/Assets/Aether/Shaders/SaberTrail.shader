@@ -6,6 +6,8 @@ Shader "Swifter/SaberTrail"
         _ChannelDivergence ("Channel Divergence", Float) = 0.1
         _Color ("Saber Color", Color) = (1,1,1)
         _TopSmoothing ("Top Smoothing", Range(0,1)) = 0.01
+        _HueShift ("Hue Shift", Float) = -0.05
+        _Whitestep ("Whitestep", Float) = 5
     }
     SubShader
     {
@@ -14,7 +16,7 @@ Shader "Swifter/SaberTrail"
             "Queue"="Transparent+1000"
         }
         Cull Off
-        Blend SrcAlpha OneMinusSrcAlpha
+        Blend One OneMinusSrcAlpha
         ZWrite Off
         ColorMask RGB
 
@@ -29,7 +31,7 @@ Shader "Swifter/SaberTrail"
 
             // VivifyTemplate Libraries
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
-            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
+            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
@@ -57,6 +59,8 @@ Shader "Swifter/SaberTrail"
 
             float _ChannelDivergence;
             float _TopSmoothing;
+            float _HueShift;
+            float _Whitestep;
 
             v2f vert (appdata v)
             {
@@ -79,16 +83,31 @@ Shader "Swifter/SaberTrail"
 
                 float3 texCol;
                 texCol.r = tex2D(_MainTex, i.uv + float2(0, -_ChannelDivergence)).r;
-                texCol.g = tex2D(_MainTex, i.uv).g;
-                texCol.b = tex2D(_MainTex, i.uv + float2(0, _ChannelDivergence)).b;
+                texCol.g = tex2D(_MainTex, i.uv).r;
+                texCol.b = tex2D(_MainTex, i.uv + float2(0, _ChannelDivergence)).r;
 
-                float4 col = texCol.rgbb;
+                float3 hsvCol = RGBtoHSV(Color);
 
-                col.a *= smoothstep(0, _TopSmoothing, i.uv.x);
-                col.rgb *= Color;
-                col.rgb = lerp(col.rgb, texCol, pow(1 - i.uv.y, 5));
+                hsvCol.r = (hsvCol.r + _HueShift) % 1;
+                float3 altCol1 = HSVtoRGB(hsvCol);
 
-                return col;
+                hsvCol.r = (hsvCol.r + _HueShift) % 1;
+                float3 altCol2 = HSVtoRGB(hsvCol);
+
+                float3 col = 0;
+                col = lerp(col, altCol1, texCol.b);
+                col = lerp(col, altCol2, texCol.g);
+                col = lerp(col, Color, texCol.r);
+
+                float alpha = max(texCol.r, max(texCol.g, texCol.b));
+                alpha *= smoothstep(0, _TopSmoothing, i.uv.x);
+
+                float edge = pow(1 - i.uv.y, _Whitestep);
+
+                alpha = lerp(alpha, texCol.r, edge);
+                col = lerp(col, alpha, edge);
+
+                return float4(col, alpha);
             }
             ENDCG
         }
