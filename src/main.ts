@@ -93,6 +93,11 @@ function visualsSetup(map: rm.V3Difficulty) {
             antiAliasing: rm.ANTI_ALIASING.None
         }
     })
+
+    materials['saber trail'].set(map, {
+        _AltColor1: ['baseEnvironmentColor0'],
+        _AltColor2: ['baseEnvironmentColor1']
+    })
 }
 
 await Promise.all([

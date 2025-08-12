@@ -5,6 +5,9 @@ Shader "Swifter/SaberTrail"
         _MainTex ("Texture", 2D) = "white" {}
         _ChannelDivergence ("Channel Divergence", Float) = 0.1
         _Color ("Saber Color", Color) = (1,1,1)
+        _AltColor1 ("Alt Color 1", Color) = (1,1,1)
+        _AltColor2 ("Alt Color 2", Color) = (1,1,1)
+        _AltInfluence ("Alt Influence", Range(0,1)) = 0.5
         _TopSmoothing ("Top Smoothing", Range(0,1)) = 0.01
         _HueShift ("Hue Shift", Float) = -0.05
         _Whitestep ("Whitestep", Float) = 5
@@ -31,7 +34,7 @@ Shader "Swifter/SaberTrail"
 
             // VivifyTemplate Libraries
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Noise.cginc"
-            #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
+            // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Colors.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Math.cginc"
             // #include "Assets/VivifyTemplate/Utilities/Shader Functions/Easings.cginc"
 
@@ -56,6 +59,10 @@ Shader "Swifter/SaberTrail"
             UNITY_INSTANCING_BUFFER_START(Props)
             UNITY_DEFINE_INSTANCED_PROP(float3, _Color)
             UNITY_INSTANCING_BUFFER_END(Props)
+
+            float3 _AltColor1;
+            float3 _AltColor2;
+            float _AltInfluence;
 
             float _ChannelDivergence;
             float _TopSmoothing;
@@ -86,17 +93,9 @@ Shader "Swifter/SaberTrail"
                 texCol.g = tex2D(_MainTex, i.uv).r;
                 texCol.b = tex2D(_MainTex, i.uv + float2(0, _ChannelDivergence)).r;
 
-                float3 hsvCol = RGBtoHSV(Color);
-
-                hsvCol.r = (hsvCol.r + _HueShift) % 1;
-                float3 altCol1 = HSVtoRGB(hsvCol);
-
-                hsvCol.r = (hsvCol.r + _HueShift) % 1;
-                float3 altCol2 = HSVtoRGB(hsvCol);
-
                 float3 col = 0;
-                col = lerp(col, altCol1, texCol.b);
-                col = lerp(col, altCol2, texCol.g);
+                col = lerp(col, lerp(Color, _AltColor1, _AltInfluence), texCol.b);
+                col = lerp(col, lerp(Color, _AltColor2, _AltInfluence), texCol.g);
                 col = lerp(col, Color, texCol.r);
 
                 float alpha = max(texCol.r, max(texCol.g, texCol.b));

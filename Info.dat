@@ -65,7 +65,9 @@
             },
             "_difficultyLabel" : "✧",
             "_colorLeft" : {"r":0.936,"g":0.614,"b":1},
-            "_colorRight" : {"r":0,"g":0.803,"b":1}
+            "_colorRight" : {"r":0,"g":0.803,"b":1},
+            "_envColorLeft": {"r":0,"g":0,"b":1},
+            "_envColorRight": {"r":0.5146155,"g":0,"b":1}
           }
         }
       ]
@@ -98,7 +100,9 @@
             },
             "_difficultyLabel" : "\\___*",
             "_colorLeft" : {"r":0.936,"g":0.614,"b":1},
-            "_colorRight" : {"r":0,"g":0.803,"b":1}
+            "_colorRight" : {"r":0,"g":0.803,"b":1},
+            "_envColorLeft": {"r":0,"g":0,"b":1},
+            "_envColorRight": {"r":0.5146155,"g":0,"b":1}
           }
         }
       ]
