@@ -57,7 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _ChannelDivergence: 0.06
+    - _ChannelDivergence: 0.03
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
