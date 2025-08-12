@@ -157,7 +157,7 @@ function doNotemods(map: rm.V3Difficulty) {
             const t2 = remap(t)
             const rot = t2 * TARGET_ROT_X
 
-            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,fromBeat(1.5)]], 2, 'easeInOutExpo')
+            lift(beat - 1, [[0,0,0,0], [rot * 1.5, 0, 0,fromBeat(2)], [rot, 0, 0,fromBeat(1)]], 2, 'easeInOutExpo')
 
             const LEAD_IN_TIME = 0.25
 
