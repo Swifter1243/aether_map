@@ -60,7 +60,10 @@ Material:
     - _AmbientStrength: 1
     - _Border: 1
     - _BumpScale: 1
+    - _Cull: 2
     - _Cutoff: 0.5
+    - _Cutout: 0
+    - _Debris: 0
     - _DetailNormalMapScale: 1
     - _DiffuseAmount: 1
     - _DstBlend: 0
@@ -75,6 +78,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HueSaturation: 0.4
+    - _IsNote: 0
     - _Light1Enabled: 0
     - _Light1Falloff: 1
     - _Light1Flutter: 0
@@ -84,6 +88,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PastelAmount: 0
     - _PerspectiveWarp: 1
     - _ShockwaveBrightness: 1
     - _ShockwaveDistance: 170.8
@@ -107,8 +112,9 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CutPlane: {r: 0, g: 0, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FogColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FogColor: {r: 0.68235296, g: 0, b: 0.14117648, a: 1}
     - _HorizonCol: {r: 1, g: 1, b: 1, a: 1}
     - _Light1Color: {r: 1, g: 1, b: 1, a: 1}
     - _Light1Position: {r: 0, g: 0, b: 0, a: 1}
