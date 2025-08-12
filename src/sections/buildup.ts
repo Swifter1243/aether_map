@@ -2,7 +2,7 @@ import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
 import { fadeWhite, applyFakeJumps, simpleRotationPath, visibility, setFakeJumps, assignDirectionalRotation } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
-import { randomVec3 } from '../utilities.ts'
+import { diffValue, randomVec3 } from '../utilities.ts'
 import { beatsToObjectSpawnLife, between, derivativeFunction } from '../utilities.ts'
 
 export function buildup(map: rm.V3Difficulty)
@@ -32,6 +32,8 @@ function doNotemods(map: rm.V3Difficulty) {
     const fromBeat = beatsToObjectSpawnLife(JUMPS_CONTEXT.objectLife)
 
     const buildupRotationMovement = simpleRotationPath(map, BUILDUP_NOTE)
+
+    const diffHalf = diffValue(map, { EXPERTPLUS: 1, HARD: 0.5 })
 
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(SPEED_TRACK)
@@ -110,8 +112,8 @@ function doNotemods(map: rm.V3Difficulty) {
         visibility(map, SECTION_1_TRACK, 509, true)
 
         slowDownNotes(509)
-        buildupRotationMovement(509, [[0,0,360,0],[0,0,180,0.25],[0,0,0,0.5]])
-        buildupRotationMovement(509, [[0,0,180,0],[0,0,0,0.5]], 4, 'easeOutCirc')
+        buildupRotationMovement(509, [[0,0,360 * diffHalf,0],[0,0,180 * diffHalf,0.25],[0,0,0,0.5]])
+        buildupRotationMovement(509, [[0,0,180 * diffHalf,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 
         speedUpNotes(516.75)
         buildupRotationMovement(516.75 -2, [[20,0,0,0],[-4,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 5, 'easeInOutBack')
@@ -133,8 +135,8 @@ function doNotemods(map: rm.V3Difficulty) {
         visibility(map, SECTION_2_TRACK, 525, true)
 
         slowDownNotes(525)
-        buildupRotationMovement(525, [[0,0,-360,0],[0,0,-180,0.25],[0,0,0,0.5]])
-        buildupRotationMovement(525, [[0,0,-180,0],[0,0,0,0.5]], 4, 'easeOutCirc')
+        buildupRotationMovement(525, [[0,0,-360 * diffHalf,0],[0,0,-180 * diffHalf,0.25],[0,0,0,0.5]])
+        buildupRotationMovement(525, [[0,0,-180 * diffHalf,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 
         speedUpNotes(533)
         buildupRotationMovement(533 -2, [0,0,0], 5, 'easeInOutBack')

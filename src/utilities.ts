@@ -173,3 +173,21 @@ export function derivativeFunction(fn: (x: number) => number) {
         return (y2 - y1) / (EPSILON)
     }
 }
+
+export enum DIFF_MODE {
+    EXPERTPLUS,
+    HARD
+}
+
+export function getDiffMode(map: rm.V3Difficulty): DIFF_MODE {
+    const info = map.difficultyInfo
+    if (info.characteristic === 'Lawless') 
+        return DIFF_MODE.EXPERTPLUS
+    return DIFF_MODE.HARD
+}
+
+export function diffValue<T>(map: rm.V3Difficulty, values: { [K in keyof typeof DIFF_MODE]: T }): T {
+    const mode = getDiffMode(map)
+    const key = DIFF_MODE[mode] as keyof typeof DIFF_MODE
+    return values[key]
+}

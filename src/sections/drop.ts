@@ -2,7 +2,7 @@ import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
 import { assignDirectionalRotation, fadeWhite, noteHop, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath, visibility, wheelEffect } from '../effects.ts'
 import { materials, prefabs } from '../main.ts'
-import { approximately, between, cutDirectionVector, join } from '../utilities.ts'
+import { approximately, between, cutDirectionVector, diffValue, join } from '../utilities.ts'
 
 export function drop(map: rm.V3Difficulty) {
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
@@ -19,6 +19,8 @@ function doNotemods(map: rm.V3Difficulty) {
     const ARROW_MOVEMENT_LEFT_TRACK = 'arrowMovementLeft'
     const ARROW_MOVEMENT_RIGHT_TRACK = 'arrowMovementRight'
     const WHEEL_EFFECT_TRACK = 'dropWheelEffect'
+
+    const diffHalf = diffValue(map, { EXPERTPLUS: 1, HARD: 0.5 })
 
     function setBlackNotes(beat: number) {
         rm.assignObjectPrefab(map, {
@@ -76,7 +78,7 @@ function doNotemods(map: rm.V3Difficulty) {
             beat: 79,
             track: WHEEL_EFFECT_TRACK,
             animation: {
-                offsetWorldRotation: [[20,-20,0,0],[0,0,0,0.5]],
+                offsetWorldRotation: [[20*diffHalf,-20*diffHalf,0,0],[0,0,0,0.5]],
             },
         })
         rm.assignPathAnimation(map, {
@@ -90,7 +92,7 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         wheelVisibility(80, true)
-        wheelEffect(map, 5, [80, 81, 81.75, 82.25, 83, 84.25, 85])
+        wheelEffect(map, 5 * diffHalf, [80, 81, 81.75, 82.25, 83, 84.25, 85])
         map.allNotes.filter(between(82, 85)).forEach((x) => {
             x.life = 8
             x.track.add(WHEEL_EFFECT_TRACK)
@@ -111,7 +113,7 @@ function doNotemods(map: rm.V3Difficulty) {
         dropRotationMovement(91, [-5, 0, 0])
         dropRotationMovement(91, [5, 0, 0], 4, 'easeInOutBack')
 
-        dropRotationMovement(95, [[-2, 0, 20, 0], [-2, 0, 0, 0.5]], 2, 'easeOutExpo')
+        dropRotationMovement(95, [[-2, 0, 20 * diffHalf, 0], [-2, 0, 0, 0.5]], 2, 'easeOutExpo')
 
         dropRotationMovement(97, [0, 0, 0], 4, 'easeOutBack')
 
@@ -212,7 +214,7 @@ function doNotemods(map: rm.V3Difficulty) {
             beat: 100,
             track: WHEEL_EFFECT_TRACK,
             animation: {
-                offsetWorldRotation: [[20,-20,0,0],[0,0,0,0.5]],
+                offsetWorldRotation: [[20 * diffHalf,-20 * diffHalf,0,0],[0,0,0,0.5]],
             },
         })
         rm.assignPathAnimation(map, {
@@ -221,7 +223,7 @@ function doNotemods(map: rm.V3Difficulty) {
             easing: 'easeOutBack',
             duration: 1.25,
             animation: {
-                offsetWorldRotation: [[10,-10,0,0],[0,0,0,0.5]],
+                offsetWorldRotation: [[10 * diffHalf,-10 * diffHalf,0,0],[0,0,0,0.5]],
             },
         })
         rm.assignPathAnimation(map, {
@@ -239,7 +241,7 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         wheelVisibility(111, true)
-        wheelEffect(map, -5, [112.25, 113, 113.75, 114.25, 115, 116.25, 117])
+        wheelEffect(map, -5 * diffHalf, [112.25, 113, 113.75, 114.25, 115, 116.25, 117])
         map.allNotes.filter(between(113, 117)).forEach((x) => {
             x.life = 8
             x.track.add(WHEEL_EFFECT_TRACK)
@@ -261,7 +263,7 @@ function doNotemods(map: rm.V3Difficulty) {
         dropRotationMovement(91 + 32, [-5, -3, 0])
         dropRotationMovement(91 + 32, [5, -3, 0], 4, 'easeInOutBack')
 
-        dropRotationMovement(95 + 32, [[-2, 0, 20, 0], [-2, 0, 0, 0.5]], 2, 'easeOutExpo')
+        dropRotationMovement(95 + 32, [[-2, 0, 20 * diffHalf, 0], [-2, 0, 0, 0.5]], 2, 'easeOutExpo')
 
         dropRotationMovement(97 + 32, [0, 0, 0], 4, 'easeOutBack')
 
@@ -339,14 +341,14 @@ function doNotemods(map: rm.V3Difficulty) {
         map.allNotes.filter(between(134, 149)).forEach(x => {
             if (between(134, 136)(x)) {
                 const beatDistance = x.beat - 133
-                noteHop(x, beatDistance * 5, beatDistance + 0.5)
+                noteHop(x, beatDistance * 5, beatDistance + diffValue(map, {EXPERTPLUS: 0.5, HARD: 1}))
             }
             else if (between(136, 138)(x)) {
                 const beatDistance = x.beat - 135
-                noteHop(x, beatDistance * 5, beatDistance + 0.5)
+                noteHop(x, beatDistance * 5, beatDistance + diffValue(map, {EXPERTPLUS: 0.5, HARD: 1}))
             }
             else {
-                noteHop(x, 9, 2.25)
+                noteHop(x, 9,  + diffValue(map, {EXPERTPLUS: 2.25, HARD: 2.5}))
             }
 
             assignDirectionalRotation(x)
