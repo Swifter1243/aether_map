@@ -5,6 +5,7 @@ Shader "Swifter/SaberTrail"
         _MainTex ("Texture", 2D) = "white" {}
         _ChannelDivergence ("Channel Divergence", Float) = 0.1
         _Color ("Saber Color", Color) = (1,1,1)
+        _TopSmoothing ("Top Smoothing", Range(0,1)) = 0.01
     }
     SubShader
     {
@@ -55,6 +56,7 @@ Shader "Swifter/SaberTrail"
             UNITY_INSTANCING_BUFFER_END(Props)
 
             float _ChannelDivergence;
+            float _TopSmoothing;
 
             v2f vert (appdata v)
             {
@@ -80,8 +82,9 @@ Shader "Swifter/SaberTrail"
                 texCol.g = tex2D(_MainTex, i.uv).g;
                 texCol.b = tex2D(_MainTex, i.uv + float2(0, _ChannelDivergence)).b;
 
-                float4 col = texCol.rgbr;
+                float4 col = texCol.rgbb;
 
+                col.a *= smoothstep(0, _TopSmoothing, i.uv.x);
                 col.rgb *= Color;
                 col.rgb = lerp(col.rgb, texCol, pow(1 - i.uv.y, 5));
 
