@@ -1,6 +1,6 @@
 import { materials } from "./main.ts";
 import { rm } from "./deps.ts";
-import { beatsToObjectSpawnLife, between, cutDirectionVector, gridYToLocalOffset, RandFunc, randomVec3, sequencedRotation } from './utilities.ts'
+import { beatsToObjectSpawnLife, between, cutDirectionAngle, cutDirectionVector, gridYToLocalOffset, RandFunc, randomVec3, sequencedRotation } from './utilities.ts'
 
 export function bokeh(material: rm.Material, map: rm.AbstractDifficulty, beat: number, duration = 10, radius = 25)
 {
@@ -148,11 +148,21 @@ export function applyFakeJumps(o: rm.BeatmapGameplayObject, random: RandFunc, co
     o.track.add(track)
     
     const impactRotation = getRandomNoteSpawnRotation(random)
-    o.animation.localRotation = [
-        [0, 0, 0, fromBeat(context.jumpInBeat + 1)],
-        [...impactRotation, fromBeat(context.jumpInBeat)],
-        [0, 0, 0, fromBeat(context.jumpInBeat * 0.5), 'easeOutExpo']
-    ]
+    if (o instanceof rm.ColorNote && o.cutDirection != rm.NoteCut.DOT) {
+        const invRotation: rm.Vec3 = [0, 0, -(cutDirectionAngle(o.cutDirection) + 180) % 360]
+        o.animation.localRotation = [
+            [...invRotation, fromBeat(context.jumpInBeat + 1)],
+            [...rm.combineRotations(impactRotation, invRotation), fromBeat(context.jumpInBeat)],
+            [0, 0, 0, fromBeat(context.jumpInBeat * 0.5), 'easeOutExpo']
+        ]
+    }
+    else {
+        o.animation.localRotation = [
+            [0, 0, 0, fromBeat(context.jumpInBeat + 1)],
+            [...impactRotation, fromBeat(context.jumpInBeat)],
+            [0, 0, 0, fromBeat(context.jumpInBeat * 0.5), 'easeOutExpo']
+        ]
+    }
 }
 
 export type SimpleRotationPathFunction = (beat: number, rotation: rm.DifficultyPointsVec3, duration?: number, easing?: rm.EASE) => rm.AssignPathAnimation
