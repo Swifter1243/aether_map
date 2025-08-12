@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Saber Trail
-  m_Shader: {fileID: 4800000, guid: 17b2b80c902c15948928396c0da29e2a, type: 3}
+  m_Name: Saber Hilt Flare
+  m_Shader: {fileID: 4800000, guid: 8325ce697c6a3c840b9084ade332aaf2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 5000
   stringTagMap: {}
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bc1bd510ca06f0a4a82fc97a057f064d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -56,23 +56,47 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Alpha: 0.4
+    - _BlendDst: 6
+    - _BlendOp: 0
+    - _BlendSrc: 4
+    - _Brightness: 3
     - _BumpScale: 1
-    - _ChannelDivergence: 0.06
+    - _CenterOcclusionEnabled: 0
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Flutter: 0.4
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Glow: 32
+    - _GraphicCutoff: 0.6
+    - _GraphicEnabled: 0
+    - _GraphicNoise1Scale: 8
+    - _GraphicNoise2Influence: 0.4
+    - _GraphicNoise2Scale: 15
+    - _GraphicNoiseInfluence: 0.3
+    - _GraphicSharpness: 2
+    - _Intensity: 3
     - _Metallic: 0
     - _Mode: 0
+    - _NoiseScale: 30
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Saturation: 0.5
+    - _Sharpness: 52.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _StencilComp: 8
+    - _StencilPass: 2
+    - _StencilRef: 0
+    - _TimeScale: 1
     - _UVSec: 0
+    - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
