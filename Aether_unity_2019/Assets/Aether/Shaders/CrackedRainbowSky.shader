@@ -196,29 +196,29 @@
                 border = lerp(border, _BorderWidth + 1, min(1, falloffVal / 200));
 
                 // Layer 1
-                float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
-                layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
-                layer1Rainbow *= _Layer1BaseBrightness;
-                float layer1Mix = noise.y < _Layer1GlowThresh;
+                [branch]
+                if (crack < 0.5)
+                {
+                    float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
+                    layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
+                    layer1Rainbow *= _Layer1BaseBrightness;
+                    float layer1Mix = noise.y < _Layer1GlowThresh;
+                    
+                    #if WAVE
+                    float wave = noise.z * exp(abs(projectedPos.z - _WaveZ) * _WaveFalloff);
+                    wave = step(wave, 0.3);
+                    layer1Mix = min(1, layer1Mix + wave);
+                    #endif
 
-                #if WAVE
-                float wave = noise.z * exp(abs(projectedPos.z - _WaveZ) * _WaveFalloff);
-                wave = step(wave, 0.3);
-                layer1Mix = min(1, layer1Mix + wave);
-                #endif
-
-                float layer1Alpha = layer1Mix * _Layer1Alpha;
-                float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
-
-                // Layer 2
-                if (border < _BorderWidth)
+                    float layer1Alpha = layer1Mix * _Layer1Alpha;
+                    return float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
+                }
+                //Layer 2
+                else 
                 {
                     projectedPos.xy = rotate2D(projectedPos.z * _Twist + _Rotation, projectedPos.xy);
-                    return doSkybox(normalize(projectedPos));;
+                    return doSkybox(normalize(projectedPos));
                 }
-
-                // Final
-                return layer1Col;
             }
             ENDCG
         }
