@@ -194,7 +194,6 @@
                 float falloffVal = exp(abs(projectedPos.y) * _BorderFalloff);
                 border *= falloffVal;
                 border = lerp(border, _BorderWidth + 1, min(1, falloffVal / 200));
-                float crack = step(border, _BorderWidth);
 
                 // Layer 1
                 float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
@@ -212,12 +211,14 @@
                 float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
 
                 // Layer 2
-                projectedPos.xy = rotate2D(projectedPos.z * _Twist + _Rotation, projectedPos.xy);
-                float4 layer2Col = doSkybox(normalize(projectedPos));
+                if (border < _BorderWidth)
+                {
+                    projectedPos.xy = rotate2D(projectedPos.z * _Twist + _Rotation, projectedPos.xy);
+                    return doSkybox(normalize(projectedPos));;
+                }
 
                 // Final
-                float4 col = lerp(layer1Col, layer2Col, crack);
-                return col;
+                return layer1Col;
             }
             ENDCG
         }
