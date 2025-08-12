@@ -8,6 +8,7 @@ Shader "Swifter/Gemstone"
         _DetailScale ("Detail Scale", Float) = 1
         _AngleRainbowInfluence ("Angle Rainbow Influence", Float) = 5
         _NoiseRainbowInfluence ("Noise Rainbow Influence", Float) = 2
+        _RainbowInfluence ("Rainbow Influence", Range(0,1)) = 1
         _SurfaceDistortion ("Surface Distortion", Float) = 0.1
         _Darkness ("Darkness", Float) = 1.5
         _FBM ("FBM", Float) = 2
@@ -115,6 +116,7 @@ Shader "Swifter/Gemstone"
             float _DetailScale;
             float _AngleRainbowInfluence;
             float _NoiseRainbowInfluence;
+            float _RainbowInfluence;
             float _SurfaceDistortion;
             float _FBM;
             float _Darkness;
@@ -224,8 +226,8 @@ Shader "Swifter/Gemstone"
                 float3 hue = rainbow(d);
                 float saturation = pow(surfaceN.y, 2) * n1.x;
 
-                float3 blackCol = hue * pow(saturation, 3);
-                float3 whiteCol = lerp(Color, hue, saturation);
+                float3 blackCol = hue * _RainbowInfluence * pow(saturation, 3);
+                float3 whiteCol = lerp(Color, hue, saturation * _RainbowInfluence);
                 float3 col = lerp(blackCol, whiteCol, pow(n1.y, _Darkness));
 
                 col *= _Brightness;
