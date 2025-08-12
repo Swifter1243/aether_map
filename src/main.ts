@@ -69,6 +69,8 @@ function visualsSetup(map: rm.V3Difficulty) {
         if (!(x instanceof rm.Arc || x instanceof rm.Chain)) {
             x.spawnEffect = false
         }
+
+        x.unsafeCustomData.scale = [1,1,1]
     })
 
     rm.setCameraProperty(map, {
@@ -94,7 +96,7 @@ function visualsSetup(map: rm.V3Difficulty) {
 }
 
 await Promise.all([
-    doMap('ExpertPlusStandard'),
+    doMap('ExpertPlusLawless'),
     doMap('HardStandard')
 ])
 

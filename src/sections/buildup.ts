@@ -2,7 +2,7 @@ import { TIMES } from "../constants.ts";
 import { rm } from "../deps.ts";
 import { fadeWhite, applyFakeJumps, simpleRotationPath, visibility, setFakeJumps, assignDirectionalRotation } from "../effects.ts";
 import { materials, prefabs } from "../main.ts";
-import { randomVec3 } from '../utilities.ts'
+import { diffValue, randomVec3 } from '../utilities.ts'
 import { beatsToObjectSpawnLife, between, derivativeFunction } from '../utilities.ts'
 
 export function buildup(map: rm.V3Difficulty)
@@ -33,8 +33,11 @@ function doNotemods(map: rm.V3Difficulty) {
 
     const buildupRotationMovement = simpleRotationPath(map, BUILDUP_NOTE)
 
+    const diffHalf = diffValue(map, { EXPERTPLUS: 1, HARD: 0.5 })
+
     map.allNotes.filter(between(510, 541)).forEach(x => {
         x.track.add(SPEED_TRACK)
+        x.noteJumpMovementSpeed = x.implicitNoteJumpMovementSpeed + 2
         x.life = JUMPS_CONTEXT.objectLife
         applyFakeJumps(x, rm.random, JUMPS_CONTEXT)
         x.animation.scale = [[0,0,0,0],[1,1,1,0.5 - fromBeat(0.5)]]
@@ -109,8 +112,8 @@ function doNotemods(map: rm.V3Difficulty) {
         visibility(map, SECTION_1_TRACK, 509, true)
 
         slowDownNotes(509)
-        buildupRotationMovement(509, [[0,0,360,0],[0,0,180,0.25],[0,0,0,0.5]])
-        buildupRotationMovement(509, [[0,0,180,0],[0,0,0,0.5]], 4, 'easeOutCirc')
+        buildupRotationMovement(509, [[0,0,360 * diffHalf,0],[0,0,180 * diffHalf,0.25],[0,0,0,0.5]])
+        buildupRotationMovement(509, [[0,0,180 * diffHalf,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 
         speedUpNotes(516.75)
         buildupRotationMovement(516.75 -2, [[20,0,0,0],[-4,0,0,0.25,'easeInOutSine'],[0,0,0,0.5,'easeInOutSine']], 5, 'easeInOutBack')
@@ -132,8 +135,8 @@ function doNotemods(map: rm.V3Difficulty) {
         visibility(map, SECTION_2_TRACK, 525, true)
 
         slowDownNotes(525)
-        buildupRotationMovement(525, [[0,0,-360,0],[0,0,-180,0.25],[0,0,0,0.5]])
-        buildupRotationMovement(525, [[0,0,-180,0],[0,0,0,0.5]], 4, 'easeOutCirc')
+        buildupRotationMovement(525, [[0,0,-360 * diffHalf,0],[0,0,-180 * diffHalf,0.25],[0,0,0,0.5]])
+        buildupRotationMovement(525, [[0,0,-180 * diffHalf,0],[0,0,0,0.5]], 4, 'easeOutCirc')
 
         speedUpNotes(533)
         buildupRotationMovement(533 -2, [0,0,0], 5, 'easeInOutBack')
@@ -154,12 +157,12 @@ function doNotemods(map: rm.V3Difficulty) {
             const t2 = remap(t)
             const rot = t2 * TARGET_ROT_X
 
-            lift(beat - 1, [[0,0,0,0], [rot, 0, 0,fromBeat(1.5),'easeInExpo']], 2, 'easeInOutExpo')
+            lift(beat - 1, [[0,0,0,0], [rot * 1.5, 0, 0,fromBeat(2)], [rot, 0, 0,fromBeat(1)]], 2, 'easeInOutExpo')
 
-            const LEAD_IN_TIME = 0.5
+            const LEAD_IN_TIME = 0.25
 
             if (beat > ROT_START_BEAT) {
-                recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(1.5),'easeInExpo'],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
+                recoil(beat - LEAD_IN_TIME, [[0,0,0,0],[4 * slope(t),0,0,fromBeat(1.5)],[0,0,0,0.5]], LEAD_IN_TIME, 'easeInCirc')
             }
             recoil(beat, [0,0,0], 2 - LEAD_IN_TIME, 'easeOutBack')
         }
@@ -186,7 +189,7 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(SECTION_3_TRACK)
 
             const t = rm.inverseLerp(542, 574, x.beat)
-            const rot = TARGET_ROT_X * (1 - t)
+            const rot = TARGET_ROT_X * (1 - t) * 0.75
 
             x.noteJumpMovementSpeed = 10
             x.life = 20 * 2

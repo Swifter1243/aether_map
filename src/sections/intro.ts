@@ -49,6 +49,7 @@ function doNotemods(map: rm.V3Difficulty) {
     map.allNotes.filter(between(0, 77)).forEach(x => {
         x.track.add(INTRO_TRACK)
         x.track.add(INTRO_FLOAT_TRACK)
+        x.noteJumpMovementSpeed = x.implicitNoteJumpMovementSpeed + 2;
         x.life = JUMPS_CONTEXT.objectLife
         applyFakeJumps(x, rm.random, JUMPS_CONTEXT)
     })

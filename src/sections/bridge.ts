@@ -228,7 +228,7 @@ function doNotemods(map: rm.V3Difficulty) {
             function setupAttributes() {
                 x.animation.scale = [[0, 0, 0, 0], [1, 1, 1, 0]]
                 x.animation.offsetWorldRotation = [[0, rand(-1, 1) * 2, 0, 0], [0, 0, 0, 0.5]]
-                x.noteJumpMovementSpeed = 12
+                x.noteJumpMovementSpeed = 14
                 x.life = JUMPS_CONTEXT.objectLife
                 x.track.add(PAUSE_TRACK)
             }

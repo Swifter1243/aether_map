@@ -5,7 +5,7 @@ import { simpleRotationPath } from '../effects.ts'
 import { assignDirectionalRotation } from '../effects.ts'
 import { noteHop, wheelEffect } from '../effects.ts'
 import { prefabs } from "../main.ts";
-import { approximately, beatsToObjectSpawnLife, between, randomVec3 } from '../utilities.ts'
+import { approximately, beatsToObjectSpawnLife, between, diffValue, randomVec3 } from '../utilities.ts'
 
 export function outro(map: rm.V3Difficulty)
 {
@@ -17,6 +17,8 @@ export function outro(map: rm.V3Difficulty)
 }
 
 function doNotemods(map: rm.V3Difficulty) {
+    const diffHalf = diffValue(map, { EXPERTPLUS: 1, HARD: 0.5 })
+
     const OUTRO_NOTE_TRACK = 'outroNote'
 
     const WHEEL_EFFECT_TRACK = 'outroWheelTrack'
@@ -31,7 +33,7 @@ function doNotemods(map: rm.V3Difficulty) {
     const floatRotation = simpleRotationPath(map, PASSIVE_FLOAT_TRACK)
 
     applyWhiteNotes(0)
-    setDirectionalMagnitude(map, 20, 575)
+    setDirectionalMagnitude(map, 20 * diffHalf, 575)
 
     const outroRotationMovement = simpleRotationPath(map, OUTRO_NOTE_TRACK)
 
@@ -100,26 +102,41 @@ function doNotemods(map: rm.V3Difficulty) {
 
         applyBlackNotes(575)
         map.allNotes.filter(approximately(575)).forEach(x => {
-            noteHop(x)
-            x.worldRotation = [-10, 0, 0]
+            const dur = x.beat - 565
+            const dist = 40
+            x.noteJumpMovementSpeed = 0.002
+            x.life = dur * 2
+            x.disableNoteGravity = true
+            x.animation.dissolve = [[0, 0], [1, 0.05]]
+            x.animation.dissolveArrow = x.animation.dissolve
+            x.animation.offsetPosition = [
+                [0, 0, dist / 2, 0],
+                [0, 0, dist, 0.25, 'easeOutCirc'],
+                [0, 0, 0, 0.5, 'easeInQuad'],
+                [0, 0, -dist * 2.5, 1, 'easeLinear'],
+            ]
+            x.animation.offsetWorldRotation = [
+                [-10,0,0,0],
+                [0,0,0,0.5, 'easeInOutSine']
+            ]
         })
-
-        outroRotationMovement(573, [[-8,0,0,0],[-4,0,0,0.5]])
-        outroRotationMovement(573, [0,0,0], 2, 'easeOutBack')
         
-        wheelEffect(map, 10, [575, 576, 578, 579, 581])
+        wheelEffect(map, 10 * diffHalf, [576, 578, 579, 581])
         map.allNotes.filter(between(576, 581)).forEach(x => {
             x.life = WHEEL_LIFE
             x.track.add(WHEEL_EFFECT_TRACK)
             x.track.add(PASSIVE_FLOAT_TRACK)
         })
 
+        outroRotationMovement(575, [4,0,0])
+        outroRotationMovement(575, [0,0,0], 4, 'easeOutBack')
+
         applyWhiteNotes(581)
 
         outroRotationMovement(581, [[-4,-3,0,0],[0,0,0,0.5]])
-        outroRotationMovement(581, [[-4,-3,30,0],[0,0,0,0.5]], 2, 'easeOutCirc')
+        outroRotationMovement(581, [[-4,-3,30 * diffHalf,0],[0,0,0,0.5]], 2, 'easeOutCirc')
         map.allNotes.filter(approximately(583)).forEach(x => {
-            x.animation.offsetWorldRotation = [[...randomVec3(3, rm.random), 0], [0,0,0,0.5,'easeOutCirc']]
+            x.animation.offsetWorldRotation = [[...randomVec3(3 * diffHalf, rm.random), 0], [0,0,0,0.5,'easeOutCirc']]
         })
 
         outroRotationMovement(585, [[-4,-3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
@@ -130,7 +147,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 noteHop(x, 5 * dist, dist)
             }
             else {
-                noteHop(x, 10)
+                noteHop(x, 10, 2)
             }
 
             assignDirectionalRotation(x)
@@ -201,22 +218,25 @@ function doNotemods(map: rm.V3Difficulty) {
             noteHop(x)
         })
         
-        wheelEffect(map, -10, [575 + 32, 576 + 32, 578 + 32, 579 + 32, 581 + 32])
+        wheelEffect(map, -10 * diffHalf, [576 + 32, 578 + 32, 579 + 32, 581 + 32])
         map.allNotes.filter(between(576 + 32, 581 + 32)).forEach(x => {
             x.life = WHEEL_LIFE
             x.track.add(WHEEL_EFFECT_TRACK)
             x.track.add(PASSIVE_FLOAT_TRACK)
         })
 
+        outroRotationMovement(575 + 32, [-4,0,0])
+        outroRotationMovement(575 + 32, [0,0,0], 4, 'easeOutBack')
+
         applyWhiteNotes(581 + 32)
 
-        outroRotationMovement(581 + 32, [[-4,-3,0,0],[0,0,0,0.5]])
-        outroRotationMovement(581 + 32, [[-4,-3,30,0],[0,0,0,0.5]], 2, 'easeOutCirc')
+        outroRotationMovement(581 + 32, [[-4,3,0,0],[0,0,0,0.5]])
+        outroRotationMovement(581 + 32, [[-4,3,30 * diffHalf,0],[0,0,0,0.5]], 2, 'easeOutCirc')
         map.allNotes.filter(approximately(583 + 32)).forEach(x => {
             x.animation.offsetWorldRotation = [[...randomVec3(3, rm.random), 0], [0,0,0,0.5,'easeOutCirc']]
         })
 
-        outroRotationMovement(585 + 32, [[-4,-3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
+        outroRotationMovement(585 + 32, [[-4,3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
 
         map.allNotes.filter(between(583 + 32, 589 + 32)).forEach(x => {
             if (between(585 + 32, 587 + 32)(x)) {
@@ -224,7 +244,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 noteHop(x, 5 * dist, dist)
             }
             else {
-                noteHop(x, 10)
+                noteHop(x, 10, 2)
             }
 
             assignDirectionalRotation(x)

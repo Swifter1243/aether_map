@@ -31,7 +31,7 @@
         _Voronoi1Scale ("Voronoi 1 Scale", Float) = 20
         _Voronoi2Scale ("Voronoi 2 Scale", Float) = 3
         _Simplex1Scale ("Simplex 1 Scale", Float) = 3
-        _FBM ("Fractional Brownian Motion", Float) = 0.3
+        _FBM ("fracional Brownian Motion", Float) = 0.3
         _TimeScale ("Time Scale", Float) = 1
         [Toggle(SKYBOX_HORIZON)] _SkyboxHorizon ("Horizon", Int) = 1
         [Toggle(SKYBOX_CLOUDS)] _SkyboxClouds ("Clouds", Int) = 1
@@ -104,38 +104,19 @@
                 return o;
             }
 
-            // yoink https://www.ronja-tutorials.com/post/024-white-noise/
-            float rand3dTo1d(float3 value, float3 dotDir = float3(12.9898, 78.233, 37.719)){
-                //make value smaller to avoid artefacts
-                float3 smallValue = sin(value);
-                //get scalar value from 3d vector
-                float random = dot(smallValue, dotDir);
-                //make value more random by making it bigger and then taking the factional part
-                random = frac(sin(random) * 143758.5453);
-                return random;
+            // modified from https://www.shadertoy.com/view/4djSRW
+            float hash31(float3 p3)
+            {
+	            p3  = frac(p3 * .1031);
+                p3 += dot(p3, p3.zyx + 31.32);
+                return frac((p3.x + p3.y) * p3.z);
             }
 
-            float rand1dTo1d(float3 value, float mutator = 0.546){
-                float random = frac(sin(value + mutator) * 143758.5453);
-                return random;
-            }
-
-            //to 3d functions
-
-            float3 rand3dTo3d(float3 value){
-                return float3(
-                rand3dTo1d(value, float3(12.989, 78.233, 37.719)),
-                rand3dTo1d(value, float3(39.346, 11.135, 83.155)),
-                rand3dTo1d(value, float3(73.156, 52.235, 09.151))
-                );
-            }
-
-            float3 rand1dTo3d(float value){
-                return float3(
-                rand1dTo1d(value, 3.9812),
-                rand1dTo1d(value, 7.1536),
-                rand1dTo1d(value, 5.7241)
-                );
+            float3 hash33(float3 p3)
+            {
+	            p3 = frac(p3 * float3(.1031, .1030, .0973));
+                p3 += dot(p3, p3.yxz+33.33);
+                return frac((p3.xxy + p3.yxx)*p3.zyx);
             }
 
             // modified from https://www.ronja-tutorials.com/post/028-voronoi-noise/
@@ -154,7 +135,7 @@
                         [unroll]
                         for(int z1=-1; z1<=1; z1++){
                             float3 cell = baseCell + float3(x1, y1, z1);
-                            float3 cellPosition = cell + rand3dTo3d(cell);
+                            float3 cellPosition = cell + hash33(cell);
                             float3 toCell = cellPosition - value;
                             float distToCell = length(toCell);
                             if (distToCell < minDistToCell){
@@ -176,7 +157,7 @@
                         [unroll]
                         for(int z2=-1; z2<=1; z2++){
                             float3 cell = baseCell + float3(x2, y2, z2);
-                            float3 cellPosition = cell + rand3dTo3d(cell);
+                            float3 cellPosition = cell + hash33(cell);
                             float3 toCell = cellPosition - value;
 
                             float3 diffToClosestCell = abs(closestCell - cell);
@@ -191,7 +172,7 @@
                     }
                 }
 
-                float random = rand3dTo1d(f2 ? secondClosestCell : closestCell);
+                float random = hash31(f2 ? secondClosestCell : closestCell);
                 return float3(minDistToCell, random, minEdgeDistance);
             }
 
@@ -213,30 +194,31 @@
                 float falloffVal = exp(abs(projectedPos.y) * _BorderFalloff);
                 border *= falloffVal;
                 border = lerp(border, _BorderWidth + 1, min(1, falloffVal / 200));
-                float crack = step(border, _BorderWidth);
 
                 // Layer 1
-                float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
-                layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
-                layer1Rainbow *= _Layer1BaseBrightness;
-                float layer1Mix = noise.y < _Layer1GlowThresh;
+                [branch]
+                if (border > _BorderWidth)
+                {
+                    float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
+                    layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
+                    layer1Rainbow *= _Layer1BaseBrightness;
+                    float layer1Mix = noise.y < _Layer1GlowThresh;
 
-                #if WAVE
-                float wave = noise.z * exp(abs(projectedPos.z - _WaveZ) * _WaveFalloff);
-                wave = step(wave, 0.3);
-                layer1Mix = min(1, layer1Mix + wave);
-                #endif
+                    #if WAVE
+                    float wave = noise.z * exp(abs(projectedPos.z - _WaveZ) * _WaveFalloff);
+                    wave = step(wave, 0.3);
+                    layer1Mix = min(1, layer1Mix + wave);
+                    #endif
 
-                float layer1Alpha = layer1Mix * _Layer1Alpha;
-                float4 layer1Col = float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
-
-                // Layer 2
-                projectedPos.xy = rotate2D(projectedPos.z * _Twist + _Rotation, projectedPos.xy);
-                float4 layer2Col = doSkybox(normalize(projectedPos));
-
-                // Final
-                float4 col = lerp(layer1Col, layer2Col, crack);
-                return col;
+                    float layer1Alpha = layer1Mix * _Layer1Alpha;
+                    return float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
+                }
+                //Layer 2
+                else
+                {
+                    projectedPos.xy = rotate2D(projectedPos.z * _Twist + _Rotation, projectedPos.xy);
+                    return doSkybox(normalize(projectedPos));
+                }
             }
             ENDCG
         }

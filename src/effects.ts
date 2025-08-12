@@ -160,7 +160,7 @@ export function applyFakeJumps(o: rm.BeatmapGameplayObject, random: RandFunc, co
         o.animation.localRotation = [
             [0, 0, 0, fromBeat(context.jumpInBeat + 1)],
             [...impactRotation, fromBeat(context.jumpInBeat)],
-            [0, 0, 0, fromBeat(context.jumpInBeat * 0.75), 'easeOutExpo']
+            [0, 0, 0, fromBeat(context.jumpInBeat * 0.5), 'easeOutExpo']
         ]
     }
 }
@@ -249,7 +249,7 @@ export function wheelEffect(map: rm.V3Difficulty, yIncrement: number, times: num
         })
 }
 
-export function noteHop(x: rm.AnyNote, distance = 10, duration = 2) {
+export function noteHop(x: rm.AnyNote, distance = 12, duration = 2.5) {
     x.noteJumpMovementSpeed = 0.002
     x.life = duration * 2
     x.disableNoteGravity = true
