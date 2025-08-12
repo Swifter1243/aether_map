@@ -197,13 +197,13 @@
 
                 // Layer 1
                 [branch]
-                if (crack < 0.5)
+                if (border > _BorderWidth)
                 {
                     float3 layer1Rainbow = rainbow(projectedPos.z * _Layer1HueScale + noise.y * _Layer1NoiseHueAmt);
                     layer1Rainbow = lerp(layer1Rainbow, 1, _Layer1Saturation);
                     layer1Rainbow *= _Layer1BaseBrightness;
                     float layer1Mix = noise.y < _Layer1GlowThresh;
-                    
+
                     #if WAVE
                     float wave = noise.z * exp(abs(projectedPos.z - _WaveZ) * _WaveFalloff);
                     wave = step(wave, 0.3);
@@ -214,7 +214,7 @@
                     return float4(lerp(layer1Rainbow, 1, layer1Mix), layer1Alpha);
                 }
                 //Layer 2
-                else 
+                else
                 {
                     projectedPos.xy = rotate2D(projectedPos.z * _Twist + _Rotation, projectedPos.xy);
                     return doSkybox(normalize(projectedPos));
