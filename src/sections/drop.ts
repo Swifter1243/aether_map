@@ -277,8 +277,10 @@ function doNotemods(map: rm.V3Difficulty) {
 
         dropRotationMovement(89 + 32, [0, 3, 0], 4, 'easeOutExpo')
 
-        dropRotationMovement(91 + 32, [-5, -3, 0])
-        dropRotationMovement(91 + 32, [5, -3, 0], 4, 'easeInOutBack')
+        if (isExpertPlus) {
+            dropRotationMovement(91 + 32, [-5, -3, 0])
+            dropRotationMovement(91 + 32, [5, -3, 0], 4, 'easeInOutBack')
+        }
 
         dropRotationMovement(95 + 32, [[-2, 0, 20 * diffHalf, 0], [-2, 0, 0, 0.5]], 2, 'easeOutExpo')
 
