@@ -29,7 +29,7 @@ Material:
     - _Saturation: 0.7
     - _StencilComp: 3
     - _StencilPass: 2
-    - _StencilRef: 0
+    - _StencilRef: 4
     - _TimeScale: 0.2
     - _VoronoiAmount: 0.9
     - _VoronoiScale: 3
