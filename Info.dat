@@ -41,9 +41,9 @@
       "_beatmapCharacteristicName" : "Standard",
       "_difficultyBeatmaps" : [
         {
-          "_difficulty" : "Hard",
-          "_difficultyRank" : 5,
-          "_beatmapFilename" : "HardStandard.dat",
+          "_difficulty" : "Expert",
+          "_difficultyRank" : 7,
+          "_beatmapFilename" : "ExpertStandard.dat",
           "_noteJumpMovementSpeed" : 12,
           "_noteJumpStartBeatOffset" : -0.5,
           "_beatmapColorSchemeIdx" : 0,
@@ -63,11 +63,11 @@
                 "_disableChromaEvents" : false
               }
             },
-            "_difficultyLabel" : "✧",
+            "_difficultyLabel" : "✧ ",
             "_colorLeft" : {"r":0.936,"g":0.614,"b":1},
             "_colorRight" : {"r":0,"g":0.803,"b":1},
-            "_envColorLeft": {"r":0,"g":0,"b":1},
-            "_envColorRight": {"r":0.5146155,"g":0,"b":1}
+            "_envColorLeft" : {"r":0,"g":0,"b":1},
+            "_envColorRight" : {"r":0.515,"g":0,"b":1}
           }
         }
       ]
@@ -101,8 +101,8 @@
             "_difficultyLabel" : "\\___*",
             "_colorLeft" : {"r":0.936,"g":0.614,"b":1},
             "_colorRight" : {"r":0,"g":0.803,"b":1},
-            "_envColorLeft": {"r":0,"g":0,"b":1},
-            "_envColorRight": {"r":0.5146155,"g":0,"b":1}
+            "_envColorLeft" : {"r":0,"g":0,"b":1},
+            "_envColorRight" : {"r":0.515,"g":0,"b":1}
           }
         }
       ]
