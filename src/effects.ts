@@ -141,6 +141,36 @@ function getRandomNoteSpawnRotation(random: RandFunc): rm.Vec3 {
     return RANDOM_NOTE_SPAWN_ROTATIONS[index]
 }
 
+export enum VISIBILITY {
+    VISIBLE,
+    PARTIAL,
+    INVISIBLE
+}
+
+export function granularVisibility(map: rm.V3Difficulty, track: string, materials: rm.Material<{
+    _BorderWidth: 'Float',
+    _CoreColor: 'Color'
+}>[]) {
+    return (beat: number, visible: VISIBILITY) => {
+        if (visible === VISIBILITY.INVISIBLE) {
+            visibility(map, track, beat, false)
+        }
+        else {
+            visibility(map, track, beat, true)
+
+            materials.forEach(m => {
+                const WHITE: rm.Vec4 = [1, 1, 1, 1]
+                const BLACK = rm.copy<rm.ColorVec>(m.defaults._CoreColor)
+
+                m.set(map, {
+                    _BorderWidth: visible == VISIBILITY.VISIBLE ? m.defaults._BorderWidth : m.defaults._BorderWidth * 0.5,
+                    _CoreColor: visible === VISIBILITY.VISIBLE ? BLACK : WHITE,
+                }, beat)
+            })
+        }
+    }
+}
+
 export function applyFakeJumps(o: rm.BeatmapGameplayObject, random: RandFunc, context: FakeJumpsContext) {
     const fromBeat = beatsToObjectSpawnLife(context.objectLife)
 

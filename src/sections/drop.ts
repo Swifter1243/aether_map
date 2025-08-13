@@ -1,6 +1,6 @@
 import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
-import { assignDirectionalRotation, fadeWhite, noteHop, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath, visibility, wheelEffect } from '../effects.ts'
+import { assignDirectionalRotation, fadeWhite, granularVisibility, noteHop, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath, VISIBILITY, visibility, wheelEffect } from '../effects.ts'
 import { materials, prefabs } from '../main.ts'
 import { approximately, between, cutDirectionVector, DIFF_MODE, diffValue, getDiffMode, join } from '../utilities.ts'
 
@@ -213,6 +213,14 @@ function doNotemods(map: rm.V3Difficulty) {
 
         setBlackNotes(107)
 
+        const blackVisibility = granularVisibility(map, DROP_TRACK, [
+            materials['black outline note'],
+            materials['black outline note debris']
+        ])
+        
+        blackVisibility(109, VISIBILITY.PARTIAL)
+        blackVisibility(111, VISIBILITY.VISIBLE)
+
         dropRotationMovement(111, [0, 0, 0], 1, 'easeOutExpo')
 
         wheelVisibility(100, false)
@@ -295,54 +303,29 @@ function doNotemods(map: rm.V3Difficulty) {
             x.track.add(DROP_DISAPPEARING_TRACK)
         })
 
-        enum VISIBILITY {
-            VISIBLE,
-            PARTIAL,
-            INVISIBLE
-        }
+        const blackDisappearingVisibility = granularVisibility(map, DROP_DISAPPEARING_TRACK, [
+            materials['black outline note'],
+            materials['black outline note debris']
+        ])
 
-        const whiteVisibility = (beat: number, visible: VISIBILITY) => {
-            const outlineMats = [
-                materials['black outline note'],
-                materials['black outline note debris']
-            ]
+        blackDisappearingVisibility(117, VISIBILITY.VISIBLE)
+        blackDisappearingVisibility(118 + 1 / 6, VISIBILITY.PARTIAL)
+        blackDisappearingVisibility(119, VISIBILITY.VISIBLE)
+        blackDisappearingVisibility(120 + 1 / 4, VISIBILITY.PARTIAL)
 
-            if (visible === VISIBILITY.INVISIBLE) {
-                visibility(map, DROP_DISAPPEARING_TRACK, beat, false)
-            }
-            else {
-                visibility(map, DROP_DISAPPEARING_TRACK, beat, true)
+        blackDisappearingVisibility(121, VISIBILITY.VISIBLE)
+        blackDisappearingVisibility(122.5, VISIBILITY.PARTIAL)
+        blackDisappearingVisibility(123, VISIBILITY.VISIBLE)
+        blackDisappearingVisibility(124.5, VISIBILITY.PARTIAL)
 
-                outlineMats.forEach(m => {
-                    const WHITE: rm.Vec4 = [1,1,1,1]
-                    const BLACK = rm.copy<rm.ColorVec>(m.defaults._CoreColor)
+        blackDisappearingVisibility(125, VISIBILITY.VISIBLE)
+        blackDisappearingVisibility(126.5, VISIBILITY.PARTIAL)
+        blackDisappearingVisibility(127, VISIBILITY.VISIBLE)
+        blackDisappearingVisibility(128, VISIBILITY.INVISIBLE)
+        blackDisappearingVisibility(128.25, VISIBILITY.VISIBLE)
 
-                    m.set(map, {
-                        _BorderWidth: visible == VISIBILITY.VISIBLE ? m.defaults._BorderWidth : m.defaults._BorderWidth * 0.5,
-                        _CoreColor: visible === VISIBILITY.VISIBLE ? BLACK : WHITE,
-                    }, beat)
-                })
-            }
-        }
-
-        whiteVisibility(117, VISIBILITY.VISIBLE)
-        whiteVisibility(118 + 1 / 6, VISIBILITY.PARTIAL)
-        whiteVisibility(119, VISIBILITY.VISIBLE)
-        whiteVisibility(120 + 1 / 4, VISIBILITY.PARTIAL)
-
-        whiteVisibility(121, VISIBILITY.VISIBLE)
-        whiteVisibility(122.5, VISIBILITY.PARTIAL)
-        whiteVisibility(123, VISIBILITY.VISIBLE)
-        whiteVisibility(124.5, VISIBILITY.PARTIAL)
-
-        whiteVisibility(125, VISIBILITY.VISIBLE)
-        whiteVisibility(126.5, VISIBILITY.PARTIAL)
-        whiteVisibility(127, VISIBILITY.VISIBLE)
-        whiteVisibility(128, VISIBILITY.INVISIBLE)
-        whiteVisibility(128.25, VISIBILITY.VISIBLE)
-
-        whiteVisibility(130.75, VISIBILITY.INVISIBLE)
-        whiteVisibility(131, VISIBILITY.VISIBLE)
+        blackDisappearingVisibility(130.75, VISIBILITY.INVISIBLE)
+        blackDisappearingVisibility(131, VISIBILITY.VISIBLE)
     }
 
     function blackSection2() {
