@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: B - Skybox
   m_Shader: {fileID: 4800000, guid: 4a7c14a86573a01489d1e91ada7098b8, type: 3}
-  m_ShaderKeywords: SKYBOX_CLOUDS SKYBOX_HORIZON
+  m_ShaderKeywords: DISABLE_FBM SKYBOX_CLOUDS SKYBOX_HORIZON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -61,6 +61,7 @@ Material:
     - _CloudPow: 2.01
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DisableFBM: 1
     - _DstBlend: 0
     - _FBM: 2.12
     - _GlossMapScale: 1

@@ -9,6 +9,7 @@ Shader "Swifter/RainbowSkybox"
         _Voronoi1Scale ("Voronoi 1 Scale", Float) = 20
         _Voronoi2Scale ("Voronoi 2 Scale", Float) = 3
         _Simplex1Scale ("Simplex 1 Scale", Float) = 3
+        [Toggle(DISABLE_FBM)] _DisableFBM ("Disable Fractional Brownian Motion", Int) = 0
         _FBM ("Fractional Brownian Motion", Float) = 0.3
         _TimeScale ("Time Scale", Float) = 1
         [Toggle(SKYBOX_HORIZON)] _SkyboxHorizon ("Horizon", Int) = 1
@@ -44,6 +45,7 @@ Shader "Swifter/RainbowSkybox"
             #pragma fragment frag
             #pragma shader_feature SKYBOX_HORIZON
             #pragma shader_feature SKYBOX_CLOUDS
+            #pragma shader_feature DISABLE_FBM
 
             #include "UnityCG.cginc"
             #include "RainbowSkybox.hlsl"

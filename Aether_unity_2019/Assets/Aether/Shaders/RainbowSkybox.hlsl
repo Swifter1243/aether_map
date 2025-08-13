@@ -18,10 +18,14 @@ float4 doSkybox(in float3 dir)
 {
 	float t = _Time.y * _TimeScale * 0.2;
 
+	#if !DISABLE_FBM
 	float v = voronoi(dir * _Voronoi1Scale + t).x;
 
 	float3 v2Offset = float3(cos(v), 0, sin(v));
 	float v2 = voronoi(dir * _Voronoi2Scale + v2Offset * _FBM + t * 0.1) * 0.3;
+	#else
+	float v2 = voronoi(dir * _Voronoi2Scale + t * 0.1) * 0.3;
+	#endif
 
 	float3 huePos = dir + v2;
 	float hue = simplex(huePos * _Simplex1Scale) * 3;
