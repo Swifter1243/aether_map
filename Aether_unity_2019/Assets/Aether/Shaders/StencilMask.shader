@@ -13,7 +13,7 @@
         }
         Cull [_Cull]
         ZWrite Off
-        Blend Zero One
+        ColorMask 0
 
         Stencil
         {
