@@ -200,7 +200,7 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         map.allNotes.filter(approximately(107)).forEach(x => {
-            noteHop(x, 30, x.beat - 101)
+            noteHop(x, diffValue(map, {EXPERTPLUS: 25, HARD: 20}), x.beat - 101)
         })
 
         dropRotationMovement(107, [0, 0, 0], 2, 'easeOutBack')
