@@ -20,11 +20,14 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _Brightness: 1
     - _CenterHighlightPower: 4
+    - _HorizonEnabled: 0
+    - _HorizonSize: 0.04
     - _RainbowOffset: 0.3
     - _RainbowScale: 3
     - _Saturation: 0.7
-    - _StencilComp: 8
+    - _StencilComp: 3
     - _StencilPass: 2
     - _StencilRef: 0
     - _TimeScale: 0.2
