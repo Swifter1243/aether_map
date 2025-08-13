@@ -5,7 +5,7 @@ import { simpleRotationPath } from '../effects.ts'
 import { assignDirectionalRotation } from '../effects.ts'
 import { noteHop, wheelEffect } from '../effects.ts'
 import { prefabs } from "../main.ts";
-import { approximately, beatsToObjectSpawnLife, between, diffValue, randomVec3 } from '../utilities.ts'
+import { approximately, beatsToObjectSpawnLife, between, DIFF_MODE, diffValue, getDiffMode, randomVec3 } from '../utilities.ts'
 
 export function outro(map: rm.V3Difficulty)
 {
@@ -18,6 +18,8 @@ export function outro(map: rm.V3Difficulty)
 
 function doNotemods(map: rm.V3Difficulty) {
     const diffHalf = diffValue(map, { EXPERTPLUS: 1, HARD: 0.5 })
+    const diffMode = getDiffMode(map)
+    const isExpertPlus = diffMode === DIFF_MODE.EXPERTPLUS
 
     const OUTRO_NOTE_TRACK = 'outroNote'
 
@@ -142,12 +144,25 @@ function doNotemods(map: rm.V3Difficulty) {
         outroRotationMovement(585, [[-4,-3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
 
         map.allNotes.filter(between(583, 589)).forEach(x => {
+            if (!isExpertPlus)
+            {
+                x.animation.dissolve = [[0,0],[1,0.1]]
+            }
+
             if (between(585, 587)(x)) {
                 const dist = x.beat - 583
-                noteHop(x, 5 * dist, dist)
+                if (isExpertPlus)
+                    noteHop(x, 5 * dist, dist)
+                else {
+                    x.life = dist * 2 + 2
+                }
             }
             else {
-                noteHop(x, 10, 2)
+                if (isExpertPlus)
+                    noteHop(x, 10, 2)
+                else {
+                    x.life = 3 * 2
+                }
             }
 
             assignDirectionalRotation(x)
@@ -239,12 +254,25 @@ function doNotemods(map: rm.V3Difficulty) {
         outroRotationMovement(585 + 32, [[-4,3,0,0],[0,0,0,0.5]], 2, 'easeOutBack')
 
         map.allNotes.filter(between(583 + 32, 589 + 32)).forEach(x => {
+            if (!isExpertPlus)
+            {
+                x.animation.dissolve = [[0,0],[1,0.1]]
+            }
+
             if (between(585 + 32, 587 + 32)(x)) {
                 const dist = x.beat - (583 + 32)
-                noteHop(x, 5 * dist, dist)
+                if (isExpertPlus)
+                    noteHop(x, 5 * dist, dist)
+                else {
+                    x.life = dist * 2 + 2
+                }
             }
             else {
-                noteHop(x, 10, 2)
+                if (isExpertPlus)
+                    noteHop(x, 10, 2)
+                else {
+                    x.life = 3 * 2
+                }
             }
 
             assignDirectionalRotation(x)

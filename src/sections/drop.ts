@@ -2,7 +2,7 @@ import { TIMES } from '../constants.ts'
 import { rm } from '../deps.ts'
 import { assignDirectionalRotation, fadeWhite, noteHop, sequencedShakeRotation, setDirectionalMagnitude, simpleRotationPath, visibility, wheelEffect } from '../effects.ts'
 import { materials, prefabs } from '../main.ts'
-import { approximately, between, cutDirectionVector, diffValue, join } from '../utilities.ts'
+import { approximately, between, cutDirectionVector, DIFF_MODE, diffValue, getDiffMode, join } from '../utilities.ts'
 
 export function drop(map: rm.V3Difficulty) {
     const dropScene = prefabs.drop.instantiate(map, TIMES.DROP)
@@ -21,6 +21,8 @@ function doNotemods(map: rm.V3Difficulty) {
     const WHEEL_EFFECT_TRACK = 'dropWheelEffect'
 
     const diffHalf = diffValue(map, { EXPERTPLUS: 1, HARD: 0.5 })
+    const diffMode = getDiffMode(map)
+    const isExpertPlus = diffMode === DIFF_MODE.EXPERTPLUS
 
     function setBlackNotes(beat: number) {
         rm.assignObjectPrefab(map, {
@@ -51,7 +53,8 @@ function doNotemods(map: rm.V3Difficulty) {
         x.disableNoteGravity = true
         x.animation.dissolve = [[0, 0], [1, 0.1]]
         x.animation.dissolveArrow = x.animation.dissolve
-        x.life = 2 * 2
+
+        x.life = diffValue(map, {EXPERTPLUS: 2, HARD: 2.5}) * 2
     })
 
     const wheelVisibility = (beat: number, visible: boolean) => visibility(map, WHEEL_EFFECT_TRACK, beat, visible)
@@ -67,9 +70,11 @@ function doNotemods(map: rm.V3Difficulty) {
     function blackSection() {
         const DARK_NOTES_TRACK = 'dropDarkNotesTrack'
 
-        setWhiteNotes(77)
+        setWhiteNotes(0)
 
-        dropRotationMovement(77, [-4, 3, -3])
+        if (isExpertPlus) {
+            dropRotationMovement(77, [-4, 3, -3])
+        }
         dropRotationMovement(77, [0, 0, 0], 3, 'easeOutBack')
 
         wheelVisibility(70, false)
@@ -105,19 +110,20 @@ function doNotemods(map: rm.V3Difficulty) {
             approximately(87),
             approximately(89),
         )).forEach((x) => {
-            noteHop(x, 8)
+            if (isExpertPlus)
+                noteHop(x, 8)
         })
 
         dropRotationMovement(89, [0, 0, 0], 4, 'easeOutExpo')
 
-        dropRotationMovement(91, [-5, 0, 0])
-        dropRotationMovement(91, [5, 0, 0], 4, 'easeInOutBack')
+        if (isExpertPlus) {
+            dropRotationMovement(91, [-5 * diffHalf, 0, 0])
+            dropRotationMovement(91, [5 * diffHalf, 0, 0], 4, 'easeInOutBack')
+        }
 
-        dropRotationMovement(95, [[-2, 0, 20 * diffHalf, 0], [-2, 0, 0, 0.5]], 2, 'easeOutExpo')
+        dropRotationMovement(95, [[-2 * diffHalf, 0, 20 * diffHalf, 0], [-2, 0, 0, 0.5]], 2, 'easeOutExpo')
 
         dropRotationMovement(97, [0, 0, 0], 4, 'easeOutBack')
-
-        // dropRotationMovement(101, [[0, 0, 0, 0], [0, 0, 0, 0.5]], 4, 'easeOutBack')
 
         rm.assignPathAnimation(map, {
             beat: 89,
@@ -146,7 +152,8 @@ function doNotemods(map: rm.V3Difficulty) {
             between(99, 101),
             approximately(109),
         )).forEach((x) => {
-            noteHop(x, 10, 2)
+            if (isExpertPlus)
+                noteHop(x, 10, 2)
 
             if (!(x instanceof rm.Bomb)) {
                 const left = x.color === rm.NoteColor.RED
@@ -237,7 +244,8 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         map.allNotes.filter(approximately(111)).forEach(x => {
-            noteHop(x, 10, 2)
+            if (isExpertPlus)
+                noteHop(x, 10, 2)
         })
 
         wheelVisibility(111, true)
@@ -255,7 +263,8 @@ function doNotemods(map: rm.V3Difficulty) {
             approximately(119),
             approximately(121),
         )).forEach((x) => {
-            noteHop(x, 8)
+            if (isExpertPlus)
+                noteHop(x, 8)
         })
 
         dropRotationMovement(89 + 32, [0, 3, 0], 4, 'easeOutExpo')
@@ -273,7 +282,8 @@ function doNotemods(map: rm.V3Difficulty) {
             approximately(129),
             between(131, 133),
         )).forEach((x) => {
-            noteHop(x)
+            if (isExpertPlus)
+                noteHop(x)
 
             if (!(x instanceof rm.Bomb)) {
                 const left = x.color === rm.NoteColor.RED
@@ -339,22 +349,24 @@ function doNotemods(map: rm.V3Difficulty) {
         setWhiteNotes(133)
 
         map.allNotes.filter(between(134, 149)).forEach(x => {
-            if (between(134, 136)(x)) {
-                const beatDistance = x.beat - 133
-                noteHop(x, beatDistance * 5, beatDistance + diffValue(map, {EXPERTPLUS: 0.5, HARD: 1}))
-            }
-            else if (between(136, 138)(x)) {
-                const beatDistance = x.beat - 135
-                noteHop(x, beatDistance * 5, beatDistance + diffValue(map, {EXPERTPLUS: 0.5, HARD: 1}))
-            }
-            else {
-                noteHop(x, 9,  + diffValue(map, {EXPERTPLUS: 2.25, HARD: 2.5}))
+            if (isExpertPlus) {
+                if (between(134, 136)(x)) {
+                    const beatDistance = x.beat - 133
+                    noteHop(x, beatDistance * 5, beatDistance + diffValue(map, {EXPERTPLUS: 0.5, HARD: 1}))
+                }
+                else if (between(136, 138)(x)) {
+                    const beatDistance = x.beat - 135
+                    noteHop(x, beatDistance * 5, beatDistance + diffValue(map, {EXPERTPLUS: 0.5, HARD: 1}))
+                }
+                else {
+                    noteHop(x, 9,  + diffValue(map, {EXPERTPLUS: 2.25, HARD: 2.5}))
+                }
             }
 
             assignDirectionalRotation(x)
         })
 
-        setDirectionalMagnitude(map, 30, 1)
+        setDirectionalMagnitude(map, 30 * diffHalf, 1)
         dropRotationMovement(133, [[0,0,0,0],[-6,0,0,0.5]], 3, 'easeOutCirc')
 
         dropRotationMovement(149 - 2 / 2, [[-3,-3,40,0],[-6,-4,0,0.5,'easeOutCirc']], 2, 'easeInOutBack')
@@ -369,7 +381,9 @@ function doNotemods(map: rm.V3Difficulty) {
         dropRotationMovement(165 - 2, [-3, 0, 0], 2, 'easeInCirc')
 
         map.allNotes.filter(between(167, 177)).forEach(x => {
-            noteHop(x, 9, 2)
+            if (isExpertPlus)
+                noteHop(x, 9, 2)
+
             assignDirectionalRotation(x)
         })
     }
@@ -389,7 +403,7 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         const shakeRandom = rm.seededRandom(8)
-        sequencedShakeRotation(map, ROTATION_SEQUENCE_1_TRACK, SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END, [177, 177.5, 177.75, 178.5, 179, 179.75, 180.25, 181], 7, shakeRandom, 80, 90)
+        sequencedShakeRotation(map, ROTATION_SEQUENCE_1_TRACK, SHAKE_SEQUENCE_1_START, SHAKE_SEQUENCE_1_END, [177, 177.5, 177.75, 178.5, 179, 179.75, 180.25, 181], 7 * diffHalf, shakeRandom, 80, 90)
 
         map.allNotes.filter(between(177, 181)).forEach(x => {
             const t = rm.inverseLerp(177, 181, x.beat)
