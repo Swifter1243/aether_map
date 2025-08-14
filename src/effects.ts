@@ -179,7 +179,7 @@ export function applyFakeJumps(o: rm.BeatmapGameplayObject, random: RandFunc, co
     
     const impactRotation = getRandomNoteSpawnRotation(random)
     if (o instanceof rm.ColorNote && o.cutDirection != rm.NoteCut.DOT) {
-        const invRotation: rm.Vec3 = [0, 0, -(cutDirectionAngle(o.cutDirection) + 180) % 360]
+        const invRotation: rm.Vec3 = [0, 0, -(cutDirectionAngle(o.cutDirection)) % 360]
         o.animation.localRotation = [
             [...invRotation, fromBeat(context.jumpInBeat + 1)],
             [...rm.combineRotations(impactRotation, invRotation), fromBeat(context.jumpInBeat)],
