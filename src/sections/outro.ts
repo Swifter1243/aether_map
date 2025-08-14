@@ -90,7 +90,7 @@ function doNotemods(map: rm.V3Difficulty) {
             track: WHEEL_EFFECT_TRACK,
             beat: 575 - 10,
             animation: {
-                dissolve: [[0,wheelFromBeat(2)],[1,wheelFromBeat(1)]]
+                dissolve: [[0,wheelFromBeat(3)],[1,wheelFromBeat(1)]]
             }
         })
 
@@ -185,7 +185,13 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         map.allNotes.filter(approximately(591)).forEach(x => {
-            noteHop(x)
+            if (isExpertPlus)
+                noteHop(x)
+            else
+            {
+                x.life = 3 * 2
+                x.animation.dissolve = [[0,0],[1,0.2]]
+            }
         })
 
         map.allNotes.filter(between(592, 605)).forEach(x => {
@@ -230,7 +236,13 @@ function doNotemods(map: rm.V3Difficulty) {
 
         applyBlackNotes(575 + 32)
         map.allNotes.filter(approximately(575 + 32)).forEach(x => {
-            noteHop(x)
+            if (isExpertPlus)
+                noteHop(x)
+            else
+            {
+                x.life = 3 * 2
+                x.animation.dissolve = [[0,0],[1,0.2]]
+            }
         })
         
         wheelEffect(map, -10 * diffHalf, [576 + 32, 578 + 32, 579 + 32, 581 + 32])
@@ -295,7 +307,13 @@ function doNotemods(map: rm.V3Difficulty) {
         })
 
         map.allNotes.filter(approximately(591 + 32)).forEach(x => {
-            noteHop(x)
+            if (isExpertPlus)
+                noteHop(x)
+            else
+            {
+                x.life = 3 * 2
+                x.animation.dissolve = [[0,0],[1,0.2]]
+            }
         })
 
         map.allNotes.filter(between(592 + 32, 605 + 32)).forEach(x => {
