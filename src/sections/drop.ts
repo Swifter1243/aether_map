@@ -167,7 +167,7 @@ function doNotemods(map: rm.V3Difficulty) {
                 dissolve: [[0, 0], [1, 0.2]],
                 dissolveArrow: [[0, 0], [1, 0.2]],
                 offsetWorldRotation: [0,0,20],
-                offsetPosition: [0, 0, 4],
+                offsetPosition: [[0, 0, 6, 0.5,'easeInOutCirc'], [0,0,0,0]],
             },
         })
 
