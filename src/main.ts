@@ -70,6 +70,8 @@ function visualsSetup(map: rm.V3Difficulty) {
             x.spawnEffect = false
         }
 
+        x.noteJumpMovementSpeed = x.implicitNoteJumpMovementSpeed
+        x.noteJumpStartBeatOffset = x.implicitNoteJumpStartBeatOffset
         x.unsafeCustomData.scale = [1,1,1]
     })
 
